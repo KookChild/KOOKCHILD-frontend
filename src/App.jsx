@@ -2,6 +2,7 @@ import './App.less'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import GlobalStyle from './GlobalStyle'
+
 import {
   ParentMainPage,
   ChildMainPage,
