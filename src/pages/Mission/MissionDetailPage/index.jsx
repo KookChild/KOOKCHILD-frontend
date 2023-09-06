@@ -1,3 +1,3 @@
 export const MissionDetailPage = () => {
-  return <div>MissionDetailPage</div>
+  return <div>Mission Detail Page</div>
 }
