@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+export const ChallengeCardWrapper = styled.div``
 export const ChallengeCardImgWrapper = styled.div`
   display: flex;
   justify-content: center;

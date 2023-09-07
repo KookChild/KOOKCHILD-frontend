@@ -47,6 +47,7 @@ function App() {
             />
             <Route
               path="/challenge/child/detail/:id"
+              // path="/challenge/child/detail"
               element={<ChallengeChildDetailPage />}
             />
             <Route
