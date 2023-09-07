@@ -1,3 +1,3 @@
 export const ChallengeChildDetailPage = () => {
-  return <div>Challenge Child Detail Page</div>
+  return <div>ChallengeChildDetail Page</div>
 }
