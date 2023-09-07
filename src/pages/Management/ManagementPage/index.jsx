@@ -1,45 +1,72 @@
 import "./style.css";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
+import ChildSelect from "./ChildSelect";
+import BankContent from "./BankContent";
+import SendButtonComponent from "./SendButton";
+
+// 화면을 중앙 정렬하는 스타일 컴포넌트
+const CenteredContainer = styled.div`
+  width: 360px;     /* 가로 크기 */
+  height: 600px;    /* 세로 크기 */
+  position: absolute;
+  top: 50%;         /* 세로 중앙 정렬 */
+  left: 50%;        /* 가로 중앙 정렬 */
+  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
+  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
+  border: 1px solid #ccc;    /* 테두리 스타일을 원하는 스타일로 변경 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  padding: 20px; /* 내부 여백 설정 */
+
+  display: flex;
+  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
+  justify-content: space-between; /* 컴포넌트들을 위아래로 분배 */
+`;
+
+const Header = styled.div`
+  padding: 10px;
+  text-align: center;
+`;
+
+
+const MainContent = styled.div`
+  flex-grow: 1;
+  overflow-y: auto;
+`;
+
+const Footer = styled.div`
+  text-align: center;
+`;
+
 export const ManagementPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedPicture, setSelectedPicture] = useState(null);
+  const [childName, setChildName] = useState(""); 
 
-  // 파일이 선택되면 이벤트 핸들러
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+  const personContainerRef = useRef(null); // ref 생성
+
+  const handleImageClick = (event, imagePath, altText) => {
+    const clickedImgSrc = imagePath;
+    setSelectedPicture(clickedImgSrc);
+
+    setChildName(altText);
+
+    console.log(selectedPicture);
+    console.log(altText);
   };
-
   return (
-  <div id = "management" >
-    <div class="childSelect">
-      <div className="personContainer">
-         <div class="person">사람</div>
-        <div className="name">김땡땡</div>
-      </div>
-      <div className="personContainer">
-         <div class="person">사람</div>
-        <div className="name">최땡땡</div>
-      </div>
-      <div className="personContainer">
-         <div class="person">사람</div>
-        <div className="name">이땡땡</div>
-      </div>
-      <div className="personContainer">
-         <div class="person">사람</div>
-        <div className="name">은땡땡</div>
-      </div>
-    </div>
-    <div id="bankContent">
-      <div id="pictureSelect">
-        <div id = "picture"></div>
-      </div>
-      <div id="bankInfo">
-        <div id="bankForm">
-        </div>
-      </div>
-    </div>
-    <div id="sendBtn">
-    </div>
-  </div>
+    <CenteredContainer>
+      <Header>
+        {/* ChildSelect 컴포넌트를 Header 안에 렌더링 */}
+        <ChildSelect handleImageClick={handleImageClick} />
+      </Header>
+      <MainContent>
+        {/* 중간 컨텐츠 */}
+        <BankContent selectedPicture={selectedPicture} childName={childName} />
+      </MainContent>
+      <Footer>
+        {/* 푸터 */}
+        <SendButtonComponent />
+      </Footer>
+  </CenteredContainer>
   )
 }
