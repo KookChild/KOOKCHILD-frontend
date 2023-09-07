@@ -30,8 +30,15 @@ const ImageContainer = styled.div`
   overflow: hidden;
   border-radius: 30%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: border-color 0.5s ease-in-out, border-width 0.5s ease-in-out;
+  transition: border-color 0.5s ease-in-out, border-width 0.5s ease-in-out, background-color 0.5s ease-in-out;
   border: 2px solid transparent;
+
+  
+  &:hover {
+    .image-overlay::before {
+      width: 100%; /* hover 시에 테두리 애니메이션 효과 활성화 */
+    }
+  }
 
   &:hover::before {
     content: "";
@@ -39,10 +46,15 @@ const ImageContainer = styled.div`
     left: 0;
     height: 2px;
     background-color: transparent;
-    transition: background-color 0.5s ease, width 0.5s ease;
+    transition: background-color 0.5s ease, width 0.5s ease-in-out; /* transform 제거 */
     background-color: orange;
     width: 0;
-    transition-delay: 0.5s;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%; /* hover 시에 테두리 애니메이션 효과 활성화 */
+    }
   }
 
   &::before {

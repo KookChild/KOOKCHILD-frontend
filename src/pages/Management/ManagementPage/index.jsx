@@ -28,6 +28,25 @@ const Header = styled.div`
   text-align: center;
 `;
 
+const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content:  flex-start;
+  margin-bottom: 20px;
+`;
+
+const HeaderImage = styled.img`
+  width: 20px; /* 이미지 너비 조정 */
+  height: 20px; /* 이미지 높이 조정 */
+  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
+`;
+
+const HeaderTitle = styled.h1`
+  font-size: 18px; /* title의 글꼴 크기 조정 */
+  font-weight: bold; /* title 텍스트 굵게 설정 */
+  margin: 0; /* title의 margin 제거 */
+`;
+
 
 const MainContent = styled.div`
   flex-grow: 1;
@@ -56,15 +75,16 @@ export const ManagementPage = () => {
   return (
     <CenteredContainer>
       <Header>
-        {/* ChildSelect 컴포넌트를 Header 안에 렌더링 */}
-        <ChildSelect handleImageClick={handleImageClick} />
+        <HeaderContent>
+          <HeaderImage src={require("./img/prefer.png")} />
+          <HeaderTitle>자녀금융관리</HeaderTitle>
+        </HeaderContent>
       </Header>
       <MainContent>
-        {/* 중간 컨텐츠 */}
+        <ChildSelect handleImageClick={handleImageClick} />
         <BankContent selectedPicture={selectedPicture} childName={childName} />
       </MainContent>
       <Footer>
-        {/* 푸터 */}
         <SendButtonComponent />
       </Footer>
   </CenteredContainer>
