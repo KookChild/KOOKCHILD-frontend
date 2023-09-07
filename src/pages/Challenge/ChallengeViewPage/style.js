@@ -14,3 +14,11 @@ export const HeaderContainer = styled.div`
   font-size: 28px;
   font-weight: bold;
 `
+export const ChallengeContainer = styled.div``
+export const TotalCountContainer = styled.div`
+  margin-left: 5%;
+  font-weight: bold;
+`
+export const TotalCountTextContainer = styled.span`
+  color: red;
+`

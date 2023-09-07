@@ -1,14 +1,23 @@
 import { FilterButton } from '@components'
-import { FilterContainer, HeaderContainer } from './style'
-import { useState } from 'react'
-import { SlideLogo } from '@components'
+import {
+  FilterContainer,
+  HeaderContainer,
+  TotalCountContainer,
+  TotalCountTextContainer,
+} from './style'
+import { useEffect, useState } from 'react'
+import { SlideLogo, ChallengeCard } from '@components'
+import { ChallengeContainer } from './style'
+
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [totalCount, setTotalCount] = useState(0)
   const handleButtonClick = index => {
     setSelectedIndex(index)
   }
+
   return (
-    <div>
+    <ChallengeContainer>
       <SlideLogo />
       <HeaderContainer>Challenge 목록</HeaderContainer>
       <FilterContainer>
@@ -28,6 +37,24 @@ export const ChallengeViewPage = () => {
           onClick={() => handleButtonClick(2)}
         />
       </FilterContainer>
-    </div>
+      <TotalCountContainer>
+        총 <TotalCountTextContainer>{totalCount}</TotalCountTextContainer> 건
+      </TotalCountContainer>
+      <ChallengeCard
+        imgSource={'/img/Challenge1.png'}
+        startDate={'2023.09.07'}
+        endDate={'2023.09.14'}
+      />
+      <ChallengeCard
+        imgSource={'/img/Challenge1.png'}
+        startDate={'2023.09.07'}
+        endDate={'2023.09.14'}
+      />
+      <ChallengeCard
+        imgSource={'/img/Challenge1.png'}
+        startDate={'2023.09.07'}
+        endDate={'2023.09.14'}
+      />
+    </ChallengeContainer>
   )
 }
