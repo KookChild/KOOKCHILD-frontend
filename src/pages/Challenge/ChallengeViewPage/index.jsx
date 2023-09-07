@@ -1,6 +1,7 @@
 import { FilterButton } from '@components'
 import { FilterContainer, HeaderContainer } from './style'
 import { useState } from 'react'
+import { SlideLogo } from '@components'
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const handleButtonClick = index => {
@@ -8,6 +9,7 @@ export const ChallengeViewPage = () => {
   }
   return (
     <div>
+      <SlideLogo />
       <HeaderContainer>Challenge 목록</HeaderContainer>
       <FilterContainer>
         <FilterButton
