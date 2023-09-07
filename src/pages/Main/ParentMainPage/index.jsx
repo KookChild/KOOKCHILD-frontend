@@ -1,20 +1,18 @@
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Swal from 'sweetalert2'
-
+import { FilterButton } from '@components'
 export const ParentMainPage = () => {
   const notify = () => toast('toastify test!')
   const confirm = () => {
     Swal.fire({
       title: '정말로 삭제하시겠습니까?',
       icon: 'warning',
-
       showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
       confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
       cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
       confirmButtonText: '승인', // confirm 버튼 텍스트 지정
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-
       reverseButtons: true, // 버튼 순서 거꾸로
     }).then(result => {
       // 만약 Promise리턴을 받으면,
@@ -30,6 +28,7 @@ export const ParentMainPage = () => {
       <span>Parent Main Page</span>
       <button onClick={notify}>TOASTIFY TEST</button>
       <button onClick={confirm}>SWEET ALERT2 TEST</button>
+      <FilterButton text={'All'} backgroundColor={'black'} />
       <ToastContainer
         position="top-right" // 알람 위치 지정
         autoClose={3000} // 자동 off 시간
