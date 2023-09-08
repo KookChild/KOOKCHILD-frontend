@@ -89,7 +89,7 @@ export const ManagementPage = () => {
 
       <MainContent>
         <ChildSelect handleImageClick={handleImageClick} />
-        <BankContent selectedPicture={selectedPicture} childName={childName} />
+        <BankContent selectedPicture={selectedPicture} childName={childName} setSelectedPicture={setSelectedPicture} />
       </MainContent>
 
       <Footer>

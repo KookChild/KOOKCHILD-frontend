@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Swal from 'sweetalert2'; // SweetAlert2 라이브러리 import
+import './css/SendButton.css';
 
 const SendButtonContainer = styled.div`
   text-align: center;
@@ -31,26 +32,45 @@ const SendButton = styled.button`
 `;
 
 
-const SendButtonComponent = ({disabled}) => {
+const SendButtonComponent = ({disabled, setDisabled}) => {
   const handleSendButtonClick = () => {
+    setDisabled(true);
+
     // SweetAlert2 모달 창 표시
     Swal.fire({
-      title: '송금하시겠습니까?',
-      text: '예',
+      title: '<span style="font-size: 20px;">송금을\n 진행하시겠습니까?</span>',
+      text: '',
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
       reverseButtons: true,
+      customClass: {
+        // 모달에 사용할 클래스 추가
+        container: 'custom-swal-container',
+      },
+     
     }).then((result) => {
       // 사용자가 확인 버튼을 누르면
       if (result.isConfirmed) {
         // 성공 알림 표시
-        Swal.fire('우리아이에게 송금이 완료되었습니다.', '찾아주셔서 감사합니다', 'success');
+        Swal.fire({
+          title: '<span style="font-size: 20px;">우리아이에게\n 송금이 완료되었습니다.</span>',
+          text: '찾아주셔서 감사합니다',
+          icon: 'success',
+          customClass: {
+            // 성공 알림 모달에 사용할 클래스 추가
+            container: 'custom-swal-container',
+          },
+          timer: 2000, // 6초 후에 모달 창을 자동으로 닫도록 설정 (밀리초 단위)
+        });
       }
+      setDisabled(false);
     });
+
+    
   };
 
   return (
