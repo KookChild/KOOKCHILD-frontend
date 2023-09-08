@@ -16,8 +16,10 @@ export const HeaderContainer = styled.div`
 `
 export const ChallengeContainer = styled.div``
 export const TotalCountContainer = styled.div`
+  padding: 15px 10px;
   margin-left: 5%;
   font-weight: bold;
+  font-size: 20px;
 `
 export const TotalCountTextContainer = styled.span`
   color: red;
