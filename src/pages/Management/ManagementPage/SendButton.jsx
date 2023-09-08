@@ -8,21 +8,30 @@ const SendButtonContainer = styled.div`
 `;
 
 const SendButton = styled.button`
-  background-color: #F9C515;
   width: 360px;
   height: 66px;
-
-  &:hover {
-    background-color: gold;
-  }
-
-  padding: 10px 40px; /* 버튼 안의 내용물과 주변 간격 설정 */
-  font-size: 20px; /* 폰트 크기를 키워서 버튼 크기를 크게 만듭니다. */
+  padding: 10px 40px;
+  font-size: 20px;
   border: none;
   cursor: pointer;
+
+  /* Add a conditional style to change background color when disabled */
+  ${({ disabled }) => disabled
+    ? `
+      background-color: #ccc; /* Change to the desired gray color */
+      cursor: not-allowed;
+    `
+    : `
+      background-color: #F9C515;
+      &:hover {
+        background-color: gold;
+      }
+    `
+  }
 `;
 
-const SendButtonComponent = () => {
+
+const SendButtonComponent = ({disabled}) => {
   const handleSendButtonClick = () => {
     // SweetAlert2 모달 창 표시
     Swal.fire({
@@ -46,7 +55,8 @@ const SendButtonComponent = () => {
 
   return (
     <SendButtonContainer>
-       <SendButton onClick={handleSendButtonClick}>송금하기</SendButton>
+       <SendButton 
+       onClick={handleSendButtonClick}  disabled={disabled} >송금하기</SendButton>
     </SendButtonContainer>
   );
 }
