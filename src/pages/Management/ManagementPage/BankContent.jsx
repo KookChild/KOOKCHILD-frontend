@@ -5,6 +5,7 @@ import c1 from './img/아이1.jpeg';
 import c2 from './img/아이2.jpg';
 import c3 from './img/아이3.jpg';
 import c4 from './img/아이4.jpg';
+import axios from 'axios';
 
 const BankContentContainer = styled.div`
   width: 100%;
@@ -39,15 +40,44 @@ const CommentText = styled.div`
   font-size: 16px;
 `;
 
-const BankContent = ({ selectedPicture, childName }) => {
+const ChildName = styled.div`
+  span{
+/* UI Properties */
+text-align: left;
+color: #010812;
+padding:10px;
+  }
+`
+
+
+const BankContent = ({ selectedPicture, setSelectedPicture, childName }) => {
+  // const [childName, setChildName] = useState("");
+  const [accountNum, setAccountNum] = useState("");
   const controls = useAnimation();
 
   useEffect(() => {
-    // selectedPicture가 변경될 때마다 애니메이션 적용
-    controls.start({ opacity: 0, transition: { duration: 0.5 } });
-    setTimeout(() => {
-      setSelectedPicture(selectedPicture);
-    }, 500); // 애니메이션 지속 시간 이후에 다시 초기 이미지로 설정
+  //   // selectedPicture가 변경될 때마다 애니메이션 적용
+  //   controls.start({ opacity: 0, transition: { duration: 0.5 } });
+  //   setTimeout(() => {
+  //     setSelectedPicture(selectedPicture);
+  //   }, 500); // 애니메이션 지속 시간 이후에 다시 초기 이미지로 설정
+
+    axios
+    .get('/management/1')
+    .then((response) => { // axios then 호출
+      if(response.data){
+        setChildName(response.data.userName);
+        setAccountNum(response.data.accountNum);        
+     }
+    })
+    .catch((error) => {
+      console.error('API 요청 실패:', error);
+      // 실패한 경우 에러 처리
+      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+    })
+    .finally(() => {
+    });
+
   }, [selectedPicture]);
 
   // 이미지 경로에 따라 c1, c2, c3, c4로 대체
@@ -63,25 +93,29 @@ const BankContent = ({ selectedPicture, childName }) => {
 
   return (
     <BankContentContainer>
+      <ChildName>{childName != "" ? <span>{childName}님의 계좌</span> : ""}</ChildName>
       <PictureSelectContainer>
         {selectedPicture == null ? (
           <div id="comment">송금하실 자녀를 선택해주세요</div>
         ) : (
-          <motion.img
-            initial={{ opacity: 0 }} // 초기 상태
-            animate={{ opacity: 1 }} // 애니메이션 적용
-            exit={{ opacity: 0 }} // 나가기 애니메이션 설정
-            transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
-            key={selectedPicture} // 이미지 변경 시에 컴포넌트를 새로 렌더링하기 위한 키 설정
-            src={selectedPicture}
-            alt="preview-img"
-            className="show"
-            style={{
-              objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
-              width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
-              height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
-            }}
-          />
+          <div>
+            
+            <motion.img
+              initial={{ opacity: 0 }} // 초기 상태
+              animate={{ opacity: 1 }} // 애니메이션 적용
+              exit={{ opacity: 0 }} // 나가기 애니메이션 설정
+              transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
+              key={selectedPicture} // 이미지 변경 시에 컴포넌트를 새로 렌더링하기 위한 키 설정
+              src={selectedPicture}
+              alt="preview-img"
+              className="show"
+              style={{
+                objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
+                width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
+                height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
+              }}
+            />
+          </div>
         )}
       </PictureSelectContainer>
       <BankInfoContainer>
@@ -91,7 +125,7 @@ const BankContent = ({ selectedPicture, childName }) => {
           <p>
             <span id="name">{childName}</span>
             님의 계좌 <br />
-            계좌번호: 1223-4422-3433
+            계좌번호: <span id="accountNum">{accountNum}</span>
           </p>
         )}
       </BankInfoContainer>
