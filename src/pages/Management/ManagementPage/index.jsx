@@ -60,15 +60,21 @@ const Footer = styled.div`
 export const ManagementPage = () => {
   const [selectedPicture, setSelectedPicture] = useState(null);
   const [childName, setChildName] = useState(""); 
+  const [disabled, setDisabled] = useState(true); 
 
   const personContainerRef = useRef(null); // ref 생성
 
   const handleImageClick = (event, imagePath, altText) => {
     const clickedImgSrc = imagePath;
     setSelectedPicture(clickedImgSrc);
+    
 
     setChildName(altText);
 
+    if(disabled == true){
+      setDisabled(false);
+    }
+    
     console.log(selectedPicture);
     console.log(altText);
   };
@@ -80,12 +86,14 @@ export const ManagementPage = () => {
           <HeaderTitle>자녀금융관리</HeaderTitle>
         </HeaderContent>
       </Header>
+
       <MainContent>
         <ChildSelect handleImageClick={handleImageClick} />
-        <BankContent selectedPicture={selectedPicture} childName={childName} />
+        <BankContent selectedPicture={selectedPicture} childName={childName} setSelectedPicture={setSelectedPicture} />
       </MainContent>
+
       <Footer>
-        <SendButtonComponent />
+        <SendButtonComponent disabled = {disabled} setDisabled = {setDisabled}/>
       </Footer>
   </CenteredContainer>
   )
