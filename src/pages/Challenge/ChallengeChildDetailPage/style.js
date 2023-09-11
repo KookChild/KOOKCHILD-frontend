@@ -34,5 +34,8 @@ export const ChallengeImgWrapper = styled.div`
   justify-content: center;
 `
 export const ChallengeContentImgContainer = styled.div`
-  padding: 25% 0px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `

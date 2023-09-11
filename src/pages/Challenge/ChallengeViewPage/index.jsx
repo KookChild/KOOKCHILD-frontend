@@ -8,16 +8,54 @@ import {
 import { useEffect, useState } from 'react'
 import { SlideLogo, ChallengeCard } from '@components'
 import { ChallengeContainer } from './style'
+import { testAPI, loadAllChallengesAPI } from '@apis'
 
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [totalCount, setTotalCount] = useState(0)
+  const [challenges, setChallenges] = useState([])
   const handleButtonClick = index => {
     setSelectedIndex(index)
   }
 
+  useEffect(() => {
+    const loadChallenges = async () => {
+      let apiFunction
+      switch (selectedIndex) {
+        case 0:
+          apiFunction = loadAllChallengesAPI
+          break
+        case 1:
+          // apiFunction = loadParentChallengesAPI
+          apiFunction = loadAllChallengesAPI
+          break
+        case 2:
+          // apiFunction = loadMyChallengesAPI
+          apiFunction = loadAllChallengesAPI
+          break
+        default:
+          apiFunction = loadAllChallengesAPI
+          break
+      }
+
+      try {
+        const challengesData = await apiFunction()
+        setChallenges(challengesData)
+        setTotalCount(challengesData.length)
+      } catch (error) {
+        console.error('Error loading challenges:', error)
+      }
+    }
+
+    loadChallenges()
+  }, [selectedIndex])
   return (
     <ChallengeContainer>
+      <h1>
+        {challenges.map((challenge, key) => (
+          <h4 key={key}>{challenge.title}</h4>
+        ))}
+      </h1>
       <SlideLogo />
       <HeaderContainer>Challenge 목록</HeaderContainer>
       <FilterContainer>
@@ -37,24 +75,20 @@ export const ChallengeViewPage = () => {
           onClick={() => handleButtonClick(2)}
         />
       </FilterContainer>
-      <TotalCountContainer>
-        총 <TotalCountTextContainer>{totalCount}</TotalCountTextContainer> 건
-      </TotalCountContainer>
-      <ChallengeCard
-        imgSource={'/img/Challenge1.png'}
-        startDate={'2023.09.07'}
-        endDate={'2023.09.14'}
-      />
-      <ChallengeCard
-        imgSource={'/img/Challenge1.png'}
-        startDate={'2023.09.07'}
-        endDate={'2023.09.14'}
-      />
-      <ChallengeCard
-        imgSource={'/img/Challenge1.png'}
-        startDate={'2023.09.07'}
-        endDate={'2023.09.14'}
-      />
+
+      <div>
+        <TotalCountContainer>
+          총<TotalCountTextContainer>{totalCount}</TotalCountTextContainer> 건
+        </TotalCountContainer>
+        {challenges.map((challenge, key) => (
+          <ChallengeCard
+            key={key}
+            imgSource={challenge.imgSource}
+            startDate={challenge.startDate}
+            endDate={challenge.endDate}
+          />
+        ))}
+      </div>
     </ChallengeContainer>
   )
 }

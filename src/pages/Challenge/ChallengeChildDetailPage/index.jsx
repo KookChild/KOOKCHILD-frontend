@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom'
 import {
@@ -10,15 +10,16 @@ import {
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
+import { loadChallengeDetailAPI } from '@apis'
 
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
-  console.log(params.id)
-  const AtomTitle = '26일 챌린지'
-  const AtomContent =
-    ' 26일 동안 매일 천원씩 저금하면, 26일 뒤에 1500원의 이자가 지급돼!'
-  const [title, setTitle] = useState(AtomTitle)
-  const [content, setContent] = useState(AtomContent)
+  // const AtomTitle = '26일 챌린지'
+  // const AtomContent =
+  //   ' 26일 동안 매일 천원씩 저금하면, 26일 뒤에 1500원의 이자가 지급돼!'
+  // const [title, setTitle] = useState(AtomTitle)
+  // const [content, setContent] = useState(AtomContent)
+  const [challenge, setChallenge] = useState()
   const confirm = () => {
     Swal.fire({
       title: '정말로 참여하시겠습니까?',
@@ -43,18 +44,32 @@ export const ChallengeChildDetailPage = () => {
     })
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const challengeDetailData = await loadChallengeDetailAPI(params.id)
+        setChallenge(challengeDetailData)
+      } catch (error) {
+        console.error('Error fetching challenge detail:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
   return (
-    <ChallengeContainer>
-      <ChallengeTitle> {title}</ChallengeTitle>
-      <ChallengeContentImgContainer>
-        <ChallengeContent>{content}</ChallengeContent>
-        <ChallengeImgWrapper>
-          <ChallengeImg src="/img/Bear.png" />
-        </ChallengeImgWrapper>
-      </ChallengeContentImgContainer>
-      <ChallengeConfirmButton onClick={confirm}>
-        참여할래?
-      </ChallengeConfirmButton>
-    </ChallengeContainer>
+    challenge && (
+      <ChallengeContainer>
+        <ChallengeTitle> {challenge.title}</ChallengeTitle>
+        <ChallengeContentImgContainer>
+          <ChallengeContent>{challenge.childContent}</ChallengeContent>
+          <ChallengeImgWrapper>
+            <ChallengeImg src={challenge.image} />
+          </ChallengeImgWrapper>
+        </ChallengeContentImgContainer>
+        <ChallengeConfirmButton onClick={confirm}>
+          참여할래?
+        </ChallengeConfirmButton>
+      </ChallengeContainer>
+    )
   )
 }
