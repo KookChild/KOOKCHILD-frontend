@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'; // SweetAlert2 라이브러리 import
 import './css/SendButton.css';
 import axios from 'axios';
 
+const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
 const SendButtonContainer = styled.div`
   position: relative;
@@ -34,7 +35,10 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
     // TODO : 송금하기 이동 ajax 연결
       setDisabled(true);
       // API 요청 보내기
-  
+      var url = "/management/send";
+      var jsonData = {
+        "childId": childId
+      };
       Swal.fire({
         title: '<span style="font-size: 20px;">송금을\n 진행하시겠습니까?</span>',
         text: '',
@@ -53,8 +57,11 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
       }).then((result) => { //Swal.fire then 호출
         if(result.isConfirmed){
           axios
-          .post('/management/send', {
-            "childId": childId, // 원하는 childId와 parentId 값을 설정
+          ({
+            url: url,
+            method : "post",
+            headers : {Authorization: token},
+            data : jsonData
           })
           .then((response) => { // axios then 호출
             if(response.data){
