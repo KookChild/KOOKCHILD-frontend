@@ -55,7 +55,7 @@ function App() {
             />
             <Route path="/challenge" element={<ChallengeViewPage />} />
             <Route path="/complete" element={<CompletePage />} />
-            <Route path="/graph" element={<GraphMainPage />} />
+            {/* <Route path="/graph" element={<GraphMainPage />} /> */}
             <Route path="/graph/detail" element={<GraphDetailPage />} />
             <Route path="/management" element={<ManagementPage />} />
           </Routes>

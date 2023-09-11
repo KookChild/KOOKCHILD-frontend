@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SendButtonContainer = styled.p`
-  position: relative;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
-`;
-
 const Button = styled.button`
   background-color: #f9c515;
   width: 100%; /* 좌우로 크게 설정 */
@@ -26,13 +19,13 @@ const Button = styled.button`
 const MoveChildGraphButton = () => {
   const getChildGraphButtonClick = () => {
     //TODO : 우리 아이 계좌 소비 통계 페이지로 이동 ajax 연결
-    console.log("우리 아이 계좌 소비 통계 페이지 버튼 입력됨");
+    location.href = '/graph/detail';
   };
 
   return (
-    <SendButtonContainer>
+
       <Button onClick={getChildGraphButtonClick}>우리 아이 소비 통계 보러 가기</Button>
-    </SendButtonContainer>
+
   );
 };
 
