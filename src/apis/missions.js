@@ -34,3 +34,10 @@ export const updateMission = async (missionId, title, content, reward, endDate) 
     });
     return response.data;
 };
+
+export const deleteMission = async (missionId) => {
+    const response = await axios.delete('/mission', {
+        data: { missionId: missionId }
+    });
+    return response.data;
+};

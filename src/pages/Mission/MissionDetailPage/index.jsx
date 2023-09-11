@@ -17,7 +17,7 @@ import {
     StyledTitle
 } from './style';
 import { MissionInfo, BackHeader } from '@components';
-import { fetchMissionDetail, completeMission, updateMission } from '../../../apis/missions';
+import { fetchMissionDetail, completeMission, updateMission, deleteMission } from '../../../apis/missions';
 
 export const MissionDetailPage = () => {
     const {missionId} = useParams();
@@ -111,16 +111,28 @@ export const MissionDetailPage = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: '네, 삭제하겠습니다!',
             cancelButtonText: '취소'
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    '삭제됨!',
-                    '미션이 성공적으로 삭제되었습니다.',
-                    'success'
-                )
+                try {
+                    await deleteMission(missionId);  // API 호출
+                    Swal.fire(
+                        '삭제됨!',
+                        '미션이 성공적으로 삭제되었습니다.',
+                        'success'
+                    );
+                    navigate('/mission/childview'); // 미션 삭제 후 미션 목록 페이지로 리다이렉션
+                } catch (error) {
+                    console.error("Error deleting mission:", error);
+                    Swal.fire(
+                        '오류!',
+                        '미션 삭제 중 오류가 발생했습니다.',
+                        'error'
+                    );
+                }
             }
         });
     };
+
     const handleCompleteMissionClick = () => {
         Swal.fire({
             title: '승인 요청',
