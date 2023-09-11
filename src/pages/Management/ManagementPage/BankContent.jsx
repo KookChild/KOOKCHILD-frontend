@@ -138,6 +138,7 @@ const BankContent = ({ selectedPicture, setSelectedPicture }) => {
     }
 
     var url = '/management/'+childId;
+    
     axios({
       url: url,
       method : "get",
@@ -145,7 +146,7 @@ const BankContent = ({ selectedPicture, setSelectedPicture }) => {
     })
     .then((response) => { // axios then 호출
       if(response.data){
-        console.log('axios 확인');
+        console.log(response.data);
         setChildName(response.data.userName);
         setAccountNum(response.data.accountNum);        
      }
@@ -163,16 +164,7 @@ const BankContent = ({ selectedPicture, setSelectedPicture }) => {
   }, [selectedPicture]);
 
   
-  // 이미지 경로에 따라 c1, c2, c3, c4로 대체
-  if (selectedPicture === './img/아이1.jpeg') {
-    selectedPicture = c1
-  } else if (selectedPicture === './img/아이2.jpg') {
-    selectedPicture = c2
-  } else if (selectedPicture === './img/아이3.jpg') {
-    selectedPicture = c3
-  } else if (selectedPicture === './img/아이4.jpg') {
-    selectedPicture = c4
-  }
+  
 
   return (
     <BankContentContainer>
