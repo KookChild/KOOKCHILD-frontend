@@ -50,22 +50,23 @@ padding:10px;
 `
 
 
-const BankContent = ({ selectedPicture, setSelectedPicture, childName }) => {
-  // const [childName, setChildName] = useState("");
+const BankContent = ({ selectedPicture, setSelectedPicture }) => {
+  const [childName, setChildName] = useState("");
   const [accountNum, setAccountNum] = useState("");
   const controls = useAnimation();
 
   useEffect(() => {
-  //   // selectedPicture가 변경될 때마다 애니메이션 적용
-  //   controls.start({ opacity: 0, transition: { duration: 0.5 } });
-  //   setTimeout(() => {
-  //     setSelectedPicture(selectedPicture);
-  //   }, 500); // 애니메이션 지속 시간 이후에 다시 초기 이미지로 설정
+    // // selectedPicture가 변경될 때마다 애니메이션 적용
+    // controls.start({ opacity: 0, transition: { duration: 0.5 } });
+    // setTimeout(() => {
+    //   setSelectedPicture(selectedPicture);
+    // }, 500); // 애니메이션 지속 시간 이후에 다시 초기 이미지로 설정
 
     axios
-    .get('/management/1')
+    .get('/management/send')
     .then((response) => { // axios then 호출
       if(response.data){
+        console.log('axios 확인');
         setChildName(response.data.userName);
         setAccountNum(response.data.accountNum);        
      }

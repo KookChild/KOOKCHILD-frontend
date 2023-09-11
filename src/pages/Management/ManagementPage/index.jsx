@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ChildSelect from "./ChildSelect";
 import BankContent from "./BankContent";
 import SendButtonComponent from "./SendButtonComponent";
+import ChildHistory from "./ChildHistory";
 
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
@@ -90,8 +91,12 @@ export const ManagementPage = () => {
 
       <MainContent>
         <ChildSelect handleImageClick={handleImageClick} />
-        <BankContent selectedPicture={selectedPicture} setSelectedPicture={setSelectedPicture} childName={childName} />
+        <BankContent selectedPicture={selectedPicture} setSelectedPicture={setSelectedPicture} />
       </MainContent>
+
+      <ChildHistory>
+        
+      </ChildHistory>
 
       <Footer>
         <SendButtonComponent disabled = {disabled} setDisabled = {setDisabled}/>
