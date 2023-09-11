@@ -46,3 +46,20 @@ export const deleteMission = async (missionId) => {
         throw error;
     }
 };
+
+export const getParentMissionByChild = async (childId) => {
+    const response = await axios.get(`/mission/parent?child=${childId}`);
+    return response.data;
+};
+
+export const confirmMissionSuccess = async (missionId) => {
+    try {
+        const response = await axios.post('/mission/confirm', {
+            missionId: missionId
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Server Response:", error.response.data);
+        throw error;
+    }
+};

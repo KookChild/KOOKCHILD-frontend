@@ -7,8 +7,10 @@ export const ItemContainer = styled.div`
     align-items: center;
     top: 399px;
     left: 0px;
-    width: 430px;
+    width: 378px;
     height: 80px;
+    padding-left: 26px;
+    padding-right: 26px;
     /* UI Properties */
     opacity: 1;
     background: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'} 0% 0% no-repeat padding-box;
@@ -19,6 +21,8 @@ export const ItemContainer = styled.div`
         background: #E5E5E5;  /* 원하는 색상으로 변경하세요 */
     }
 `;
+
+
 
 export const LeftSection = styled.div`
     flex: 1;

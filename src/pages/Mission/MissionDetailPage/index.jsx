@@ -17,10 +17,11 @@ import {
     StyledTitle
 } from './style';
 import { MissionInfo, BackHeader } from '@components';
-import { fetchMissionDetail, completeMission, updateMission, deleteMission } from '../../../apis/missions';
+import { fetchMissionDetail, completeMission, updateMission, deleteMission, confirmMissionSuccess } from '../../../apis/missions';
+
 
 export const MissionDetailPage = () => {
-    const {missionId} = useParams();
+    const { missionId } = useParams();
     const [missionData, setMissionData] = useState(null);
     const [isEditable, setIsEditable] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -94,12 +95,32 @@ export const MissionDetailPage = () => {
 
     const handleSuccessClick = () => {
         Swal.fire({
-            title: '성공!',
-            text: '성공버튼 완료',
-            icon: 'success',
-            confirmButtonText: '확인'
+            title: '미션 승인 중...',
+            text: '미션 성공을 확인하는 중입니다.',
+            allowOutsideClick: false,
         });
+
+        confirmMissionSuccess(missionId) // API 호출
+            .then(() => {
+                setIsSuccess(true);
+                Swal.fire({
+                    title: '성공!',
+                    text: '미션이 성공적으로 승인되었습니다.',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            })
+            .catch(error => {
+                console.error("Error confirming mission success:", error);
+                Swal.fire({
+                    title: '오류!',
+                    text: '미션 승인 중 오류가 발생했습니다.',
+                    icon: 'error',
+                    confirmButtonText: '확인'
+                });
+            });
     };
+
 
     const handleDeleteClick = () => {
         Swal.fire({
@@ -172,14 +193,15 @@ export const MissionDetailPage = () => {
 
     return (
         <BodyContainer>
-            <BackHeader text="미션 상세 페이지" onBackClick={() => navigate('/mission/childview')} />
+            <BackHeader text="미션 상세 페이지" onBackClick={() => navigate(parent ? '/mission/parentview' : '/mission/childview')} />
+
 
             {parent && (
                 <AreaContainer>
-                <ButtonsContainer>
-                    <DeleteMissionButton onClick={handleDeleteClick}>
-                        미션 삭제
-                    </DeleteMissionButton>
+                    <ButtonsContainer>
+                        <DeleteMissionButton onClick={handleDeleteClick}>
+                            미션 삭제
+                        </DeleteMissionButton>
                     </ButtonsContainer>
                 </AreaContainer>
             )}
@@ -198,16 +220,16 @@ export const MissionDetailPage = () => {
                 <AreaContainer>
                     {!parent && (
                         <StyledTitle>
-                        {isSuccess && isChild ? "완료한 미션입니다." :
-                         !isSuccess && isChild ? "승인 요청을 기다리는 중입니다." :
-                         "현재 진행 중인 미션입니다."}
+                            {isSuccess && isChild ? "완료한 미션입니다." :
+                                !isSuccess && isChild ? "승인 요청을 기다리는 중입니다." :
+                                    "현재 진행 중인 미션입니다."}
                         </StyledTitle>
                     )}
                 </AreaContainer>
             )}
 
             <AreaContainer>
-            <MissionInfo
+                <MissionInfo
                     title={title}
                     content={content}
                     reward={reward}
@@ -232,15 +254,19 @@ export const MissionDetailPage = () => {
                                 <EditButton onClick={handleEditClick}>
                                     미션 수정
                                 </EditButton>
-                                <SuccessButton onClick={handleSuccessClick} disabled={!isChild}>
-                                    미션 성공
+                                <SuccessButton
+                                    onClick={handleSuccessClick}
+                                    disabled={isSuccess || (isChild === false && isSuccess === false)}
+                                >
+                                    {isSuccess ? "성공 완료" : "미션 성공"}
                                 </SuccessButton>
+
                             </>
                         )}
                     </ButtonsContainer>
                 ) : !isSuccess && <CompleteButton onClick={handleCompleteMissionClick} disabled={isChild}>
-                {isChild ? "승인 요청 중..." : "미션 완료"}
-            </CompleteButton>}
+                    {isChild ? "승인 요청 중..." : "미션 완료"}
+                </CompleteButton>}
             </AreaContainer>
         </BodyContainer>
     );
