@@ -18,11 +18,25 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
+    font-family: Arial;
     width: calc(100% - 10px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: 4px;  // 간격을 조금 늘려줍니다.
-    height: ${({ isContent }) => (isContent ? "100px" : "auto")};
+`;
+
+export const StyledTextArea = styled.textarea`
+    font-family: Arial;
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 4px;
+    height: 100px;
+    resize: none;
+    text-align: left;
+    vertical-align: top;
 `;

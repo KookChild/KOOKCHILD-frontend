@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const BodyContainer = styled.div`
-    width: 360px;
-    height: 600px;
+    width: 430px;
+    height: 832px;
     display: flex;
     flex-direction: column;
-    align-items: center;   // 중앙 정렬
+    justify-content: flex-start; // 왼쪽 정렬
+    align-items: flex-start;
     padding: 20px;  // 패딩 조절
 
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -22,6 +23,7 @@ export const AreaContainer = styled.div`
     flex-direction: column;
     align-items: center;  // 중앙 정렬
     margin-bottom: 20px;  // 하단 마진 설정
+    margin-top: 20px;
 
     &:last-child {
         margin-bottom: 0;  // 마지막 요소에는 마진 제거
@@ -32,19 +34,22 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    padding-right: 20px; // 오른쪽 여백 추가
+    margin-top: 15px;    // 위쪽 여백 추가
 `;
+
+
+
 
 
 export const DeleteMissionButton = styled.button`
     width: 67px;
     height: 19px;
     color: black; // 글자 색상 흰색으로 설정
-    position: absolute; // 삭제 버튼을 오른쪽 위에 위치시키기 위해 absolute 포지션 부여
-    top: 10px;
-    right: 20px;
     border: none;
     cursor: pointer; // 마우스 오버시 포인터 모양 변경
 `;
+
 
 export const StyledTitle = styled.h2`
     font-size: 24px;
@@ -133,14 +138,10 @@ export const CompleteButton = styled.button`
     &:hover {
         background-color: #565656; // hover 시 조금 더 어둡게 변경합니다.
     }
+    &:disabled {
+        cursor: not-allowed;  // 마우스 커서를 not-allowed로 변경
+        background-color: #767676; // hover 효과가 아닌 기본 색상으로 설정
 
-    position: absolute;  // 부모 컨테이너의 하단 중앙에 위치시키기 위한 스타일
-    bottom: 20px;       // 바닥에서 20px 떨어지도록 설정
-    left: 50%;          // 왼쪽에서 50% 떨어지도록 설정
-    transform: translateX(-50%); // 왼쪽으로 50% 이동하여 가운데 정렬
-`;
-export const StyledButtonsContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;  // make it occupy the full width
+        &:hover {
+            background-color: #767676;  // disabled 상태에서는 hover 효과를 적용하지 않음
 `;

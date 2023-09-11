@@ -1,14 +1,17 @@
-import { ItemContainer, LeftSection, RightSection } from './style';
+import { ItemContainer, LeftSection, MiddleSection, RightSection } from './style';
 
-export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm }) => {
+export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, isEven }) => {
     return (
-        <ItemContainer>
-            <LeftSection>
-                <h3>{missionTitle}</h3>
+        <ItemContainer isEven={isEven} parentConfirm={parentConfirm}>
+            <LeftSection parentConfirm={parentConfirm}>
+                <div className="circle"></div>
             </LeftSection>
+            <MiddleSection>
+                <h3 className='title'>{missionTitle}</h3>
+                <p className='date'>{missionDate}</p>
+            </MiddleSection>
             <RightSection>
-                <p>금액: {missionReward}</p>
-                <p>기한: {missionDate}</p>
+                <p>보상금<br/>{missionReward}</p>
             </RightSection>
         </ItemContainer>
     );

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const BodyContainer = styled.div`
-    width: 360px;
-    height: 600px;
+    width: 430px;
+    height: 832px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;   // 항목들을 왼쪽에 정렬
-    padding: 10px 20px;             // 약간의 패딩을 추가하여 드롭박스와 목록 간에 간격을 줍니다.
+    padding: 20px;             // 약간의 패딩을 추가하여 드롭박스와 목록 간에 간격을 줍니다.
     overflow-y: auto;          // 스크롤을 가능하게 합니다.
 
     // 화면 중앙 배치 스타일을 유지

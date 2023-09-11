@@ -1,45 +1,96 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { BodyContainer, AreaContainer, DeleteMissionButton, ChildInfoContainer, ChildImage, ChildName, MissionDescription, EditButton, SuccessButton, CompleteButton, ButtonsContainer, StyledTitle } from './style';
-import { MissionInfo } from '@components';
+import {
+    BodyContainer,
+    AreaContainer,
+    DeleteMissionButton,
+    ChildInfoContainer,
+    ChildImage,
+    ChildName,
+    MissionDescription,
+    EditButton,
+    SuccessButton,
+    CompleteButton,
+    ButtonsContainer,
+    StyledTitle
+} from './style';
+import { MissionInfo, BackHeader } from '@components';
+import { fetchMissionDetail, completeMission, updateMission } from '../../../apis/missions';
 
 export const MissionDetailPage = () => {
-    const [missionData] = React.useState({
-        isParent: true,
-        missionSuccess: false,
-        childRequest: true,
-        title: "Sample Title",
-        content: "Sample Content",
-        amount: "Sample Amount",
-        dueDate: "2023-09-07",
-        childImage: "abc",
-        childName: "김국민",
-        completedTime: "2023-09-06 10:00:00",
-    });
-    const { isParent, missionSuccess, childRequest, title, content, amount, dueDate, childImage, childName, completedTime } = missionData;
-    const [isApprovalRequested, setIsApprovalRequested] = React.useState(childRequest);
-    const [isEditable, setIsEditable] = React.useState(false);
-    const [isSuccess, setIsSuccess] = React.useState(missionSuccess);
+    const {missionId} = useParams();
+    const [missionData, setMissionData] = useState(null);
+    const [isEditable, setIsEditable] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isChild, setIsChild] = useState(false);
+    const [updatedMission, setUpdatedMission] = useState({});
+
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const fetchMissionData = async () => {
+            try {
+                const fetchedData = await fetchMissionDetail(missionId);
+
+                // 기존 미션 데이터 설정 코드
+                setMissionData(fetchedData);
+
+                // 추가된 코드: updatedMission 초기값 설정
+                setUpdatedMission({
+                    title: fetchedData.title,
+                    content: fetchedData.content,
+                    reward: fetchedData.reward,
+                    endDate: fetchedData.endDate
+                });
+
+                setIsSuccess(fetchedData.parentConfirm);
+                setIsChild(fetchedData.childConfirm);
+            } catch (error) {
+                console.error("Error fetching mission details:", error);
+            }
+        };
+
+        fetchMissionData();
+    }, [missionId]);
+
 
 
     const handleEditClick = () => {
         setIsEditable(true);
     };
 
-    const handleCompleteEditClick = () => {
-        // 서버로 수정된 내용을 보내는 코드를 여기에 추가할 수 있습니다.
-        // 예: axios.put(...) 등
-
+    const handleCompleteEditClick = async () => {
         Swal.fire({
-            title: '성공!',
-            text: '미션이 성공적으로 수정되었습니다.',
-            icon: 'success',
-            confirmButtonText: '확인'
-        }).then(() => {
-            setIsEditable(false);
+            title: '수정 중...',
+            text: '미션을 수정하는 중입니다.',
+            allowOutsideClick: false,
         });
-    };
 
+        try {
+            console.log(updatedMission);
+            await updateMission(missionId, updatedMission.title, updatedMission.content, updatedMission.reward, updatedMission.endDate);
+
+            Swal.fire({
+                title: '성공!',
+                text: '미션이 성공적으로 수정되었습니다.',
+                icon: 'success',
+                confirmButtonText: '확인'
+            }).then(() => {
+                setIsEditable(false);
+            });
+        } catch (error) {
+            console.error("Error updating mission:", error);
+            Swal.fire({
+                title: '오류!',
+                text: '미션 수정 중 오류가 발생했습니다.',
+                icon: 'error',
+                confirmButtonText: '확인'
+            });
+        }
+    };
 
     const handleSuccessClick = () => {
         Swal.fire({
@@ -80,70 +131,105 @@ export const MissionDetailPage = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: '네, 요청하겠습니다!',
             cancelButtonText: '취소'
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                // 서버에 승인 요청을 보내는 코드를 여기에 추가할 수 있습니다.
-                // 예: axios.post(...) 등
+                try {
+                    await completeMission(missionId);  // API 호출
 
-                setIsSuccess(true);  // isSuccess를 true로 설정
-
-                Swal.fire(
-                    '요청됨!',
-                    '승인 요청이 성공적으로 전송되었습니다.',
-                    'success'
-                )
+                    setIsChild(true);  // isChild를 true로 설정
+                    Swal.fire(
+                        '요청됨!',
+                        '승인 요청이 성공적으로 전송되었습니다.',
+                        'success'
+                    )
+                } catch (error) {
+                    console.error("Error completing mission:", error);
+                    Swal.fire(
+                        '오류!',
+                        '미션 완료 요청 중 오류가 발생했습니다.',
+                        'error'
+                    )
+                }
             }
         });
     };
 
+    if (!missionData) return <div>Loading...</div>;
 
+    const { parent, title, content, reward, endDate, image, childName, completeDate } = missionData;
 
     return (
         <BodyContainer>
-            <AreaContainer>
-                {isParent && <DeleteMissionButton onClick={handleDeleteClick}>미션 삭제</DeleteMissionButton>}
-            </AreaContainer>
+            <BackHeader text="미션 상세 페이지" onBackClick={() => navigate('/mission/childview')} />
 
-            {isParent ? (
+            {parent && (
+                <AreaContainer>
+                <ButtonsContainer>
+                    <DeleteMissionButton onClick={handleDeleteClick}>
+                        미션 삭제
+                    </DeleteMissionButton>
+                    </ButtonsContainer>
+                </AreaContainer>
+            )}
+
+            {parent ? (
                 <AreaContainer>
                     <ChildInfoContainer>
                         <div>
-                            <ChildImage src={childImage} alt={childName} />
+                            <ChildImage src={image} alt={childName} />
                             <ChildName>{childName}</ChildName>
                         </div>
                         <MissionDescription>님의 현재 미션입니다</MissionDescription>
                     </ChildInfoContainer>
                 </AreaContainer>
             ) : (
-            <AreaContainer>
-                {!isParent && (  // isParent가 false일 때만 렌더링됩니다.
-                    <StyledTitle>
-                        {isSuccess ? "완료한 미션입니다." : "현재 진행 중인 미션입니다."}
-                    </StyledTitle>
-                )}
-            </AreaContainer>
-
-
+                <AreaContainer>
+                    {!parent && (
+                        <StyledTitle>
+                        {isSuccess && isChild ? "완료한 미션입니다." :
+                         !isSuccess && isChild ? "승인 요청을 기다리는 중입니다." :
+                         "현재 진행 중인 미션입니다."}
+                        </StyledTitle>
+                    )}
+                </AreaContainer>
             )}
 
             <AreaContainer>
-                <MissionInfo title={title} content={content} amount={amount} dueDate={dueDate} isSuccess={isSuccess} isParent={isParent} completedTime={completedTime} readOnly={!isEditable} />
+            <MissionInfo
+                    title={title}
+                    content={content}
+                    reward={reward}
+                    endDate={endDate}
+                    isSuccess={isSuccess}
+                    isParent={parent}
+                    completedTime={completeDate}
+                    readOnly={!isEditable}
+                    onUpdate={(updatedValues) => setUpdatedMission(prevState => ({ ...prevState, ...updatedValues }))}
+                />
             </AreaContainer>
 
             <AreaContainer>
-                {isParent ? (
+                {parent ? (
                     <ButtonsContainer>
                         {isEditable ? (
-                            <SuccessButton onClick={handleCompleteEditClick}>수정완료</SuccessButton>
+                            <SuccessButton onClick={handleCompleteEditClick}>
+                                수정완료
+                            </SuccessButton>
                         ) : (
                             <>
-                                <EditButton onClick={handleEditClick}>미션 수정</EditButton>
-                                <SuccessButton onClick={handleSuccessClick} disabled={!isApprovalRequested}>미션 성공</SuccessButton>
+                                <EditButton onClick={handleEditClick}>
+                                    미션 수정
+                                </EditButton>
+                                <SuccessButton onClick={handleSuccessClick} disabled={!isChild}>
+                                    미션 성공
+                                </SuccessButton>
                             </>
                         )}
                     </ButtonsContainer>
-                ) : !isSuccess && <CompleteButton onClick={handleCompleteMissionClick}>미션 완료</CompleteButton>}
+                ) : !isSuccess && <CompleteButton onClick={handleCompleteMissionClick} disabled={isChild}>
+                {isChild ? "승인 요청 중..." : "미션 완료"}
+            </CompleteButton>}
             </AreaContainer>
         </BodyContainer>
     );
-};
+}
