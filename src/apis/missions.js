@@ -39,5 +39,10 @@ export const deleteMission = async (missionId) => {
     const response = await axios.delete('/mission', {
         data: { missionId: missionId }
     });
-    return response.data;
+    try{
+        return response.data;
+    }catch(error){
+        console.error("Server Response:", error.response.data);
+        throw error;
+    }
 };
