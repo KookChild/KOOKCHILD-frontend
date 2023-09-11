@@ -90,16 +90,12 @@ export const ManagementPage = () => {
 
       <MainContent>
         <ChildSelect handleImageClick={handleImageClick} />
-        <BankContent selectedPicture={selectedPicture} setSelectedPicture={setSelectedPicture} />
+        <BankContent selectedPicture={selectedPicture} setSelectedPicture={setSelectedPicture} disabled={disabled} setDisabled={setDisabled} />
 
       </MainContent>
 
-      <ChildHistory>
-        
-      </ChildHistory>
-
       <Footer>
-
+          
       </Footer>
     </CenteredContainer>
   )

@@ -58,8 +58,7 @@ const SendButtonComponent = ({disabled, setDisabled}) => {
       if(result.isConfirmed){
         axios
         .post('/management/send', {
-          childId: 4, // 원하는 childId와 parentId 값을 설정
-          parentId: 1,
+          childId: childId, // 원하는 childId와 parentId 값을 설정
         })
         .then((response) => { // axios then 호출
           if(response.data){

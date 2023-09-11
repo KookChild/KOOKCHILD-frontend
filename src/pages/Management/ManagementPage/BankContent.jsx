@@ -112,7 +112,7 @@ padding:10px;
 `
 
 
-const BankContent = ({ selectedPicture, setSelectedPicture }) => {
+const BankContent = ({ selectedPicture, setSelectedPicture, disabled, setDisabled }) => {
   const [childName, setChildName] = useState("");
   const [accountNum, setAccountNum] = useState("");
   const [childId, setChildId] = useState(2);
@@ -161,7 +161,7 @@ const BankContent = ({ selectedPicture, setSelectedPicture }) => {
 
   
 
-  }, [selectedPicture]);
+  }, [selectedPicture, childId, childName, accountNum]);
 
   
   
@@ -219,8 +219,8 @@ const BankContent = ({ selectedPicture, setSelectedPicture }) => {
             님의 계좌 <br />
             계좌번호: <span id="accountNum">{accountNum}</span>
               <AccountButtons>
-                <AccountDetailInfoButton />
-                <AccountSendButton />
+                <AccountDetailInfoButton/>
+                <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}/>
               </AccountButtons>
             </AccountDescription>
 
