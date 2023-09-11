@@ -1,3 +1,3 @@
 export * from './GraphDetailPage'
-// export * from './GraphMainPage'
+export * from './SendDetailPage'
 export * from './ManagementPage'
