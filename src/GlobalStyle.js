@@ -1,18 +1,13 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-
-@font-face {
-  font-family: 'kbFont';
-  src: url('public/SUITE-Variable.ttf') format('truetype');
-}
-
 
 html, body, #root {
   width: 100%;
   height: 100%;
   max-width: 1280px;
   margin: auto;
+  font-family: "kbFont";
 }
 
 iframe {
@@ -21,10 +16,13 @@ iframe {
 
 body {
   overflow-x: hidden;
-  font-family: "kbFont";
+
   &.open-modal {
     overflow-y: hidden;
   }
+  height: 844px;
+  width: 390px;
+
 }
 
 
@@ -80,6 +78,6 @@ border-bottom-left-radius: 30px;
 .border-radius-all{
   border-radius : 30px
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

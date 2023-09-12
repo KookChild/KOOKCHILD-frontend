@@ -36,7 +36,10 @@ function App() {
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/register" element={<RegisterPage />} />
             <Route path="/mission/create" element={<MissionCreatePage />} />
-            <Route path="/mission/detail/:missionId" element={<MissionDetailPage />} />
+            <Route
+              path="/mission/detail/:missionId"
+              element={<MissionDetailPage />}
+            />
             <Route
               path="/mission/parentview"
               element={<MissionParentViewPage />}
