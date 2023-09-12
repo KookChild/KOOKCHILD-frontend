@@ -1,15 +1,17 @@
 import styled from 'styled-components'
 
 export const FilterContainer = styled.div`
+  width: 360px;
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin: 40px 0 60px;
+  margin: auto;
 `
 export const HeaderContainer = styled.div`
-  padding: 40px 0;
-  border-bottom: 2px solid #000;
-  text-align: center;
+  padding: 20px ;
+  border-bottom: 1px solid #ccc;
+  magin-left: 0px;
+  text-align: left;
   line-height: 40px;
   font-size: 28px;
 `
