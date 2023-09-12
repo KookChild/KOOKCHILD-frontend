@@ -37,10 +37,13 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
       // API 요청 보내기
       var url = "/management/send";
       var jsonData = {
-        "childId": childId
+        "childId": childId,
+        "amount": null // 초기값은 null로 설정
       };
+      
+      // 첫 번째 SweetAlert2 모달 - 송금을 진행할지 묻는 모달
       Swal.fire({
-        title: '<span style="font-size: 20px;">송금을\n 진행하시겠습니까?</span>',
+        title: '<span style="font-size: 20px;">송금을 진행하시겠습니까?</span>',
         text: '',
         icon: 'question',
         showCancelButton: true,
@@ -53,46 +56,74 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
           // 모달에 사용할 클래스 추가
           container: 'custom-swal-container',
         },
-      
-      }).then((result) => { //Swal.fire then 호출
-        if(result.isConfirmed){
-          axios
-          ({
-            url: url,
-            method : "post",
-            headers : {Authorization: token},
-            data : jsonData
-          })
-          .then((response) => { // axios then 호출
-            if(response.data){
-              // SweetAlert2 모달 창 표시
-              console.log('확인 완료');
-              Swal.fire({
-                title: '<span style="font-size: 20px;">우리아이에게\n 송금이 완료되었습니다.</span>',
-                text: '찾아주셔서 감사합니다',
-                icon: 'success',
-                customClass: {
-                  // 성공 알림 모달에 사용할 클래스 추가
-                  container: 'custom-swal-container',
-                },
-                timer: 2000, // 6초 후에 모달 창을 자동으로 닫도록 설정 (밀리초 단위)
-              });
-            
-            setDisabled(false);
-          }})
-          .catch((error) => {
-            console.error('API 요청 실패:', error);
-            // 실패한 경우 에러 처리
-            // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-          })
-          .finally(() => {
-            setDisabled(false);
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // 두 번째 SweetAlert2 모달 - 금액 입력 칸을 가진 모달
+          Swal.fire({
+            title: '<span style="font-size: 20px;">얼마를 송금하시겠습니까?</span>',
+            input: 'number', // 숫자 입력 필드를 사용
+            inputLabel: '송금 금액',
+            inputPlaceholder: '금액을 입력하세요',
+            showCancelButton: true,
+            inputValidator: (value) => {
+              // 금액이 유효한지 확인
+              if (!value || value <= 0) {
+                return '금액을 올바르게 입력하세요.';
+              }
+            },
+            icon: 'question',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#D9D9D9',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            customClass: {
+              // 모달에 사용할 클래스 추가
+              container: 'custom-swal-container',
+            },
+          }).then((amountResult) => {
+            if (amountResult.isConfirmed) {
+              const amountToSend = amountResult.value;
+              jsonData.amount = amountToSend; // jsonData에 송금 금액 추가
+              axios
+                .post(url, jsonData, {
+                  headers: { Authorization: token },
+                })
+                .then((response) => {
+                  if (response.data) {
+                    // 성공 모달 표시
+                    Swal.fire({
+                      title: '<span style="font-size: 20px;">우리아이에게 송금이 완료되었습니다.</span>',
+                      text: '찾아주셔서 감사합니다',
+                      icon: 'success',
+                      customClass: {
+                        // 성공 알림 모달에 사용할 클래스 추가
+                        container: 'custom-swal-container',
+                      },
+                      timer: 2000, // 2초 후에 모달 창을 자동으로 닫도록 설정 (밀리초 단위)
+                    });
+                    setDisabled(false);
+                  }
+                })
+                .catch((error) => {
+                  console.error('API 요청 실패:', error);
+                  // 실패한 경우 에러 처리
+                  // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+                })
+                .finally(() => {
+                  setDisabled(false);
+                });
+            } else {
+              Swal.fire('송금이 취소되었습니다.', '', 'info');
+              setDisabled(false);
+            }
           });
-        }else{
+        } else {
           Swal.fire('송금이 취소되었습니다.', '', 'info');
           setDisabled(false);
         }
       });
+``      
     }
     console.log("송금하기");
 
