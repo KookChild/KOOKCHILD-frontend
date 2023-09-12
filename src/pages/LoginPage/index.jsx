@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   CenteredContainer,
@@ -21,6 +21,18 @@ export const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const userType = localStorage.getItem('parent');
+      if (userType) {
+        navigate('/parent');
+      } else {
+        navigate('/child');
+      }
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

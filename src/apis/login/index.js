@@ -22,6 +22,7 @@ export const loginAPI = async (email, password) => {
 
       // 토큰을 로컬 스토리지에 저장
       localStorage.setItem('token', token);
+      localStorage.setItem('parent', response.data.parent);
 
       return response.data;
   } catch (error) {
