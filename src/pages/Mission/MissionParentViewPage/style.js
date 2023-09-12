@@ -97,11 +97,14 @@ export const AddMissionButton = styled.button`
 `;
 
 export const MissionListContainer = styled.div`
-    width: calc(100% + 52px);  // 패딩 값이 26px이므로 2배한 값인 52px를 추가
-    margin-left: -26px;       // 왼쪽 패딩을 무시
+    width: calc(100% + 52px); 
+    margin-left: -26px;      
     display: flex;
     flex-direction: column;
+    height: calc(832px - (다른 컴포넌트들의 높이 합)); // 이 부분을 실제 높이 값으로 수정해야 합니다.
+    overflow-y: auto;  // 스크롤 추가
 `;
+
 
 
 export const MissionItemContainer = styled.div`
