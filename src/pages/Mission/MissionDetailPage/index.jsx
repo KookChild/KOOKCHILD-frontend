@@ -95,12 +95,6 @@ export const MissionDetailPage = () => {
 
 
     const handleSuccessClick = () => {
-        Swal.fire({
-            title: '미션 승인 중...',
-            text: '미션 성공을 확인하는 중입니다.',
-            allowOutsideClick: false,
-        });
-
         confirmMissionSuccess(missionId) // API 호출
             .then(() => {
                 setIsSuccess(true);

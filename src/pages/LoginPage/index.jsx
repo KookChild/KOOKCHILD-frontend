@@ -43,6 +43,10 @@ export const LoginPage = () => {
     }
   };
 
+  const handleSignup = () => {
+    navigate('/register');
+  };
+
   return (
     <CenteredContainer>
       <LoginWrapper>
@@ -52,6 +56,7 @@ export const LoginPage = () => {
           <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           {errorMsg && <ErrorMessage>{errorMsg}</ErrorMessage>}
           <Input type="submit" value="Login" />
+          <Input type="button" value="회원가입" onClick={handleSignup} />
         </LoginForm>
       </LoginWrapper>
     </CenteredContainer>

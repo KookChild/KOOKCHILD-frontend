@@ -35,12 +35,12 @@ export const LoginForm = styled.form`
 `;
 
 export const Input = styled.input`
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 48px;
   padding: 0 10px;
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
   border-radius: 6px;
   border: none;
   background-color: #F8F8F8;
