@@ -2,11 +2,10 @@ import { FilterButton } from '@components'
 import {
   FilterContainer,
   HeaderContainer,
-  TotalCountContainer,
-  TotalCountTextContainer,
+  ChallengeListContainer
 } from './style'
 import { useEffect, useState } from 'react'
-import { SlideLogo, ChallengeCard } from '@components'
+import { ChallengeItem } from '@components'
 import { ChallengeContainer } from './style'
 import {
   loadAllChallengesAPI,
@@ -72,18 +71,15 @@ export const ChallengeViewPage = () => {
           onClick={() => handleButtonClick(2)}
         />
       </FilterContainer>
-
-      <div>
-      
+      <ChallengeListContainer>
         {challenges.map((challenge, key) => (
-          <ChallengeCard
+          <ChallengeItem
             key={key}
-            imgSource={challenge.imgSource}
-            startDate={challenge.startDate}
-            endDate={challenge.endDate}
+            challenge={challenge}
           />
         ))}
-      </div>
+      </ChallengeListContainer>
+
     </ChallengeContainer>
   )
 }

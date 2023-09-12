@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+
+
+
 export const FilterButtonContainer = styled.div`
   display: block;
   width: 100px;
@@ -21,6 +24,6 @@ export const FilterButtonText = styled.span`
   justify-content: center;
   color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
-  font-size: 20px;
+  font-size: 16px;
   border-radius: inherit;
 `
