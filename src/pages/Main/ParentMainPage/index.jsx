@@ -31,15 +31,17 @@ export const ParentMainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const parentName = await loadParentNameAPI()
-        setName(parentName)
+        const parentData = await loadParentNameAPI();
+        if (parentData && parentData.name) {
+          setName(parentData.name);
+        }
       } catch (error) {
-        console.error('Error fetching challenge detail:', error)
+        console.error('Error fetching challenge detail:', error);
       }
-    }
-
-    fetchData()
-  }, [])
+    };
+  
+    fetchData();
+  }, []);
   useEffect(() => {
     if (isAccountLinked) {
       let digitsArray = finalBalance.split('')
