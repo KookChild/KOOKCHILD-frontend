@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { YELLOW } from '@utility/COLORS'
 
 export const ItemContainer = styled.div`
     /* Layout Properties */
@@ -21,8 +22,6 @@ export const ItemContainer = styled.div`
     }
 `;
 
-
-
 export const LeftSection = styled.div`
     flex: 1;
     display: flex;
@@ -33,9 +32,9 @@ export const LeftSection = styled.div`
         height: 30px;
         background: ${props => {
             if (props.parentConfirm) {
-                return '#FFBC00';
-            } else if (props.childConfirm) {
                 return '#98C37F';
+            } else if (props.childConfirm) {
+                return YELLOW;
             } else {
                 return '#84888B';
             }
@@ -44,7 +43,6 @@ export const LeftSection = styled.div`
         margin-left: 10px;
         margin-right: 10px;
         box-shadow: inset 0px 1px 3px #00000029;
-        border: 1px solid #84888B;
         border-radius: 15px;
         opacity: 1;
     }
