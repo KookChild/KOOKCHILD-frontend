@@ -23,7 +23,7 @@ export const loginAPI = async (email, password) => {
       // 토큰을 로컬 스토리지에 저장
       localStorage.setItem('token', token);
 
-      return token;
+      return response.data;
   } catch (error) {
       console.error("Login error", error);
       throw error;
