@@ -32,7 +32,15 @@ export const LeftSection = styled.div`
     .circle {
         width: 30px;
         height: 30px;
-        background: ${props => props.parentConfirm ? '#FFBC00' : '#84888B'} 0% 0% no-repeat padding-box;
+        background: ${props => {
+            if (props.parentConfirm) {
+                return '#FFBC00';
+            } else if (props.childConfirm) {
+                return '#98C37F';
+            } else {
+                return '#84888B';
+            }
+        }} 0% 0% no-repeat padding-box;
         border-radius: 50%;
         margin-left: 10px;
         margin-right: 10px;
@@ -42,6 +50,7 @@ export const LeftSection = styled.div`
         opacity: 1;
     }
 `;
+
 
 
 export const MiddleSection = styled.div`

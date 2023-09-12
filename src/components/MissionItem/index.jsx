@@ -1,9 +1,9 @@
 import { ItemContainer, LeftSection, MiddleSection, RightSection } from './style';
 
-export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, isEven }) => {
+export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, childConfirm, isEven }) => {
     return (
         <ItemContainer isEven={isEven} parentConfirm={parentConfirm}>
-            <LeftSection parentConfirm={parentConfirm}>
+            <LeftSection parentConfirm={parentConfirm} childConfirm={childConfirm}>
                 <div className="circle"></div>
             </LeftSection>
             <MiddleSection>

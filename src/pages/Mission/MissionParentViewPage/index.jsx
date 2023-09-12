@@ -117,6 +117,7 @@ export const MissionParentViewPage = () => {
                 missionReward={`${mission.reward}원`}
                 missionDate={mission.deadline !== 'null-null' ? mission.deadline : '기한 없음'}
                 parentConfirm={mission.parentConfirm}
+                childConfirm={mission.childConfirm}
               />
             </MissionItemContainer>
           ))}

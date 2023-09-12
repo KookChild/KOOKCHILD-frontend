@@ -15,6 +15,7 @@ export const MissionChildViewPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await getMissions(sort);
+            console.log(data.missionLists);
             setMissions(data.missionLists);
         }
         fetchData();
@@ -43,6 +44,7 @@ export const MissionChildViewPage = () => {
                     missionReward={`${mission.reward}원`}
                     missionDate={mission.deadline !== 'null-null' ? mission.deadline : '기한 없음'}
                     parentConfirm={mission.parentConfirm}
+                    childConfirm={mission.childConfirm}
                 />
                     </div>
                 ))}

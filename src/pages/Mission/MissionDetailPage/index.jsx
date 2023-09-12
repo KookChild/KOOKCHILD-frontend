@@ -16,6 +16,7 @@ import {
     ButtonsContainer,
     StyledTitle
 } from './style';
+import imgSrc from './cat2.png';
 import { MissionInfo, BackHeader } from '@components';
 import { fetchMissionDetail, completeMission, updateMission, deleteMission, confirmMissionSuccess } from '../../../apis/missions';
 
@@ -141,7 +142,7 @@ export const MissionDetailPage = () => {
                         '미션이 성공적으로 삭제되었습니다.',
                         'success'
                     );
-                    navigate('/mission/childview'); // 미션 삭제 후 미션 목록 페이지로 리다이렉션
+                    navigate('/mission/parentview'); // 미션 삭제 후 미션 목록 페이지로 리다이렉션
                 } catch (error) {
                     console.error("Error deleting mission:", error);
                     Swal.fire(
@@ -210,7 +211,7 @@ export const MissionDetailPage = () => {
                 <AreaContainer>
                     <ChildInfoContainer>
                         <div>
-                            <ChildImage src={image} alt={childName} />
+                            <ChildImage src={imgSrc} alt={childName} />
                             <ChildName>{childName}</ChildName>
                         </div>
                         <MissionDescription>님의 현재 미션입니다</MissionDescription>

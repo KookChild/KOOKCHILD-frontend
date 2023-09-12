@@ -22,8 +22,8 @@ export const AreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;  // 중앙 정렬
-    margin-bottom: 20px;  // 하단 마진 설정
-    margin-top: 20px;
+    margin-bottom: 15px;  // 하단 마진 설정
+    margin-top: 15px;
 
     &:last-child {
         margin-bottom: 0;  // 마지막 요소에는 마진 제거
