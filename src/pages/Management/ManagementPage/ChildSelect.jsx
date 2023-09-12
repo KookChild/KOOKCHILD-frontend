@@ -1,5 +1,5 @@
 // ChildSelect.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const ChildSelectContainer = styled.div`
@@ -43,52 +43,30 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
 `;
-
-const ChildSelect = ({ handleImageClick }) => {
+const ChildSelect = ({ handleImageClick, childNamesArray }) => {
   return (
     <ChildSelectContainer>
-      <PersonContainer>
-        <ImageContainer>
-          <Image
-            src={require("./img/아이1.jpeg")}
-            alt="김이산"
-            onClick={(event) => handleImageClick(event, "./img/아이1.jpeg", "김이산")}
-          />
-        </ImageContainer>
-        <div className="name">김이산</div>
-      </PersonContainer>
-      <PersonContainer>
-        <ImageContainer>
-          <Image
-            src={require("./img/아이2.jpg")}
-            alt="이진이"
-            onClick={(event) => handleImageClick(event, "./img/아이2.jpg", "이진이")}
-          />
-        </ImageContainer>
-        <div className="name">이진이</div>
-      </PersonContainer>
-      <PersonContainer>
-        <ImageContainer>
-          <Image
-            src={require("./img/아이3.jpg")}
-            alt="김민지"
-            onClick={(event) => handleImageClick(event, "./img/아이3.jpg", "김민지")}
-          />
-        </ImageContainer>
-        <div className="name">김민지</div>
-      </PersonContainer>
-      <PersonContainer>
-        <ImageContainer>
-          <Image
-            src={require("./img/아이4.jpg")}
-            alt="은지원"
-            onClick={(event) => handleImageClick(event, "./img/아이4.jpg", "은지원")}
-          />
-        </ImageContainer>
-        <div className="name">은지원</div>
-      </PersonContainer>
+      {childNamesArray.map((name, index) => (
+        <PersonContainer key={index}>
+          <ImageContainer>
+            <Image
+              src={require(`./img/아이${index + 1}.jpg`)} // 이미지 경로를 동적으로 설정
+              alt={name}
+              onClick={(event) =>{
+                handleImageClick(
+                  event,
+                  `./img/아이${index + 1}.jpg`, // 이미지 경로를 동적으로 설정
+                  name
+                )
+              }
+              }
+            />
+          </ImageContainer>
+          <div className="name">{name}</div>
+        </PersonContainer>
+      ))}
     </ChildSelectContainer>
   );
-}
+};
 
 export default ChildSelect;

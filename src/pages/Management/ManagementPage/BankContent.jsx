@@ -1,17 +1,18 @@
 
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { motion, useAnimation } from 'framer-motion' // Framer Motion 모듈 가져오기
-import c1 from './img/아이1.jpeg'
-import c2 from './img/아이2.jpg'
-import c3 from './img/아이3.jpg'
-import c4 from './img/아이4.jpg'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { motion, useAnimation } from 'framer-motion'; // Framer Motion 모듈 가져오기
+import c1 from './img/아이1.jpg';
+import c2 from './img/아이2.jpg';
+import c3 from './img/아이3.jpg';
+import c4 from './img/아이4.jpg';
+
 import MoveChildGraphButton from './MoveChildGraphButton'
 import AccountSendButton from './AccountSendButton'
 import AccountDetailInfoButton from './AccountDetailInfoButton'
 import axios from 'axios';
-const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
+const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
 const BankContentContainer = styled.div`
   width: 100%;
@@ -112,60 +113,37 @@ padding:10px;
 `
 
 
-const BankContent = ({ selectedPicture, setSelectedPicture, disabled, setDisabled }) => {
-  const [childName, setChildName] = useState("");
-  const [accountNum, setAccountNum] = useState("");
-  const [childId, setChildId] = useState(2);
+const BankContent = ({ selectedPicture, disabled, setDisabled
+, childName, childId, accountNum }) => {
+  // const [accountNum, setAccountNum] = useState("");
   const controls = useAnimation();
 
-
- 
-
-  useEffect(() => {
-       // 이미지 경로에 따라 c1, c2, c3, c4로 대체
-    if (selectedPicture === "./img/아이1.jpeg") {
-      setSelectedPicture(c1);
-      setChildId(2);
-    } else if (selectedPicture === "./img/아이2.jpg") {
-      setSelectedPicture(c2);
-      setChildId(4);
-    } else if (selectedPicture === "./img/아이3.jpg") {
-      setSelectedPicture(c3);
-      setChildId(6);
-    } else if (selectedPicture === "./img/아이4.jpg") {
-      setSelectedPicture(c4);
-      setChildId(7);
-    }
-
-    var url = '/management/'+childId;
+  // useEffect(() => {
+  //   var url = '/management/'+childId;
+      
     
-    axios({
-      url: url,
-      method : "get",
-      headers : {Authorization: token}
-    })
-    .then((response) => { // axios then 호출
-      if(response.data){
-        console.log(response.data);
-        setChildName(response.data.userName);
-        setAccountNum(response.data.accountNum);        
-     }
-    })
-    .catch((error) => {
-      console.error('API 요청 실패:', error);
-      // 실패한 경우 에러 처리
-      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-    })
-    .finally(() => {
-    });
+  
+  //   axios({
+  //     url: url,
+  //     method : "get",
+  //     headers : {Authorization: token}
+  //   })
+  //   .then((response) => { // axios then 호출
+  //     if(response.data){
+  //       console.log('아이 정보 확인')
+  //       setAccountNum(response.data.accountNum);        
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error('API 요청 실패:', error);
+  //     // 실패한 경우 에러 처리
+  //     // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+  //   })
+  //   .finally(() => {
+  //   });
+  // }), [childId];
 
   
-
-  }, [selectedPicture, childId, childName, accountNum]);
-
-  
-  
-
   return (
     <BankContentContainer>
       <ChildName>{childName != "" ? <span>{childName}님의 계좌</span> : ""}</ChildName>
@@ -225,29 +203,43 @@ const BankContent = ({ selectedPicture, setSelectedPicture, disabled, setDisable
             </AccountDescription>
 
             {/* childName이 있을 때만 MonthlyContent를 보이도록 설정 */}
-            {childName && (
-              <MonthlyContentContainer>
-                <MonthlyContent>
-                  <MonthlyItem>
+        {childName && (
+          <MonthlyContentContainer>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} // 초기 상태
+              animate={{ opacity: 1, y: 0 }} // 애니메이션 적용
+              exit={{ opacity: 0, y: 20 }} // 나가기 애니메이션 설정
+              transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
+            >
+              <MonthlyContent>
+                <MonthlyItem>
+                  <MonthlyDetail>
+                    <br></br>우리 아이 <br></br>이번 달 소비<br></br>
+                    1,000,000원
+                  </MonthlyDetail>
+                </MonthlyItem>
+                <MonthlyItem>
+                  <MonthlyConsumption>
                     <MonthlyDetail>
-                      <br></br>우리 아이 <br></br>이번 달 소비<br></br>
-                      1,000,000원
+                      <br></br>우리 아이 <br></br>이번 달 저축<br></br>
+                      2,000,000원
                     </MonthlyDetail>
-                  </MonthlyItem>
-                  <MonthlyItem>
-                    <MonthlyConsumption>
-                      <MonthlyDetail>
-                        <br></br>우리 아이 <br></br>이번 달 저축<br></br>
-                        2,000,000원
-                      </MonthlyDetail>
-                    </MonthlyConsumption>
-                  </MonthlyItem>
-                </MonthlyContent>
-                <MoveChildGraphButtonContainer>
-                  <MoveChildGraphButton />
-                </MoveChildGraphButtonContainer>
-              </MonthlyContentContainer>
-            )}
+                  </MonthlyConsumption>
+                </MonthlyItem>
+              </MonthlyContent>
+            </motion.div>
+            <MoveChildGraphButtonContainer>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} // 초기 상태
+                animate={{ opacity: 1, y: 0 }} // 애니메이션 적용
+                exit={{ opacity: 0, y: 20 }} // 나가기 애니메이션 설정
+                transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
+              >
+                <MoveChildGraphButton />
+              </motion.div>
+            </MoveChildGraphButtonContainer>
+          </MonthlyContentContainer>
+        )}
           </>
         )}
       </BankInfoContainer>

@@ -123,9 +123,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
           setDisabled(false);
         }
       });
-``      
+  
     }
-    console.log("송금하기");
 
 
   return (

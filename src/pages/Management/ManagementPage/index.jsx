@@ -1,12 +1,15 @@
 
 import './style.css'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import ChildSelect from './ChildSelect'
 import BankContent from './BankContent'
-import SendButtonComponent from "./SendButtonComponent";
-import ChildHistory from "./ChildHistory";
-
+import axios from 'axios';
+import c1 from './img/아이1.jpg'
+import c2 from './img/아이2.jpg'
+import c3 from './img/아이3.jpg'
+import c4 from './img/아이4.jpg'
+const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
 const CenteredContainer = styled.div`
@@ -60,17 +63,32 @@ const Footer = styled.div`
 `
 
 export const ManagementPage = () => {
-  const [selectedPicture, setSelectedPicture] = useState(null)
-  const [childName, setChildName] = useState('')
-  const [disabled, setDisabled] = useState(true)
+  const [selectedPicture, setSelectedPicture] = useState(null);
+  const [childName, setChildName] = useState('');
+  const [disabled, setDisabled] = useState(true);
+  const [accountNum, setAccountNum] = useState("");
+  const [childId, setChildId] = useState(2);
+  const [childNamesArray, setChildNamesArray] = useState([]); // 배열 상태로 변경
 
   const personContainerRef = useRef(null) // ref 생성
 
   const handleImageClick = (event, imagePath, altText) => {
     const clickedImgSrc = imagePath
-    setSelectedPicture(clickedImgSrc)
-
-    setChildName(altText)
+    console.log(imagePath);
+    if (imagePath === "./img/아이1.jpg") {
+      setSelectedPicture(c1);
+      setChildId(2);
+    } else if (imagePath === "./img/아이2.jpg") {
+      setSelectedPicture(c2);
+      setChildId(4);
+    } else if (imagePath === "./img/아이3.jpg") {
+      setSelectedPicture(c3);
+      setChildId(6);
+    } else if (imagePath === "./img/아이4.jpg") {
+      setSelectedPicture(c4);
+      setChildId(7);
+    }
+    setChildName(altText);
 
     if (disabled == true) {
       setDisabled(false)
@@ -79,6 +97,57 @@ export const ManagementPage = () => {
     console.log(selectedPicture)
     console.log(altText)
   }
+
+  useEffect(()=>{
+    var url2 = '/management/childName';
+    
+    axios({
+      url: url2,
+      method : "get",
+      headers : {Authorization: token}
+    })
+    .then((response) => { // axios then 호출
+      if(response.data){
+        setChildNamesArray(response.data); 
+      }
+    })
+    .catch((error) => {
+      console.error('API 요청 실패:', error);
+      // 실패한 경우 에러 처리
+      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+    })
+    .finally(() => {
+    });
+  }, []);
+
+  useEffect(() => {
+    var url = '/management/'+childId;
+      
+    
+  
+    axios({
+      url: url,
+      method : "get",
+      headers : {Authorization: token}
+    })
+    .then((response) => { // axios then 호출
+      if(response.data){
+        console.log('아이 정보 확인')
+        setAccountNum(response.data.accountNum);        
+      }
+    })
+    .catch((error) => {
+      console.error('API 요청 실패:', error);
+      // 실패한 경우 에러 처리
+      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+    })
+    .finally(() => {
+    });
+  }), [childId];
+
+
+
+
   return (
     <CenteredContainer>
       <Header>
@@ -89,8 +158,9 @@ export const ManagementPage = () => {
       </Header>
 
       <MainContent>
-        <ChildSelect handleImageClick={handleImageClick} />
-        <BankContent selectedPicture={selectedPicture} setSelectedPicture={setSelectedPicture} disabled={disabled} setDisabled={setDisabled} />
+        <ChildSelect handleImageClick={handleImageClick} childNamesArray={childNamesArray} />
+        <BankContent selectedPicture={selectedPicture} disabled={disabled} setDisabled={setDisabled} 
+        childName = {childName} childId = {childId} accountNum={accountNum}/>
 
       </MainContent>
 
