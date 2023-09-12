@@ -1,17 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { headerContainer, iconContainer, UserNameContatiner, buttonSection, LinkAccountButton, ChildFinanceManagementButton, ViewFinanceProductButton, RewardManagementButton, textContainer, iconGroup, BackToKBStarBankingButton } from './style';
+import { headerContainer, iconContainer, UserNameContatiner, buttonSection, UnlinkedAccountButtonStyle, LinkedAccountButtonStyle, ChildFinanceManagementButton, ViewFinanceProductButton, RewardManagementButton, textContainer, iconGroup, BackToKBStarBankingButton, buttonTextContainer, textLine1, textLine2 } from './style';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons';
 library.add(faBell, faGear, faPlus);
 
+
+
 export const ParentMainPage = () => {
+  const [isAccountLinked, setAccountLinked] = useState(false);
+  const finalBalance = "3,456,000";
+  const [animatedDigits, setAnimatedDigits] = useState([]);
+  
+  useEffect(() => {
+    if (isAccountLinked) {
+      let digitsArray = finalBalance.split("");
+      let animatedDigitsTemp = [];
+
+      digitsArray.forEach((digit, index) => {
+        let animation = setInterval(() => {
+          const randomDigit = Math.floor(Math.random() * 10);
+          animatedDigitsTemp[index] = randomDigit.toString();
+          setAnimatedDigits([...animatedDigitsTemp]);
+        }, 25);  // 숫자 변환 속도를 더 빠르게 설정
+
+        setTimeout(() => {
+          clearInterval(animation);
+          animatedDigitsTemp[index] = digit;
+          setAnimatedDigits([...animatedDigitsTemp]);
+        }, 300 + index * 100); // 각 자리 숫자가 정지하는 시간을 조금 빠르게 설정
+      });
+    }
+  }, [isAccountLinked]);
+
+
+  const UnlinkedAccountButton = (
+    <button onClick={() => setAccountLinked(true)} style={UnlinkedAccountButtonStyle}>
+      <div style={buttonTextContainer}>
+        <span style={textLine1}>연계 계좌 등록</span>
+        <span style={textLine2}>자녀에게 자동이체할 계좌를 등록하세요</span>
+      </div>
+      <FontAwesomeIcon icon={['fas', 'plus']} style={{ marginLeft: '30px' }} />
+    </button>
+  );
+
+  const LinkedAccountButton = (
+    <button style={LinkedAccountButtonStyle}>
+      <div style={buttonTextContainer}>
+        <span style={textLine2}>1234-5678</span>
+        <span style={textLine1}>{`잔액: ${animatedDigits.join('')} 원`}</span>
+      </div>
+    </button>
+  );
+
 
   return (
     <div style={headerContainer}>
       <div style={iconContainer}>
         <div style={textContainer}>
-          <span>Kook Child</span>
+          <span>KB 자녀 금융 EDU</span>
         </div>
         <div style={iconGroup}>
           <FontAwesomeIcon icon={['fas', 'bell']} size='lg' />
@@ -24,18 +71,31 @@ export const ParentMainPage = () => {
       </div>
 
       <div style={buttonSection}>
-        <button style={LinkAccountButton}>
-        <FontAwesomeIcon icon={['fas', 'plus']}/><br/><br/>
-          연계 계좌 등록</button>
+        {isAccountLinked ? LinkedAccountButton : UnlinkedAccountButton}
+      </div>
+      <div style={buttonSection}>
+        <button style={ChildFinanceManagementButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>자녀 금융 관리</span>
+            <span style={textLine2}>자녀별 금융 현황을 확인해요</span>
+          </div>
+
+        </button>
       </div>
 
       <div style={buttonSection}>
-        <button style={ChildFinanceManagementButton}>자녀 금융 관리</button>
-      </div>
-
-      <div style={buttonSection}>
-        <button style={ViewFinanceProductButton}>자녀-부모 금융상품 확인하기</button>
-        <button style={RewardManagementButton}>미션 및 챌린지 보상 관리</button>
+        <button style={ViewFinanceProductButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>자녀-부모 연계 상품</span>
+            <span style={textLine2}>자녀에게 이자를 주는 것은 어떨까요?</span>
+          </div>
+        </button>
+        <button style={RewardManagementButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>미션, 챌린지 관리</span>
+            <span style={textLine2}>자녀의 금융 미션 현황을 관리해요</span>
+          </div>
+        </button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button style={BackToKBStarBankingButton}>

@@ -2,7 +2,7 @@
 export const headerContainer = {
     backgroundColor: '#F6F6FF',
     width: '360px',
-    height: '3000px',
+    height: '1600px',
     margin: 'auto',
     padding: '16px',
     boxSizing: 'border-box'
@@ -35,17 +35,18 @@ export const textContainer = {
 
 export const textContainerSpan = {
     marginTop: '7px', // 텍스트 위의 간격
-    marginRight: '12px', // 텍스트 오른쪽에 여백 추가
-    fontSize: '8px', // 텍스트 크기를 작게 만드는 스타일
+    marginRight: '12px', 
+    fontSize: '8px', 
 };
 
-
+// 우측 상단 아이콘
 export const iconGroup = {
     marginTop: '10px', // 아이콘 위의 간격
     display: 'flex',
     gap: '16px', // 아이콘 사이의 간격
 };
 
+// 버튼 공통
 export const buttonSection = {
     display: 'flex',
     flexDirection: 'column',
@@ -55,6 +56,7 @@ export const buttonSection = {
 };
 
 export const MyAccountButton = {
+    position: 'relative',
     backgroundColor: '#ffffff',
     flex: 1,
     padding: '38px 20px', // 세로 길이를 조절
@@ -63,6 +65,20 @@ export const MyAccountButton = {
     border: '1px solid #ccc', // 테두리 없앰
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' // 그림자 효과
 };
+
+// MyAccountButton 내부 버튼
+    export const CustomLinkButton = {
+        backgroundColor: '#FFCC00 ',
+        color: '#000', 
+        padding: '10px 20px', 
+        borderRadius: '8px',
+        marginLeft: '10px',
+        textAlign: 'center',
+        fontSize: '14px',
+        textDecoration: 'none', 
+        display: 'inline-block', 
+        boxShadow: '0px 2px 4px #00000029'
+    };
 
 export const DailyQuizButton = {
     backgroundColor: '#ffffff',
