@@ -9,7 +9,11 @@ import c1 from './img/아이1.jpg'
 import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
-const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
+let token = "";
+
+if (localStorage.getItem('token')) {
+  token = `Bearer ${localStorage.getItem('token')}`;
+}
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
 const CenteredContainer = styled.div`
