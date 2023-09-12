@@ -1,28 +1,52 @@
 import styled from 'styled-components';
 
-export const BodyContainer = styled.div`
-    width: 430px;
-    height: 832px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 26px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f5f5f5;
-`;
+// 화면을 중앙 정렬하는 스타일 컴포넌트
+export const CenteredContainer = styled.div`
+  height: 844px;
+  width: 390px;
+  position: absolute;
+  top: 50%; /* 세로 중앙 정렬 */
+  left: 50%; /* 가로 중앙 정렬 */
+  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
+  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
+  border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  padding: 20px; /* 내부 여백 설정 */
+
+  display: flex;
+  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
+`
+
+export const Header = styled.div`
+  padding: 10px;
+  text-align: center;
+`
+
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+`
+
+export const HeaderImage = styled.img`
+  width: 20px; /* 이미지 너비 조정 */
+  height: 20px; /* 이미지 높이 조정 */
+  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
+`
+
+export const HeaderTitle = styled.h1`
+  font-size: 18px; /* title의 글꼴 크기 조정 */
+  font-weight: bold; /* title 텍스트 굵게 설정 */
+  margin: 0; /* title의 margin 제거 */
+`
 
 export const ChildListContainer = styled.div`
+margin-top: 30px;
 max-width: 100%;  // 추가
 display: flex;
 overflow-x: auto;
 white-space: nowrap;
-margin-bottom: 20px;
 
     &::-webkit-scrollbar {
         display: none;
@@ -32,6 +56,7 @@ margin-bottom: 20px;
 `;
 
 export const ChildItemContainer = styled.div`
+
     min-width: 86px;
     height: 136px;
     display: flex;
@@ -40,6 +65,7 @@ export const ChildItemContainer = styled.div`
     margin-right: 10px;
 
     img {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
         width: 86px;
         height: 86px;
     }
@@ -53,13 +79,10 @@ export const ChildItemContainer = styled.div`
     }
 `;
 
-// ... 나머지 스타일들은 그대로 둡니다.
-
-
 export const TabContainer = styled.div`
+margin-top: 30px;
     display: flex;
     gap: 10px; // 탭 사이의 간격을 주기 위함
-    margin-bottom: 10px; // 탭과 MissionListContainer 사이에 간격을 주기 위함
 `;
 
 export const Tab = styled.button`
@@ -75,10 +98,17 @@ export const Tab = styled.button`
     outline: none;
     top: ${props => props.isSelected ? 'auto' : '278px'};
     left: ${props => props.isSelected ? 'auto' : '112px'};
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 
 export const AddMissionButton = styled.button`
+    margin-top: 30px;
     width: 378px;
     height: 60px;
     background: #FFCC00;
@@ -88,28 +118,33 @@ export const AddMissionButton = styled.button`
     font-size: 18px; // 적절한 글꼴 크기를 설정
     cursor: pointer; // 버튼을 가리킬 때 손 모양으로 변경
     outline: none;   // 기본 외곽선 제거
-    margin-top: 10px; // TabContainer와의 간격을 조정
     transition: 0.3s; // 부드러운 호버 효과를 위한 전환
 
     &:hover {
         background: #E5B900; // 호버 시의 배경색 변경
     }
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 `;
 
 export const MissionListContainer = styled.div`
-    width: calc(100% + 52px); 
-    margin-left: -26px;      
-    display: flex;
-    flex-direction: column;
-    height: calc(832px - (다른 컴포넌트들의 높이 합)); // 이 부분을 실제 높이 값으로 수정해야 합니다.
-    overflow-y: auto;  // 스크롤 추가
+  overflow-y: auto;
+  max-height: 444px;
+  margin-top: 10px;
+
+  // Chrome, Safari
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
+  // Firefox
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 `;
 
-
-
 export const MissionItemContainer = styled.div`
-  width: 430px;
+  width: 390px;
   height: 80px;
   background-color: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
+  display:flex;
 `;

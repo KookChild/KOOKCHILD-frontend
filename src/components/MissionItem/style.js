@@ -6,11 +6,10 @@ export const ItemContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     top: 399px;
-    left: 0px;
-    width: 378px;
+    width: 390px;
     height: 80px;
-    padding-left: 26px;
-    padding-right: 26px;
+    padding-left: 13px;
+    padding-right: 13px;
     /* UI Properties */
     opacity: 1;
     background: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'} 0% 0% no-repeat padding-box;
@@ -54,8 +53,7 @@ export const LeftSection = styled.div`
 
 
 export const MiddleSection = styled.div`
-    flex: 3;  // 너비를 다른 섹션보다 3배로 설정
-    margin-left:10px;
+    flex: 3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

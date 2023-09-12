@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MissionItem, BackHeader } from '@components';
+import { MissionItem} from '@components';
 import {
-  BodyContainer,
   MissionListContainer,
   ChildItemContainer,
   ChildListContainer,
   TabContainer,
   Tab,
+  ButtonContainer,
   AddMissionButton,
-  MissionItemContainer
+  MissionItemContainer,
+  CenteredContainer,
+  Header,
+  HeaderContent,
+  HeaderImage,
+  HeaderTitle
 } from './style';
-import imgSrc from './cat1.jpg';
-import imgSrc2 from './cat3.jpg';
-import { getParentMissionByChild } from '../../../apis/mission/index';
+import imgSrc from './img/Bear.png';
+import imgSrc2 from './img/ALL.jpeg';
+import imgSrc3 from './img/prefer.png'
+import { getParentMissionByChild } from '@apis';
 
 export const MissionParentViewPage = () => {
   const [missions, setMissions] = useState([]);
@@ -47,8 +53,13 @@ export const MissionParentViewPage = () => {
 
   return (
     <div>
-      <BodyContainer>
-        <BackHeader text="자녀 미션 · 금융 챌린지 관리" onBackClick={() => navigate('/path-to-go-back')} />
+      <CenteredContainer>
+      <Header>
+        <HeaderContent>
+          <HeaderImage src={imgSrc3} />
+          <HeaderTitle>자녀금융관리</HeaderTitle>
+        </HeaderContent>
+      </Header>
         <ChildListContainer>
   {/* 전체 보기 아이템 */}
   <ChildItemContainer
@@ -101,10 +112,12 @@ export const MissionParentViewPage = () => {
             퀴즈
           </Tab>
         </TabContainer>
+        <ButtonContainer>
 
-        <AddMissionButton onClick={() => navigate('/mission/create')}>
-  미션 추가하기
-</AddMissionButton>
+        <AddMissionButton onClick={() => {navigate("/mission/create")}}>
+          미션 추가하기
+        </AddMissionButton>
+        </ButtonContainer>
 
 
         {/* Mission List */}
@@ -123,7 +136,7 @@ export const MissionParentViewPage = () => {
           ))}
         </MissionListContainer>
 
-      </BodyContainer>
+      </CenteredContainer>
     </div>
   );
 }

@@ -26,7 +26,7 @@ export const MissionCreatePage = () => {
         endDate: "",
 
         createdDate : now,
-        childId : 22,
+        childId : 2,
 
     });
 
@@ -112,12 +112,13 @@ export const MissionCreatePage = () => {
 
         console.log(JSON.stringify(missionData));
         try {
+            const token = localStorage.getItem('token')
             const response = await fetch('http://localhost:8080/mission', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     //부모 21 토큰
-                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDQ4Nzg1MSwiZXhwIjoxNjk3MDc5ODUxfQ.mkdh1M99a9NIHYGZGQtjeNUcCOPZkyx_6B_ShIdMkyw'
+                    'Authorization' : 'Bearer '+token
                   },
                 //body:missionData,
                 body: JSON.stringify(missionData)
