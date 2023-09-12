@@ -6,13 +6,8 @@ import {
   LoginTitle,
   LoginForm,
   Input,
-  ErrorMessage,
-  Header,
-  HeaderContent,
-  HeaderImage,
-  HeaderTitle
+  ErrorMessage
 } from './style';
-import imgSrc3 from './prefer.png';
 import { loginAPI } from '../../apis/login/index';
 
 export const LoginPage = () => {
@@ -50,12 +45,6 @@ export const LoginPage = () => {
 
   return (
     <CenteredContainer>
-      <Header>
-        <HeaderContent>
-          <HeaderImage src={imgSrc3} />
-          <HeaderTitle>로그인</HeaderTitle>
-        </HeaderContent>
-      </Header>
       <LoginWrapper>
       <LoginTitle>Login</LoginTitle>
         <LoginForm onSubmit={handleSubmit}>

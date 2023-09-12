@@ -14,35 +14,12 @@ export const CenteredContainer = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-`;
-
-export const Header = styled.div`
-  padding: 10px;
-  text-align: center;
-`;
-
-export const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-`;
-
-export const HeaderImage = styled.img`
-  width: 20px;
-  margin-right: 30px;
-`;
-
-export const HeaderTitle = styled.h1`
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0;
+  justify-content: center;
 `;
 
 export const LoginWrapper = styled.div`
   width: 100%;
   padding: 20px 0;
-  margin-top: 120px;
   box-sizing: border-box;
 `;
 
