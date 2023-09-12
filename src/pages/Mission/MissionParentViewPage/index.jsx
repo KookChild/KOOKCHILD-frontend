@@ -102,9 +102,9 @@ export const MissionParentViewPage = () => {
           </Tab>
         </TabContainer>
 
-        <AddMissionButton onClick={() => {/* Handle add mission button click */ }}>
-          미션 추가하기
-        </AddMissionButton>
+        <AddMissionButton onClick={() => navigate('/mission/create')}>
+  미션 추가하기
+</AddMissionButton>
 
 
         {/* Mission List */}
