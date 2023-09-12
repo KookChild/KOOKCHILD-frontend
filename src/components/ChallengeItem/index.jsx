@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChallengeContainer, ChallengeImage, ChallengeProgress, ChallengeInfo } from './style'; // style.js에서 스타일을 가져옵니다.
+import { ChallengeContainer, ChallengeImage, ChallengeProgress, ChallengeInfo } from '../../pages/Main/ChildMainPage/style'; // style.js에서 스타일을 가져옵니다.
 
 export const ChallengeItem = ({ challenge }) => {
     const {title, imageURL, progress } = challenge;

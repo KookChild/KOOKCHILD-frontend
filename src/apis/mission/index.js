@@ -2,9 +2,15 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8080';
 
+
 if (localStorage.getItem('token')) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
   }
+
+// const YOUR_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDFAZ21haWwuY29tIiwiaWF0IjoxNjk0MjU2Mjg0LCJleHAiOjE2OTY4NDgyODR9.a_CMXow5NQA4dotYDqwz2rIFRpkTi-VbS-9mAit3pzU";
+// const YOUR_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQxQGdtYWlsLmNvbSIsImlhdCI6MTY5NDMzNDQ0NywiZXhwIjoxNjk2OTI2NDQ3fQ.P8qo9NC2teX24T9CyDlrS3zdPK20sUx0iLbZna2dHIY";
+// axios.defaults.headers.common['Authorization'] = `Bearer ${YOUR_TOKEN}`;
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 

@@ -2,11 +2,10 @@ import { FilterButton } from '@components'
 import {
   FilterContainer,
   HeaderContainer,
-  TotalCountContainer,
-  TotalCountTextContainer,
+  ChallengeListContainer
 } from './style'
 import { useEffect, useState } from 'react'
-import { SlideLogo, ChallengeCard } from '@components'
+import { ChallengeItem } from '@components'
 import { ChallengeContainer } from './style'
 import {
   loadAllChallengesAPI,
@@ -54,39 +53,33 @@ export const ChallengeViewPage = () => {
   }, [selectedIndex])
   return (
     <ChallengeContainer>
-      <SlideLogo />
-      <HeaderContainer>Challenge 목록</HeaderContainer>
+      <HeaderContainer>챌린지</HeaderContainer>
       <FilterContainer>
         <FilterButton
-          text={'All'}
+          text={'전체'}
           isSelected={selectedIndex === 0}
           onClick={() => handleButtonClick(0)}
         />
         <FilterButton
-          text={'Parents'}
+          text={'부모님 추천'}
           isSelected={selectedIndex === 1}
           onClick={() => handleButtonClick(1)}
         />
         <FilterButton
-          text={'Me'}
+          text={'진행중'}
           isSelected={selectedIndex === 2}
           onClick={() => handleButtonClick(2)}
         />
       </FilterContainer>
-
-      <div>
-        <TotalCountContainer>
-          총<TotalCountTextContainer>{totalCount}</TotalCountTextContainer> 건
-        </TotalCountContainer>
+      <ChallengeListContainer>
         {challenges.map((challenge, key) => (
-          <ChallengeCard
+          <ChallengeItem
             key={key}
-            imgSource={challenge.imgSource}
-            startDate={challenge.startDate}
-            endDate={challenge.endDate}
+            challenge={challenge}
           />
         ))}
-      </div>
+      </ChallengeListContainer>
+
     </ChallengeContainer>
   )
 }
