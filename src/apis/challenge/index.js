@@ -48,3 +48,16 @@ export function loadChallengeDetailAPI(challenge_id) {
       throw error
     })
 }
+export function childConfirmAPI(challenge_id) {
+  return axios
+    .post(`/challenge/detail/${challenge_id}/childConfirm`, {
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
+      },
+    })
+    .then(response => response.data)
+    .catch(error => {
+      throw error
+    })
+}

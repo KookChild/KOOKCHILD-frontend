@@ -10,7 +10,7 @@ import {
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
-import { loadChallengeDetailAPI } from '@apis'
+import { loadChallengeDetailAPI, childConfirmAPI } from '@apis'
 import { PRIMARY } from '@utility/COLORS'
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
@@ -21,7 +21,7 @@ export const ChallengeChildDetailPage = () => {
   // const [content, setContent] = useState(AtomContent)
 
   const [challenge, setChallenge] = useState()
-  const confirm = () => {
+  const confirm = async () => {
     Swal.fire({
       title: '정말로 참여하시겠습니까?',
       icon: 'warning',
@@ -31,11 +31,11 @@ export const ChallengeChildDetailPage = () => {
       confirmButtonText: '승인', // confirm 버튼 텍스트 지정
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정
       // reverseButtons: true, // 버튼 순서 거꾸로
-    }).then(result => {
+    }).then(async result => {
       // 만약 Promise리턴을 받으면,
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
-
+        await childConfirmAPI(params.id)
         Swal.fire(
           '참여신청 완료',
           '부모님의 승인요청을 기다려주세요',
@@ -49,7 +49,6 @@ export const ChallengeChildDetailPage = () => {
     const fetchData = async () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
-
         setChallenge(challengeDetailData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
