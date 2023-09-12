@@ -17,7 +17,7 @@ export const FilterButtonContainer = styled.div`
 `;
 
 export const FilterButtonText = styled.span`
-  font-family: serif;
+  font-family: 'kbFont';
   height: inherit;
   display: flex;
   align-items: center;

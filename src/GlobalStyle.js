@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
+@font-face {
+  font-family: 'kbFont';
+  src: url('public/SUITE-Variable.ttf') format('truetype');
+}
+
+
 html, body, #root {
   width: 100%;
   height: 100%;
@@ -14,7 +21,7 @@ iframe {
 
 body {
   overflow-x: hidden;
-  font-family: "sdMe", "Apple SD Gothic Neo", "Malgun Gothic", "arial sans-serif";
+  font-family: "kbFont";
   &.open-modal {
     overflow-y: hidden;
   }
