@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {
-    BodyContainer,
+    CenteredContainer,
+    Header,
+    HeaderContent,
+    HeaderImage,
+    HeaderTitle,
     AreaContainer,
     DeleteMissionButton,
     ChildInfoContainer,
@@ -16,7 +20,8 @@ import {
     ButtonsContainer,
     StyledTitle
 } from './style';
-import imgSrc from './cat2.png';
+import imgSrc from './img/Luna.png';
+import prefer from './img/prefer.png'
 import { MissionInfo, BackHeader } from '@components';
 import { fetchMissionDetail, completeMission, updateMission, deleteMission, confirmMissionSuccess } from '../../../apis/mission/index';
 
@@ -65,12 +70,6 @@ export const MissionDetailPage = () => {
     };
 
     const handleCompleteEditClick = async () => {
-        Swal.fire({
-            title: '수정 중...',
-            text: '미션을 수정하는 중입니다.',
-            allowOutsideClick: false,
-        });
-
         try {
             console.log(updatedMission);
             await updateMission(missionId, updatedMission.title, updatedMission.content, updatedMission.reward, updatedMission.endDate);
@@ -93,6 +92,7 @@ export const MissionDetailPage = () => {
             });
         }
     };
+
 
     const handleSuccessClick = () => {
         Swal.fire({
@@ -193,8 +193,13 @@ export const MissionDetailPage = () => {
     const { parent, title, content, reward, endDate, image, childName, completeDate } = missionData;
 
     return (
-        <BodyContainer>
-            <BackHeader text="미션 상세 페이지" onBackClick={() => navigate(parent ? '/mission/parentview' : '/mission/childview')} />
+        <CenteredContainer>
+            <Header>
+                <HeaderContent onClick={() => navigate(parent ? '/mission/parentview' : '/mission/childview')}>
+                    <HeaderImage src={prefer} />
+                    <HeaderTitle>미션상세페이지</HeaderTitle>
+                </HeaderContent>
+            </Header>
 
 
             {parent && (
@@ -269,6 +274,6 @@ export const MissionDetailPage = () => {
                     {isChild ? "승인 요청 중..." : "미션 완료"}
                 </CompleteButton>}
             </AreaContainer>
-        </BodyContainer>
+        </CenteredContainer>
     );
 }

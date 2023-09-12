@@ -1,21 +1,46 @@
 import styled from 'styled-components';
 
-export const BodyContainer = styled.div`
-    width: 430px;
-    height: 832px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; // 왼쪽 정렬
-    align-items: flex-start;
-    padding: 20px;  // 패딩 조절
+export const CenteredContainer = styled.div`
+  height: 844px;
+  width: 390px;
+  position: absolute;
+  top: 50%; /* 세로 중앙 정렬 */
+  left: 50%; /* 가로 중앙 정렬 */
+  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
+  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
+  border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  padding: 20px; /* 내부 여백 설정 */
 
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
+`
 
-    background-color: #f5f5f5;
-`;
+export const Header = styled.div`
+  padding: 10px;
+  text-align: center;
+`
+
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  cursor: pointer;
+`
+
+export const HeaderImage = styled.img`
+  width: 20px; /* 이미지 너비 조정 */
+  height: 20px; /* 이미지 높이 조정 */
+  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
+`
+
+export const HeaderTitle = styled.h1`
+  font-size: 18px; /* title의 글꼴 크기 조정 */
+  font-weight: bold; /* title 텍스트 굵게 설정 */
+  margin: 0; /* title의 margin 제거 */
+`
+
 
 export const AreaContainer = styled.div`
     width: 100%;  // 100%로 설정하면 BodyContainer의 padding으로 인해 좌우에 공백이 생깁니다.
@@ -39,15 +64,13 @@ export const ButtonsContainer = styled.div`
 `;
 
 
-
-
-
 export const DeleteMissionButton = styled.button`
     width: 67px;
-    height: 19px;
-    color: black; // 글자 색상 흰색으로 설정
+    height: 22px;
+    color: white; // 글자 색상 흰색으로 설정
     border: none;
     cursor: pointer; // 마우스 오버시 포인터 모양 변경
+    background-color: tomato;
 `;
 
 
@@ -65,8 +88,8 @@ export const ChildInfoContainer = styled.div`
 `;
 
 export const ChildImage = styled.img`
-    width: 62px;
-    height: 68px;
+    width: 70px;
+    height: 78px;
     margin-right: 10px; // 이미지 오른쪽에 조금의 간격을 줌
 `;
 
@@ -75,7 +98,7 @@ export const ChildName = styled.p`
     height: 14px;
     color: #000;
     font-family: Inter;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 400;
     margin: 0; // p태그의 기본 마진 제거
     margin-bottom: 5px; // 이미지 바로 밑에 위치하도록 하단 마진 설정
@@ -86,8 +109,7 @@ export const MissionDescription = styled.p`
     width: 176px;
     height: 20px;
     color: #000;
-    font-family: Inter;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     margin: 0; // p태그의 기본 마진 제거
     margin-left: 30px;
