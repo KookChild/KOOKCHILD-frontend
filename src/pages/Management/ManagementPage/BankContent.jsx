@@ -114,34 +114,8 @@ padding:10px;
 
 
 const BankContent = ({ selectedPicture, disabled, setDisabled
-, childName, childId, accountNum }) => {
-  // const [accountNum, setAccountNum] = useState("");
+, childName, childId, accountNum, amount, notInAmount }) => {
   const controls = useAnimation();
-
-  // useEffect(() => {
-  //   var url = '/management/'+childId;
-      
-    
-  
-  //   axios({
-  //     url: url,
-  //     method : "get",
-  //     headers : {Authorization: token}
-  //   })
-  //   .then((response) => { // axios then 호출
-  //     if(response.data){
-  //       console.log('아이 정보 확인')
-  //       setAccountNum(response.data.accountNum);        
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error('API 요청 실패:', error);
-  //     // 실패한 경우 에러 처리
-  //     // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-  //   })
-  //   .finally(() => {
-  //   });
-  // }), [childId];
 
   
   return (
@@ -215,14 +189,14 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 <MonthlyItem>
                   <MonthlyDetail>
                     <br></br>우리 아이 <br></br>이번 달 소비<br></br>
-                    1,000,000원
+                    {notInAmount}원
                   </MonthlyDetail>
                 </MonthlyItem>
                 <MonthlyItem>
                   <MonthlyConsumption>
                     <MonthlyDetail>
                       <br></br>우리 아이 <br></br>이번 달 저축<br></br>
-                      2,000,000원
+                     {amount}원
                     </MonthlyDetail>
                   </MonthlyConsumption>
                 </MonthlyItem>
