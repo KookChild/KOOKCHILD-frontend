@@ -1,10 +1,9 @@
 import { FilterButtonContainer, FilterButtonText } from './style'
-
+import { PRIMARY } from '@utility/COLORS'
 export const FilterButton = ({ text, isSelected, onClick }) => {
-  console.log(text, isSelected)
   return (
     <FilterButtonContainer
-      backgroundColor={isSelected ? 'black' : '#f8f8f8'}
+      backgroundColor={isSelected ? PRIMARY : '#f8f8f8'}
       onClick={onClick}
     >
       <FilterButtonText color={isSelected ? 'white' : 'black'}>

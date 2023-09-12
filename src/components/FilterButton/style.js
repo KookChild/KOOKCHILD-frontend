@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const FilterButtonContainer = styled.div`
   display: block;
-  width: 108px;
-  height: 108px;
+  width: 100px;
+  height: 100px;
   background-color: ${props => props.backgroundColor};
   background-repeat: no-repeat;
   background-position: center;

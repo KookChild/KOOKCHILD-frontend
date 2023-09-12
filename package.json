@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^4.4.0",
+    "axios": "^1.5.0",
     "eslint": "^8.48.0",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
@@ -24,6 +25,7 @@
     "sweetalert2": "^11.7.27",
     "web-vitals": "^2.1.4"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
