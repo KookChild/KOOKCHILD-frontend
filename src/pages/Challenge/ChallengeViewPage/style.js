@@ -12,9 +12,10 @@ export const HeaderContainer = styled.div`
   text-align: center;
   line-height: 40px;
   font-size: 28px;
-  font-weight: bold;
 `
-export const ChallengeContainer = styled.div``
+export const ChallengeContainer = styled.div`
+  font-family: 'SUIT Variable';
+`
 export const TotalCountContainer = styled.div`
   margin-left: 5%;
   font-weight: bold;

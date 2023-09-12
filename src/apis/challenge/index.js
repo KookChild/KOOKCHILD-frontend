@@ -1,18 +1,22 @@
 import axios from 'axios'
-export function testAPI() {
-  return axios
-    .get('/test/hello')
-    .then(response => response.data)
-    .catch(error => {
-      throw error
-    })
-}
-export function loadAllChallengesAPI() {
+import { BASE_URL } from '../../config'
+axios.defaults.baseURL = BASE_URL
+axios.defaults.withCredentials = true
+
+// export function testAPI() {
+//   return axios
+//     .get('/test/hello')
+//     .then(response => response.data)
+//     .catch(error => {
+//       throw error
+//     })
+// }
+export function loadAllChallengesAPI(token) {
   return axios
     .get('/challenge?state=all', {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDM5Nzc1NiwiZXhwIjoxNjk2OTg5NzU2fQ.2x3wWDzl2YLCNVDAvglW0bP0AbtZMo1PF2eRQ6GqeMo',
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
       },
     })
     .then(response => response.data)
@@ -21,12 +25,12 @@ export function loadAllChallengesAPI() {
     })
 }
 
-export function loadParentChallengesAPI() {
+export function loadParentChallengesAPI(token) {
   return axios
     .get('/challenge?state=parentConfirmed', {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDM5Nzc1NiwiZXhwIjoxNjk2OTg5NzU2fQ.2x3wWDzl2YLCNVDAvglW0bP0AbtZMo1PF2eRQ6GqeMo',
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
       },
     })
     .then(response => response.data)
@@ -35,12 +39,12 @@ export function loadParentChallengesAPI() {
     })
 }
 
-export function loadMyChallengesAPI() {
+export function loadMyChallengesAPI(token) {
   return axios
     .get('/challenge?state=proceeding', {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDM5Nzc1NiwiZXhwIjoxNjk2OTg5NzU2fQ.2x3wWDzl2YLCNVDAvglW0bP0AbtZMo1PF2eRQ6GqeMo',
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
       },
     })
     .then(response => response.data)
@@ -54,7 +58,7 @@ export function loadChallengeDetailAPI(challenge_id) {
     .get(`/challenge/detail/${challenge_id}`, {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDM5Nzc1NiwiZXhwIjoxNjk2OTg5NzU2fQ.2x3wWDzl2YLCNVDAvglW0bP0AbtZMo1PF2eRQ6GqeMo',
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
       },
     })
     .then(response => response.data)

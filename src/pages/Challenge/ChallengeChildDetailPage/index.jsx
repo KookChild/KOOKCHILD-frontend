@@ -11,7 +11,7 @@ import {
   ChallengeContentImgContainer,
 } from './style'
 import { loadChallengeDetailAPI } from '@apis'
-
+import { PRIMARY } from '@utility/COLORS'
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
   // const AtomTitle = '26일 챌린지'
@@ -19,13 +19,14 @@ export const ChallengeChildDetailPage = () => {
   //   ' 26일 동안 매일 천원씩 저금하면, 26일 뒤에 1500원의 이자가 지급돼!'
   // const [title, setTitle] = useState(AtomTitle)
   // const [content, setContent] = useState(AtomContent)
+
   const [challenge, setChallenge] = useState()
   const confirm = () => {
     Swal.fire({
       title: '정말로 참여하시겠습니까?',
       icon: 'warning',
       showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+      confirmButtonColor: { PRIMARY }, // confrim 버튼 색깔 지정
       cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
       confirmButtonText: '승인', // confirm 버튼 텍스트 지정
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정
@@ -48,6 +49,7 @@ export const ChallengeChildDetailPage = () => {
     const fetchData = async () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
+
         setChallenge(challengeDetailData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -55,7 +57,7 @@ export const ChallengeChildDetailPage = () => {
     }
 
     fetchData()
-  }, [])
+  }, [params.id])
   return (
     challenge && (
       <ChallengeContainer>

@@ -8,7 +8,11 @@ import {
 import { useEffect, useState } from 'react'
 import { SlideLogo, ChallengeCard } from '@components'
 import { ChallengeContainer } from './style'
-import { testAPI, loadAllChallengesAPI } from '@apis'
+import {
+  loadAllChallengesAPI,
+  loadParentChallengesAPI,
+  loadMyChallengesAPI,
+} from '@apis'
 
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -26,12 +30,10 @@ export const ChallengeViewPage = () => {
           apiFunction = loadAllChallengesAPI
           break
         case 1:
-          // apiFunction = loadParentChallengesAPI
-          apiFunction = loadAllChallengesAPI
+          apiFunction = loadParentChallengesAPI
           break
         case 2:
-          // apiFunction = loadMyChallengesAPI
-          apiFunction = loadAllChallengesAPI
+          apiFunction = loadMyChallengesAPI
           break
         default:
           apiFunction = loadAllChallengesAPI
@@ -40,6 +42,7 @@ export const ChallengeViewPage = () => {
 
       try {
         const challengesData = await apiFunction()
+        console.log(challengesData)
         setChallenges(challengesData)
         setTotalCount(challengesData.length)
       } catch (error) {
@@ -51,11 +54,6 @@ export const ChallengeViewPage = () => {
   }, [selectedIndex])
   return (
     <ChallengeContainer>
-      <h1>
-        {challenges.map((challenge, key) => (
-          <h4 key={key}>{challenge.title}</h4>
-        ))}
-      </h1>
       <SlideLogo />
       <HeaderContainer>Challenge 목록</HeaderContainer>
       <FilterContainer>
