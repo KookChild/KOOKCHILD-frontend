@@ -1,46 +1,135 @@
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Swal from 'sweetalert2'
-import { FilterButton } from '@components'
-export const ParentMainPage = () => {
-  const notify = () => toast('toastify test!')
-  const confirm = () => {
-    Swal.fire({
-      title: '정말로 삭제하시겠습니까?',
-      icon: 'warning',
-      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-      confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-      cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-      confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-      reverseButtons: true, // 버튼 순서 거꾸로
-    }).then(result => {
-      // 만약 Promise리턴을 받으면,
-      if (result.isConfirmed) {
-        // 만약 모달창에서 confirm 버튼을 눌렀다면
+import React, { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { loadParentNameAPI } from '@apis'
+import {
+  headerContainer,
+  iconContainer,
+  UserNameContatiner,
+  buttonSection,
+  UnlinkedAccountButtonStyle,
+  LinkedAccountButtonStyle,
+  ChildFinanceManagementButton,
+  ViewFinanceProductButton,
+  RewardManagementButton,
+  textContainer,
+  iconGroup,
+  BackToKBStarBankingButton,
+  buttonTextContainer,
+  textLine1,
+  textLine2,
+} from './style'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
+library.add(faBell, faGear, faPlus)
 
-        Swal.fire('삭제가 완료되었습니다.', '', 'success')
+export const ParentMainPage = () => {
+  const [isAccountLinked, setAccountLinked] = useState(false)
+  const finalBalance = '3,456,000'
+  const [animatedDigits, setAnimatedDigits] = useState([])
+  const [name, setName] = useState('김국민')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const parentName = await loadParentNameAPI()
+        setName(parentName)
+      } catch (error) {
+        console.error('Error fetching challenge detail:', error)
       }
-    })
-  }
+    }
+
+    fetchData()
+  }, [])
+  useEffect(() => {
+    if (isAccountLinked) {
+      let digitsArray = finalBalance.split('')
+      let animatedDigitsTemp = []
+
+      digitsArray.forEach((digit, index) => {
+        let animation = setInterval(() => {
+          const randomDigit = Math.floor(Math.random() * 10)
+          animatedDigitsTemp[index] = randomDigit.toString()
+          setAnimatedDigits([...animatedDigitsTemp])
+        }, 25) // 숫자 변환 속도를 더 빠르게 설정
+
+        setTimeout(() => {
+          clearInterval(animation)
+          animatedDigitsTemp[index] = digit
+          setAnimatedDigits([...animatedDigitsTemp])
+        }, 300 + index * 100) // 각 자리 숫자가 정지하는 시간을 조금 빠르게 설정
+      })
+    }
+  }, [isAccountLinked])
+
+  const UnlinkedAccountButton = (
+    <button
+      onClick={() => setAccountLinked(true)}
+      style={UnlinkedAccountButtonStyle}
+    >
+      <div style={buttonTextContainer}>
+        <span style={textLine1}>연계 계좌 등록</span>
+        <span style={textLine2}>자녀에게 자동이체할 계좌를 등록하세요</span>
+      </div>
+      <FontAwesomeIcon icon={['fas', 'plus']} style={{ marginLeft: '30px' }} />
+    </button>
+  )
+
+  const LinkedAccountButton = (
+    <button style={LinkedAccountButtonStyle}>
+      <div style={buttonTextContainer}>
+        <span style={textLine2}>1234-5678</span>
+        <span style={textLine1}>{`잔액: ${animatedDigits.join('')} 원`}</span>
+      </div>
+    </button>
+  )
+
   return (
-    <div>
-      <span>Parent Main Page</span>
-      <button onClick={notify}>TOASTIFY TEST</button>
-      <button onClick={confirm}>SWEET ALERT2 TEST</button>
-      <FilterButton text={'All'} backgroundColor={'black'} />
-      <ToastContainer
-        position="top-right" // 알람 위치 지정
-        autoClose={3000} // 자동 off 시간
-        hideProgressBar={false} // 진행시간바 숨김
-        closeOnClick // 클릭으로 알람 닫기
-        rtl={false} // 알림 좌우 반전
-        pauseOnFocusLoss // 화면을 벗어나면 알람 정지
-        draggable // 드래그 가능
-        pauseOnHover // 마우스를 올리면 알람 정지
-        theme="light"
-        // limit={1} // 알람 개수 제한
-      />
+    <div style={headerContainer}>
+      <div style={iconContainer}>
+        <div style={textContainer}>
+          <span>KB 자녀 금융 EDU</span>
+        </div>
+        <div style={iconGroup}>
+          <FontAwesomeIcon icon={['fas', 'bell']} size="lg" />
+          <FontAwesomeIcon icon={['fas', 'gear']} size="lg" />
+        </div>
+      </div>
+
+      <div style={UserNameContatiner}>
+        <span>{name}</span>
+      </div>
+
+      <div style={buttonSection}>
+        {isAccountLinked ? LinkedAccountButton : UnlinkedAccountButton}
+      </div>
+      <div style={buttonSection}>
+        <button style={ChildFinanceManagementButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>자녀 금융 관리</span>
+            <span style={textLine2}>자녀별 금융 현황을 확인해요</span>
+          </div>
+        </button>
+      </div>
+
+      <div style={buttonSection}>
+        <button style={ViewFinanceProductButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>자녀-부모 연계 상품</span>
+            <span style={textLine2}>자녀에게 이자를 주는 것은 어떨까요?</span>
+          </div>
+        </button>
+        <button style={RewardManagementButton}>
+          <div style={buttonTextContainer}>
+            <span style={textLine1}>미션, 챌린지 관리</span>
+            <span style={textLine2}>자녀의 금융 미션 현황을 관리해요</span>
+          </div>
+        </button>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <button style={BackToKBStarBankingButton}>
+          <span style={{ fontSize: '8px' }}>KB스타뱅킹으로 돌아가기</span>
+        </button>
+      </div>
     </div>
   )
 }
