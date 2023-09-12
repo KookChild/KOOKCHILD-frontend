@@ -12,7 +12,7 @@ import {
   CompletePage,
   LoginPage,
   GraphDetailPage,
-  GraphMainPage,
+  SendDetailPage,
   ManagementPage,
   MissionChildViewPage,
   MissionCreatePage,
@@ -36,7 +36,7 @@ function App() {
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/register" element={<RegisterPage />} />
             <Route path="/mission/create" element={<MissionCreatePage />} />
-            <Route path="/mission/detail/:id" element={<MissionDetailPage />} />
+            <Route path="/mission/detail/:missionId" element={<MissionDetailPage />} />
             <Route
               path="/mission/parentview"
               element={<MissionParentViewPage />}
@@ -56,7 +56,7 @@ function App() {
             />
             <Route path="/challenge" element={<ChallengeViewPage />} />
             <Route path="/complete" element={<CompletePage />} />
-            <Route path="/graph" element={<GraphMainPage />} />
+            <Route path="/management/send" element={<SendDetailPage />} />
             <Route path="/graph/detail" element={<GraphDetailPage />} />
             <Route path="/management" element={<ManagementPage />} />
           </Routes>
