@@ -18,7 +18,7 @@ import {
 } from './style';
 import imgSrc from './cat2.png';
 import { MissionInfo, BackHeader } from '@components';
-import { fetchMissionDetail, completeMission, updateMission, deleteMission, confirmMissionSuccess } from '../../../apis/missions';
+import { fetchMissionDetail, completeMission, updateMission, deleteMission, confirmMissionSuccess } from '../../../apis/mission/index';
 
 
 export const MissionDetailPage = () => {

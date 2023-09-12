@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MissionItem, BackHeader } from '@components';
 import { BodyContainer, Dropdown, MissionListContainer } from './style';
-import { getMissions } from '../../../apis/missions';
+import { getMissions } from '../../../apis/mission/index';
 
 export const MissionChildViewPage = () => {
     const [missions, setMissions] = useState([]);

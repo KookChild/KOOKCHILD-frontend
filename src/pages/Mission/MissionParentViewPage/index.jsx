@@ -13,7 +13,7 @@ import {
 } from './style';
 import imgSrc from './cat1.jpg';
 import imgSrc2 from './cat3.jpg';
-import { getParentMissionByChild } from '../../../apis/missions';
+import { getParentMissionByChild } from '../../../apis/mission/index';
 
 export const MissionParentViewPage = () => {
   const [missions, setMissions] = useState([]);
