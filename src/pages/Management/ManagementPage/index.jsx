@@ -148,7 +148,7 @@ export const ManagementPage = () => {
 
 
     
-  }), [childId];
+  }, [childId]);
 
 
 
