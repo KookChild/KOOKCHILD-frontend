@@ -69,6 +69,8 @@ export const ManagementPage = () => {
   const [accountNum, setAccountNum] = useState("");
   const [childId, setChildId] = useState(2);
   const [childNamesArray, setChildNamesArray] = useState([]); // 배열 상태로 변경
+  const [amount, setAmout] = useState(0);
+  const [notIntAmount, setNotInAmount] = useState(0);
 
   const personContainerRef = useRef(null) // ref 생성
 
@@ -122,8 +124,6 @@ export const ManagementPage = () => {
 
   useEffect(() => {
     var url = '/management/'+childId;
-      
-    
   
     axios({
       url: url,
@@ -133,7 +133,9 @@ export const ManagementPage = () => {
     .then((response) => { // axios then 호출
       if(response.data){
         console.log('아이 정보 확인')
-        setAccountNum(response.data.accountNum);        
+        setAccountNum(response.data.accountNum);      
+        setAmout(response.data.amount);
+        setNotInAmount(response.data.notInAmount);  
       }
     })
     .catch((error) => {
@@ -143,6 +145,9 @@ export const ManagementPage = () => {
     })
     .finally(() => {
     });
+
+
+    
   }), [childId];
 
 
@@ -160,7 +165,7 @@ export const ManagementPage = () => {
       <MainContent>
         <ChildSelect handleImageClick={handleImageClick} childNamesArray={childNamesArray} />
         <BankContent selectedPicture={selectedPicture} disabled={disabled} setDisabled={setDisabled} 
-        childName = {childName} childId = {childId} accountNum={accountNum}/>
+        childName = {childName} childId = {childId} accountNum={accountNum} amount = {amount} notInAmount = {notIntAmount}/>
 
       </MainContent>
 
