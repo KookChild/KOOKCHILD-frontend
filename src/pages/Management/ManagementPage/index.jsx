@@ -9,11 +9,12 @@ import c1 from './img/아이1.jpg'
 import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
-let token = "";
 
-if (localStorage.getItem('token')) {
-  token = `Bearer ${localStorage.getItem('token')}`;
-}
+const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDUwNzU1OCwiZXhwIjoxNjk3MDk5NTU4fQ.-gf3R88hXY0Gc9qTRtUFMT24rE500UsvOfZRFBtjWLM";
+
+// if (localStorage.getItem('token')) {
+//   token = `Bearer ${localStorage.getItem('token')}`;
+// }
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
 const CenteredContainer = styled.div`
@@ -83,17 +84,14 @@ export const ManagementPage = () => {
     console.log(imagePath);
     if (imagePath === "./img/아이1.jpg") {
       setSelectedPicture(c1);
-      setChildId(2);
+      setChildId(22);
     } else if (imagePath === "./img/아이2.jpg") {
       setSelectedPicture(c2);
-      setChildId(4);
+      setChildId(24);
     } else if (imagePath === "./img/아이3.jpg") {
       setSelectedPicture(c3);
-      setChildId(6);
-    } else if (imagePath === "./img/아이4.jpg") {
-      setSelectedPicture(c4);
-      setChildId(7);
-    }
+      setChildId(26);
+    } 
     setChildName(altText);
 
     if (disabled == true) {
@@ -114,7 +112,9 @@ export const ManagementPage = () => {
     })
     .then((response) => { // axios then 호출
       if(response.data){
-        setChildNamesArray(response.data); 
+        const ids = response.data.map((child) => child.name);
+        setChildNamesArray(ids); 
+
       }
     })
     .catch((error) => {
