@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MissionItem } from '@components'
 import {
-  CenteredContainer,
   Header,
   HeaderContent,
   HeaderImage,

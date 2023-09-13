@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-export const CenteredContainer = styled.div`
-  height: 844px;
-  width: 390px;
-  position: absolute;
-  top: 50%; /* 세로 중앙 정렬 */
-  left: 50%; /* 가로 중앙 정렬 */
-  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
-  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
-  border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-  padding: 20px; /* 내부 여백 설정 */
-
-  display: flex;
-  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
-`
-
 export const Header = styled.div`
   padding: 10px;
   text-align: center;
@@ -43,15 +27,15 @@ export const HeaderTitle = styled.h1`
 
 
 export const AreaContainer = styled.div`
-    width: 100%;  // 100%로 설정하면 BodyContainer의 padding으로 인해 좌우에 공백이 생깁니다.
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;  // 중앙 정렬
-    margin-bottom: 15px;  // 하단 마진 설정
-    margin-top: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
 
     &:last-child {
-        margin-bottom: 0;  // 마지막 요소에는 마진 제거
+        margin-bottom: 0;
     }
 `;
 
@@ -59,38 +43,40 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    padding-right: 20px; // 오른쪽 여백 추가
-    margin-top: 15px;    // 위쪽 여백 추가
+    padding-right: 20px;
+    margin-top: 15px;
 `;
 
 
 export const DeleteMissionButton = styled.button`
     width: 67px;
     height: 22px;
-    color: white; // 글자 색상 흰색으로 설정
+    color: white;
     border: none;
-    cursor: pointer; // 마우스 오버시 포인터 모양 변경
+    cursor: pointer;
     background-color: tomato;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
 
 export const StyledTitle = styled.h2`
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 40px;  // 마진을 조절합니다.
 `;
 
 export const ChildInfoContainer = styled.div`
     width: 342px;
     display: flex;
-    align-items: flex-start; // 왼쪽 정렬
-    justify-content: center; // 세로 가운데 정렬
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 30px;
 `;
 
 export const ChildImage = styled.img`
     width: 70px;
     height: 78px;
-    margin-right: 10px; // 이미지 오른쪽에 조금의 간격을 줌
+    margin-right: 10px;
 `;
 
 export const ChildName = styled.p`
@@ -100,8 +86,8 @@ export const ChildName = styled.p`
     font-family: Inter;
     font-size: 15px;
     font-weight: 400;
-    margin: 0; // p태그의 기본 마진 제거
-    margin-bottom: 5px; // 이미지 바로 밑에 위치하도록 하단 마진 설정
+    margin: 0;
+    margin-bottom: 5px;
     text-align: center;
 `;
 
@@ -111,22 +97,23 @@ export const MissionDescription = styled.p`
     color: #000;
     font-size: 18px;
     font-weight: 400;
-    margin: 0; // p태그의 기본 마진 제거
+    margin: 0;
     margin-left: 30px;
     align-self: flex-end;
 `;
 
-// style.js
 export const EditButton = styled.button`
     width: 102px;
     height: 37px;
     background-color: #767676;
     border: none;
-    margin-right: 10px;  // 오른쪽에 10px 마진 추가
+    margin-right: 10px;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: rgba(118, 118, 118, 0.8); // #767676 의 약간 불투명한 버전
+        background-color: rgba(118, 118, 118, 0.8);
     }
 `;
 
@@ -136,34 +123,47 @@ export const SuccessButton = styled.button`
     background-color: #98C37F;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: rgba(152, 195, 127, 0.8); // #98C37F 의 약간 불투명한 버전
+        background-color: rgba(152, 195, 127, 0.8);
     }
     &:disabled {
-        cursor: not-allowed;  // 마우스 커서를 not-allowed로 변경
-        background-color: #98C37F; // hover 효과가 아닌 기본 색상으로 설정
+        cursor: not-allowed;
+        background-color: #98C37F;
 
         &:hover {
-            background-color: #98C37F;  // disabled 상태에서는 hover 효과를 적용하지 않음
+            background-color: #98C37F;
         }
     }
 `;
 export const CompleteButton = styled.button`
     width: 102px;
     height: 37px;
-    background-color: #767676; // 기본 배경색을 설정합니다.
-    color: white; // 글자색을 흰색으로 설정합니다.
+    background-color: #767676;
+    color: white;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: #565656; // hover 시 조금 더 어둡게 변경합니다.
+        background-color: #565656;
     }
     &:disabled {
-        cursor: not-allowed;  // 마우스 커서를 not-allowed로 변경
-        background-color: #767676; // hover 효과가 아닌 기본 색상으로 설정
+        cursor: not-allowed;
+        background-color: #767676;
 
         &:hover {
-            background-color: #767676;  // disabled 상태에서는 hover 효과를 적용하지 않음
+            background-color: #767676;
 `;
+
+export const LogoutButton = styled.button`
+    width: 67px;
+    height: 22px;
+    color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+`
