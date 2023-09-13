@@ -1,20 +1,27 @@
 const styles = {
   container: {
-    paddingBottom: '50px', // 네비게이션 바 높이만큼 여백을 줍니다.
+    paddingBottom: '50px',
   },
   navBar: {
-    bottom: '0', // 하단 정렬
-    width: '100%', // 전체 너비
-    height: '50px', // 844px 높이의 화면에서 적당한 높이로 설정 (여기서는 50px)
-    backgroundColor: '#333', // 배경색
-    display: 'flex', // Flexbox 사용
-    justifyContent: 'space-around', // 아이콘 간격 균등하게
-    alignItems: 'center', // 세로 중앙 정렬
+    bottom: '0px',
+    width: '390px',
+    height: '70px',
+    position: 'fixed',
+    backgroundColor: '#fff',
+    borderTopRightRadius: '5px',
+    borderTopLeftRadius: '5px',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    boxShadow: '0px -6px 5px rgba(0, 0, 0, 0.1)',  // 상단 그림자 추가
   },
   icon: {
+    display: 'flex',
     color: 'white',
     cursor: 'pointer',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-}
+};
 
-export default styles
+export default styles;
