@@ -112,6 +112,38 @@ padding:10px;
   }
 `
 
+const InfoTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column; /* 컬럼 방향으로 아래로 나열 */
+  align-items: center; /* 수평 가운데 정렬 */
+  gap: 20px; /* 각 요소 사이의 간격 조절 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  margin-top: 20px; /* 원하는 간격 설정 */
+  height : 358px;
+`;
+
+const InfoBox = styled.div`
+
+background-color: #f9c515;
+  width: 250px; /* 너비를 더 넓게 설정 */
+  height: 60px; /* 높이 설정 */
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  padding: 10px; /* 내부 여백 설정 */
+  border-radius: 10px; /* 라운드된 모서리 설정 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  border-radius: 10px;
+  border: 1px solid #ccc;
+`;
+const InfoText = styled.p`
+  /* <p> 태그에 대한 스타일 설정 */
+  margin: 0; /* 기본 마진 제거 */
+  font-size: 16px; /* 글꼴 크기 설정 */
+  color: #333; /* 글꼴 색상 설정 */
+  /* 다른 스타일을 추가하세요. */
+`;
+
 
 const BankContent = ({ selectedPicture, disabled, setDisabled
 , childName, childId, accountNum, amount, notInAmount }) => {
@@ -162,7 +194,17 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
       </PictureSelectContainer>
       <BankInfoContainer>
         {childName === '' ? (
-          <p>자녀를 선택해서 송금하세요</p>
+         <InfoTextWrapper>
+         <InfoBox>
+           <InfoText>자녀를 선택해서 송금하세요</InfoText>
+         </InfoBox>
+         <InfoBox>
+           <InfoText>자녀를 선택하시면 자녀의 소비와 예금 금액을 확인할 수 있습니다</InfoText>
+         </InfoBox>
+         <InfoBox>
+           <InfoText>통계도 궁금하지 않으신가요?</InfoText>
+         </InfoBox>
+       </InfoTextWrapper>
         ) : (
 
           <>
