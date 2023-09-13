@@ -2,7 +2,7 @@ import { FilterButton } from '@components'
 import {
   FilterContainer,
   HeaderContainer,
-  ChallengeListContainer
+  ChallengeListContainer,
 } from './style'
 import { useEffect, useState } from 'react'
 import { ChallengeItem } from '@components'
@@ -12,7 +12,7 @@ import {
   loadParentChallengesAPI,
   loadMyChallengesAPI,
 } from '@apis'
-
+import { TopContainer } from '@components'
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [totalCount, setTotalCount] = useState(0)
@@ -52,7 +52,7 @@ export const ChallengeViewPage = () => {
     loadChallenges()
   }, [selectedIndex])
   return (
-    <ChallengeContainer>
+    <TopContainer>
       <HeaderContainer>챌린지</HeaderContainer>
       <FilterContainer>
         <FilterButton
@@ -73,13 +73,9 @@ export const ChallengeViewPage = () => {
       </FilterContainer>
       <ChallengeListContainer>
         {challenges.map((challenge, key) => (
-          <ChallengeItem
-            key={key}
-            challenge={challenge}
-          />
+          <ChallengeItem key={key} challenge={challenge} />
         ))}
       </ChallengeListContainer>
-
-    </ChallengeContainer>
+    </TopContainer>
   )
 }

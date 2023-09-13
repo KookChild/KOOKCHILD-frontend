@@ -31,9 +31,9 @@ function App() {
         <GlobalStyle />
         <Router>
           <Routes>
-            <Route exact path="/" element={<ParentMainPage />} />
+            <Route exact path="/parent" element={<ParentMainPage />} />
             <Route path="/child" element={<ChildMainPage />} />
-            <Route exact path="/login" element={<LoginPage />} />
+            <Route exact path="/" element={<LoginPage />} />
             <Route exact path="/register" element={<RegisterPage />} />
             <Route path="/mission/create" element={<MissionCreatePage />} />
             <Route

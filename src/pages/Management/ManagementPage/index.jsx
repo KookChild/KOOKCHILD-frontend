@@ -1,10 +1,10 @@
-
+import { useNavigate } from 'react-router-dom'
 import './style.css'
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import ChildSelect from './ChildSelect'
 import BankContent from './BankContent'
-import axios from 'axios';
+import axios from 'axios'
 import c1 from './img/아이1.jpg'
 import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
@@ -18,20 +18,13 @@ const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsI
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
 const CenteredContainer = styled.div`
-  width: 360px; /* 가로 크기 */
-  height: 600px; /* 세로 크기 */
-  position: absolute;
-  top: 50%; /* 세로 중앙 정렬 */
-  left: 50%; /* 가로 중앙 정렬 */
-  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
+  width: 100%; /* 가로 크기 */
+  height: 100%; /* 세로 크기 */
+  box-sizing: border-box;
   background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
   border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
   padding: 20px; /* 내부 여백 설정 */
-
-  display: flex;
-  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
-  justify-content: space-between; /* 컴포넌트들을 위아래로 분배 */
 `
 
 const Header = styled.div`
@@ -68,14 +61,14 @@ const Footer = styled.div`
 `
 
 export const ManagementPage = () => {
-  const [selectedPicture, setSelectedPicture] = useState(null);
-  const [childName, setChildName] = useState('');
-  const [disabled, setDisabled] = useState(true);
-  const [accountNum, setAccountNum] = useState("");
-  const [childId, setChildId] = useState(2);
-  const [childNamesArray, setChildNamesArray] = useState([]); // 배열 상태로 변경
-  const [amount, setAmout] = useState(0);
-  const [notIntAmount, setNotInAmount] = useState(0);
+  const [selectedPicture, setSelectedPicture] = useState(null)
+  const [childName, setChildName] = useState('')
+  const [disabled, setDisabled] = useState(true)
+  const [accountNum, setAccountNum] = useState('')
+  const [childId, setChildId] = useState(2)
+  const [childNamesArray, setChildNamesArray] = useState([]) // 배열 상태로 변경
+  const [amount, setAmout] = useState(0)
+  const [notIntAmount, setNotInAmount] = useState(0)
 
   const personContainerRef = useRef(null) // ref 생성
 
@@ -102,13 +95,13 @@ export const ManagementPage = () => {
     console.log(altText)
   }
 
-  useEffect(()=>{
-    var url2 = '/management/childName';
-    
+  useEffect(() => {
+    var url2 = '/management/childName'
+
     axios({
       url: url2,
-      method : "get",
-      headers : {Authorization: token}
+      method: 'get',
+      headers: { Authorization: token },
     })
     .then((response) => { // axios then 호출
       if(response.data){
@@ -127,55 +120,64 @@ export const ManagementPage = () => {
   }, []);
 
   useEffect(() => {
-    var url = '/management/'+childId;
-  
+    var url = '/management/' + childId
+
     axios({
       url: url,
-      method : "get",
-      headers : {Authorization: token}
+      method: 'get',
+      headers: { Authorization: token },
     })
-    .then((response) => { // axios then 호출
-      if(response.data){
-        console.log('아이 정보 확인')
-        setAccountNum(response.data.accountNum);      
-        setAmout(response.data.amount);
-        setNotInAmount(response.data.notInAmount);  
-      }
-    })
-    .catch((error) => {
-      console.error('API 요청 실패:', error);
-      // 실패한 경우 에러 처리
-      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-    })
-    .finally(() => {
-    });
+      .then(response => {
+        // axios then 호출
+        if (response.data) {
+          console.log('아이 정보 확인')
+          setAccountNum(response.data.accountNum)
+          setAmout(response.data.amount)
+          setNotInAmount(response.data.notInAmount)
+        }
+      })
+      .catch(error => {
+        console.error('API 요청 실패:', error)
+        // 실패한 경우 에러 처리
+        // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+      })
+      .finally(() => {})
+  }, [childId])
 
+  const navigate = useNavigate();
 
-    
-  }, [childId]);
-
-
+  const handleHeaderImageClick = () => {
+    navigate(-1); // 이전 화면으로 이동
+  }
 
 
   return (
-    <CenteredContainer>
+    <TopContainer>
       <Header>
         <HeaderContent>
-          <HeaderImage src={require('./img/prefer.png')} />
+          <HeaderImage src={require('./img/prefer.png')} onClick={handleHeaderImageClick}  />
           <HeaderTitle>자녀금융관리</HeaderTitle>
         </HeaderContent>
       </Header>
 
       <MainContent>
-        <ChildSelect handleImageClick={handleImageClick} childNamesArray={childNamesArray} />
-        <BankContent selectedPicture={selectedPicture} disabled={disabled} setDisabled={setDisabled} 
-        childName = {childName} childId = {childId} accountNum={accountNum} amount = {amount} notInAmount = {notIntAmount}/>
-
+        <ChildSelect
+          handleImageClick={handleImageClick}
+          childNamesArray={childNamesArray}
+        />
+        <BankContent
+          selectedPicture={selectedPicture}
+          disabled={disabled}
+          setDisabled={setDisabled}
+          childName={childName}
+          childId={childId}
+          accountNum={accountNum}
+          amount={amount}
+          notInAmount={notIntAmount}
+        />
       </MainContent>
 
-      <Footer>
-          
-      </Footer>
-    </CenteredContainer>
+      <Footer></Footer>
+    </TopContainer>
   )
 }

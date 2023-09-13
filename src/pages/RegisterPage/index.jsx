@@ -1,3 +1,4 @@
+import { TopContainer } from '@components'
 export const RegisterPage = () => {
-  return <div>Register Page</div>
+  return <TopContainer>Register Page</TopContainer>
 }
