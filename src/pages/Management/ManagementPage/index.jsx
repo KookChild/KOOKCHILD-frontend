@@ -10,7 +10,7 @@ import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
 import { TopContainer } from '../../../components/TopContainer'
-import { TopNavigationBar } from '../../../components/topNavigationBar'
+import { TopNavigationBar } from '../../../components/TopNavigationBar'
 
 if (localStorage.getItem('token')) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
