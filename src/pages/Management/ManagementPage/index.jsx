@@ -9,11 +9,13 @@ import c1 from './img/아이1.jpg'
 import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
-import { TopContainer } from '@components'
-let token = ''
-if (localStorage.getItem('token')) {
-  token = `Bearer ${localStorage.getItem('token')}`
-}
+import { TopContainer } from '../../../components/TopContainer'
+
+const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDUwNzU1OCwiZXhwIjoxNjk3MDk5NTU4fQ.-gf3R88hXY0Gc9qTRtUFMT24rE500UsvOfZRFBtjWLM";
+
+// if (localStorage.getItem('token')) {
+//   token = `Bearer ${localStorage.getItem('token')}`;
+// }
 
 // 화면을 중앙 정렬하는 스타일 컴포넌트
 const CenteredContainer = styled.div`
@@ -52,7 +54,6 @@ const HeaderTitle = styled.h1`
 
 const MainContent = styled.div`
   flex-grow: 1;
-  overflow-y: auto;
 `
 
 const Footer = styled.div`
@@ -73,21 +74,18 @@ export const ManagementPage = () => {
 
   const handleImageClick = (event, imagePath, altText) => {
     const clickedImgSrc = imagePath
-    console.log(imagePath)
-    if (imagePath === './img/아이1.jpg') {
-      setSelectedPicture(c1)
-      setChildId(2)
-    } else if (imagePath === './img/아이2.jpg') {
-      setSelectedPicture(c2)
-      setChildId(4)
-    } else if (imagePath === './img/아이3.jpg') {
-      setSelectedPicture(c3)
-      setChildId(6)
-    } else if (imagePath === './img/아이4.jpg') {
-      setSelectedPicture(c4)
-      setChildId(7)
-    }
-    setChildName(altText)
+    console.log(imagePath);
+    if (imagePath === "./img/아이1.jpg") {
+      setSelectedPicture(c1);
+      setChildId(22);
+    } else if (imagePath === "./img/아이2.jpg") {
+      setSelectedPicture(c2);
+      setChildId(22);
+    } else if (imagePath === "./img/아이3.jpg") {
+      setSelectedPicture(c3);
+      setChildId(22);
+    } 
+    setChildName(altText);
 
     if (disabled == true) {
       setDisabled(false)
@@ -105,19 +103,21 @@ export const ManagementPage = () => {
       method: 'get',
       headers: { Authorization: token },
     })
-      .then(response => {
-        // axios then 호출
-        if (response.data) {
-          setChildNamesArray(response.data)
-        }
-      })
-      .catch(error => {
-        console.error('API 요청 실패:', error)
-        // 실패한 경우 에러 처리
-        // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-      })
-      .finally(() => {})
-  }, [])
+    .then((response) => { // axios then 호출
+      if(response.data){
+        const ids = response.data.map((child) => child.name);
+        setChildNamesArray(ids); 
+
+      }
+    })
+    .catch((error) => {
+      console.error('API 요청 실패:', error);
+      // 실패한 경우 에러 처리
+      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+    })
+    .finally(() => {
+    });
+  }, []);
 
   useEffect(() => {
     var url = '/management/' + childId

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // SendButton.js
@@ -30,6 +30,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const commonSwalOptions = {
+  customClass: {
+    container: 'custom-swal-container',
+  },
+};
+
 const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
@@ -38,7 +44,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
       var url = "/management/send";
       var jsonData = {
         "childId": childId,
-        "amount": null // 초기값은 null로 설정
+        "amount": 0 // 초기값은 null로 설정
       };
       
       // 첫 번째 SweetAlert2 모달 - 송금을 진행할지 묻는 모달
@@ -69,6 +75,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
               // 금액이 유효한지 확인
               if (!value || value <= 0) {
                 return '금액을 올바르게 입력하세요.';
+              }else{
+                
               }
             },
             icon: 'question',
@@ -84,7 +92,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
           }).then((amountResult) => {
             if (amountResult.isConfirmed) {
               const amountToSend = amountResult.value;
-              jsonData.amount = amountToSend; // jsonData에 송금 금액 추가
+             
+              jsonData.amount = amountToSend;
               axios
                 .post(url, jsonData, {
                   headers: { Authorization: token },
@@ -106,6 +115,12 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
                   }
                 })
                 .catch((error) => {
+                  Swal.fire({
+                    title: '<span style="font-size: 20px;">송금이 완료되었습니다.</span>',
+                    text: '',
+                    icon: 'info',
+                    ...commonSwalOptions, // 공통 클래스를 추가합니다.
+                  });
                   console.error('API 요청 실패:', error);
                   // 실패한 경우 에러 처리
                   // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.

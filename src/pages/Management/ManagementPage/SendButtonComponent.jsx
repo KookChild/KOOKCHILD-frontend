@@ -6,6 +6,7 @@ import './css/SendButton.css';
 import axios from 'axios';
 
 
+
 const SendButtonContainer = styled.div`
   text-align: center;
 `;
@@ -35,6 +36,7 @@ const SendButtonBox = styled.button`
 
 
 const SendButtonComponent = ({disabled, setDisabled}) => {
+  const [amount, setAmount] = useState(0); // amount 상태 변수 추가
   const handleSendButtonClick = () => {
     setDisabled(true);
     // API 요청 보내기
@@ -53,13 +55,15 @@ const SendButtonComponent = ({disabled, setDisabled}) => {
         // 모달에 사용할 클래스 추가
         container: 'custom-swal-container',
       },
+      heightAuto: false, // 자동 높이 조정 비활성화
     
     }).then((result) => { //Swal.fire then 호출
       if(result.isConfirmed){
         axios
-        .post('/management/send', {
-          childId: childId, // 원하는 childId와 parentId 값을 설정
-        })
+          .post('/management/send', {
+            childId: childId,
+            amount: amount, // amount 변수 추가
+          })
         .then((response) => { // axios then 호출
           if(response.data){
             // SweetAlert2 모달 창 표시
