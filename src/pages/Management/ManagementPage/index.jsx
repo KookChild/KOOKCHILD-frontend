@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import './style.css'
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
