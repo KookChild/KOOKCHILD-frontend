@@ -1,7 +1,7 @@
 export const headerContainer = {
-  backgroundColor: '#F6F7FF',
-  width: '360px',
-  height: '600px',
+  //backgroundColor: '#F6F7FF',
+  //width: '390px',
+  //height: '600px',
   margin: 'auto',
   padding: '16px',
   boxSizing: 'border-box'
@@ -29,6 +29,13 @@ export const UserNameContatiner = {
 export const textContainer = {
   marginLeft: '16px', // 텍스트 왼쪽에 여백 추가
 };
+
+export const TitleContainer = {
+  fontSize: '16px', // 폰트 크기
+  fontWeight: 'bold', // 폰트 두께
+  marginLeft: '16px', // 텍스트 왼쪽에 여백 추가
+};
+
 export const iconGroup = {
   marginTop: '10px', // 아이콘 위의 간격
   display: 'flex',
@@ -50,16 +57,31 @@ export const buttonTextContainer = {
 };
 
 export const textLine1 = {
-  fontSize: '14px', // 첫 번째 줄의 폰트 크기
-  fontWeight: 'bold', // 첫 번째 줄의 폰트 두께
+  fontSize: '14px', 
+  fontWeight: 'bold', 
   display: 'block',
   marginBottom: '5px'
 };
 
 export const textLine2 = {
-  fontSize: '10px', // 두 번째 줄의 폰트 크기
+  fontSize: '10px', 
   display: 'block'
 };
+
+
+export const ButtonBaseStyle = {
+  transition: 'all 0.3s ease',
+  ':hover': {
+    backgroundColor: '#f1f1f1', // 원하는 배경색으로 설정
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // 원하는 그림자 효과 설정
+  },
+  ':active': {
+    boxShadow: 'none',
+    backgroundColor: '#f1f1f1'
+  }
+};
+
+
 
 export const LinkAccountButton = {
   backgroundColor: '#ffffff',
@@ -74,7 +96,8 @@ export const LinkAccountButton = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  position: 'relative'
+  position: 'relative',
+  ...ButtonBaseStyle
 };
 
 export const UnlinkedAccountButtonStyle = {
@@ -89,12 +112,13 @@ export const LinkedAccountButtonStyle = {
 export const ChildFinanceManagementButton = {
   backgroundColor: '#ffffff',
   flex: 1,
-  padding: '30px 20px', // 세로 길이를 조절
+  padding: '30px 20px', 
   marginTop: '0px',
   margin: '7.5px',
-  borderRadius: '12px', // 모서리 라운딩
-  border: '1px solid #ccc', // 테두리 없앰
-  boxShadow: '0px 2px 4px #00000029' // 그림자 효과
+  borderRadius: '12px', 
+  border: '1px solid #ccc',
+  boxShadow: '0px 2px 4px #00000029',
+  ...ButtonBaseStyle
 };
 
 export const ViewFinanceProductButton = {
@@ -105,7 +129,8 @@ export const ViewFinanceProductButton = {
   marginRight: '2px',
   borderRadius: '12px',
   border: '1px solid #ccc',
-  boxShadow: '0px 2px 4px #00000029'
+  boxShadow: '0px 2px 4px #00000029',
+  ...ButtonBaseStyle
 };
 
 export const RewardManagementButton = {
@@ -116,7 +141,8 @@ export const RewardManagementButton = {
   marginLeft: '2px',
   borderRadius: '12px',
   border: '1px solid #ccc', 
-  boxShadow: '0px 2px 4px #00000029'
+  boxShadow: '0px 2px 4px #00000029',
+  ...ButtonBaseStyle
 };
 
 export const BackToKBStarBankingButton = {
@@ -128,5 +154,6 @@ export const BackToKBStarBankingButton = {
   border: '1px solid #ccc',
   boxShadow: '0px 2px 4px #00000029', // 그림자 효과
   whiteSpace: 'normal',
-  width: '200px'
+  width: '200px',
+  ...ButtonBaseStyle
 };

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getMissions, loadChildAccountDetailAPI } from '@apis'
 import {
-  headerContainer,
   iconContainer,
   buttonSection,
   MyAccountButton,
