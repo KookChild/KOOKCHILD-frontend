@@ -49,7 +49,7 @@ function Content() {
           path="/challenge/parent/detail/:id"
           element={<ChallengeParentDetailPage />}
         />
-        <Route path="/challenge" element={<ChallengeViewPage />} />
+        <Route path="/child/challenge" element={<ChallengeViewPage />} />
         <Route path="/complete" element={<CompletePage />} />
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail" element={<GraphDetailPage />} />
