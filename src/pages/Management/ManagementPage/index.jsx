@@ -1,4 +1,4 @@
-
+import { useNavigate } from 'react-router-dom'; // react-router-dom을 이용하여 뒤로 가기를 구현
 import './style.css'
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -154,6 +154,12 @@ export const ManagementPage = () => {
     
   }, [childId]);
 
+  const navigate = useNavigate();
+
+  const handleHeaderImageClick = () => {
+    navigate(-1); // 이전 화면으로 이동
+  }
+
 
 
 
@@ -161,7 +167,7 @@ export const ManagementPage = () => {
     <CenteredContainer>
       <Header>
         <HeaderContent>
-          <HeaderImage src={require('./img/prefer.png')} />
+          <HeaderImage src={require('./img/prefer.png')} onClick={handleHeaderImageClick}  />
           <HeaderTitle>자녀금융관리</HeaderTitle>
         </HeaderContent>
       </Header>
