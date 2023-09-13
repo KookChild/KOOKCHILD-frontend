@@ -10,7 +10,6 @@ import {
   ButtonContainer,
   AddMissionButton,
   MissionItemContainer,
-  CenteredContainer,
   Header,
   HeaderContent,
   HeaderImage,

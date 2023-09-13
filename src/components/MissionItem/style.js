@@ -2,34 +2,31 @@ import styled from 'styled-components';
 import { YELLOW } from '@utility/COLORS'
 
 export const ItemContainer = styled.div`
-    /* Layout Properties */
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 399px;
-    width: 390px;
     height: 80px;
+    width: 320px;
     padding-left: 13px;
     padding-right: 13px;
-    /* UI Properties */
     opacity: 1;
     background: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'} 0% 0% no-repeat padding-box;
-    cursor: pointer;  // 마우스 모양을 손가락 포인터로 변경
+    cursor: pointer;
 
-    /* 마우스를 올렸을 때의 배경색 변경 */
     &:hover {
-        background: #E5E5E5;  /* 원하는 색상으로 변경하세요 */
+        background: #E5E5E5;
     }
 `;
 
 export const LeftSection = styled.div`
-    flex: 1;
     display: flex;
     align-items: center;
+    margin-right: 10px;
 
     .circle {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         background: ${props => {
             if (props.parentConfirm) {
                 return '#98C37F';
@@ -58,19 +55,28 @@ export const MiddleSection = styled.div`
     h3, p {
         margin: 0;
     }
-    .title{
+    .title {
         letter-spacing: 0px;
+        font-size: 18px;
         color: #010812;
         opacity: 1;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
     }
+
     .date{
         color: #84888B;
+        font-size: 13px;
     }
 `;
 
 export const RightSection = styled.div`
-    flex: 1;  // 너비를 다른 섹션보다 2배로 설정
+    flex: 1;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start; // 텍스트를 왼쪽 정렬
+    justify-content: flex-start;
+    font-size: 13px;
 `;
