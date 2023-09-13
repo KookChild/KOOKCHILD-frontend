@@ -8,17 +8,19 @@ import {
   MyAccountButton,
   CustomLinkButton,
   DailyQuizButton,
-  StyledCurrentMissionList,
   textContainer,
   iconGroup,
   BackToKBStarBankingButton,
   textContainerSpan,
 } from './style'
 import { loadMyChallengesAPI } from '@apis'
-import { TopContainer } from '@components'
+import {
+  TopContainer,
+  StyledCurrentMissionList,
+  ChallengeItem,
+} from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { ChallengeItem } from '@components'
 import { useNavigate } from 'react-router-dom'
 library.add(faBell, faGear, faPlus)
 
@@ -161,7 +163,6 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>진행중인 미션</span>
-        <span style={textContainerSpan}>더보기</span>
       </div>
       <div style={buttonSection}>
         <StyledCurrentMissionList missions={missionList} />
