@@ -12,6 +12,7 @@ import {
 } from './style'
 import { loadChallengeDetailAPI, childConfirmAPI } from '@apis'
 import { PRIMARY } from '@utility/COLORS'
+
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
   // const AtomTitle = '26일 챌린지'

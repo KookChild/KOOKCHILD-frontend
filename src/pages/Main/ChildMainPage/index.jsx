@@ -15,6 +15,7 @@ import {
   BackToKBStarBankingButton,
   textContainerSpan,
 } from './style'
+import { TopContainer } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
 // ChallengeItem.jsx
@@ -124,7 +125,7 @@ export const ChildMainPage = () => {
   }, [child.balance]) // child.balance가 변경될 때마다 이 효과를 적용
 
   return (
-    <div style={headerContainer}>
+    <TopContainer>
       <div style={iconContainer}>
         <div style={textContainer}>
           <span>Kook Child</span>
@@ -191,6 +192,6 @@ export const ChildMainPage = () => {
           <span style={{ fontSize: '8px' }}>KB스타뱅킹으로 돌아가기</span>
         </button>
       </div>
-    </div>
+    </TopContainer>
   )
 }

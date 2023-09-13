@@ -1,3 +1,4 @@
+import { TopContainer } from '@components'
 export const ChallengeParentDetailPage = () => {
-  return <div>Challenge Parent Detail Page</div>
+  return <TopContainer>Challenge Parent Detail Page</TopContainer>
 }

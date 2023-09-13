@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import CategoryPieChart from './CategoryPieChart' // 카테고리 파이 차트 컴포넌트 추가
-import BarChart from './BarChart'; // 막대 그래프 컴포넌트 추가
-
+import BarChart from './BarChart' // 막대 그래프 컴포넌트 추가
+import { TopContainer } from '@components'
 const CenteredContainer = styled.div`
   width: 360px;
   height: 600px;
@@ -62,7 +62,6 @@ const DateRangeTitle = styled.div`
 const DateRangeText = styled.div`
   text-align: right; /* 우측 정렬 */
 `
-
 
 // 4x2 표 컴포넌트
 const Table = styled.table`
@@ -138,7 +137,7 @@ const barChartData = {
 }
 export const GraphDetailPage = () => {
   return (
-    <CenteredContainer>
+    <TopContainer>
       <Header>
         <HeaderContent>
           <HeaderTitle>자녀 소비 통계</HeaderTitle>
@@ -178,7 +177,7 @@ export const GraphDetailPage = () => {
             </TableRow>
           </tbody>
         </Table>
-        
+
         <BarChart data={barChartData} />
 
         <Table>
@@ -200,6 +199,6 @@ export const GraphDetailPage = () => {
           </tbody>
         </Table>
       </MainContent>
-    </CenteredContainer>
+    </TopContainer>
   )
 }
