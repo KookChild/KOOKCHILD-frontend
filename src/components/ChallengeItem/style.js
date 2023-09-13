@@ -1,0 +1,36 @@
+import { styled } from 'styled-components'
+
+export const ChallengeContainer = {
+  display: 'flex',
+  flexDirection: 'column', // 컨테이너 방향을 세로로 변경
+  marginBottom: '20px', // 각 챌린지 아이템 아래에 마진 추가
+  alignItems: 'center', // 아이템을 세로 중앙에 배치
+  border: '1px solid #ccc',
+  borderRadius: '12px', // 둥근 모서리
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
+  padding: '6px', // 내부 여백
+  width: '300px', // 너비
+  cursor: 'pointer',
+}
+
+export const ChallengeImageProgressContainer = styled.div`
+  width: 100%;
+  position: 'relative';
+`
+
+export const ChallengeProgress = {
+  position: 'absolute',
+  bottom: '10px',
+  left: '10px',
+  backgroundColor: 'rgba(128, 128, 128, 0.7)',
+  color: 'white',
+  padding: '5px',
+  borderRadius: '5px',
+  display: 'flex',
+  alignItems: 'center',
+}
+
+export const ChallengeInfo = styled.div`
+  display: 'flex';
+  //   justifyContent: '',
+`
