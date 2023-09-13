@@ -116,6 +116,7 @@ padding:10px;
 const BankContent = ({ selectedPicture, disabled, setDisabled
 , childName, childId, accountNum, amount, notInAmount }) => {
   const controls = useAnimation();
+  const [hasChange, setHasChange] = useState(false);
 
   
   return (
@@ -172,7 +173,8 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
             계좌번호: <span id="accountNum">{accountNum}</span>
               <AccountButtons>
                 <AccountDetailInfoButton/>
-                <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}/>
+                <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}
+                hasChange={hasChange} setHasChange={setHasChange}/>
               </AccountButtons>
             </AccountDescription>
 

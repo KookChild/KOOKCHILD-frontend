@@ -11,8 +11,9 @@ import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
 import { TopContainer } from '../../../components/TopContainer'
 
-const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDUwNzU1OCwiZXhwIjoxNjk3MDk5NTU4fQ.-gf3R88hXY0Gc9qTRtUFMT24rE500UsvOfZRFBtjWLM";
-
+if (localStorage.getItem('token')) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+}
 // if (localStorage.getItem('token')) {
 //   token = `Bearer ${localStorage.getItem('token')}`;
 // }
@@ -100,8 +101,7 @@ export const ManagementPage = () => {
 
     axios({
       url: url2,
-      method: 'get',
-      headers: { Authorization: token },
+      method: 'get'
     })
     .then((response) => { // axios then 호출
       if(response.data){
@@ -124,8 +124,7 @@ export const ManagementPage = () => {
 
     axios({
       url: url,
-      method: 'get',
-      headers: { Authorization: token },
+      method: 'get'
     })
       .then(response => {
         // axios then 호출

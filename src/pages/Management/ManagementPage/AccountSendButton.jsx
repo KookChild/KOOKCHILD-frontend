@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // SendButton.js
@@ -6,8 +6,10 @@ import Swal from 'sweetalert2'; // SweetAlert2 라이브러리 import
 import './css/SendButton.css';
 import axios from 'axios';
 
-const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
+if (localStorage.getItem('token')) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+}
 const SendButtonContainer = styled.div`
   position: relative;
   bottom: 0;
@@ -36,7 +38,8 @@ const commonSwalOptions = {
   },
 };
 
-const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
+const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, setHasChange}) => {
+  
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
       setDisabled(true);
@@ -95,9 +98,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
              
               jsonData.amount = amountToSend;
               axios
-                .post(url, jsonData, {
-                  headers: { Authorization: token },
-                })
+                .post(url, jsonData )
                 .then((response) => {
                   if (response.data) {
                     // 성공 모달 표시
@@ -121,6 +122,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
                     icon: 'info',
                     ...commonSwalOptions, // 공통 클래스를 추가합니다.
                   });
+                  
                   console.error('API 요청 실패:', error);
                   // 실패한 경우 에러 처리
                   // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
@@ -132,6 +134,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
               Swal.fire('송금이 취소되었습니다.', '', 'info');
               setDisabled(false);
             }
+
+            window.location.reload(); 
           });
         } else {
           Swal.fire('송금이 취소되었습니다.', '', 'info');
