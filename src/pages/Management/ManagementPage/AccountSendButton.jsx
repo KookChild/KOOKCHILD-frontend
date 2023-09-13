@@ -131,14 +131,25 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, set
                   setDisabled(false);
                 });
             } else {
-              Swal.fire('송금이 취소되었습니다.', '', 'info');
+              Swal.fire({
+                title: '<span style="font-size: 20px;">송금이 취소되었습니다.</span>',
+                text: '',
+                icon: 'info',
+                ...commonSwalOptions, // 공통 클래스를 추가합니다.
+              });
+            
               setDisabled(false);
             }
 
             window.location.reload(); 
           });
         } else {
-          Swal.fire('송금이 취소되었습니다.', '', 'info');
+          Swal.fire({
+            title: '<span style="font-size: 20px;">송금이 취소되었습니다.</span>',
+            text: '',
+            icon: 'info',
+            ...commonSwalOptions, // 공통 클래스를 추가합니다.
+          });
           setDisabled(false);
         }
       });
