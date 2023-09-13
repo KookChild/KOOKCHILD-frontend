@@ -10,6 +10,7 @@ import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
 import { TopContainer } from '../../../components/TopContainer'
+import { TopNavigationBar } from '../../../components/topNavigationBar'
 
 if (localStorage.getItem('token')) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
@@ -29,29 +30,6 @@ const CenteredContainer = styled.div`
   padding: 20px; /* 내부 여백 설정 */
 `
 
-const Header = styled.div`
-  padding: 10px;
-  text-align: center;
-`
-
-const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-`
-
-const HeaderImage = styled.img`
-  width: 20px; /* 이미지 너비 조정 */
-  height: 20px; /* 이미지 높이 조정 */
-  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
-`
-
-const HeaderTitle = styled.h1`
-  font-size: 18px; /* title의 글꼴 크기 조정 */
-  font-weight: bold; /* title 텍스트 굵게 설정 */
-  margin: 0; /* title의 margin 제거 */
-`
 
 const MainContent = styled.div`
   flex-grow: 1;
@@ -81,10 +59,10 @@ export const ManagementPage = () => {
       setChildId(22);
     } else if (imagePath === "./img/아이2.jpg") {
       setSelectedPicture(c2);
-      setChildId(22);
+      setChildId(24);
     } else if (imagePath === "./img/아이3.jpg") {
       setSelectedPicture(c3);
-      setChildId(22);
+      setChildId(26);
     } 
     setChildName(altText);
 
@@ -152,12 +130,7 @@ export const ManagementPage = () => {
 
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent>
-          <HeaderImage src={require('./img/prefer.png')} onClick={handleHeaderImageClick}  />
-          <HeaderTitle>자녀금융관리</HeaderTitle>
-        </HeaderContent>
-      </Header>
+      <TopNavigationBar title = {"자녀소비통계"}/>
 
       <MainContent>
         <ChildSelect
