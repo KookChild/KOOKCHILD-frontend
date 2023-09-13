@@ -9,7 +9,8 @@ export const ChallengeContainer = {
   borderRadius: '12px', // 둥근 모서리
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
   padding: '6px', // 내부 여백
-  width: '300px', // 너비
+  //   width: '300px', // 너비
+  margin: '8px',
   cursor: 'pointer',
 }
 
