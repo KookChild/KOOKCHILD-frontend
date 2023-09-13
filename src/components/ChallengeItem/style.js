@@ -9,18 +9,19 @@ export const ChallengeContainer = {
   borderRadius: '12px', // 둥근 모서리
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
   padding: '6px', // 내부 여백
-  width: '300px', // 너비
+  //   width: '300px', // 너비
+  margin: '8px',
   cursor: 'pointer',
+  position: 'relative',
 }
 
 export const ChallengeImageProgressContainer = styled.div`
   width: 100%;
-  position: 'relative';
 `
 
 export const ChallengeProgress = {
   position: 'absolute',
-  bottom: '10px',
+  bottom: '50px',
   left: '10px',
   backgroundColor: 'rgba(128, 128, 128, 0.7)',
   color: 'white',
