@@ -14,7 +14,7 @@ const ChildNaviBar = () => {
       <div style={styles.icon} onClick={() => navigate('/child')}>
         Icon 2
       </div>
-      <div style={styles.icon} onClick={() => navigate('/child/mission')}>
+      <div style={styles.icon} onClick={() => navigate('/child/mission/childview')}>
         Icon 3
       </div>
       <div style={styles.icon} onClick={() => navigate('/child/challenge')}>
