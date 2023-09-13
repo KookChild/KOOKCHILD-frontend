@@ -10,9 +10,10 @@ import {
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
+import { useNavigate } from 'react-router-dom'
 import { loadChallengeDetailAPI, childConfirmAPI } from '@apis'
 import { PRIMARY } from '@utility/COLORS'
-
+import { TopContainer } from '@components'
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
   // const AtomTitle = '26일 챌린지'
@@ -22,6 +23,7 @@ export const ChallengeChildDetailPage = () => {
   // const [content, setContent] = useState(AtomContent)
 
   const [challenge, setChallenge] = useState()
+  const navigate = useNavigate()
   const confirm = async () => {
     Swal.fire({
       title: '정말로 참여하시겠습니까?',
@@ -37,11 +39,14 @@ export const ChallengeChildDetailPage = () => {
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
         await childConfirmAPI(params.id)
-        Swal.fire(
-          '참여신청 완료',
-          '부모님의 승인요청을 기다려주세요',
-          'success',
-        )
+          .then(
+            Swal.fire(
+              '참여신청 완료',
+              '부모님의 승인요청을 기다려주세요',
+              'success',
+            ),
+          )
+          .then(navigate('/challenge'))
       }
     })
   }
@@ -60,7 +65,8 @@ export const ChallengeChildDetailPage = () => {
   }, [params.id])
   return (
     challenge && (
-      <ChallengeContainer>
+      <TopContainer style={{ padding: '0px' }}>
+        {/* <ChallengeContainer> */}
         <ChallengeTitle> {challenge.title}</ChallengeTitle>
         <ChallengeContentImgContainer>
           <ChallengeContent>{challenge.childContent}</ChallengeContent>
@@ -71,7 +77,8 @@ export const ChallengeChildDetailPage = () => {
         <ChallengeConfirmButton onClick={confirm}>
           참여할래?
         </ChallengeConfirmButton>
-      </ChallengeContainer>
+        {/* </ChallengeContainer> */}
+      </TopContainer>
     )
   )
 }
