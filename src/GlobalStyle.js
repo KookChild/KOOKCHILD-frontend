@@ -2,14 +2,19 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  max-width: 1280px;
-  margin: auto;
-  font-family: "kbFont";
-}
+html, body {
+      height: 100%;
+    margin: 0;
+      display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+#root{
+ height: 844px;
+    width: 390px;
+  
+}
 iframe {
   display: none;
 }
@@ -20,8 +25,7 @@ body {
   &.open-modal {
     overflow-y: hidden;
   }
-  height: 844px;
-  width: 390px;
+
 
 }
 

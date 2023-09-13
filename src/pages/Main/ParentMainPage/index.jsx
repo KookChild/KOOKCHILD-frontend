@@ -18,6 +18,7 @@ import {
   textLine1,
   textLine2,
 } from './style'
+import { TopContainer } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
 library.add(faBell, faGear, faPlus)
@@ -31,17 +32,17 @@ export const ParentMainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const parentData = await loadParentNameAPI();
+        const parentData = await loadParentNameAPI()
         if (parentData && parentData.name) {
-          setName(parentData.name);
+          setName(parentData.name)
         }
       } catch (error) {
-        console.error('Error fetching challenge detail:', error);
+        console.error('Error fetching challenge detail:', error)
       }
-    };
-  
-    fetchData();
-  }, []);
+    }
+
+    fetchData()
+  }, [])
   useEffect(() => {
     if (isAccountLinked) {
       let digitsArray = finalBalance.split('')
@@ -86,7 +87,7 @@ export const ParentMainPage = () => {
   )
 
   return (
-    <div style={headerContainer}>
+    <TopContainer>
       <div style={iconContainer}>
         <div style={textContainer}>
           <span>KB 자녀 금융 EDU</span>
@@ -132,6 +133,6 @@ export const ParentMainPage = () => {
           <span style={{ fontSize: '8px' }}>KB스타뱅킹으로 돌아가기</span>
         </button>
       </div>
-    </div>
+    </TopContainer>
   )
 }
