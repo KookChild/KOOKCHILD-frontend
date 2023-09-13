@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { MissionInfoContainer, StyledInput, Label } from './style';
 import axios from 'axios';
 import { getParentMissionByChild } from '../../../apis/mission/index';
-
+import imgSrc from '../MissionParentViewPage/img/Bear.png'
 
 export const MissionCreatePage = () => {
     let navigate = useNavigate();
@@ -214,12 +214,17 @@ export const MissionCreatePage = () => {
                 {childs.map((child) => (
                     <label key={child.childId}>
                         <h2>{child.childName}</h2>
-                        <ChildImage src={child.childName} alt={child.childName} />
+                        <ChildImage src={imgSrc} alt={child.childName} />
                     <input
+                        // style={{
+                        //   opacity: 0,         // 투명하게 설정
+                        //   position: 'absolute', // 화면에서 위치 이동
+                        //   left: '-9999px',     // 화면 왼쪽 밖으로 이동
+                        // }}
                         type="checkbox"
                         //key = {child.id}
                         checked= {child.checked}//{selectedIds.includes(child.id)}
-                        onChange={() => handleCheckboxChange(child.childId)}
+                        onChange={() => handleCheckboxChange(child.childId)} // 사진 약간 흐리게 하든지 앞에 체크 표시 하든지?
                     />
                     
                     </label>
