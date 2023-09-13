@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-export const CenteredContainer = styled.div`
-  height: 844px;
-  width: 390px;
-  position: absolute;
-  top: 50%; /* 세로 중앙 정렬 */
-  left: 50%; /* 가로 중앙 정렬 */
-  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
-  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
-  border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-  padding: 20px; /* 내부 여백 설정 */
-
-  display: flex;
-  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
-`
-
 export const Header = styled.div`
   padding: 10px;
   text-align: center;
@@ -49,25 +33,22 @@ export const Dropdown = styled.select`
     margin-left: 10px;
     margin-bottom: 10px;
 
-    border: none;  // 테두리 제거
-    border-radius: 8px;  // 둥근 모서리
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  // 그림자 효과
-    background-color: #f8f8f8;  // 배경색
-    padding: 5px 10px;  // 내부 패딩 추가
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    padding: 5px 10px;
 `;
 
 
 export const MissionListContainer = styled.div`
   overflow-y: auto;
-  max-height: 444px;
   margin-top: 10px;
 
-  // Chrome, Safari
   &::-webkit-scrollbar {
       display: none;
   }
 
-  // Firefox
   -ms-overflow-style: none;
   scrollbar-width: none;
 `;

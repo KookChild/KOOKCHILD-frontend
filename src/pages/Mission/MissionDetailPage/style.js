@@ -31,8 +31,8 @@ export const AreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 
     &:last-child {
         margin-bottom: 0;
@@ -63,7 +63,6 @@ export const DeleteMissionButton = styled.button`
 export const StyledTitle = styled.h2`
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 40px;
 `;
 
 export const ChildInfoContainer = styled.div`
@@ -103,7 +102,6 @@ export const MissionDescription = styled.p`
     align-self: flex-end;
 `;
 
-// style.js
 export const EditButton = styled.button`
     width: 102px;
     height: 37px;

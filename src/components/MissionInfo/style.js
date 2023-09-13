@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MissionInfoContainer = styled.div`
     width: 342px;
-    height: 337px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
