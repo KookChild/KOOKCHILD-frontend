@@ -22,7 +22,7 @@ import {
 } from './style'
 import imgSrc from './img/Luna.png'
 import prefer from './img/prefer.png'
-import { MissionInfo, BackHeader } from '@components'
+import { MissionInfo } from '@components'
 import {
   fetchMissionDetail,
   completeMission,
@@ -109,25 +109,73 @@ export const MissionDetailPage = () => {
   }
 
   const handleSuccessClick = () => {
-    confirmMissionSuccess(missionId) // API 호출
-      .then(() => {
-        setIsSuccess(true)
-        Swal.fire({
-          title: '성공!',
-          text: '미션이 성공적으로 승인되었습니다.',
-          icon: 'success',
-          confirmButtonText: '확인',
-        })
-      })
-      .catch(error => {
-        console.error('Error confirming mission success:', error)
-        Swal.fire({
-          title: '오류!',
-          text: '미션 승인 중 오류가 발생했습니다.',
-          icon: 'error',
-          confirmButtonText: '확인',
-        })
-      })
+    Swal.fire({
+      title: '확인',
+      text: '미션 승인 및 미션 리워드를 송금하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '네',
+      cancelButtonText: '아니오'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        confirmMissionSuccess(missionId)
+          .then(response => {
+            if (response.isError) {
+              switch (response.data.status) {
+                case 403:
+                  Swal.fire({
+                    title: '접근 거부!',
+                    text: '권한이 없습니다.',
+                    icon: 'warning',
+                    confirmButtonText: '확인',
+                  });
+                  break;
+                case 400:
+                  Swal.fire({
+                    title: '요청 오류!',
+                    text: '이미 승인한 요청입니다.',
+                    icon: 'error',
+                    confirmButtonText: '확인',
+                  });
+                  break;
+                case 422:
+                  Swal.fire({
+                    title: '잔액 부족!',
+                    text: '잔액이 부족합니다.',
+                    icon: 'error',
+                    confirmButtonText: '확인',
+                  });
+                  break;
+                default:
+                  console.error('Error confirming mission success:', response.data);
+                  Swal.fire({
+                    title: '오류!',
+                    text: '미션 승인 중 오류가 발생했습니다.',
+                    icon: 'error',
+                    confirmButtonText: '확인',
+                  });
+              }
+            } else if (response.data.status == 200) {
+              setIsSuccess(true)
+              Swal.fire({
+                title: '성공!',
+                text: '미션 리워드가 성공적으로 송금되었습니다.',
+                icon: 'success',
+                confirmButtonText: '확인',
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Unexpected error confirming mission success:', error);
+            Swal.fire({
+              title: '오류!',
+              text: '미션 승인 중 예기치 않은 오류가 발생했습니다.',
+              icon: 'error',
+              confirmButtonText: '확인',
+            })
+          })
+      }
+    });
   }
 
   const handleDeleteClick = () => {
@@ -191,7 +239,6 @@ export const MissionDetailPage = () => {
     content,
     reward,
     endDate,
-    image,
     childName,
     completeDate,
   } = missionData

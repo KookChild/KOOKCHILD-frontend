@@ -59,9 +59,10 @@ export const confirmMissionSuccess = async (missionId) => {
         const response = await axios.post('/mission/confirm', {
             missionId: missionId
         });
-        return response.data;
+        return { data: response, isError: false };
     } catch (error) {
         console.error("Server Response:", error.response.data);
-        throw error;
+        return { data: error.response, isError: true };
     }
 };
+
