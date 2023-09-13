@@ -13,7 +13,9 @@ import { TopContainer } from '../../../components/TopContainer'
 import { TopNavigationBar } from '../../../components/TopNavigationBar'
 
 if (localStorage.getItem('token')) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${localStorage.getItem('token')}`
 }
 // if (localStorage.getItem('token')) {
 //   token = `Bearer ${localStorage.getItem('token')}`;
@@ -29,7 +31,6 @@ const CenteredContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
   padding: 20px; /* 내부 여백 설정 */
 `
-
 
 const MainContent = styled.div`
   flex-grow: 1;
@@ -53,18 +54,18 @@ export const ManagementPage = () => {
 
   const handleImageClick = (event, imagePath, altText) => {
     const clickedImgSrc = imagePath
-    console.log(imagePath);
-    if (imagePath === "./img/아이1.jpg") {
-      setSelectedPicture(c1);
-      setChildId(22);
-    } else if (imagePath === "./img/아이2.jpg") {
-      setSelectedPicture(c2);
-      setChildId(24);
-    } else if (imagePath === "./img/아이3.jpg") {
-      setSelectedPicture(c3);
-      setChildId(26);
-    } 
-    setChildName(altText);
+    console.log(imagePath)
+    if (imagePath === './img/아이1.jpg') {
+      setSelectedPicture(c1)
+      setChildId(22)
+    } else if (imagePath === './img/아이2.jpg') {
+      setSelectedPicture(c2)
+      setChildId(24)
+    } else if (imagePath === './img/아이3.jpg') {
+      setSelectedPicture(c3)
+      setChildId(26)
+    }
+    setChildName(altText)
 
     if (disabled == true) {
       setDisabled(false)
@@ -79,30 +80,29 @@ export const ManagementPage = () => {
 
     axios({
       url: url2,
-      method: 'get'
+      method: 'get',
     })
-    .then((response) => { // axios then 호출
-      if(response.data){
-        const ids = response.data.map((child) => child.name);
-        setChildNamesArray(ids); 
-
-      }
-    })
-    .catch((error) => {
-      console.error('API 요청 실패:', error);
-      // 실패한 경우 에러 처리
-      // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-    })
-    .finally(() => {
-    });
-  }, []);
+      .then(response => {
+        // axios then 호출
+        if (response.data) {
+          const ids = response.data.map(child => child.name)
+          setChildNamesArray(ids)
+        }
+      })
+      .catch(error => {
+        console.error('API 요청 실패:', error)
+        // 실패한 경우 에러 처리
+        // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
+      })
+      .finally(() => {})
+  }, [])
 
   useEffect(() => {
     var url = '/management/' + childId
 
     axios({
       url: url,
-      method: 'get'
+      method: 'get',
     })
       .then(response => {
         // axios then 호출
@@ -121,16 +121,15 @@ export const ManagementPage = () => {
       .finally(() => {})
   }, [childId])
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleHeaderImageClick = () => {
-    navigate(-1); // 이전 화면으로 이동
+    navigate(-1) // 이전 화면으로 이동
   }
-
 
   return (
     <TopContainer>
-      <TopNavigationBar title = {"자녀소비통계"}/>
+      <TopNavigationBar title={'자녀소비통계'} />
 
       <MainContent>
         <ChildSelect

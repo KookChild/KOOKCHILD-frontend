@@ -143,7 +143,7 @@ const barChartData = {
 export const GraphDetailPage = () => {
   return (
     <TopContainer>
-      <TopNavigationBar title={"자녀소비통계"}/>
+      <TopNavigationBar title={'자녀소비통계'} />
 
       <MainContent>
         <DateRangeContainer>

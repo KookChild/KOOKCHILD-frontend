@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getMissions, loadChildAccountDetailAPI } from '@apis'
+import { loadChildAccountDetailAPI, getMissions } from '@apis'
 import {
   iconContainer,
   buttonSection,
@@ -21,7 +21,7 @@ import {
 } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+
 library.add(faBell, faGear, faPlus)
 
 export const ChildMainPage = () => {
@@ -38,6 +38,8 @@ export const ChildMainPage = () => {
   }
 
   const [animatedDigits, setAnimatedDigits] = useState([])
+
+  // TODO : mission proceeding api로 변경하기
 
   useEffect(() => {
     const fetchData = async () => {

@@ -5,13 +5,17 @@ import {
   ChallengeTitle,
   ChallengeContent,
   ChallengeConfirmButton,
-  ChallengeContainer,
   ChallengeImg,
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
 import { useNavigate } from 'react-router-dom'
-import { loadChallengeDetailAPI, childConfirmAPI } from '@apis'
+import { TopNavigationBar } from '@components'
+import {
+  loadChallengeDetailAPI,
+  childConfirmAPI,
+  checkChallengeIsProceedingAPI,
+} from '@apis'
 import { PRIMARY } from '@utility/COLORS'
 import { TopContainer } from '@components'
 export const ChallengeChildDetailPage = () => {
@@ -23,6 +27,8 @@ export const ChallengeChildDetailPage = () => {
   // const [content, setContent] = useState(AtomContent)
 
   const [challenge, setChallenge] = useState()
+  const [challengeType, setChallengeType] = useState()
+
   const navigate = useNavigate()
   const confirm = async () => {
     Swal.fire({
@@ -46,7 +52,7 @@ export const ChallengeChildDetailPage = () => {
               'success',
             ),
           )
-          .then(navigate('/challenge'))
+          .then(navigate('/child/challenge'))
       }
     })
   }
@@ -56,6 +62,8 @@ export const ChallengeChildDetailPage = () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
         setChallenge(challengeDetailData)
+        const challengeTypeData = await checkChallengeIsProceedingAPI(params.id)
+        setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
       }
@@ -66,18 +74,25 @@ export const ChallengeChildDetailPage = () => {
   return (
     challenge && (
       <TopContainer style={{ padding: '0px' }}>
-        {/* <ChallengeContainer> */}
+        <TopNavigationBar title={'detail'} />
         <ChallengeTitle> {challenge.title}</ChallengeTitle>
         <ChallengeContentImgContainer>
           <ChallengeContent>{challenge.childContent}</ChallengeContent>
           <ChallengeImgWrapper>
-            <ChallengeImg src={challenge.image} />
+            <ChallengeImg src="/img/Bear.png" />
           </ChallengeImgWrapper>
         </ChallengeContentImgContainer>
-        <ChallengeConfirmButton onClick={confirm}>
-          참여할래?
-        </ChallengeConfirmButton>
-        {/* </ChallengeContainer> */}
+        {challengeType === 0 && (
+          <ChallengeConfirmButton onClick={confirm}>
+            참여하기
+          </ChallengeConfirmButton>
+        )}
+
+        {challengeType === 2 && (
+          <ChallengeConfirmButton onClick={confirm}>
+            승인하기
+          </ChallengeConfirmButton>
+        )}
       </TopContainer>
     )
   )
