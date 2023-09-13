@@ -3,16 +3,16 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
 
 html, body {
-      height: 100%;
+    height: 100%;
     margin: 0;
-      display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
 }
 #root{
- height: 844px;
-    width: 390px;
+  height: 844px;
+  width: 390px;
   
 }
 iframe {
