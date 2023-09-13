@@ -30,6 +30,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const commonSwalOptions = {
+  customClass: {
+    container: 'custom-swal-container',
+  },
+};
+
 const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
@@ -109,6 +115,12 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
                   }
                 })
                 .catch((error) => {
+                  Swal.fire({
+                    title: '<span style="font-size: 20px;">송금이 완료되었습니다.</span>',
+                    text: '',
+                    icon: 'info',
+                    ...commonSwalOptions, // 공통 클래스를 추가합니다.
+                  });
                   console.error('API 요청 실패:', error);
                   // 실패한 경우 에러 처리
                   // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.

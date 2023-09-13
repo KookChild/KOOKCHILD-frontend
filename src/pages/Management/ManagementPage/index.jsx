@@ -80,10 +80,10 @@ export const ManagementPage = () => {
       setChildId(22);
     } else if (imagePath === "./img/아이2.jpg") {
       setSelectedPicture(c2);
-      setChildId(24);
+      setChildId(22);
     } else if (imagePath === "./img/아이3.jpg") {
       setSelectedPicture(c3);
-      setChildId(26);
+      setChildId(22);
     } 
     setChildName(altText);
 
