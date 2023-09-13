@@ -7,7 +7,7 @@ import {
 } from './style' // style.js에서 스타일을 가져옵니다.
 import { useNavigate } from 'react-router-dom'
 export const ChallengeItem = ({ challenge }) => {
-  const { id, title, imageURL, progress } = challenge
+  const { id, title, image, progress } = challenge
   const navigate = useNavigate()
   return (
     <div
@@ -18,7 +18,7 @@ export const ChallengeItem = ({ challenge }) => {
     >
       <ChallengeImageProgressContainer>
         <img
-          src={imageURL ? imageURL : '/img/Sample_challenge.jpg'}
+          src={image ? image : '/img/Sample_challenge.jpg'}
           alt={title}
           style={{ width: '100%', height: '200px', borderRadius: '8px' }}
         />

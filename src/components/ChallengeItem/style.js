@@ -13,6 +13,7 @@ export const ChallengeContainer = {
   margin: '8px',
   cursor: 'pointer',
   position: 'relative',
+  width: '22.5vw',
 }
 
 export const ChallengeImageProgressContainer = styled.div`
