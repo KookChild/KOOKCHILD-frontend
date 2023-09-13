@@ -16,10 +16,13 @@ export const ChallengeConfirmButton = styled.div`
   padding: 15px;
   font-size: 30px;
   text-align: center;
+  margin-top: 10vh;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  box-sizing: border-box;
+
   cursor: pointer;
 `
 export const ChallengeContainer = styled.div`
@@ -34,7 +37,7 @@ export const ChallengeImgWrapper = styled.div`
   justify-content: center;
 `
 export const ChallengeContentImgContainer = styled.div`
-  height: 80vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

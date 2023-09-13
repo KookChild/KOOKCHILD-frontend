@@ -22,7 +22,7 @@ import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { ChallengeItem } from '@components'
 // 샘플 이미지 테스트
 import sampleChallenge from './img/Sample_challenge.jpg'
-//
+import { useNavigate } from 'react-router-dom'
 library.add(faBell, faGear, faPlus)
 
 export const ChildMainPage = () => {
@@ -32,6 +32,7 @@ export const ChildMainPage = () => {
     balance: '',
   })
   const [missionList, setMissionList] = useState([])
+  const navigate = useNavigate()
   const handleCopyClick = () => {
     navigator.clipboard.writeText('553702-01-000000')
   }
