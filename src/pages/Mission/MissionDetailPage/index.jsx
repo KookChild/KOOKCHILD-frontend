@@ -71,7 +71,7 @@ export const MissionDetailPage = () => {
   const handleLogoutClick = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('parent');
-    navigate('/login');
+    navigate('/');
   };
 
   const handleEditClick = () => {
