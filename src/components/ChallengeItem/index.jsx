@@ -23,7 +23,8 @@ export const ChallengeItem = ({ challenge }) => {
           style={{ width: '100%', height: '200px', borderRadius: '8px' }}
         />
         <div style={ChallengeProgress}>
-          <span>{`${progress}%`}</span>
+          {/* <span>{`${progress}%`}</span> */}
+          <span>50%</span>
           <div
             style={{
               width: '100px',
@@ -35,7 +36,8 @@ export const ChallengeItem = ({ challenge }) => {
           >
             <div
               style={{
-                width: `${progress}%`,
+                // width: `${progress}%`,
+                width: '50%',
                 height: '100%',
                 backgroundColor: 'lightyellow',
               }}

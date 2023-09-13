@@ -41,7 +41,6 @@ export const ChallengeViewPage = () => {
 
       try {
         const challengesData = await apiFunction()
-        console.log(challengesData)
         setChallenges(challengesData)
         setTotalCount(challengesData.length)
       } catch (error) {

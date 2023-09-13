@@ -12,16 +12,16 @@ export const ChallengeContainer = {
   //   width: '300px', // 너비
   margin: '8px',
   cursor: 'pointer',
+  position: 'relative',
 }
 
 export const ChallengeImageProgressContainer = styled.div`
   width: 100%;
-  position: 'relative';
 `
 
 export const ChallengeProgress = {
   position: 'absolute',
-  bottom: '10px',
+  bottom: '50px',
   left: '10px',
   backgroundColor: 'rgba(128, 128, 128, 0.7)',
   color: 'white',
