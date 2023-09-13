@@ -5,16 +5,16 @@ export const MissionInfoContainer = styled.div`
     height: 337px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; // 왼쪽 정렬
-    justify-content: center; // 세로 가운데 정렬
-    padding: 0 15px; // 양쪽 여백 설정
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 15px;
 `;
 export const Label = styled.label`
     display: flex;
     flex-direction: column;
-    align-items: flex-start; // 텍스트를 왼쪽에 위치시킵니다.
+    align-items: flex-start;
     width: 100%;
-    margin-bottom: 16px; // 아래 간격을 늘려줍니다.
+    margin-bottom: 16px;
 `;
 
 export const StyledInput = styled.input`
@@ -22,9 +22,9 @@ export const StyledInput = styled.input`
     width: calc(100% - 10px);
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     box-sizing: border-box;
-    margin-top: 4px;  // 간격을 조금 늘려줍니다.
+    margin-top: 4px;
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -32,7 +32,7 @@ export const StyledTextArea = styled.textarea`
     width: calc(100% - 10px);
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     box-sizing: border-box;
     margin-top: 4px;
     height: 100px;

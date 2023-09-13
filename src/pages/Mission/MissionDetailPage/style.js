@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-export const CenteredContainer = styled.div`
-  height: 844px;
-  width: 390px;
-  position: absolute;
-  top: 50%; /* 세로 중앙 정렬 */
-  left: 50%; /* 가로 중앙 정렬 */
-  transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
-  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
-  border: 1px solid #ccc; /* 테두리 스타일을 원하는 스타일로 변경 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-  padding: 20px; /* 내부 여백 설정 */
-
-  display: flex;
-  flex-direction: column; /* 자식 컴포넌트를 세로로 배치 */
-`
-
 export const Header = styled.div`
   padding: 10px;
   text-align: center;
@@ -43,15 +27,15 @@ export const HeaderTitle = styled.h1`
 
 
 export const AreaContainer = styled.div`
-    width: 100%;  // 100%로 설정하면 BodyContainer의 padding으로 인해 좌우에 공백이 생깁니다.
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;  // 중앙 정렬
-    margin-bottom: 15px;  // 하단 마진 설정
+    align-items: center;
+    margin-bottom: 15px;
     margin-top: 15px;
 
     &:last-child {
-        margin-bottom: 0;  // 마지막 요소에는 마진 제거
+        margin-bottom: 0;
     }
 `;
 
@@ -59,8 +43,8 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    padding-right: 20px; // 오른쪽 여백 추가
-    margin-top: 15px;    // 위쪽 여백 추가
+    padding-right: 20px;
+    margin-top: 15px;
 `;
 
 
@@ -71,6 +55,8 @@ export const DeleteMissionButton = styled.button`
     border: none;
     cursor: pointer; // 마우스 오버시 포인터 모양 변경
     background-color: tomato;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
 
@@ -85,6 +71,7 @@ export const ChildInfoContainer = styled.div`
     display: flex;
     align-items: flex-start; // 왼쪽 정렬
     justify-content: center; // 세로 가운데 정렬
+    margin-bottom: 30px;
 `;
 
 export const ChildImage = styled.img`
@@ -124,6 +111,8 @@ export const EditButton = styled.button`
     border: none;
     margin-right: 10px;  // 오른쪽에 10px 마진 추가
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
         background-color: rgba(118, 118, 118, 0.8); // #767676 의 약간 불투명한 버전
@@ -136,6 +125,8 @@ export const SuccessButton = styled.button`
     background-color: #98C37F;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
         background-color: rgba(152, 195, 127, 0.8); // #98C37F 의 약간 불투명한 버전
@@ -156,6 +147,8 @@ export const CompleteButton = styled.button`
     color: white; // 글자색을 흰색으로 설정합니다.
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
         background-color: #565656; // hover 시 조금 더 어둡게 변경합니다.
@@ -167,3 +160,12 @@ export const CompleteButton = styled.button`
         &:hover {
             background-color: #767676;  // disabled 상태에서는 hover 효과를 적용하지 않음
 `;
+
+export const LogoutButton = styled.button`
+    width: 67px;
+    height: 22px;
+    color: #f0f0f0; // 글자 색상 흰색으로 설정
+    border: none;
+    cursor: pointer; // 마우스 오버시 포인터 모양 변경
+    background-color: #f0f0f0;
+`

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import {
-  CenteredContainer,
   Header,
   HeaderContent,
   HeaderImage,
@@ -19,6 +18,7 @@ import {
   CompleteButton,
   ButtonsContainer,
   StyledTitle,
+  LogoutButton
 } from './style'
 import imgSrc from './img/Luna.png'
 import prefer from './img/prefer.png'
@@ -67,6 +67,12 @@ export const MissionDetailPage = () => {
 
     fetchMissionData()
   }, [missionId])
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('parent');
+    navigate('/login');
+  };
 
   const handleEditClick = () => {
     setIsEditable(true)
@@ -230,8 +236,8 @@ export const MissionDetailPage = () => {
               {isSuccess && isChild
                 ? '완료한 미션입니다.'
                 : !isSuccess && isChild
-                ? '승인 요청을 기다리는 중입니다.'
-                : '현재 진행 중인 미션입니다.'}
+                  ? '승인 요청을 기다리는 중입니다.'
+                  : '현재 진행 중인 미션입니다.'}
             </StyledTitle>
           )}
         </AreaContainer>
@@ -288,6 +294,7 @@ export const MissionDetailPage = () => {
           )
         )}
       </AreaContainer>
+      <LogoutButton onClick={handleLogoutClick}>로그아웃</LogoutButton>
     </TopContainer>
   )
 }
