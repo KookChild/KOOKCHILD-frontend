@@ -3,13 +3,11 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const ChildSelectContainer = styled.div`
-  width: 100%;
+width : 349px;
   height: 100px;
   display: flex;
-  justify-content: space-between;
+  justify-content:  flex-start;
   align-items: flex-start;
-  background-color: #ECECEC;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 0px;
 `;
 
@@ -18,6 +16,7 @@ const PersonContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding : 0px 5px;
 `;
 
 const ImageContainer = styled.div`
@@ -43,6 +42,11 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
 `;
+
+const NameDiv = styled.div`
+  padding: 5px 0px; /* 아주 작은 padding 값을 적용 */
+  /* 다른 스타일을 여기에 추가할 수 있습니다. */
+`;
 const ChildSelect = ({ handleImageClick, childNamesArray }) => {
   return (
     <ChildSelectContainer>
@@ -62,7 +66,7 @@ const ChildSelect = ({ handleImageClick, childNamesArray }) => {
               }
             />
           </ImageContainer>
-          <div className="name">{name}</div>
+          <NameDiv className="name">{name}</NameDiv>
         </PersonContainer>
       ))}
     </ChildSelectContainer>

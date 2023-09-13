@@ -8,20 +8,19 @@ import {
   MyAccountButton,
   CustomLinkButton,
   DailyQuizButton,
-  StyledCurrentMissionList,
   textContainer,
   iconGroup,
   BackToKBStarBankingButton,
   textContainerSpan,
 } from './style'
-import { loadAllChallengesAPI } from '@apis'
-import { TopContainer } from '@components'
+import { loadMyChallengesAPI } from '@apis'
+import {
+  TopContainer,
+  StyledCurrentMissionList,
+  ChallengeItem,
+} from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
-// ChallengeItem.jsx
-import { ChallengeItem } from '@components'
-// 샘플 이미지 테스트
-import sampleChallenge from './img/Sample_challenge.jpg'
 import { useNavigate } from 'react-router-dom'
 library.add(faBell, faGear, faPlus)
 
@@ -33,23 +32,12 @@ export const ChildMainPage = () => {
   })
   const [missionList, setMissionList] = useState([])
   const [challengeList, setChallengeList] = useState([])
-  const navigate = useNavigate()
+
   const handleCopyClick = () => {
     navigator.clipboard.writeText('553702-01-000000')
   }
 
   const [animatedDigits, setAnimatedDigits] = useState([])
-
-  const challengesArray = [
-    { id: 1, title: '26주 적금 도전', imageURL: sampleChallenge, progress: 50 },
-    {
-      id: 2,
-      title: '다이어트 챌린지',
-      imageURL: sampleChallenge,
-      progress: 20,
-    },
-    // ...
-  ]
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,8 +45,7 @@ export const ChildMainPage = () => {
         const childDataResponse = await loadChildAccountDetailAPI()
         let formattedBalance
         const missionDataResponse = await getMissions('newest')
-        const challengeDateResponse = await loadAllChallengesAPI()
-        console.log(challengeDateResponse)
+        const challengeDateResponse = await loadMyChallengesAPI()
 
         // childDataResponse.balance의 타입에 따라 적절하게 처리
         if (typeof childDataResponse.balance === 'number') {
@@ -176,7 +163,6 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>진행중인 미션</span>
-        <span style={textContainerSpan}>더보기</span>
       </div>
       <div style={buttonSection}>
         <StyledCurrentMissionList missions={missionList} />

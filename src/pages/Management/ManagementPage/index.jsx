@@ -62,11 +62,11 @@ const Footer = styled.div`
 `
 
 export const ManagementPage = () => {
-  const [selectedPicture, setSelectedPicture] = useState(null)
-  const [childName, setChildName] = useState('')
+  const [selectedPicture, setSelectedPicture] = useState(c1)
+  const [childName, setChildName] = useState('자녀8')
   const [disabled, setDisabled] = useState(true)
   const [accountNum, setAccountNum] = useState('')
-  const [childId, setChildId] = useState(2)
+  const [childId, setChildId] = useState(22)
   const [childNamesArray, setChildNamesArray] = useState([]) // 배열 상태로 변경
   const [amount, setAmout] = useState(0)
   const [notIntAmount, setNotInAmount] = useState(0)
