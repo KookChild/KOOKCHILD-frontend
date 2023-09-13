@@ -12,6 +12,7 @@ if (localStorage.getItem('token')) {
 }
 const SendButtonContainer = styled.div`
   position: relative;
+  width : 150px;
   bottom: 0;
   right: 0;
   margin: 20px;
@@ -30,6 +31,7 @@ const Button = styled.button`
   padding: 5px 10px; /* 좌우 여백을 조절하여 텍스트와 버튼의 크기를 맞춥니다 */
   font-size: 14px;
   cursor: pointer;
+  width : 100%;
 `;
 
 const commonSwalOptions = {

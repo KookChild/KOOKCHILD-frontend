@@ -14,7 +14,7 @@ const Button = styled.button`
     border-color: gold;
   }
   padding: 10px; /* 좌우 여백을 크게 조절하여 텍스트와 버튼의 크기를 맞춥니다 */
-  font-size: 20px; /* 텍스트 크기를 크게 설정 */
+  font-size: 16px; /* 텍스트 크기를 크게 설정 */
   cursor: pointer;
 `;
 

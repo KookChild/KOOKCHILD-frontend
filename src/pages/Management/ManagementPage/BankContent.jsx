@@ -16,9 +16,8 @@ const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsI
 
 const BankContentContainer = styled.div`
   width: 100%;
-  height: 200px;
-  margin-top: 20px; /* 원하는 간격으로 조절 */
-  padding: 0;
+  height : 100%;
+  padding: 21px 0px;
 `
 
 const PictureSelectContainer = styled.div`
@@ -33,20 +32,22 @@ const PictureSelectContainer = styled.div`
 
 const BankInfoContainer = styled.div`
   padding: 10px 0;
-  background-color: #ececec;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  height : 320px;
+  display : flex;
+  flex-direction : column;
 `
 const MonthlyContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin : 10px 0px;
 `
 const MonthlyContent = styled.div`
-  width: 100%;
-  height: 120px;
-  margin: 20px 0px;
+
+  width: 360px;
+  height: 91px;
+  margin: 10px 0px;
   overflow: hidden;
 
   padding: 0;
@@ -58,28 +59,24 @@ const MonthlyContent = styled.div`
 `
 
 const MonthlyItem = styled.div`
-  width: 50%;
-  height: 100%;
-  border-radius: 10px;
-  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
-  padding: 0;
-`
-const MonthlyConsumption = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  padding: 0;
-`
-const MonthlyDetail = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  padding: 0;
-  font-size: 20px;
+
+width: 160px;
+height: 90px;
+/* UI Properties */
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 1px 2px #00000029;
+border-radius: 12px;
+opacity: 1;
+border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
+  display: flex;
+  flex-direction : column;
+  justify-content:center;
 `
+
 const MoveChildGraphButtonContainer = styled.div`
   width: 100%;
   text-align: center;
@@ -92,24 +89,36 @@ const AccountButtons = styled.div`
 `
 const AccountDescription = styled.div`
   width: 100%;
-  height: 100%;
+  height: 130px;
   border-radius: 10px;
-  padding: 0;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
-  background-color: #f0f0f0; /* 배경색을 원하는 색상으로 변경 */
   font-size: 16px;
+  height : 320px;
+  background-color: #ececec;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 `;
 
-const ChildName = styled.div`
-  span{
-/* UI Properties */
-text-align: left;
-color: #010812;
-padding:10px;
-  }
+const ChildName = styled.span`
+span {
+  /* UI Properties */
+  text-align: left;
+  color: #010812;
+  padding: 10px;
+}
+
+/* 추가한 스타일 */
+background-color: #f9c515;
+margin : 10px 0px;
+height: 40px;
+width : auto;
+border-radius: 10px;
+border: 1px solid #ccc;
+padding: 5px 10px;
+font-size: 14px;
 `
 
 const InfoTextWrapper = styled.div`
@@ -153,25 +162,8 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
   
   return (
     <BankContentContainer>
-      <ChildName>{childName != "" ? <span>{childName}님의 계좌</span> : ""}</ChildName>
+      <ChildName>{childName}님의 계좌</ChildName>
       <PictureSelectContainer>
-        {selectedPicture == null ? (
-          <motion.img
-          initial={{ opacity: 0 }} // 초기 상태
-          animate={{ opacity: 1 }} // 애니메이션 적용
-          exit={{ opacity: 0 }} // 나가기 애니메이션 설정
-          transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
-          key={selectedPicture} // 이미지 변경 시에 컴포넌트를 새로 렌더링하기 위한 키 설정
-          src={c1}
-          alt="preview-img"
-          className="show"
-          style={{
-            objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
-            width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
-            height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
-          }}
-        />
-        ) : (
           <div>
             
             <motion.img
@@ -187,28 +179,13 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
                 width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
                 height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
+                borderRadius: '10px', 
               }}
             />
           </div>
-        )}
       </PictureSelectContainer>
       <BankInfoContainer>
-        {childName === '' ? (
-         <InfoTextWrapper>
-         <InfoBox>
-           <InfoText>자녀를 선택해서 송금하세요</InfoText>
-         </InfoBox>
-         <InfoBox>
-           <InfoText>자녀를 선택하시면 자녀의 소비와 예금 금액을 확인할 수 있습니다</InfoText>
-         </InfoBox>
-         <InfoBox>
-           <InfoText>통계도 궁금하지 않으신가요?</InfoText>
-         </InfoBox>
-       </InfoTextWrapper>
-        ) : (
-
-          <>
-            <AccountDescription>
+          <AccountDescription>
               <br/>
          <span id="name">{childName}</span>
             님의 계좌 <br />
@@ -218,10 +195,9 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}
                 hasChange={hasChange} setHasChange={setHasChange}/>
               </AccountButtons>
-            </AccountDescription>
+          </AccountDescription>
 
             {/* childName이 있을 때만 MonthlyContent를 보이도록 설정 */}
-        {childName && (
           <MonthlyContentContainer>
             <motion.div
               initial={{ opacity: 0, y: 20 }} // 초기 상태
@@ -231,21 +207,19 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
             >
               <MonthlyContent>
                 <MonthlyItem>
-                  <MonthlyDetail>
-                    <br></br>우리 아이 <br></br>이번 달 소비<br></br>
+                    우리 아이 <br></br>이번 달 소비<br></br>
                     {notInAmount}원
-                  </MonthlyDetail>
                 </MonthlyItem>
                 <MonthlyItem>
-                  <MonthlyConsumption>
-                    <MonthlyDetail>
-                      <br></br>우리 아이 <br></br>이번 달 저축<br></br>
+                   우리 아이 <br></br>이번 달 저축<br></br>
                      {amount}원
-                    </MonthlyDetail>
-                  </MonthlyConsumption>
+                    
                 </MonthlyItem>
               </MonthlyContent>
+           
             </motion.div>
+            </MonthlyContentContainer>
+           
             <MoveChildGraphButtonContainer>
               <motion.div
                 initial={{ opacity: 0, y: 20 }} // 초기 상태
@@ -256,10 +230,6 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 <MoveChildGraphButton />
               </motion.div>
             </MoveChildGraphButtonContainer>
-          </MonthlyContentContainer>
-        )}
-          </>
-        )}
       </BankInfoContainer>
     </BankContentContainer>
   )
