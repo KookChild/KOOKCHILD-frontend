@@ -14,6 +14,7 @@ import {
   BackToKBStarBankingButton,
   textContainerSpan,
 } from './style'
+import { loadAllChallengesAPI } from '@apis'
 import { TopContainer } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -31,6 +32,7 @@ export const ChildMainPage = () => {
     balance: '',
   })
   const [missionList, setMissionList] = useState([])
+  const [challengeList, setChallengeList] = useState([])
   const navigate = useNavigate()
   const handleCopyClick = () => {
     navigator.clipboard.writeText('553702-01-000000')
@@ -55,6 +57,9 @@ export const ChildMainPage = () => {
         const childDataResponse = await loadChildAccountDetailAPI()
         let formattedBalance
         const missionDataResponse = await getMissions('newest')
+        const challengeDateResponse = await loadAllChallengesAPI()
+        console.log(challengeDateResponse)
+
         // childDataResponse.balance의 타입에 따라 적절하게 처리
         if (typeof childDataResponse.balance === 'number') {
           formattedBalance = childDataResponse.balance.toLocaleString()
@@ -74,6 +79,7 @@ export const ChildMainPage = () => {
           balance: formattedBalance, // 처리된 문자열로 저장
         })
         setMissionList(missionDataResponse.missionLists)
+        setChallengeList(challengeDateResponse)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -182,7 +188,7 @@ export const ChildMainPage = () => {
 
       <div style={buttonSection}>
         {/* 여기에서 ChallengeItem 컴포넌트를 사용하여 챌린지 목록을 렌더링합니다. */}
-        {challengesArray.map(challenge => (
+        {challengeList.map(challenge => (
           <ChallengeItem key={challenge.id} challenge={challenge} />
         ))}
       </div>
