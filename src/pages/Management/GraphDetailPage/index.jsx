@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import CategoryPieChart from './CategoryPieChart' // 카테고리 파이 차트 컴포넌트 추가
 import BarChart from './BarChart' // 막대 그래프 컴포넌트 추가
 import { TopContainer } from '@components'
+import { PRIMARY, YELLOW, DARK_GRAY, BROWN } from '@utility/COLORS'
+
 const CenteredContainer = styled.div`
   width: 360px;
   height: 600px;
@@ -81,16 +83,17 @@ const TableHeader = styled.th`
 
 const TableCell = styled.td`
   border: 1px solid #ccc;
-  width: 50%;
   padding: 10px;
+  font-size: 14px; /* 텍스트의 글꼴 크기를 조절 */
+  width: auto; /* 셀 너비를 내용에 따라 자동으로 조절 */
 `
 
 // 카테고리 데이터 예시
 const categoryData = [
-  { title: '카테고리 1', value: 15, color: '#FF5733' },
-  { title: '카테고리 2', value: 20, color: '#33FF57' },
-  { title: '카테고리 3', value: 40, color: '#5733FF' },
-  { title: '카테고리 4', value: 25, color: '#33A3FF' },
+  { title: '카테고리 1', value: 15, color: PRIMARY },
+  { title: '카테고리 2', value: 20, color: BROWN },
+  { title: '카테고리 3', value: 40, color: YELLOW },
+  { title: '카테고리 4', value: 25, color: DARK_GRAY },
 ]
 
 // 표 데이터 예시
@@ -135,6 +138,7 @@ const barChartData = {
   expenses: [3000, 4500, 6000, 3500, 4800, 5500], // 연월별 소비 데이터 (임의 값)
   savings: [1200, 1800, 2400, 1400, 1920, 2200], // 연월별 저금 데이터 (임의 값)
 }
+
 export const GraphDetailPage = () => {
   return (
     <TopContainer>
@@ -156,23 +160,23 @@ export const GraphDetailPage = () => {
         <Table>
           <tbody>
             <TableRow>
-              <TableHeader>항목 카테고리</TableHeader>
-              <TableHeader>%(건수)</TableHeader>
+              <TableHeader>카테고리</TableHeader>
+              <TableHeader>비율(%)</TableHeader>
             </TableRow>
             <TableRow>
-              <TableCell>카테고리 1</TableCell>
+              <TableCell>편의점</TableCell>
               <TableCell>25%</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>카테고리 2</TableCell>
+              <TableCell>카페</TableCell>
               <TableCell>15%</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>카테고리 3</TableCell>
+              <TableCell>문구점</TableCell>
               <TableCell>15%</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>카테고리 4</TableCell>
+              <TableCell>식당</TableCell>
               <TableCell>15%</TableCell>
             </TableRow>
           </tbody>
@@ -184,16 +188,21 @@ export const GraphDetailPage = () => {
           <thead>
             <TableRow>
               <TableHeader>연월</TableHeader>
-              <TableHeader>소비 비율</TableHeader>
-              <TableHeader>저금 비율</TableHeader>
+              <TableHeader>소비</TableHeader>
+              <TableHeader>저금</TableHeader>
             </TableRow>
           </thead>
+
           <tbody>
-            {tableData.map((item, index) => (
+            {barChartData.labels.map((label, index) => (
               <TableRow key={index}>
-                <TableCell>{item.month}</TableCell>
-                <TableCell>{item.expensePercentage}</TableCell>
-                <TableCell>{item.savingsPercentage}</TableCell>
+                <TableCell>{label}</TableCell>
+                <TableCell>
+                  {barChartData.expenses[index].toLocaleString()}원
+                </TableCell>
+                <TableCell>
+                  {barChartData.savings[index].toLocaleString()}원
+                </TableCell>
               </TableRow>
             ))}
           </tbody>
