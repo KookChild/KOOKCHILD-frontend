@@ -39,7 +39,7 @@ function Content() {
           element={<MissionDetailPage />}
         />
         <Route path="/mission/parentview" element={<MissionParentViewPage />} />
-        <Route path="/mission/childview" element={<MissionChildViewPage />} />
+        <Route path="child/mission/childview" element={<MissionChildViewPage />} />
         <Route
           path="/challenge/child/detail/:id"
           // path="/challenge/child/detail"
