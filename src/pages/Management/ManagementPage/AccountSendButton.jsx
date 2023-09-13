@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // SendButton.js
@@ -38,7 +38,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
       var url = "/management/send";
       var jsonData = {
         "childId": childId,
-        "amount": null // 초기값은 null로 설정
+        "amount": 0 // 초기값은 null로 설정
       };
       
       // 첫 번째 SweetAlert2 모달 - 송금을 진행할지 묻는 모달
@@ -69,6 +69,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
               // 금액이 유효한지 확인
               if (!value || value <= 0) {
                 return '금액을 올바르게 입력하세요.';
+              }else{
+                
               }
             },
             icon: 'question',
@@ -84,7 +86,8 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId}) => {
           }).then((amountResult) => {
             if (amountResult.isConfirmed) {
               const amountToSend = amountResult.value;
-              jsonData.amount = amountToSend; // jsonData에 송금 금액 추가
+             
+              jsonData.amount = amountToSend;
               axios
                 .post(url, jsonData, {
                   headers: { Authorization: token },

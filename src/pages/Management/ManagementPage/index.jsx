@@ -9,6 +9,7 @@ import c1 from './img/아이1.jpg'
 import c2 from './img/아이2.jpg'
 import c3 from './img/아이3.jpg'
 import c4 from './img/아이4.jpg'
+import { TopContainer } from '../../../components/TopContainer'
 
 const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDUwNzU1OCwiZXhwIjoxNjk3MDk5NTU4fQ.-gf3R88hXY0Gc9qTRtUFMT24rE500UsvOfZRFBtjWLM";
 
@@ -53,7 +54,6 @@ const HeaderTitle = styled.h1`
 
 const MainContent = styled.div`
   flex-grow: 1;
-  overflow-y: auto;
 `
 
 const Footer = styled.div`
