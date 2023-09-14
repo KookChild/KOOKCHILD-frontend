@@ -8,12 +8,14 @@ export const FilterContainer = styled.div`
 `
 
 export const HeaderContainer = styled.div`
-  padding: 20px ;
+  padding: 20px;
   border-bottom: 1px solid #ccc;
   magin-left: 0px;
   text-align: left;
   line-height: 40px;
   font-size: 22px;
+
+  font-family: kbFontBold;
 `
 export const ChallengeContainer = styled.div`
   width: 360px;
@@ -36,4 +38,4 @@ export const ChallengeListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center; // 이 부분을 추가했습니다.
-`;
+`

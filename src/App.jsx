@@ -17,10 +17,12 @@ import {
   SendDetailPage,
   ManagementPage,
   MissionChildViewPage,
+  MissionChildHistoryViewPage,
   MissionCreatePage,
   MissionDetailPage,
   MissionParentViewPage,
   RegisterPage,
+  FinanceProductPage,
 } from '@pages'
 
 function Content() {
@@ -45,6 +47,10 @@ function Content() {
           element={<MissionChildViewPage />}
         />
         <Route
+          path="child/mission/childview/history"
+          element={<MissionChildHistoryViewPage />}
+        />
+        <Route
           path="/challenge/child/detail/:id"
           // path="/challenge/child/detail"
           element={<ChallengeChildDetailPage />}
@@ -58,6 +64,7 @@ function Content() {
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail" element={<GraphDetailPage />} />
         <Route path="/management" element={<ManagementPage />} />
+        <Route path="/financeproduct" element={<FinanceProductPage />} />
       </Routes>
       {showNaviBar && <ChildNaviBar />}
     </>

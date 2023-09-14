@@ -1,4 +1,9 @@
-import { TopContainer } from '@components'
+import { TopContainer, TermsAndConditions } from '@components'
 export const ChallengeParentDetailPage = () => {
-  return <TopContainer>Challenge Parent Detail Page</TopContainer>
+  return (
+    <TopContainer>
+      Challenge Parent Detail Page
+      <TermsAndConditions />
+    </TopContainer>
+  )
 }

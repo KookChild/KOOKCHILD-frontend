@@ -33,6 +33,6 @@ export const ChallengeProgress = {
 }
 
 export const ChallengeInfo = styled.div`
-  display: 'flex';
-  //   justifyContent: '',
+  font-family: kbFont;
+  font-size: 16px;
 `
