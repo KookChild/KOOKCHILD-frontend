@@ -50,12 +50,12 @@ export const MissionChildViewPage = () => {
       <MissionListContainer>
         {missions.map((mission, index) => (
           <MissionItemContainer
-            isEven={index % 2 === 0}
+            isEven={0}
             onClick={() => handleMissionClick(mission.id)}
             key={index}
           >
             <MissionItem
-              isEven={index % 2 === 0}
+              isEven={0}
               missionTitle={mission.title}
               missionReward={`${mission.reward}원`}
               missionDate={

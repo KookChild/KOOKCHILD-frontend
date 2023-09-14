@@ -55,7 +55,8 @@ export const MissionListContainer = styled.div`
 
 export const MissionItemContainer = styled.div`
   width: 390px;
-  height: 80px;
+  height: 115px;
+  margin-bottom: 10px;
   background-color: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;

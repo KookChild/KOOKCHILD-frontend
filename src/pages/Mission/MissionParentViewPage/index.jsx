@@ -29,6 +29,7 @@ export const MissionParentViewPage = () => {
   const navigate = useNavigate()
   const [selectedChildIndex, setSelectedChildIndex] = useState(0)
   const [missionFilter, setMissionFilter] = useState('ongoing');
+  const parent = localStorage.getItem('parent');
 
 
   const handleMissionClick = missionId => {
@@ -173,6 +174,7 @@ export const MissionParentViewPage = () => {
               }
               parentConfirm={mission.parentConfirm}
               childConfirm={mission.childConfirm}
+              parent={parent}
             />
           </MissionItemContainer>
         ))}
