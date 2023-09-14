@@ -1,10 +1,11 @@
 import { ItemContainer, LeftSection, MiddleSection, RightSection } from './style';
+import { BsCheck } from 'react-icons/bs'
 
 export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, childConfirm, isEven }) => {
     return (
         <ItemContainer isEven={isEven} parentConfirm={parentConfirm}>
             <LeftSection parentConfirm={parentConfirm} childConfirm={childConfirm}>
-                <div className="circle"></div>
+                <BsCheck className='checkIcon'/>
             </LeftSection>
             <MiddleSection>
                 <h3 className='title'>{missionTitle}</h3>

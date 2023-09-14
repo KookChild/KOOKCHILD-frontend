@@ -49,8 +49,8 @@ export const deleteMission = async (missionId) => {
     }
 };
 
-export const getParentMissionByChild = async (childId) => {
-    const response = await axios.get(`/mission/parent?child=${childId}`);
+export const getParentMissionByChild = async (childId = 0, type = 'ongoing') => {
+    const response = await axios.get(`/mission/parent?child=${childId}&type=${type}`);
     return response.data;
 };
 
