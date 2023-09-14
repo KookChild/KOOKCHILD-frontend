@@ -17,6 +17,7 @@ import {
   SendDetailPage,
   ManagementPage,
   MissionChildViewPage,
+  MissionChildHistoryViewPage,
   MissionCreatePage,
   MissionDetailPage,
   MissionParentViewPage,
@@ -44,6 +45,10 @@ function Content() {
         <Route
           path="child/mission/childview"
           element={<MissionChildViewPage />}
+        />
+        <Route
+          path="child/mission/childview/history"
+          element={<MissionChildHistoryViewPage />}
         />
         <Route
           path="/challenge/child/detail/:id"
