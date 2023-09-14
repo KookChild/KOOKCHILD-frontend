@@ -105,7 +105,7 @@ export const ManagementPage = () => {
 
   return (
     <TopContainer>
-      <TopNavigationBar title={'자녀소비통계'} />
+      <TopNavigationBar title={'자녀 금융 관리'} />
 
       <MainContent>
         <ChildSelect
