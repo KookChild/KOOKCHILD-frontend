@@ -1,3 +1,5 @@
+import { styled } from 'styled-components'
+import { PRIMARY, GRAY } from '@utility/COLORS'
 export const headerContainer = {
   backgroundColor: '#F6F6FF',
   width: '360px',
@@ -26,13 +28,20 @@ export const UserNameContatiner = {
 }
 
 export const textContainer = {
+  fontWeight: '700',
+  fontSize: '24px',
+  padding: '15px 0px',
   marginLeft: '12px', // 텍스트 왼쪽에 여백 추가
   display: 'flex',
   justifyContent: 'space-between', // 오른쪽 정렬을 위한 스타일
 }
+export const childNameContainer = {
+  color: `${PRIMARY}`,
+  marginRight: '10px',
+}
 
 export const textContainerSpan = {
-  marginTop: '7px', // 텍스트 위의 간격
+  marginTop: '7px', // 텍스트 위의 간격s
   marginRight: '12px',
   fontSize: '8px',
 }
@@ -52,7 +61,24 @@ export const buttonSection = {
   gap: '2px',
   marginBottom: '5px',
 }
-
+export const accountNumberContainer = {
+  cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  fontSize: '13px',
+}
+export const balanceContainer = {
+  cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  fontSize: '20px',
+}
+export const buttonsContainer = {
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '10px',
+  color: 'white',
+}
 export const MyAccountButton = {
   position: 'relative',
   backgroundColor: '#ffffff',
@@ -67,15 +93,14 @@ export const MyAccountButton = {
 // MyAccountButton 내부 버튼
 export const CustomLinkButton = {
   backgroundColor: '#FFCC00 ',
-  color: '#000',
   padding: '10px 20px',
   borderRadius: '8px',
-  marginLeft: '10px',
   textAlign: 'center',
   fontSize: '14px',
   textDecoration: 'none',
   display: 'inline-block',
   boxShadow: '0px 2px 4px #00000029',
+  width: '65px',
 }
 
 export const DailyQuizButton = {
