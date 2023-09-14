@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { loadChildAccountDetailAPI, getMissions } from '@apis'
+import { useNavigate } from 'react-router-dom'
 import {
   iconContainer,
   buttonSection,
@@ -12,6 +13,10 @@ import {
   iconGroup,
   BackToKBStarBankingButton,
   textContainerSpan,
+  accountNumberContainer,
+  buttonsContainer,
+  balanceContainer,
+  childNameContainer,
 } from './style'
 import { loadMyChallengesAPI } from '@apis'
 import {
@@ -21,6 +26,7 @@ import {
 } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { GRAY, PRIMARY } from '../../../utility/COLORS'
 
 library.add(faBell, faGear, faPlus)
 
@@ -32,7 +38,7 @@ export const ChildMainPage = () => {
   })
   const [missionList, setMissionList] = useState([])
   const [challengeList, setChallengeList] = useState([])
-
+  const navigate = useNavigate()
   const handleCopyClick = () => {
     navigator.clipboard.writeText('553702-01-000000')
   }
@@ -121,7 +127,7 @@ export const ChildMainPage = () => {
 
   return (
     <TopContainer>
-      <div style={iconContainer}>
+      {/* <div style={iconContainer}>
         <div style={textContainer}>
           <span>Kook Child</span>
         </div>
@@ -129,31 +135,44 @@ export const ChildMainPage = () => {
           <FontAwesomeIcon icon={['fas', 'bell']} size="lg" />
           <FontAwesomeIcon icon={['fas', 'gear']} size="lg" />
         </div>
-      </div>
+      </div> */}
 
       <div style={textContainer}>
-        <span>{child.accountName}님의 자산</span>
+        <div>
+          <span style={childNameContainer}>{child.accountName}</span>
+          <span>님의 자산</span>
+        </div>
       </div>
 
-      <div style={buttonSection}>
+      <div>
         <div style={MyAccountButton}>
           <div
             onClick={handleCopyClick}
-            style={{ cursor: 'pointer', fontSize: 'small' }}
+            style={{ ...accountNumberContainer, color: PRIMARY }}
           >
             {child.accountNum}
           </div>
           <br />
-          <div style={{ fontSize: '22px', cursor: 'pointer' }}>
-            {animatedDigits.join('')}
-          </div>
+          <div style={balanceContainer}>{animatedDigits.join('')}원</div>
           <br />
-          <Link to="/transaction-history" style={CustomLinkButton}>
-            입출금 내역
-          </Link>
-          <Link to="/transfer" style={CustomLinkButton}>
-            이체하기
-          </Link>
+          <div style={buttonsContainer}>
+            <div
+              style={{ ...CustomLinkButton, backgroundColor: GRAY }}
+              onClick={() => navigate('/transaction-history')}
+            >
+              입출금 내역
+            </div>
+            <div
+              style={{
+                ...CustomLinkButton,
+                backgroundColor: PRIMARY,
+                color: 'black',
+              }}
+              onClick={() => navigate('/transfer')}
+            >
+              이체하기
+            </div>
+          </div>
         </div>
       </div>
       <div style={textContainer}>
