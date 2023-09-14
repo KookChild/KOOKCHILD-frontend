@@ -36,7 +36,12 @@ export const ChallengeParentDetailPage = () => {
             name="reward"
             placeholder="금액을 입력해주세요"
             width={100}
-            style={{ border: 'none', borderBottom: '1px solid #000' }}
+            style={{
+              border: 'none',
+              borderBottom: '1px solid #000',
+              fontSize: '20px',
+              textAlign: 'center',
+            }}
             required={true}
           />
           {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
