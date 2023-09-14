@@ -6,8 +6,11 @@ import {
   rewardContainer,
   rewardText,
   missionContainer,
+  checkClass,
 } from './style'
 import { useNavigate } from 'react-router-dom'
+import { BsCheck } from 'react-icons/bs'
+
 export const StyledCurrentMissionList = ({ missions }) => {
   const navigate = useNavigate()
   return (
@@ -18,6 +21,7 @@ export const StyledCurrentMissionList = ({ missions }) => {
           style={missionContainer}
           onClick={() => navigate(`/mission/detail/${mission.id}`)}
         >
+          <BsCheck style={checkClass} />
           <div style={missionInfo}>
             <div style={missionTitle}>{mission.title}</div>
             <div style={missionDetail}>{mission.detail}</div>

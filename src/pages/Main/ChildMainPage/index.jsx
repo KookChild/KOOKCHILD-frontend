@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { loadChildAccountDetailAPI, getMissions } from '@apis'
+import {
+  loadChildAccountDetailAPI,
+  getMissions,
+  loadMyChallengesAPI,
+  getProceedingMissionByChild,
+} from '@apis'
+
 import { useNavigate } from 'react-router-dom'
 import {
-  iconContainer,
   buttonSection,
   MyAccountButton,
   CustomLinkButton,
   DailyQuizButton,
   textContainer,
-  iconGroup,
   BackToKBStarBankingButton,
   textContainerSpan,
   accountNumberContainer,
@@ -19,7 +22,7 @@ import {
   childNameContainer,
   TopTextContainer,
 } from './style'
-import { loadMyChallengesAPI } from '@apis'
+
 import {
   TopContainer,
   StyledCurrentMissionList,
@@ -27,7 +30,7 @@ import {
 } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { GRAY, PRIMARY } from '../../../utility/COLORS'
+import { GRAY, PRIMARY } from '@utility/COLORS'
 
 library.add(faBell, faGear, faPlus)
 
@@ -55,7 +58,7 @@ export const ChildMainPage = () => {
         let formattedBalance
         const missionDataResponse = await getMissions('newest')
         const challengeDateResponse = await loadMyChallengesAPI()
-
+        console.log(missionDataResponse)
         // childDataResponse.balance의 타입에 따라 적절하게 처리
         if (typeof childDataResponse.balance === 'number') {
           formattedBalance = childDataResponse.balance.toLocaleString()
@@ -74,7 +77,7 @@ export const ChildMainPage = () => {
           accountNum: childDataResponse.accountNum,
           balance: formattedBalance, // 처리된 문자열로 저장
         })
-        setMissionList(missionDataResponse.missionLists)
+        setMissionList(missionDataResponse.ongoingMissionLists)
         setChallengeList(challengeDateResponse)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -128,16 +131,6 @@ export const ChildMainPage = () => {
 
   return (
     <TopContainer>
-      {/* <div style={iconContainer}>
-        <div style={textContainer}>
-          <span>Kook Child</span>
-        </div>
-        <div style={iconGroup}>
-          <FontAwesomeIcon icon={['fas', 'bell']} size="lg" />
-          <FontAwesomeIcon icon={['fas', 'gear']} size="lg" />
-        </div>
-      </div> */}
-
       <div style={TopTextContainer}>
         <span style={childNameContainer}>{child.accountName}</span>
         <span>님의 자산</span>

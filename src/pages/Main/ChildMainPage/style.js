@@ -7,6 +7,7 @@ export const headerContainer = {
   margin: 'auto',
   padding: '16px',
   boxSizing: 'border-box',
+  fontFamily: 'kbFontBold',
 }
 
 export const iconContainer = {
@@ -28,8 +29,7 @@ export const UserNameContatiner = {
 }
 
 export const textContainer = {
-  fontWeight: 'bold',
-  // fontSize: '20px',
+  fontFamily: 'kbFontBold',
   padding: '15px ',
   display: 'flex',
   justifyContent: 'space-between', // 오른쪽 정렬을 위한 스타일
@@ -61,11 +61,12 @@ export const buttonSection = {
   marginBottom: '5px',
 }
 export const TopTextContainer = {
-  fontWeight: 'bold',
+  fontFamily: 'sdEB',
   fontSize: '20px',
   padding: '15px ',
 }
 export const accountNumberContainer = {
+  fontFamily: 'sdSb',
   cursor: 'pointer',
   display: 'flex',
   justifyContent: 'center',
@@ -77,6 +78,7 @@ export const balanceContainer = {
   display: 'flex',
   justifyContent: 'center',
   fontSize: '20px',
+  fontFamily: 'sdSB',
 }
 export const buttonsContainer = {
   display: 'flex',

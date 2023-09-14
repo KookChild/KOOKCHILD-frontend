@@ -1,3 +1,4 @@
+import { GRAY, DARK_GRAY } from '@utility/COLORS'
 export const missionListContainer = {
   backgroundColor: '#ffffff',
   flex: 1,
@@ -43,4 +44,14 @@ export const rewardContainer = {
 
 export const rewardText = {
   fontSize: '14px',
+}
+
+export const checkClass = {
+  width: '25px',
+  height: '25px',
+  borderRadius: '50%',
+  color: GRAY,
+  marginLeft: '10px',
+  marginRight: '10px',
+  border: `1px solid ${DARK_GRAY}`,
 }
