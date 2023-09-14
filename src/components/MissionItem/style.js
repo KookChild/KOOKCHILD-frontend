@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { YELLOW } from '@utility/COLORS'
+import { YELLOW, GRAY } from '@utility/COLORS'
 
 export const ItemContainer = styled.div`
     display: flex;
@@ -7,7 +7,7 @@ export const ItemContainer = styled.div`
     align-items: center;
     top: 399px;
     height: 80px;
-    width: 320px;
+    width: 360px;
     padding-left: 13px;
     padding-right: 13px;
     opacity: 1;
@@ -24,7 +24,7 @@ export const LeftSection = styled.div`
     align-items: center;
     margin-right: 10px;
 
-    .circle {
+    .checkIcon {
         width: 25px;
         height: 25px;
         background: ${props => {
@@ -41,6 +41,7 @@ export const LeftSection = styled.div`
         margin-right: 10px;
         box-shadow: inset 0px 1px 3px #00000029;
         border-radius: 15px;
+        color: white;
         opacity: 1;
     }
 `;

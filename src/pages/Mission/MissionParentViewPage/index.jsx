@@ -14,6 +14,8 @@ import {
   HeaderContent,
   HeaderImage,
   HeaderTitle,
+  RadioButtonGroup,
+  RadioLabel
 } from './style'
 import imgSrc from './img/Bear.png'
 import imgSrc2 from './img/ALL.jpeg'
@@ -26,6 +28,8 @@ export const MissionParentViewPage = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const navigate = useNavigate()
   const [selectedChildIndex, setSelectedChildIndex] = useState(0)
+  const [missionFilter, setMissionFilter] = useState('ongoing');
+
 
   const handleMissionClick = missionId => {
     navigate(`/mission/detail/${missionId}`)
@@ -36,19 +40,18 @@ export const MissionParentViewPage = () => {
   }
 
   useEffect(() => {
-    // 초기 로드 혹은 selectedChildIndex가 변경될 때마다 API 호출
     const fetchData = async () => {
       try {
-        const response = await getParentMissionByChild(selectedChildIndex)
-        setMissions(response.missionLists)
-        setChilds(response.childLists)
+        const response = await getParentMissionByChild(selectedChildIndex, missionFilter);
+        setMissions(response.missionLists);
+        setChilds(response.childLists);
       } catch (error) {
-        console.error('Error fetching the data:', error)
+        console.error('Error fetching the data:', error);
       }
     }
 
-    fetchData()
-  }, [selectedChildIndex])
+    fetchData();
+}, [selectedChildIndex, missionFilter]);
 
   return (
     <TopContainer>
@@ -110,6 +113,37 @@ export const MissionParentViewPage = () => {
           퀴즈
         </Tab>
       </TabContainer>
+      <div>
+        <RadioButtonGroup>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="ongoing"
+              checked={missionFilter === 'ongoing'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            진행중
+          </RadioLabel>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="requested"
+              checked={missionFilter === 'requested'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            요청
+          </RadioLabel>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="success"
+              checked={missionFilter === 'success'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            완료
+          </RadioLabel>
+        </RadioButtonGroup>
+      </div>
       <ButtonContainer>
         <AddMissionButton
           onClick={() => {
@@ -124,12 +158,12 @@ export const MissionParentViewPage = () => {
       <MissionListContainer>
         {missions.map((mission, index) => (
           <MissionItemContainer
-            isEven={index % 2 === 0}
+            isEven={index % 2 === 1}
             onClick={() => handleMissionClick(mission.id)}
             key={index}
           >
             <MissionItem
-              isEven={index % 2 === 0}
+              isEven={index % 2 === 1}
               missionTitle={mission.title}
               missionReward={`${mission.reward}원`}
               missionDate={
