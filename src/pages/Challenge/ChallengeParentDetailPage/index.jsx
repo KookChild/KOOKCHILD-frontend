@@ -17,13 +17,14 @@ export const ChallengeParentDetailPage = () => {
       <ChallengeTitle>26일 챌린지</ChallengeTitle>
       <DetailContainer>
         <DetailTextWrapper>
+          {/* 이미지 크기 줄이기 */}
           <img src="/img/Dog.png" alt="dog" />
-          26일 동안 저금을 해서 적금 미리 맛보기 기회를 제공
+          26일 동안 저금을 해서 적금 미리 맛보기 기회를 제공해요
         </DetailTextWrapper>
       </DetailContainer>
       <DetailContainer>
         <DetailTextWrapper>
-          부모가 얹어주는 금리로 높아지는 아이의 저축노력
+          부모가 얹어주는 금리로 높아지는 아이의 저축노력을 자극해요
         </DetailTextWrapper>
         <img src="/img/Bear.png" alt="bear" />
       </DetailContainer>
@@ -35,8 +36,10 @@ export const ChallengeParentDetailPage = () => {
             name="reward"
             placeholder="금액을 입력해주세요"
             width={100}
+            style={{ border: 'none', borderBottom: '1px solid #000' }}
             required={true}
           />
+          {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
           <UnitWrapper>원</UnitWrapper>
         </ParentRewardInputWrapper>
         <ParentRewardImgWrapper>
@@ -44,6 +47,9 @@ export const ChallengeParentDetailPage = () => {
         </ParentRewardImgWrapper>
       </ParentRewardWrapper>
       <TermsAndConditions />
+      {/* <ChallengeConfirmButton onClick={confirm}>
+        추천하기
+      </ChallengeConfirmButton> */}
     </TopContainer>
   )
 }
