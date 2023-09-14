@@ -39,7 +39,7 @@ export const ChallengeParentDetailPage = () => {
             style={{
               border: 'none',
               borderBottom: '1px solid #000',
-              fontSize: '20px',
+              fontSize: '25px',
               textAlign: 'center',
             }}
             required={true}
