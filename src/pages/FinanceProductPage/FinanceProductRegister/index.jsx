@@ -7,8 +7,11 @@ import {
     textLine2,
     textLine1Icon,
     buttonImage,
-    buttonImage2,
     highlightText,
+    ProductTitle,
+    ProductOutline,
+    horizontalLine,
+    CalculateInterest
 } from './style'
 
 
@@ -17,13 +20,29 @@ export const FinanceProductRegister = () => {
     return (
         <TopContainer>
             <TopNavigationBar title="자녀-부모 연계상품" />
+
+            <div style={ProductTitle}>
+                <span style={textLine1}>자녀 금융 교육<br></br>
+                    우대금리 입출금 통장
+                </span>
+
+            </div>
+
+            <div style={ProductOutline}>
+                <span style={textLine2}>최고금리</span>
+                <div style={horizontalLine}></div>
+                <span style={textLine2}>기간</span>
+                <div style={horizontalLine}></div>
+                <span style={textLine2}>금액</span>          
+            </div>
+
+
             <div style={buttonSection}>
-                <div style={FinanceProductButton}>
+                <div style={CalculateInterest}>
                     <div style={buttonTextContainer}>
                         <div>
-                            <span style={textLine1}>제작중<br />제작중
-                                
-                            </span>
+                            <span style={textLine1}>제작중</span>
+
                             <span style={textLine2}>제작중
                                 <span style={highlightText}> 제작중</span><br />
                             </span>
@@ -31,7 +50,6 @@ export const FinanceProductRegister = () => {
                                 <span style={highlightText}> 연 20% 가능</span>
                             </span>
                         </div>
-                        <img style={buttonImage} src="./characterImage/rabbit.png" alt="character" />
                     </div>
                 </div>
             </div>

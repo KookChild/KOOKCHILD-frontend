@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { TopContainer, TopNavigationBar } from '@components'
 import {
     buttonSection,
@@ -14,11 +15,17 @@ import {
 
 
 export const FinanceProductPage = () => {
+    const navigate = useNavigate();
+
+    const handleButtonClick = (path) => {
+        navigate(path);
+    };
+
     return (
         <TopContainer>
             <TopNavigationBar title="자녀-부모 연계상품" />
             <div style={buttonSection}>
-                <div style={FinanceProductButton}>
+                <div style={FinanceProductButton} onClick={() => handleButtonClick('/financeproduct/register')}>
                     <div style={buttonTextContainer}>
                         <div>
                             <span style={textLine1}>자녀 금융교육<br />우대금리 "입출금" 통장

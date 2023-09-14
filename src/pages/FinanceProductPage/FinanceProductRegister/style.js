@@ -1,4 +1,58 @@
 
+// 금융상품 상세
+
+export const ProductTitle = {
+    boxSizing: 'border-box',
+    width: '390px',
+    padding: '40px',
+    marginBottom: '-25px',
+    backgroundColor: '#DFEBE4',
+    marginLeft: '-20px',
+    marginRight: '0px',
+};
+
+// 상품 정보 약식 정보
+
+export const  ProductOutline = {
+    zIndex: '3',
+    position: 'relative',
+    boxSizing: 'border-box',
+    width: '100%', // 부모 컨테이너에 꽉 차게 설정
+    backgroundColor: '#fff7',
+    borderRadius: '0px',
+    padding: '20px',
+    marginLeft: '20px',
+    marginRight: '0px', // 우측 여백 없음
+    marginBottom: '-120px',
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+};
+
+    export const horizontalLine = {
+        height: '1px',
+        backgroundColor: '#ccc',
+        margin: '10px 0', // 상하 여백으로 선과 텍스트 간격 조정
+    };
+
+export const  CalculateInterest = {
+    zIndex: '1',
+    position: 'relative',
+    boxSizing: 'border-box',
+    width: '390px',
+    height: '400px',
+    backgroundColor: '#fff5',
+    borderRadius: '0px',
+    paddingTop: '150px',
+    paddingLeft: '20px',
+    marginLeft: '-20px',
+    marginRight: '0px', // 우측 여백 없음
+    marginBottom: '35px',
+};
+
+
+
+
+
+
 
 
 // 텍스트 컨테이너
@@ -16,14 +70,14 @@ export const buttonTextContainer = {
 };
 
 export const textLine1 = {
-  fontSize: '16px',
+  fontSize: '25px',
   fontWeight: 'bold',
   display: 'block',
   marginBottom: '12px'
 };
 
 export const textLine2 = {
-  fontSize: '12px',
+  fontSize: '16px',
   display: 'block',
   marginBottom: '4px'
 };
