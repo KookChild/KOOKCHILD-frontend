@@ -248,7 +248,7 @@ export const MissionDetailPage = () => {
       <Header>
         <HeaderContent
           onClick={() =>
-            navigate(parent ? '/mission/parentview' : '/mission/childview')
+            navigate(-1)
           }
         >
           <HeaderImage src={prefer} />

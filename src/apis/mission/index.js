@@ -14,6 +14,11 @@ export const getMissions = async (sort) => {
     return response.data;
 };
 
+export const getMissionsHistory = async (sort) => {
+    const response = await axios.get(`/mission/history?sort=${sort}`);
+    return response.data;
+};
+
 export const fetchMissionDetail = async (missionId) => {
     const response = await axios.get(`/mission/${missionId}`);
     return response.data;

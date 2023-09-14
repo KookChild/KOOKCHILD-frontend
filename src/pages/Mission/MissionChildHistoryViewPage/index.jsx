@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MissionItem } from '@components'
+import { getMissionsHistory } from '@apis'
 import {
   Header,
   HeaderContent,
@@ -16,9 +17,17 @@ import prefer from './img/prefer.png'
 import { TopContainer } from '@components'
 
 export const MissionChildHistoryViewPage = () => {
-  const [requestMissions, setRequestMissions] = useState([])
+  const [successMission, setSuccessMissions] = useState([])
   const [sort, setSort] = useState('newest')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getMissionsHistory(sort)
+      setSuccessMissions(data.successMissionList)
+    }
+    fetchData()
+  }, [sort])
 
   const handleMissionClick = missionId => {
     navigate(`/mission/detail/${missionId}`)
@@ -32,9 +41,9 @@ export const MissionChildHistoryViewPage = () => {
   return (
     <TopContainer>
       <Header>
-        <HeaderContent onBackClick={() => navigate('/path-to-go-back')}>
+        <HeaderContent onClick={() => navigate(-1)}>
           <HeaderImage src={prefer} />
-          <HeaderTitle>미션상세페이지</HeaderTitle>
+          <HeaderTitle>미션히스토리페이지</HeaderTitle>
         </HeaderContent>
       </Header>
       <MenuContainer>
@@ -48,7 +57,7 @@ export const MissionChildHistoryViewPage = () => {
       </Dropdown>
       </MenuContainer>
       <MissionListContainer>
-        {requestMissions.map((mission, index) => (
+        {successMission.map((mission, index) => (
           <MissionItemContainer
             isEven={0}
             onClick={() => handleMissionClick(mission.id)}
