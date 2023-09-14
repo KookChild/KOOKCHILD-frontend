@@ -24,13 +24,29 @@ export const HeaderTitle = styled.h1`
   font-weight: bold; /* title 텍스트 굵게 설정 */
   margin: 0; /* title의 margin 제거 */
 `
+export const MenuContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const HistoryMissionButton = styled.button`
+    width: 67px;
+    height: 22px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #8D744A;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
 
 export const Dropdown = styled.select`
     width: 100px;
     height: 40px;
     font-size: 16px;
     margin-top: 30px;
-    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
 
     border: none;

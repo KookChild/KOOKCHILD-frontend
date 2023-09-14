@@ -6,7 +6,9 @@ import {
   HeaderContent,
   HeaderImage,
   HeaderTitle,
+  MenuContainer,
   Dropdown,
+  HistoryMissionButton,
   MissionItemContainer,
   MissionListContainer,
 } from './style'
@@ -14,18 +16,19 @@ import { getMissions } from '@apis'
 import prefer from './img/prefer.png'
 import { TopContainer } from '@components'
 export const MissionChildViewPage = () => {
-  const [missions, setMissions] = useState([])
+  const [ongoingMissions, setOngoingMissions] = useState([])
+  const [requestMissions, setRequestMissions] = useState([])
   const [sort, setSort] = useState('newest')
-  const navigate = useNavigate() // <-- 여기에 추가
+  const navigate = useNavigate()
 
   const handleMissionClick = missionId => {
-    navigate(`/mission/detail/${missionId}`) // <-- 여기를 수정
+    navigate(`/mission/detail/${missionId}`)
   }
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMissions(sort)
-      console.log(data.missionLists)
-      setMissions(data.missionLists)
+      setRequestMissions(data.requestMissionLists)
+      setOngoingMissions(data.ongoingMissionLists)
     }
     fetchData()
   }, [sort])
@@ -43,12 +46,41 @@ export const MissionChildViewPage = () => {
           <HeaderTitle>미션상세페이지</HeaderTitle>
         </HeaderContent>
       </Header>
+      <MenuContainer>
+        <h2>미션</h2>
+        <HistoryMissionButton>히스토리</HistoryMissionButton>
+      </MenuContainer>
+
+      <div>입금 대기중인 미션</div>
+      <MissionListContainer>
+        {requestMissions.map((mission, index) => (
+          <MissionItemContainer
+            isEven={0}
+            onClick={() => handleMissionClick(mission.id)}
+            key={index}
+          >
+            <MissionItem
+              isEven={0}
+              missionTitle={mission.title}
+              missionReward={`${mission.reward}원`}
+              missionDate={
+                mission.deadline !== 'null-null'
+                  ? mission.deadline
+                  : '기한 없음'
+              }
+              parentConfirm={mission.parentConfirm}
+              childConfirm={mission.childConfirm}
+            />
+          </MissionItemContainer>
+        ))}
+      </MissionListContainer>
+      <div>진행중인 미션</div>
       <Dropdown onChange={handleDropdownChange}>
         <option value="newest">최신순</option>
         <option value="oldest">오래된순</option>
       </Dropdown>
       <MissionListContainer>
-        {missions.map((mission, index) => (
+        {ongoingMissions.map((mission, index) => (
           <MissionItemContainer
             isEven={0}
             onClick={() => handleMissionClick(mission.id)}
