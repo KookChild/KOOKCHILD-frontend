@@ -24,6 +24,7 @@ import {
   RegisterPage,
   FinanceProductPage,
 } from '@pages'
+import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
 
 function Content() {
   const location = useLocation()
@@ -65,6 +66,8 @@ function Content() {
         <Route path="/graph/detail" element={<GraphDetailPage />} />
         <Route path="/management" element={<ManagementPage />} />
         <Route path="/financeproduct" element={<FinanceProductPage />} />
+        <Route path="/financeproduct/register" element={<FinanceProductRegister />} />
+
       </Routes>
       {showNaviBar && <ChildNaviBar />}
     </>
