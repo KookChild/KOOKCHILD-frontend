@@ -10,24 +10,12 @@ import { useNavigate } from 'react-router-dom'
 import { PRIMARY } from '@utility/COLORS'
 import { useEffect, useState } from 'react'
 import { checkChallengeIsProceedingAPI } from '@apis'
-export const ChallengeItem = ({ challenge }) => {
+export const ChallengeItem = ({ challenge, isProceeding }) => {
   const [challengeType, setChallengeType] = useState()
   const { id, title, image } = challenge
   const params = useParams()
   const navigate = useNavigate()
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const challengeTypeData = await checkChallengeIsProceedingAPI(params.id)
-        setChallengeType(challengeTypeData)
-        console.log(challengeTypeData)
-      } catch (error) {
-        console.error('Error fetching challenge detail:', error)
-      }
-    }
 
-    fetchData()
-  }, [params.id])
   return (
     <div
       style={ChallengeContainer}
@@ -65,12 +53,8 @@ export const ChallengeItem = ({ challenge }) => {
         </div>
       </ChallengeImageProgressContainer>
       <ChallengeInfo>
-        <div style={{ flex: 1, textAlign: 'left', fontSize: '16px' }}>
-          {title}
-        </div>
-        <div style={{ flex: 1, textAlign: 'right', fontSize: '16px' }}>
-          완료 보상금: 5000원
-        </div>
+        <div style={{ flex: 1, textAlign: 'left' }}>{title}</div>
+        <div style={{ flex: 1, textAlign: 'right' }}>완료 보상금: 5000원</div>
       </ChallengeInfo>
     </div>
   )
