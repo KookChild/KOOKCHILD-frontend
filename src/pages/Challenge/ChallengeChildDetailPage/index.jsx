@@ -79,7 +79,7 @@ export const ChallengeChildDetailPage = () => {
   }, [params.id])
   return (
     challenge && (
-      <TopContainer style={{ padding: '0px' }}>
+      <TopContainer style={{ backgroundColor: 'white' }}>
         <TopNavigationBar title={'detail'} />
         <ChallengeTitle> {challenge.title}</ChallengeTitle>
         <ChallengeContentImgContainer>

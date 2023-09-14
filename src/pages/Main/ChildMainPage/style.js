@@ -28,10 +28,9 @@ export const UserNameContatiner = {
 }
 
 export const textContainer = {
-  fontWeight: '700',
-  fontSize: '24px',
-  padding: '15px 0px',
-  marginLeft: '12px', // 텍스트 왼쪽에 여백 추가
+  fontWeight: 'bold',
+  // fontSize: '20px',
+  padding: '15px ',
   display: 'flex',
   justifyContent: 'space-between', // 오른쪽 정렬을 위한 스타일
 }
@@ -61,11 +60,17 @@ export const buttonSection = {
   gap: '2px',
   marginBottom: '5px',
 }
+export const TopTextContainer = {
+  fontWeight: 'bold',
+  fontSize: '20px',
+  padding: '15px ',
+}
 export const accountNumberContainer = {
   cursor: 'pointer',
   display: 'flex',
   justifyContent: 'center',
   fontSize: '13px',
+  marginBottom: '10px',
 }
 export const balanceContainer = {
   cursor: 'pointer',
@@ -83,7 +88,7 @@ export const MyAccountButton = {
   position: 'relative',
   backgroundColor: '#ffffff',
   flex: 1,
-  padding: '38px 20px', // 세로 길이를 조절
+  padding: '30px 20px', // 세로 길이를 조절
   margin: '8px',
   borderRadius: '8px', // 모서리 라운딩
   border: '1px solid #ccc', // 테두리 없앰

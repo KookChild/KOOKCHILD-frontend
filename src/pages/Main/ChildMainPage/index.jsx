@@ -17,6 +17,7 @@ import {
   buttonsContainer,
   balanceContainer,
   childNameContainer,
+  TopTextContainer,
 } from './style'
 import { loadMyChallengesAPI } from '@apis'
 import {
@@ -137,11 +138,9 @@ export const ChildMainPage = () => {
         </div>
       </div> */}
 
-      <div style={textContainer}>
-        <div>
-          <span style={childNameContainer}>{child.accountName}</span>
-          <span>님의 자산</span>
-        </div>
+      <div style={TopTextContainer}>
+        <span style={childNameContainer}>{child.accountName}</span>
+        <span>님의 자산</span>
       </div>
 
       <div>
@@ -152,7 +151,7 @@ export const ChildMainPage = () => {
           >
             {child.accountNum}
           </div>
-          <br />
+
           <div style={balanceContainer}>{animatedDigits.join('')}원</div>
           <br />
           <div style={buttonsContainer}>
