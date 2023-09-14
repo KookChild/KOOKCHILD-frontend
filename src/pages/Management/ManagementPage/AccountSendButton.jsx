@@ -40,7 +40,7 @@ const commonSwalOptions = {
   },
 };
 
-const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, setHasChange}) => {
+const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
   
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
@@ -80,8 +80,11 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, set
               // 금액이 유효한지 확인
               if (!value || value <= 0) {
                 return '금액을 올바르게 입력하세요.';
-              }else{
-                
+              }
+
+              // balance 변수보다 큰 금액인지 확인
+              if (parseFloat(value) > parseFloat(balance)) {
+                return '현재 금액을 초과하여 송금할 수 없습니다.';
               }
             },
             icon: 'question',

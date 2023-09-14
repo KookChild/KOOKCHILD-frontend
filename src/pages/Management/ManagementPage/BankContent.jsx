@@ -12,7 +12,6 @@ import AccountSendButton from './AccountSendButton'
 import AccountDetailInfoButton from './AccountDetailInfoButton'
 import axios from 'axios';
 
-const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTY5NDQxMDYxMiwiZXhwIjoxNjk3MDAyNjEyfQ.REnYwc1UCodiCGsXPRNiTPq8cCUSBQP_On95izs_c54";
 
 const BankContentContainer = styled.div`
   width: 100%;
@@ -155,9 +154,8 @@ const InfoText = styled.p`
 
 
 const BankContent = ({ selectedPicture, disabled, setDisabled
-, childName, childId, accountNum, amount, notInAmount }) => {
+, childName, accountNum, spendingAmount, savingAmount, childId, balance }) => {
   const controls = useAnimation();
-  const [hasChange, setHasChange] = useState(false);
 
   
   return (
@@ -193,7 +191,7 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
               <AccountButtons>
                 <AccountDetailInfoButton/>
                 <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}
-                hasChange={hasChange} setHasChange={setHasChange}/>
+                balance={balance}/>
               </AccountButtons>
           </AccountDescription>
 
@@ -208,11 +206,11 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
               <MonthlyContent>
                 <MonthlyItem>
                     우리 아이 <br></br>이번 달 소비<br></br>
-                    {notInAmount}원
+                    {spendingAmount}원
                 </MonthlyItem>
                 <MonthlyItem>
                    우리 아이 <br></br>이번 달 저축<br></br>
-                     {amount}원
+                     {savingAmount}원
                     
                 </MonthlyItem>
               </MonthlyContent>

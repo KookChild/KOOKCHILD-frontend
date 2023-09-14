@@ -45,34 +45,45 @@ export const ManagementPage = () => {
   const [childName, setChildName] = useState('자녀8')
   const [disabled, setDisabled] = useState(true)
   const [accountNum, setAccountNum] = useState('')
-  const [childId, setChildId] = useState(22)
+  const [childDataArray, setChildDataArray] = useState([]);
+  const [childId, setChildId] = useState(0);
   const [childNamesArray, setChildNamesArray] = useState([]) // 배열 상태로 변경
   const [amount, setAmout] = useState(0)
-  const [notIntAmount, setNotInAmount] = useState(0)
+  const [spendingAmount, setSpendingAmount] = useState(0)
+  const [savingAmount, setSavingAmount] = useState(0);
+  const [balance, setBalance] = useState(0);
 
   const personContainerRef = useRef(null) // ref 생성
 
-  const handleImageClick = (event, imagePath, altText) => {
+  const handleImageClick = (event, imagePath, index) => {
+    console.log(childDataArray);
     const clickedImgSrc = imagePath
     console.log(imagePath)
+    let firstChildData = null;
     if (imagePath === './img/아이1.jpg') {
       setSelectedPicture(c1)
-      setChildId(22)
+      firstChildData = childDataArray[0];
+    
     } else if (imagePath === './img/아이2.jpg') {
       setSelectedPicture(c2)
-      setChildId(24)
+      firstChildData = childDataArray[1];
     } else if (imagePath === './img/아이3.jpg') {
       setSelectedPicture(c3)
-      setChildId(26)
+      firstChildData = childDataArray[2];
     }
-    setChildName(altText)
+    setChildName(childDataArray[index].name);
 
     if (disabled == true) {
       setDisabled(false)
     }
+    setChildName(firstChildData.name);
+    setChildId(firstChildData.id);
+    setAccountNum(firstChildData.accountNum);
+    setSpendingAmount(firstChildData.spendingAmount);
+    setSavingAmount(firstChildData.savingAmount);
 
     console.log(selectedPicture)
-    console.log(altText)
+
   }
 
   useEffect(() => {
@@ -85,8 +96,24 @@ export const ManagementPage = () => {
       .then(response => {
         // axios then 호출
         if (response.data) {
-          const ids = response.data.map(child => child.name)
-          setChildNamesArray(ids)
+
+          const parentBalance = response.data.balance;
+          setBalance(parentBalance);
+          
+
+          const names = response.data.list.map(child => child.name); // "list" 배열에서 "name" 속성 추출
+          setChildNamesArray(names);
+          
+          
+          const listData = response.data.list;
+          setChildDataArray(listData);
+          setChildName(response.data.list[0].name);
+          setAccountNum(response.data.list[0].accountNum);
+          setSpendingAmount(response.data.list[0].spendingAmount);
+          setSavingAmount(response.data.list[0].savingAmount);
+          setChildId(response.data.list[0].id);
+
+          console.log(childName+", "+accountNum);
         }
       })
       .catch(error => {
@@ -97,30 +124,9 @@ export const ManagementPage = () => {
       .finally(() => {})
   }, [])
 
-  useEffect(() => {
-    var url = '/management/' + childId
+ 
 
-    axios({
-      url: url,
-      method: 'get',
-    })
-      .then(response => {
-        // axios then 호출
-        if (response.data) {
-          console.log('아이 정보 확인')
-          setAccountNum(response.data.accountNum)
-          setAmout(response.data.amount)
-          setNotInAmount(response.data.notInAmount)
-        }
-      })
-      .catch(error => {
-        console.error('API 요청 실패:', error)
-        // 실패한 경우 에러 처리
-        // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
-      })
-      .finally(() => {})
-  }, [childId])
-
+ 
   const navigate = useNavigate()
 
   const handleHeaderImageClick = () => {
@@ -141,10 +147,11 @@ export const ManagementPage = () => {
           disabled={disabled}
           setDisabled={setDisabled}
           childName={childName}
-          childId={childId}
           accountNum={accountNum}
-          amount={amount}
-          notInAmount={notIntAmount}
+          spendingAmount={spendingAmount}
+          savingAmount={savingAmount}
+          childId = {childId}
+          balance ={balance}
         />
       </MainContent>
 

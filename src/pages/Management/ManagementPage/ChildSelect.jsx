@@ -55,12 +55,12 @@ const ChildSelect = ({ handleImageClick, childNamesArray }) => {
           <ImageContainer>
             <Image
               src={require(`./img/아이${index + 1}.jpg`)} // 이미지 경로를 동적으로 설정
-              alt={name}
+              alt='아이사진'
               onClick={(event) =>{
                 handleImageClick(
                   event,
                   `./img/아이${index + 1}.jpg`, // 이미지 경로를 동적으로 설정
-                  name
+                  index
                 )
               }
               }
