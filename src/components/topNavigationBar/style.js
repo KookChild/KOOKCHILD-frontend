@@ -12,10 +12,10 @@ export const HeaderContent = styled.div`
   margin-bottom: 20px;
 `
 
-export const HeaderImage = styled.img`
+export const HeaderImage = styled.div`
   width: 20px; /* 이미지 너비 조정 */
   height: 20px; /* 이미지 높이 조정 */
-  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
+  margin-right: 13px; /* 이미지와 title 간의 간격 설정 */
 `
 
 export const HeaderTitle = styled.h1`

@@ -22,6 +22,7 @@ import imgSrc2 from './img/ALL.jpeg'
 import imgSrc3 from './img/prefer.png'
 import { getParentMissionByChild } from '@apis'
 import { TopContainer } from '@components'
+import { TopNavigationBar } from '../../../components/TopNavigationBar'
 export const MissionParentViewPage = () => {
   const [missions, setMissions] = useState([])
   const [childs, setChilds] = useState([])
@@ -56,12 +57,7 @@ export const MissionParentViewPage = () => {
 
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent>
-          <HeaderImage src={imgSrc3} />
-          <HeaderTitle>자녀금융관리</HeaderTitle>
-        </HeaderContent>
-      </Header>
+      <TopNavigationBar title = {'미션, 챌린지 관리'} />
       <ChildListContainer>
         {/* 전체 보기 아이템 */}
         <ChildItemContainer
