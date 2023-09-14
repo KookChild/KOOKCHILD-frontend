@@ -44,15 +44,21 @@ export const ChallengeChildDetailPage = () => {
       // 만약 Promise리턴을 받으면,
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
-        await childConfirmAPI(params.id)
-          .then(
-            Swal.fire(
-              '참여신청 완료',
-              '부모님의 승인요청을 기다려주세요',
-              'success',
-            ),
-          )
-          .then(navigate('/child/challenge'))
+        if (challengeType == 0) {
+          await childConfirmAPI(params.id)
+            .then(
+              Swal.fire(
+                '참여신청 완료',
+                '부모님의 승인요청을 기다려주세요',
+                'success',
+              ),
+            )
+            .then(navigate('/child/challenge'))
+        } else {
+          await childConfirmAPI(params.id)
+            .then(Swal.fire('참여신청 완료', '미션을 진행해주세요', 'success'))
+            .then(navigate('/child/challenge'))
+        }
       }
     })
   }
