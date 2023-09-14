@@ -1,4 +1,5 @@
 import './App.less'
+import './index.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import GlobalStyle from './GlobalStyle'
@@ -39,7 +40,10 @@ function Content() {
           element={<MissionDetailPage />}
         />
         <Route path="/mission/parentview" element={<MissionParentViewPage />} />
-        <Route path="child/mission/childview" element={<MissionChildViewPage />} />
+        <Route
+          path="child/mission/childview"
+          element={<MissionChildViewPage />}
+        />
         <Route
           path="/challenge/child/detail/:id"
           // path="/challenge/child/detail"

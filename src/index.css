@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'sdLi'; /* Apple SD 산돌고딕 Neo Light */
+  src: url('./assets/font/AppleSDGothicNeoR.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sdMe'; /* Apple SD 산돌고딕 Neo Medium8 */
+  src: url('./assets/font/AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sdEB'; /* Apple SD 산돌고딕 Neo Extra Bold*/
+  src: url('./assets/font/AppleSDGothicNeoEB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sdBo'; /* Apple SD 산돌고딕 Neo Bold*/
+  src: url('./assets/font/AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sdSb'; /* Apple SD 산돌고딕 Neo Semi Bold*/
+  src: url('./assets/font/AppleSDGothicNeoSB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kbFont';
+  src: url('./assets/font/SUITE-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kbFontLight';
+  src: url('./assets/font/NanumSquareNeo-aLt.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'kbFontRegular';
+  src: url('./assets/font/NanumSquareNeo-bRg.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kbFontBold';
+  src: url('./assets/font/NanumSquareNeo-cBd.ttf') format('truetype');
+}
+
+:root {
+  --font-nanumfont: 'kbFont', 'kbFontLight', 'kbFontRegular', 'kbFontBold',
+    'sdLi', 'sdMe', 'sdEB', 'sdBo', 'sdSb';
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-nanumfont);
+}

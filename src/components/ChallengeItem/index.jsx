@@ -5,10 +5,29 @@ import {
   ChallengeProgress,
   ChallengeInfo,
 } from './style' // style.js에서 스타일을 가져옵니다.
+import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { PRIMARY } from '@utility/COLORS'
+import { useEffect, useState } from 'react'
+import { checkChallengeIsProceedingAPI } from '@apis'
 export const ChallengeItem = ({ challenge }) => {
-  const { id, title, image, progress } = challenge
+  const [challengeType, setChallengeType] = useState()
+  const { id, title, image } = challenge
+  const params = useParams()
   const navigate = useNavigate()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const challengeTypeData = await checkChallengeIsProceedingAPI(params.id)
+        setChallengeType(challengeTypeData)
+        console.log(challengeTypeData)
+      } catch (error) {
+        console.error('Error fetching challenge detail:', error)
+      }
+    }
+
+    fetchData()
+  }, [params.id])
   return (
     <div
       style={ChallengeContainer}
@@ -39,7 +58,7 @@ export const ChallengeItem = ({ challenge }) => {
                 // width: `${progress}%`,
                 width: '50%',
                 height: '100%',
-                backgroundColor: 'lightyellow',
+                backgroundColor: PRIMARY,
               }}
             ></div>
           </div>
