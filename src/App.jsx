@@ -21,6 +21,7 @@ import {
   MissionDetailPage,
   MissionParentViewPage,
   RegisterPage,
+  FinanceProductPage,
 } from '@pages'
 
 function Content() {
@@ -58,6 +59,7 @@ function Content() {
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail" element={<GraphDetailPage />} />
         <Route path="/management" element={<ManagementPage />} />
+        <Route path="/financeproduct" element={<FinanceProductPage />} />
       </Routes>
       {showNaviBar && <ChildNaviBar />}
     </>
