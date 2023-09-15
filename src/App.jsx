@@ -23,8 +23,7 @@ import {
   MissionParentViewPage,
   RegisterPage,
   FinanceProductPage,
-  RewardPage
-  
+  RewardPage,
 } from '@pages'
 import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
 function Content() {
@@ -67,7 +66,10 @@ function Content() {
         <Route path="/graph/detail" element={<GraphDetailPage />} />
         <Route path="/management" element={<ManagementPage />} />
         <Route path="/financeproduct" element={<FinanceProductPage />} />
-        <Route path="/financeproduct/register" element={<FinanceProductRegister />} />
+        <Route
+          path="/financeproduct/register"
+          element={<FinanceProductRegister />}
+        />
         <Route path="/child/reward" element={<RewardPage />} />
       </Routes>
       {showNaviBar && <ChildNaviBar />}
