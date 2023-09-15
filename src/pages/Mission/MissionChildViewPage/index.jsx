@@ -42,7 +42,7 @@ export const MissionChildViewPage = () => {
   return (
     <TopContainer>
       <Header>
-        <HeaderContent onBackClick={() => navigate('/path-to-go-back')}>
+        <HeaderContent onBackClick={() => navigate(-1)}>
           <HeaderImage src={prefer} />
           <HeaderTitle>미션상세페이지</HeaderTitle>
         </HeaderContent>
