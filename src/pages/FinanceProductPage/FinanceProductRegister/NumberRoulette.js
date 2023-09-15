@@ -2,43 +2,57 @@ import React, { useEffect, useState } from 'react';
 
 const NumberRoulette = ({ initialNumber }) => {
   const [animatedDigits, setAnimatedDigits] = useState(String(initialNumber).split(''));
-
+  
   useEffect(() => {
     if (initialNumber === null) return;
     
-    let balanceStr = String(initialNumber);
-    let digitsArray = balanceStr.split('');
+    const balanceStr = String(initialNumber);
+    const digitsArray = balanceStr.split('');
+
+    const animations = [];
 
     if (animatedDigits.length !== balanceStr.length) {
-      let lengthDifference = balanceStr.length - animatedDigits.length;
+      setAnimatedDigits(prevDigits => {
+        let lengthDifference = balanceStr.length - prevDigits.length;
 
-      if (lengthDifference > 0) {
-        let newZeros = Array.from({ length: lengthDifference }, () => '0');
-        setAnimatedDigits([...newZeros, ...animatedDigits]);
-      } else if (lengthDifference < 0) {
-        setAnimatedDigits(animatedDigits.slice(-lengthDifference));
-      }
+        if (lengthDifference > 0) {
+          let newZeros = Array.from({ length: lengthDifference }, () => '0');
+          return [...newZeros, ...prevDigits];
+        } else if (lengthDifference < 0) {
+          return prevDigits.slice(-lengthDifference);
+        }
+        return prevDigits;
+      });
     }
-
-    let animatedDigitsTemp = [...animatedDigits];
 
     digitsArray.forEach((digit, index) => {
       let animation = setInterval(() => {
-        const randomDigit = Math.floor(Math.random() * 10);
-        animatedDigitsTemp[index] = randomDigit.toString();
-        setAnimatedDigits([...animatedDigitsTemp]);
+        setAnimatedDigits(prevDigits => {
+          const updatedDigits = [...prevDigits];
+          const randomDigit = Math.floor(Math.random() * 10);
+          updatedDigits[index] = randomDigit.toString();
+          return updatedDigits;
+        });
       }, 25);
+
+      animations.push(animation);
 
       setTimeout(() => {
         clearInterval(animation);
-        animatedDigitsTemp[index] = digit;
-        setAnimatedDigits([...animatedDigitsTemp]);
+        setAnimatedDigits(prevDigits => {
+          const updatedDigits = [...prevDigits];
+          updatedDigits[index] = digit;
+          return updatedDigits;
+        });
       }, 200 + index * 300);
     });
 
+    return () => {
+      animations.forEach(anim => clearInterval(anim));
+    };
+
   }, [initialNumber]);
 
-  // Join the digits and convert them to a number, then to a locale string.
   const localizedNumber = parseInt(animatedDigits.join(''), 10).toLocaleString();
   
   return <span>{localizedNumber}</span>;

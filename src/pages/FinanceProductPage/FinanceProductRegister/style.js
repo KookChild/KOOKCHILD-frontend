@@ -158,9 +158,10 @@ export const highlightText = {
 };
 
 export const explainText = {
+  fontFamily: 'kbFontBold',
   fontSize: '16px',
   display: 'block',
-  marginBottom: '4px',
+  marginBottom: '8px',
   marginLeft: '10px',
 };
 
@@ -217,6 +218,7 @@ export const FinanceProductButton = {
 
 // 계산기 버튼
 export const calculateInterestButton = {
+  fontFamily: 'kbFontRegular',
   backgroundColor: 'lightgrey', // 예를 들어 녹색
   color: 'black', // 글자 색은 흰색
   padding: '14px 20px', // 패딩

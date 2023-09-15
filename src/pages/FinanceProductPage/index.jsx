@@ -32,10 +32,10 @@ export const FinanceProductPage = () => {
                                 <span style={textLine1Icon}>&gt;</span>
                             </span>
                             <span style={textLine2}>KB국민은행 최고
-                                <span style={highlightText}> 연 2.3%</span><br />
+                                <span style={highlightText}> 연 2.5%</span><br />
                             </span>
                             <span style={textLine2}>부모님 지급 금리 최고
-                                <span style={highlightText}> 연 20% 가능</span>
+                                <span style={highlightText}> 연 30% 가능</span>
                             </span>
                         </div>
                         <img style={buttonImage} src="./characterImage/rabbit.png" alt="character" />
@@ -51,7 +51,7 @@ export const FinanceProductPage = () => {
                                 <span style={highlightText}> 연 3.0%</span><br />
                             </span>
                             <span style={textLine2}>부모님 지급 금리 최고
-                                <span style={highlightText}> 연 25% 가능</span>
+                                <span style={highlightText}> 연 20% 가능</span>
                             </span>
                         </div>
                         <img style={buttonImage} src="./characterImage/elegator.png" alt="character" />
@@ -67,7 +67,7 @@ export const FinanceProductPage = () => {
                                 <span style={highlightText}> 연 4.0%</span><br />
                             </span>
                             <span style={textLine2}>부모님 지급 금리 최고
-                                <span style={highlightText}> 연 30% 가능</span>
+                                <span style={highlightText}> 연 20% 가능</span>
                             </span>
                         </div>
                         <img style={buttonImage2} src="./characterImage/bear.png" alt="character" />

@@ -70,7 +70,7 @@ export const FinanceProductRegister = () => {
                 <div style={horizontalLine}></div>
                 <div style={flexContainer}>
                     <span style={textLine2}>부모님 지급 가능 최대 금리</span>
-                    <span style={textLine2}>20.0%</span>
+                    <span style={textLine2}>30.0%</span>
                 </div>
                 <div style={horizontalLine}></div>
                 <div style={flexContainer}>
@@ -87,7 +87,7 @@ export const FinanceProductRegister = () => {
 
             <div style={buttonSection}>
                 <div style={CalculateInterest}>
-                    <span style={explainText}>월 지급 이자 계산하기</span>
+                    <span style={explainText}>월 지급 이자 용돈 계산하기</span>
                     <div style={SetInterestContainer}>
                         <div style={flexContainer}>
                             <span style={textLine3}>은행 최고 금리</span>
