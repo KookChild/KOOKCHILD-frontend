@@ -24,7 +24,7 @@ import {
   MissionReward,
   WaitingReward
 } from './style'
-import imgSrc from './img/Luna.png'
+import imgSrc from '../../Management/ManagementPage/img/아이1.jpg'
 import prefer from './img/prefer.png'
 import { MissionInfo } from '@components'
 import {
