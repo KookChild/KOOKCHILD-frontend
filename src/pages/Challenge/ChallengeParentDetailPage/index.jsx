@@ -11,7 +11,7 @@ import {
   ChallengeTitle,
   ChallengeConfirmButton,
 } from './style'
-import { selectedChild } from '../../../recoil'
+import { selectedChild } from '@recoil'
 import { TopNavigationBar } from '@components'
 import { PRIMARY } from '@utility/COLORS'
 import { useState, useEffect } from 'react'
