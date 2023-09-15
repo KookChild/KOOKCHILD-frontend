@@ -19,7 +19,7 @@ export const HeaderImage = styled.div`
 `
 
 export const HeaderTitle = styled.h1`
-  font-size: 18px; /* title의 글꼴 크기 조정 */
+  font-size: 20px; /* title의 글꼴 크기 조정 */
   font-weight: bold; /* title 텍스트 굵게 설정 */
   margin: 0; /* title의 margin 제거 */
 `

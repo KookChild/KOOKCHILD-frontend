@@ -23,9 +23,10 @@ import {
   MissionParentViewPage,
   RegisterPage,
   FinanceProductPage,
+  RewardPage
+  
 } from '@pages'
 import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
-
 function Content() {
   const location = useLocation()
   const showNaviBar = location.pathname.startsWith('/child')
@@ -67,7 +68,7 @@ function Content() {
         <Route path="/management" element={<ManagementPage />} />
         <Route path="/financeproduct" element={<FinanceProductPage />} />
         <Route path="/financeproduct/register" element={<FinanceProductRegister />} />
-
+        <Route path="/child/reward" element={<RewardPage />} />
       </Routes>
       {showNaviBar && <ChildNaviBar />}
     </>
