@@ -15,23 +15,25 @@ import {
   HeaderImage,
   HeaderTitle,
   RadioButtonGroup,
-  RadioLabel
+  RadioLabel,
 } from './style'
 import imgSrc from './img/Bear.png'
 import imgSrc2 from './img/ALL.jpeg'
 import imgSrc3 from './img/prefer.png'
 import { getParentMissionByChild } from '@apis'
 import { TopContainer } from '@components'
+import { selectedChild } from '../../../recoil'
 import { TopNavigationBar } from '../../../components/TopNavigationBar'
+import { useSetRecoilState } from 'recoil'
 export const MissionParentViewPage = () => {
+  const setSelectedChildId = useSetRecoilState(selectedChild)
   const [missions, setMissions] = useState([])
   const [childs, setChilds] = useState([])
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const navigate = useNavigate()
   const [selectedChildIndex, setSelectedChildIndex] = useState(0)
-  const [missionFilter, setMissionFilter] = useState('ongoing');
-  const parent = localStorage.getItem('parent');
-
+  const [missionFilter, setMissionFilter] = useState('ongoing')
+  const parent = localStorage.getItem('parent')
 
   const handleMissionClick = missionId => {
     navigate(`/mission/detail/${missionId}`)
@@ -44,20 +46,23 @@ export const MissionParentViewPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getParentMissionByChild(selectedChildIndex, missionFilter);
-        setMissions(response.missionLists);
-        setChilds(response.childLists);
+        const response = await getParentMissionByChild(
+          selectedChildIndex,
+          missionFilter,
+        )
+        setMissions(response.missionLists)
+        setChilds(response.childLists)
       } catch (error) {
-        console.error('Error fetching the data:', error);
+        console.error('Error fetching the data:', error)
       }
     }
 
-    fetchData();
-}, [selectedChildIndex, missionFilter]);
+    fetchData()
+  }, [selectedChildIndex, missionFilter])
 
   return (
     <TopContainer>
-      <TopNavigationBar title = {'미션, 챌린지 관리'} />
+      <TopNavigationBar title={'미션, 챌린지 관리'} />
       <ChildListContainer>
         {/* 전체 보기 아이템 */}
         <ChildItemContainer

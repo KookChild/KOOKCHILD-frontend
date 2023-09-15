@@ -7,14 +7,7 @@ if (localStorage.getItem('token')) {
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`
 }
-// export function testAPI() {
-//   return axios
-//     .get('/test/hello')
-//     .then(response => response.data)
-//     .catch(error => {
-//       throw error
-//     })
-// }
+
 export function loadAllChallengesAPI() {
   return axios
     .get('/challenge?state=all')
@@ -42,35 +35,34 @@ export function loadMyChallengesAPI() {
     })
 }
 
-export function loadChallengeDetailAPI(challenge_id) {
+export function loadChallengeDetailAPI(challengeId) {
   return axios
-    .get(`/challenge/detail/${challenge_id}`)
+    .get(`/challenge/detail/${challengeId}`)
     .then(response => response.data)
     .catch(error => {
       throw error
     })
 }
-export function childConfirmAPI(challenge_id) {
+export function childConfirmAPI(challengeId) {
   return axios
-    .post(`/challenge/detail/${challenge_id}/childConfirm`, {
-      headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
-      },
-    })
+    .post(`/challenge/detail/${challengeId}/childConfirm`)
     .then(response => response.data)
     .catch(error => {
       throw error
     })
 }
-export function checkChallengeIsProceedingAPI(challenge_id) {
+
+export function parentConfirmAPI(challengeId, childId, parentReward) {
+  return axios.post(`/challenge/detail/${challengeId}/parentConfirm`, {
+    data: {
+      childId: childId,
+      parentReward: parentReward,
+    },
+  })
+}
+export function checkChallengeIsProceedingAPI(challengeId) {
   return axios
-    .get(`/challenge/check/${challenge_id}`, {
-      headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
-      },
-    })
+    .get(`/challenge/check/${challengeId}`)
     .then(response => response.data)
     .catch(error => {
       throw error

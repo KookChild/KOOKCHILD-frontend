@@ -54,3 +54,17 @@ export const ParentRewardImgWrapper = styled.div`
   display: flex;
   justify-content: end;
 `
+export const ChallengeConfirmButton = styled.div`
+  background-color: #fece1b;
+  padding: 15px;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 10vh;
+  width: 100%;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  box-sizing: border-box;
+
+  cursor: pointer;
+`

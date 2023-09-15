@@ -1,2 +1,1 @@
-// export * from './'
-r
+export * from './child'
