@@ -3,6 +3,7 @@ import { TopContainer } from "../../components/TopContainer";
 import { TopNavigationBar } from "../../components/TopNavigationBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { PRIMARY } from '@utility/COLORS'
 
 const MainContent = styled.div`
     height : 100%
@@ -42,7 +43,7 @@ const MissionContainer = styled(Container)`
   li {
     margin-bottom: 5px;
   }
-  margin: 20px 0px;
+  margin: 6px 0px;
 `;
 
 const SeparateContainer = styled.div`
@@ -56,7 +57,7 @@ const SeparateContainer = styled.div`
   padding : 0px;
 
   flex: 1;
-  margin: 15px 0px;
+  margin: -4px 0px;
   border-radius: 12px;
   opacity: 1;
 `;
@@ -88,15 +89,15 @@ const Balance = styled.div`
   padding : 5px 0px;
 `;
 
-// 버튼 스타일
 const CustomButton = styled.button`
-  background: #84888B 0% 0% no-repeat padding-box;
-  color: #fff; /* 흰색 텍스트 색상 */
+  background: ${(props) => props.backgroundColor || '#84888B'};
+  color: ${(props)=>props.fontColor};
   border-radius: 9px;
-  padding: 10px 20px; /* 필요한 만큼 패딩 조정 */
-  border: none; /* 기본 버튼 테두리 제거 */
-  margin: 2px 0px; /* 버튼 간격 설정 */
-  width : 110px
+  padding: 10px 20px;
+  border: none;
+  margin: 2px 0px;
+  width: 110px;
+  font-family:sdMe;
 `;
 
 
@@ -194,8 +195,8 @@ export const RewardPage = () => {
             </UserInfo>
           </LeftComponent>
           <RightComponent>
-            <CustomButton>보상내역</CustomButton>
-            <CustomButton>출금하기</CustomButton>
+            <CustomButton backgroundColor="#84888B" fontColor="#FFFFFF">보상내역</CustomButton>
+            <CustomButton backgroundColor={PRIMARY} fontColor="#010812">출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>
         <SeparateContainer>
