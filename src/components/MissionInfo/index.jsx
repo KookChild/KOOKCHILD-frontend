@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MissionInfoContainer, StyledInput, StyledTextArea, Label } from './style';
+import { MissionInfoContainer, StyledInput, StyledTextArea, MissionDetail, MissionHeader, MissionBody } from './style';
+import yourImagePathHere from '../../pages/Mission/MissionParentViewPage/img/ALL.jpeg'
 
-
-export const MissionInfo = ({ title: initialTitle, content: initialContent, reward: initialAmount, endDate: initialDueDate, isSuccess, isParent, completedTime, readOnly, onUpdate }) => {
+export const MissionInfo = ({ title: initialTitle, content: initialContent, reward: initialAmount, endDate: initialDueDate, readOnly, onUpdate }) => {
     const [title, setTitle] = useState(initialTitle);
     const [content, setContent] = useState(initialContent);
     const [reward, setAmount] = useState(initialAmount);
@@ -38,6 +38,16 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
         updateField('endDate', newDate);
     }
 
+    const formatDateToDisplay = (isoDate) => {
+        const date = new Date(isoDate);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // 월은 0부터 시작하므로 +1 필요
+        const day = date.getDate();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분까지`;
+    };
+
     const extractDate = (dateTimeString) => {
         if (!dateTimeString) return "";
         return dateTimeString.split('T')[0];
@@ -45,30 +55,38 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
 
     return (
         <MissionInfoContainer>
-    <Label>
-        미션 제목
-        <StyledInput type="text" value={title} onChange={handleTitleChange} readOnly={readOnly} />
-    </Label>
-    <Label>
-        미션 내용
-        <StyledTextArea value={content} onChange={handleContentChange} readOnly={readOnly}></StyledTextArea>
-    </Label>
-
-    <Label>
-        미션 금액
-        <StyledInput type="text" value={reward} onChange={handleRewardChange} readOnly={readOnly} />
-    </Label>
-    <Label>
-        마감 기한
-        <StyledInput type="date" value={extractDate(endDate)}  onChange={handleDateChange} readOnly={readOnly} />
-    </Label>
-    {isSuccess && !isParent && (
-        <Label>
-            완료 시간
-            <StyledInput type="text" value={completedTime} readOnly />
-        </Label>
-    )}
-</MissionInfoContainer>
-
+            {!readOnly ? (
+                <>
+                    <MissionDetail>
+                        미션 제목
+                        <StyledInput type="text" value={title} onChange={handleTitleChange} readOnly={readOnly} />
+                    </MissionDetail>
+                    <MissionDetail>
+                        달성 기한
+                        <StyledInput type="date" value={extractDate(endDate)} onChange={handleDateChange} readOnly={readOnly} />
+                    </MissionDetail>
+                    <MissionDetail>
+                        미션 내용
+                        <StyledTextArea value={content} onChange={handleContentChange} readOnly={readOnly}></StyledTextArea>
+                    </MissionDetail>
+                    <MissionDetail>
+                        미션 금액
+                        <StyledInput type="text" value={reward} onChange={handleRewardChange} readOnly={readOnly} />
+                    </MissionDetail>
+                </>
+            ) : (
+                <>
+                    <MissionDetail>
+                        <MissionHeader>달성 기한</MissionHeader>
+                        <MissionBody>{formatDateToDisplay(endDate)}</MissionBody>
+                    </MissionDetail>
+                    <MissionDetail>
+                        <MissionHeader>미션 상세</MissionHeader>
+                        <MissionBody>{content}</MissionBody>
+                        <img src={yourImagePathHere} alt="미션 이미지" />
+                    </MissionDetail>
+                </>
+            )}
+        </MissionInfoContainer>
     );
-};
+}

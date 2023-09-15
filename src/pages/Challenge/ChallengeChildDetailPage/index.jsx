@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import { useParams } from 'react-router-dom'
 import {
   ChallengeTitle,
   ChallengeContent,
@@ -9,7 +8,7 @@ import {
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { TopNavigationBar } from '@components'
 import {
   loadChallengeDetailAPI,
@@ -56,7 +55,9 @@ export const ChallengeChildDetailPage = () => {
             .then(navigate('/child/challenge'))
         } else {
           await childConfirmAPI(params.id)
-            .then(Swal.fire('참여신청 완료', '미션을 진행해주세요', 'success'))
+            .then(
+              Swal.fire('참여신청 완료', '챌린지를 진행해주세요', 'success'),
+            )
             .then(navigate('/child/challenge'))
         }
       }

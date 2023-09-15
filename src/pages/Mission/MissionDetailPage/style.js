@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { YELLOW, PRIMARY, GRAY, DARK_GRAY, MEDIUM_GRAY } from '@utility/COLORS'
 
 export const Header = styled.div`
   padding: 10px;
@@ -11,6 +12,26 @@ export const HeaderContent = styled.div`
   justify-content: flex-start;
   margin-bottom: 20px;
   cursor: pointer;
+  .checkIcon {
+    width: 30px;
+    height: 30px;
+    background: ${props => {
+        if (props.parentConfirm) {
+            return '#98C37F';
+        } else if (props.childConfirm) {
+            return YELLOW;
+        } else {
+            return '#84888B';
+        }
+    }} 0% 0% no-repeat padding-box;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: inset 0px 1px 3px #00000029;
+    border-radius: 15px;
+    color: white;
+    opacity: 1;
+}
 `
 
 export const HeaderImage = styled.img`
@@ -32,12 +53,27 @@ export const AreaContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
-    margin-top: 30px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;
+
+export const AreaFooterContainer = styled.div`
+    width: 350px;
+    padding-bottom : 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    margin-top: 50px;
+    z-index: 1;
 
     &:last-child {
         margin-bottom: 0;
     }
 `;
+
 
 export const ButtonsContainer = styled.div`
     display: flex;
@@ -57,6 +93,7 @@ export const DeleteMissionButton = styled.button`
     background-color: tomato;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
 `;
 
 
@@ -103,11 +140,11 @@ export const MissionDescription = styled.p`
 `;
 
 export const EditButton = styled.button`
-    width: 102px;
-    height: 37px;
     background-color: #767676;
+    width: 67px;
+    height: 22px;
+    color: white;
     border: none;
-    margin-right: 10px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -118,46 +155,48 @@ export const EditButton = styled.button`
 `;
 
 export const SuccessButton = styled.button`
-    width: 102px;
-    height: 37px;
-    background-color: #98C37F;
+    width: 350px;
+    height: 50px;
+    background: ${YELLOW};
+    border-radius: 6px;
     border: none;
+    color: black;
+    font-size: 18px;
     cursor: pointer;
-    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: rgba(152, 195, 127, 0.8);
+        background-color: ${PRIMARY};
     }
     &:disabled {
         cursor: not-allowed;
-        background-color: #98C37F;
-
-        &:hover {
-            background-color: #98C37F;
-        }
+        background-color: ${GRAY};
     }
 `;
+
 export const CompleteButton = styled.button`
-    width: 102px;
-    height: 37px;
-    background-color: #767676;
-    color: white;
+    margin-top:5px;
+    width: 350px;
+    height: 50px;
+    background: ${({ isChild }) => (isChild ? "#FFBC00" : "#4D6DCC")};
+    border-radius: 6px;
     border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-size: 18px;
+    cursor: ${({ isChild }) => (isChild ? "default" : "pointer")};
+    opacity: ${({ isChild }) => (isChild ? 0.7 : 1)};
+    pointer-events: ${({ isChild }) => (isChild ? "none" : "auto")};
+    outline: none;
+    transition: 0.3s;
 
     &:hover {
-        background-color: #565656;
+        background: ${({ isChild }) => (isChild ? "#FFBC00" : "#3B5BA8")};
     }
-    &:disabled {
-        cursor: not-allowed;
-        background-color: #767676;
-
-        &:hover {
-            background-color: #767676;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
+
 
 export const LogoutButton = styled.button`
     width: 67px;
@@ -166,4 +205,31 @@ export const LogoutButton = styled.button`
     border: none;
     cursor: pointer;
     background-color: #f0f0f0;
+`
+
+export const MissionReward = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    .reward{
+        color: ${PRIMARY};
+        font-size: 25px;
+        font-family: sdMe;
+    }
+    .moneyIcon{
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        box-shadow: inset 0px 1px 3px #00000029;
+        border-radius: 15px;
+        color: white;
+        opacity: 1;
+        color: ${PRIMARY};
+    }
+
+`
+export const WaitingReward = styled.div`
+margin-bottom: 5px;
+color; #84888B;
 `
