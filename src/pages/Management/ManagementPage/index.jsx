@@ -62,7 +62,10 @@ export const ManagementPage = () => {
 
   useEffect(() => {
 
-      loadChildDataAPI()
+     axios({
+      url: '/management/childName',
+      method: 'get'
+    })
       .then(response => {
         // axios then 호출
         console.log(response.data)
@@ -73,7 +76,7 @@ export const ManagementPage = () => {
           
 
           const names = response.data.list.map(child => child.name); // "list" 배열에서 "name" 속성 추출
-          setChildNamesArray(names);
+          setChildNamesArray(prev => names);
           
           
           const listData = response.data.list;
