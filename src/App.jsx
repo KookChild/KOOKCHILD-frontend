@@ -24,6 +24,10 @@ import {
   RegisterPage,
   FinanceProductPage,
   RewardPage,
+  QuizDetailPage,
+  QuizExplanationPage,
+  QuizHistoryDetailPage,
+  QuizHistoryViewPage
 } from '@pages'
 import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
 function Content() {
@@ -61,6 +65,10 @@ function Content() {
           element={<ChallengeParentDetailPage />}
         />
         <Route path="/child/challenge" element={<ChallengeViewPage />} />
+        <Route path="/quiz/:quizId" element={<QuizDetailPage />}/>
+        <Route path="/quiz/historyview" element={<QuizHistoryViewPage/>}/>
+        <Route path="/quiz/detail/:id" element={<QuizHistoryDetailPage/>}/>
+        <Route path="/quiz/:id/explanation" element={<QuizExplanationPage/>}/>
         <Route path="/complete" element={<CompletePage />} />
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail" element={<GraphDetailPage />} />
