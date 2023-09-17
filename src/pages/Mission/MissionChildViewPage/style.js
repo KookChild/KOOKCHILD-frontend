@@ -1,29 +1,5 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
-  padding: 10px;
-  text-align: center;
-`
-
-export const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-  cursor: pointer;
-`
-
-export const HeaderImage = styled.img`
-  width: 20px; /* 이미지 너비 조정 */
-  height: 20px; /* 이미지 높이 조정 */
-  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
-`
-
-export const HeaderTitle = styled.h1`
-  font-size: 18px; /* title의 글꼴 크기 조정 */
-  font-weight: bold; /* title 텍스트 굵게 설정 */
-  margin: 0; /* title의 margin 제거 */
-`
 export const MenuContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -56,7 +32,6 @@ export const Dropdown = styled.select`
     padding: 5px 10px;
 `;
 
-
 export const MissionListContainer = styled.div`
   overflow-y: auto;
   margin-top: 10px;
@@ -78,7 +53,18 @@ export const MissionItemContainer = styled.div`
   width: 390px;
   height: 115px;
   margin-bottom: 10px;
-  background-color: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'};
+  background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;
+`;
+
+export const MessageContainer = styled.div`
+  width: 340px;
+  height: 76.66px;
+  background: #E5E5E5;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8E8E8E;
 `;
