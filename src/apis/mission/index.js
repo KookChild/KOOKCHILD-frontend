@@ -71,3 +71,19 @@ export const confirmMissionSuccess = async (missionId) => {
     }
 };
 
+export const getRecommendedMission = async () => {
+    const response = await axios.get('/mission/recommend');
+    return response.data;
+};
+
+export const receiveMissionReward = async (missionId) => {
+    try {
+        const response = await axios.post('/mission/receive', {
+            missionId: missionId
+        });
+        return { data: response.data, isError: false };
+    } catch (error) {
+        console.error("Server Response:", error.response.data);
+        return { data: error.response.data, isError: true };
+    }
+};
