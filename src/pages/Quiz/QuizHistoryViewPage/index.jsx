@@ -18,7 +18,7 @@ import { AiFillDollarCircle } from 'react-icons/ai';
 export const QuizHistoryViewPage = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [historyList, setHistoryList] = useState([]);
-  const navigate = useNavigate(); // useNavigate 훅 초기화
+  const navigate = useNavigate();
 
   const formatDate = (dateString) => {
     const [year, month, day] = dateString.split('T')[0].split('-');
@@ -34,7 +34,6 @@ export const QuizHistoryViewPage = () => {
     fetchHistory();
   }, [searchKeyword]);
 
-  // 상세 페이지로 이동하는 함수
   const goToDetailPage = (quizId) => {
     navigate(`/quiz/detail/${quizId}`);
   };

@@ -12,6 +12,42 @@ const slideUp = keyframes`
   }
 `;
 
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const LoadingContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+position: fixed;  // 이 부분 추가
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+flex-direction: column;
+img{
+  margin-left: 20px;
+}
+`;
+
+export const Spinner = styled.div`
+  margin: auto;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid ${PRIMARY};
+  width: 40px;
+  height: 40px;
+  animation: ${spin} 1s linear infinite;
+`;
+
+export const LoadingText = styled.p`
+  width: 300px;
+  margin-top: 20px;
+  font-size: 1.2em;
+  text-align: center;
+`;
+
 
 export const ContentContainer = styled.div`
   max-height: 600px;
@@ -24,7 +60,7 @@ export const AreaTitleContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 120px;
 
     padding: 15px;
     background-color: #fff;
@@ -37,7 +73,7 @@ export const AreaTitleContainer = styled.div`
 
 export const StyledTitle = styled.h1`
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
 `;
 
@@ -49,7 +85,6 @@ export const StyledLevel = styled.div`
   width: 55px;
   text-align: center;
 `
-
 
 export const AreaContainer = styled.div`
 `;
@@ -107,7 +142,6 @@ export const DescriptionBox = styled.div`
   opacity: 0;
   animation: ${slideUp} 1s forwards;
 `;
-
 
 export const Description = styled.div`
     font-size: 16px;
