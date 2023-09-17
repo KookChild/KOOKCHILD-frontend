@@ -78,7 +78,18 @@ export const MissionItemContainer = styled.div`
   width: 390px;
   height: 115px;
   margin-bottom: 10px;
-  background-color: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'};
+  background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;
+`;
+
+export const MessageContainer = styled.div`
+  width: 340px;
+  height: 76.66px;
+  background: #E5E5E5;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8E8E8E;
 `;

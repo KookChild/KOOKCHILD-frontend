@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MissionItem } from '@components'
+import { TopContainer, TopNavigationBar, MissionItem } from '@components'
 import { getMissionsHistory } from '@apis'
 import {
-  Header,
-  HeaderContent,
-  HeaderImage,
-  HeaderTitle,
   MenuContainer,
   Dropdown,
   MissionItemContainer,
   MissionListContainer,
   MissionHeaderContainer,
+  MessageContainer
 } from './style'
-import prefer from './img/prefer.png'
-import { TopContainer } from '@components'
 
 export const MissionChildHistoryViewPage = () => {
   const [successMission, setSuccessMissions] = useState([])
@@ -40,12 +35,7 @@ export const MissionChildHistoryViewPage = () => {
 
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent onClick={() => navigate(-1)}>
-          <HeaderImage src={prefer} />
-          <HeaderTitle>미션히스토리페이지</HeaderTitle>
-        </HeaderContent>
-      </Header>
+      <TopNavigationBar title={"미션 히스토리"}/>
       <MenuContainer>
         <h2>미션</h2>
       </MenuContainer>
@@ -57,26 +47,26 @@ export const MissionChildHistoryViewPage = () => {
       </Dropdown>
       </MenuContainer>
       <MissionListContainer>
-        {successMission.map((mission, index) => (
+      {successMission.length > 0 ? (
+        successMission.map((mission, index) => (
           <MissionItemContainer
-            isEven={0}
+            even={0}
             onClick={() => handleMissionClick(mission.id)}
             key={index}
           >
             <MissionItem
-              isEven={0}
+              even={0}
               missionTitle={mission.title}
               missionReward={`${mission.reward}원`}
-              missionDate={
-                mission.deadline !== 'null-null'
-                  ? mission.deadline
-                  : '기한 없음'
-              }
+              missionDate={mission.deadline}
               parentConfirm={mission.parentConfirm}
               childConfirm={mission.childConfirm}
             />
           </MissionItemContainer>
-        ))}
+          ))
+          ) : (
+            <MessageContainer>현재 완료된 미션이 없습니다</MessageContainer>
+          )}
       </MissionListContainer>
     </TopContainer>
   )
