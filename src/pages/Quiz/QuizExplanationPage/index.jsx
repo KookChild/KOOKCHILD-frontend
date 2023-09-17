@@ -10,24 +10,51 @@ import {
   StyledButton,
   ContentContainer,
   Description,
-  DescriptionBox
+  DescriptionBox,
+  LoadingContainer,
+  LoadingText,
+  Spinner
 } from './style';
 import { getQuizExplanation } from '@apis';
 import { TopContainer, TopNavigationBar } from '@components';
+import Loading from './img/BearH.png'
 
 export const QuizExplanationPage = () => {
   const [quiz, setQuiz] = useState({});
   const { quizId } = useParams();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     getQuizExplanation(quizId).then(data => {
-      setQuiz(data);
+        setQuiz(data);
+        setLoading(false);
+    }).catch(err => {
+        console.error(err);
+        setLoading(false);
     });
-  }, [quizId]);
+}, [quizId]);
+
+if (loading) {
+  return (
+      <TopContainer>
+          <TopNavigationBar title={'퀴즈 해설'} />
+          <ContentContainer>
+              <LoadingContainer>
+                  <div>
+                      <Spinner />
+                      <LoadingText>해설을 가져오는 중입니다...</LoadingText>
+                      <img src={Loading} style={{margintBottom:'10px'}}/>
+                  </div>
+              </LoadingContainer>
+          </ContentContainer>
+      </TopContainer>
+  );
+}
+
 
   const handleConfirm = () => {
-    navigate('/child');  // 메인 페이지로 이동
+    navigate('/child');
   };
 
   return (

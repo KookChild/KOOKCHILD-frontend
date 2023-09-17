@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { YELLOW, PRIMARY, GRAY, DARK_GRAY, MEDIUM_GRAY, BROWN } from '@utility/COLORS'
+import { YELLOW, PRIMARY, DARK_GRAY, MEDIUM_GRAY } from '@utility/COLORS'
 import { BsSearch } from 'react-icons/bs'
 
 export const ChildItemContainer = styled.div`
@@ -17,7 +17,6 @@ export const ChildUpSection = styled.div`
     width: 350px;
     font-family: 'sdBo';
 `;
-
 
 export const ChildLeftSection = styled.div`
     top: 30px;
@@ -86,7 +85,6 @@ export const ChildRightSection = styled.div`
     }
 `;
 
-
 export const ChildUnderSection = styled.div`
     position: absolute;
     display: flex;
@@ -103,6 +101,7 @@ export const ChildUnderSection = styled.div`
         color: ${PRIMARY};
     }
 `;
+
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -115,8 +114,6 @@ export const SearchIcon = styled(BsSearch)`
   right: 13px;
   z-index: 1;
 `;
-
-
 
 export const SearchInput = styled.input`
   width: 390px;

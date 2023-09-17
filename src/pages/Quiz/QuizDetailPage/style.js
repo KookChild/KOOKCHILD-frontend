@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { YELLOW, PRIMARY, GRAY, DARK_GRAY, MEDIUM_GRAY, BROWN } from '@utility/COLORS'
+import { PRIMARY, GRAY, BROWN } from '@utility/COLORS'
 
 const slideFromLeft = keyframes`
   from {
@@ -77,7 +77,6 @@ export const QuizReward = styled.div`
     }
 `;
 
-
 export const AreaContainer = styled.div`
 `;
 
@@ -96,12 +95,6 @@ export const StyledChoiceButton = styled.button`
 
 export const StyledLeftImage = styled.img`
     width: 150px;
-    height: 150px;
-    animation: ${slideFromLeft} 0.5s forwards;
-`;
-
-export const StyledRightImage = styled.img`
-    width: 10px;
     height: 150px;
     animation: ${slideFromLeft} 0.5s forwards;
 `;
@@ -134,49 +127,4 @@ export const AreaFooterContainer = styled.div`
     &:last-child {
         margin-bottom: 0;
     }
-`;
-
-export const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-`;
-
-export const ModalContainer = styled.div`
-  background-color: ${MEDIUM_GRAY};
-  padding: 20px 30px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 90vw;
-  animation: slideIn 0.3s ease-out;
-
-  @keyframes slideIn {
-    from {
-      transform: translateY(-50%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-`;
-
-export const CloseButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-  color: ${DARK_GRAY};
 `;

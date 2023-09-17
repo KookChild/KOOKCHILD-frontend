@@ -18,13 +18,12 @@ import { AiFillDollarCircle } from 'react-icons/ai'
 import correctImage from './img/correct.png';
 import wrongImage from './img/wrong.png';
 import Swal from 'sweetalert2';
-
 import KnowX from './img/Lamus.png'
 
 
 export const QuizDetailPage = () => {
   const [quiz, setQuiz] = useState({});
-  const [selectedChoice, setSelectedChoice] = useState(null); // 선택된 선택지
+  const [selectedChoice, setSelectedChoice] = useState(null);
   const [shuffledChoices, setShuffledChoices] = useState([]);
   const [isUnsure, setIsUnsure] = useState(false);
 
@@ -44,13 +43,13 @@ export const QuizDetailPage = () => {
 
   const handleChoiceClick = (choiceKey) => {
     setSelectedChoice(choiceKey);
-    setIsUnsure(false); // "잘 모르겠어요" 선택 상태 해제
+    setIsUnsure(false);
   };
 
 
   const handleUnsureClick = () => {
     setIsUnsure(true);
-    setSelectedChoice(null); // 기존 선택지 선택 해제
+    setSelectedChoice(null);
   };
 
 
@@ -58,7 +57,6 @@ export const QuizDetailPage = () => {
     try {
       const response = await submitQuizAnswer(quizId, selectedChoice);
       const { correct, statusCode } = response;
-  
       if (statusCode === 200) {
         const modalOptions = {
           title: correct ? '정답입니다!' : '오답입니다.',
@@ -71,7 +69,6 @@ export const QuizDetailPage = () => {
           confirmButtonText: '해설확인',
           cancelButtonText: '홈으로',
         };
-
         Swal.fire(modalOptions).then((result) => {
           if (result.isConfirmed) {
             navigate(`/quiz/${quizId}/explanation`);
@@ -95,8 +92,6 @@ export const QuizDetailPage = () => {
       });
     }
   };
-
-
 
   return (
     <TopContainer>
@@ -130,7 +125,6 @@ export const QuizDetailPage = () => {
       </AreaContainer>
 
       {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
-      {/* {!isUnsure && selectedChoice && <StyledRightImage src={Check} alt="Check Image" />} */}
 
       <AreaFooterContainer>
         <StyledSubmitButton

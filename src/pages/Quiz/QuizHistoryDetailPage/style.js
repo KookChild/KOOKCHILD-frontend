@@ -40,10 +40,9 @@ export const AreaTitleContainer = styled.div`
 
 export const StyledTitle = styled.h1`
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
 `;
-
 
 export const StyledLevel = styled.div`
   font-size: 11px;
@@ -54,14 +53,6 @@ export const StyledLevel = styled.div`
   text-align: center;
 `
 
-export const Title = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 30px;
-  opacity: 0;
-  animation: ${slideDown} 1s forwards;
-`;
 export const CharacterContainer = styled.div`
     display: flex;
     justify-content: space-between;
