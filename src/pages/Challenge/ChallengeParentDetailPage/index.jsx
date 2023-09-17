@@ -27,13 +27,17 @@ export const ChallengeParentDetailPage = () => {
   const navigate = useNavigate()
   const params = useParams()
   const [parentReward, setParentReward] = useState(0)
+  const [isInputValid, setIsInputValid] = useState(false)
   const [challenge, setChallenge] = useState()
   const [challengeType, setChallengeType] = useState()
   const handleChange = event => {
-    setParentReward(event.target.value)
+    const value = event.target.value
+    setParentReward(value)
+    setIsInputValid(value > 0)
   }
 
   const confirm = async () => {
+    if (!isInputValid) return
     Swal.fire({
       title: '추천을 하시겠습니까?',
       icon: 'warning',
@@ -69,8 +73,10 @@ export const ChallengeParentDetailPage = () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
         setChallenge(challengeDetailData)
-        console.log(challengeDetailData)
-        const challengeTypeData = await checkChallengeIsProceedingAPI(params.id)
+        const challengeTypeData = await checkChallengeIsProceedingAPI(
+          selectedChildId,
+          params.id,
+        )
         setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -97,32 +103,34 @@ export const ChallengeParentDetailPage = () => {
           </DetailTextWrapper>
           <img src="/img/Bear.png" alt="bear" />
         </DetailContainer>
-        <ParentRewardWrapper>
-          <ParentRewardTextWrapper>
-            부모 리워드 (더금리)
-          </ParentRewardTextWrapper>
-          <ParentRewardInputWrapper>
-            <input
-              type="number"
-              name="reward"
-              placeholder="금액을 입력해주세요"
-              width={100}
-              style={{
-                border: 'none',
-                borderBottom: '1px solid #000',
-                fontSize: '25px',
-                textAlign: 'center',
-              }}
-              required
-              onChange={handleChange}
-            />
-            {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
-            <UnitWrapper>원</UnitWrapper>
-          </ParentRewardInputWrapper>
-          <ParentRewardImgWrapper>
-            <img src="/img/Together.png" alt="together" />
-          </ParentRewardImgWrapper>
-        </ParentRewardWrapper>
+        {challengeType != 3 && (
+          <ParentRewardWrapper>
+            <ParentRewardTextWrapper>
+              부모 리워드 (더금리)
+            </ParentRewardTextWrapper>
+            <ParentRewardInputWrapper>
+              <input
+                type="number"
+                name="reward"
+                placeholder="금액을 입력해주세요"
+                width={100}
+                style={{
+                  border: 'none',
+                  borderBottom: '1px solid #000',
+                  fontSize: '25px',
+                  textAlign: 'center',
+                }}
+                required
+                onChange={handleChange}
+              />
+              {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
+              <UnitWrapper>원</UnitWrapper>
+            </ParentRewardInputWrapper>
+            <ParentRewardImgWrapper>
+              <img src="/img/Together.png" alt="together" />
+            </ParentRewardImgWrapper>
+          </ParentRewardWrapper>
+        )}
         <TermsAndConditions />
         {challengeType === 0 && (
           <ChallengeConfirmButton onClick={confirm}>

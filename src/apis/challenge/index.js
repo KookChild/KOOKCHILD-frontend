@@ -54,15 +54,19 @@ export function childConfirmAPI(challengeId) {
 
 export function parentConfirmAPI(challengeId, childId, parentReward) {
   return axios.post(`/challenge/detail/${challengeId}/parentConfirm`, {
-    data: {
-      childId: childId,
-      parentReward: parentReward,
-    },
+    childId: 49,
+    parentReward: parentReward,
   })
 }
-export function checkChallengeIsProceedingAPI(challengeId) {
+export function checkChallengeIsProceedingAPI(childId, challengeId) {
+  let url = `/challenge/check/${challengeId}`
+
+  if (childId !== null && childId !== undefined) {
+    url += `/${childId}`
+  }
+
   return axios
-    .get(`/challenge/check/${challengeId}`)
+    .get(url)
     .then(response => response.data)
     .catch(error => {
       throw error

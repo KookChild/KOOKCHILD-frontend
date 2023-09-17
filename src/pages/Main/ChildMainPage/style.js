@@ -7,7 +7,7 @@ export const headerContainer = {
   margin: 'auto',
   padding: '16px',
   boxSizing: 'border-box',
-  fontFamily: 'kbFontBold',
+
 }
 
 export const iconContainer = {

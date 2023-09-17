@@ -69,7 +69,10 @@ export const ChallengeChildDetailPage = () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
         setChallenge(challengeDetailData)
-        const challengeTypeData = await checkChallengeIsProceedingAPI(params.id)
+        const challengeTypeData = await checkChallengeIsProceedingAPI(
+          null,
+          params.id,
+        )
         setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
