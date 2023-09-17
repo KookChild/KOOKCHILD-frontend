@@ -1,51 +1,5 @@
 import styled from 'styled-components';
-import { YELLOW, PRIMARY, GRAY, DARK_GRAY, MEDIUM_GRAY } from '@utility/COLORS'
-
-export const Header = styled.div`
-  padding: 10px;
-  text-align: center;
-`
-
-export const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-  cursor: pointer;
-  .checkIcon {
-    width: 30px;
-    height: 30px;
-    background: ${props => {
-        if (props.parentConfirm) {
-            return '#98C37F';
-        } else if (props.childConfirm) {
-            return YELLOW;
-        } else {
-            return '#84888B';
-        }
-    }} 0% 0% no-repeat padding-box;
-    border-radius: 50%;
-    margin-left: 10px;
-    margin-right: 10px;
-    box-shadow: inset 0px 1px 3px #00000029;
-    border-radius: 15px;
-    color: white;
-    opacity: 1;
-}
-`
-
-export const HeaderImage = styled.img`
-  width: 20px; /* 이미지 너비 조정 */
-  height: 20px; /* 이미지 높이 조정 */
-  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
-`
-
-export const HeaderTitle = styled.h1`
-  font-size: 18px; /* title의 글꼴 크기 조정 */
-  font-weight: bold; /* title 텍스트 굵게 설정 */
-  margin: 0; /* title의 margin 제거 */
-`
-
+import { YELLOW, PRIMARY, GRAY } from '@utility/COLORS'
 
 export const AreaContainer = styled.div`
     width: 100%;
@@ -57,23 +11,6 @@ export const AreaContainer = styled.div`
         margin-bottom: 0;
     }
 `;
-
-export const AreaFooterContainer = styled.div`
-    width: 350px;
-    padding-bottom : 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    bottom: 0px;
-    margin-top: 50px;
-    z-index: 1;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-`;
-
 
 export const ButtonsContainer = styled.div`
     display: flex;
@@ -94,12 +31,6 @@ export const DeleteMissionButton = styled.button`
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-left: 10px;
-`;
-
-
-export const StyledTitle = styled.h2`
-    font-size: 24px;
-    font-weight: bold;
 `;
 
 export const ChildInfoContainer = styled.div`
@@ -197,16 +128,6 @@ export const CompleteButton = styled.button`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
-
-export const LogoutButton = styled.button`
-    width: 67px;
-    height: 22px;
-    color: #f0f0f0;
-    border: none;
-    cursor: pointer;
-    background-color: #f0f0f0;
-`
-
 export const MissionReward = styled.div`
     display: flex;
     align-items: center;
@@ -229,7 +150,24 @@ export const MissionReward = styled.div`
     }
 
 `
+
 export const WaitingReward = styled.div`
 margin-bottom: 5px;
 color; #84888B;
 `
+
+export const AreaFooterContainer = styled.div`
+    width: 350px;
+    padding-bottom : 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    margin-top: 50px;
+    z-index: 1;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+`;

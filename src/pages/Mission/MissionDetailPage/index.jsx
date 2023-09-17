@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { BsCheck } from 'react-icons/bs'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AiFillDollarCircle } from 'react-icons/ai'
 import Swal from 'sweetalert2'
 import {
-  Header,
-  HeaderContent,
-  HeaderImage,
-  HeaderTitle,
   AreaContainer,
-  AreaFooterContainer,
   DeleteMissionButton,
   ChildInfoContainer,
   ChildImage,
@@ -20,21 +13,19 @@ import {
   SuccessButton,
   CompleteButton,
   ButtonsContainer,
-  LogoutButton,
   MissionReward,
-  WaitingReward
+  WaitingReward,
+  AreaFooterContainer,
 } from './style'
 import imgSrc from '../../Management/ManagementPage/img/아이1.jpg'
-import prefer from './img/prefer.png'
-import { MissionInfo } from '@components'
+import { TopContainer, TopNavigationBar, MissionInfo } from '@components';
 import {
   fetchMissionDetail,
   completeMission,
   updateMission,
   deleteMission,
   confirmMissionSuccess,
-} from '../../../apis/mission/index'
-import { TopContainer } from '@components'
+} from '@apis';
 
 export const MissionDetailPage = () => {
   const { missionId } = useParams()
@@ -51,11 +42,7 @@ export const MissionDetailPage = () => {
     const fetchMissionData = async () => {
       try {
         const fetchedData = await fetchMissionDetail(missionId)
-
-        // 기존 미션 데이터 설정 코드
         setMissionData(fetchedData)
-
-        // 추가된 코드: updatedMission 초기값 설정
         setUpdatedMission({
           title: fetchedData.title,
           content: fetchedData.content,
@@ -73,12 +60,6 @@ export const MissionDetailPage = () => {
 
     fetchMissionData()
   }, [missionId])
-
-  const handleLogoutClick = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('parent');
-    navigate('/');
-  };
 
   const handleEditClick = () => {
     setIsEditable(true)
@@ -200,9 +181,9 @@ export const MissionDetailPage = () => {
     }).then(async result => {
       if (result.isConfirmed) {
         try {
-          await deleteMission(missionId) // API 호출
+          await deleteMission(missionId)
           Swal.fire('삭제됨!', '미션이 성공적으로 삭제되었습니다.', 'success')
-          navigate('/mission/parentview') // 미션 삭제 후 미션 목록 페이지로 리다이렉션
+          navigate('/mission/parentview')
         } catch (error) {
           console.error('Error deleting mission:', error)
           Swal.fire('오류!', '미션 삭제 중 오류가 발생했습니다.', 'error')
@@ -224,9 +205,9 @@ export const MissionDetailPage = () => {
     }).then(async result => {
       if (result.isConfirmed) {
         try {
-          await completeMission(missionId) // API 호출
+          await completeMission(missionId)
 
-          setIsChild(true) // isChild를 true로 설정
+          setIsChild(true)
           Swal.fire(
             '요청됨!',
             '승인 요청이 성공적으로 전송되었습니다.',
@@ -254,25 +235,15 @@ export const MissionDetailPage = () => {
 
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent onClick={() => navigate(-1)} parentConfirm={isSuccess} childConfirm={isChild}>
-          <HeaderImage src={prefer} />
-          <HeaderTitle>{missionTitle}</HeaderTitle>
-          <BsCheck className='checkIcon'/>
-        </HeaderContent>
-      </Header>
-
+      <TopNavigationBar title={`${title}`} />
       {parent && !isEditable && (
         <AreaContainer>
           <ButtonsContainer>
             <EditButton onClick={handleEditClick}>미션 수정</EditButton>
-            <DeleteMissionButton onClick={handleDeleteClick}>
-              미션 삭제
-            </DeleteMissionButton>
+            <DeleteMissionButton onClick={handleDeleteClick}>미션 삭제</DeleteMissionButton>
           </ButtonsContainer>
         </AreaContainer>
       )}
-
       {parent ? (
         <AreaContainer>
           <ChildInfoContainer>
@@ -287,7 +258,6 @@ export const MissionDetailPage = () => {
         <AreaContainer>
         </AreaContainer>
       )}
-
       <AreaContainer>
         <MissionInfo
           title={missionTitle}
@@ -307,18 +277,14 @@ export const MissionDetailPage = () => {
         />
       </AreaContainer>
       <AreaFooterContainer>
-      { !isEditable && 
-        <MissionReward>
-          <AiFillDollarCircle className='moneyIcon' /> &nbsp; <span className='rewardName'>미션 보상금 &nbsp;</span> <span className='reward'>{reward}원</span>
-        </MissionReward>}
-
+        {!isEditable &&
+          <MissionReward>
+            <AiFillDollarCircle className='moneyIcon' /> &nbsp; <span className='rewardName'>미션 보상금 &nbsp;</span> <span className='reward'>{reward}원</span>
+          </MissionReward>}
         {!isSuccess && isChild && !parent && <WaitingReward>입금대기중입니다</WaitingReward>}
-
         {parent ? (
           isEditable ? (
-            <SuccessButton onClick={handleCompleteEditClick}>
-              수정완료
-            </SuccessButton>
+            <SuccessButton onClick={handleCompleteEditClick}>수정완료</SuccessButton>
           ) : (
             <SuccessButton
               onClick={handleSuccessClick}
@@ -341,7 +307,6 @@ export const MissionDetailPage = () => {
           )
         )}
       </AreaFooterContainer>
-      <LogoutButton onClick={handleLogoutClick}>로그아웃</LogoutButton>
     </TopContainer>
   )
 }
