@@ -11,7 +11,7 @@ export const ItemContainer = styled.div`
     padding-left: 13px;
     padding-right: 13px;
     opacity: 1;
-    background: ${props => props.isEven ? '#f0f0f0' : '#FFFFFF'} 0% 0% no-repeat padding-box;
+    background: ${props => props.even ? '#f0f0f0' : '#FFFFFF'} 0% 0% no-repeat padding-box;
     cursor: pointer;
 
     &:hover {

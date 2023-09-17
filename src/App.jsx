@@ -67,8 +67,8 @@ function Content() {
         <Route path="/child/challenge" element={<ChallengeViewPage />} />
         <Route path="/quiz/:quizId" element={<QuizDetailPage />}/>
         <Route path="/quiz/historyview" element={<QuizHistoryViewPage/>}/>
-        <Route path="/quiz/detail/:id" element={<QuizHistoryDetailPage/>}/>
-        <Route path="/quiz/:id/explanation" element={<QuizExplanationPage/>}/>
+        <Route path="/quiz/detail/:quizId" element={<QuizHistoryDetailPage/>}/>
+        <Route path="/quiz/:quizId/explanation" element={<QuizExplanationPage/>}/>
         <Route path="/complete" element={<CompletePage />} />
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail" element={<GraphDetailPage />} />

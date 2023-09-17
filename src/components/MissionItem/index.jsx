@@ -2,10 +2,10 @@ import { ItemContainer, LeftSection, MiddleSection, RightSection, ChildItemConta
 import { BsCheck } from 'react-icons/bs'
 import { AiFillDollarCircle } from 'react-icons/ai'
 
-export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, childConfirm, parent, isEven }) => {
+export const MissionItem = ({ missionTitle, missionReward, missionDate, parentConfirm, childConfirm, parent, even }) => {
     if (parent) {
         return (
-            <ItemContainer isEven={isEven} parentConfirm={parentConfirm}>
+            <ItemContainer even={even} parentConfirm={parentConfirm}>
                 <LeftSection parentConfirm={parentConfirm} childConfirm={childConfirm}>
                     <BsCheck className='checkIcon'/>
                 </LeftSection>
@@ -20,7 +20,7 @@ export const MissionItem = ({ missionTitle, missionReward, missionDate, parentCo
         );
     } else {
         return (
-            <ChildItemContainer isEven={isEven} parentConfirm={parentConfirm}>
+            <ChildItemContainer even={even} parentConfirm={parentConfirm}>
             <ChildLeftSection parentConfirm={parentConfirm} childConfirm={childConfirm}>
                 <BsCheck className='checkIcon'/>
             </ChildLeftSection>
