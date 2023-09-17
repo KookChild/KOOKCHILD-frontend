@@ -135,3 +135,24 @@ export const ButtonContainer = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
+
+export const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // 다른 요소 위에 오게 설정
+`;
+
+export const LoadingMessage = styled.div`
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+`;

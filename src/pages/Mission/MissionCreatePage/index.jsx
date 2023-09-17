@@ -12,7 +12,9 @@ import {
     MissionInfoContainer,
     StyledInput,
     ChildContainer,
-    RecommendButton
+    RecommendButton,
+    LoadingMessage,
+    LoadingOverlay
 } from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -25,9 +27,12 @@ export const MissionCreatePage = () => {
     let navigate = useNavigate();
     const now = new Date();
     const [childs, setChilds] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const fetchRecommendedMission = async () => {
         try {
+            setIsLoading(true);
             const data = await getRecommendedMission();
             setMission(prev => ({
                 ...prev,
@@ -36,6 +41,8 @@ export const MissionCreatePage = () => {
             }));
         } catch (error) {
             console.error("Error fetching recommended mission:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -113,8 +120,6 @@ export const MissionCreatePage = () => {
                 ).then(function () {
                     console.log(missionData);
                     onSubmit();
-
-
                 })
             }
         });
@@ -125,13 +130,13 @@ export const MissionCreatePage = () => {
         missionData.endDate = new Date(missionData.endDate);
         console.log(JSON.stringify(missionData));
         axios.post('http://localhost:8080/mission', missionData)
-        .then((response) => {
-            console.log('서버 응답:', response.data);
-            navigate('/mission/parentView'); // 여기로 이동
-        })
-        .catch((error) => {
-            console.log('서버 오류', error);
-        });
+            .then((response) => {
+                console.log('서버 응답:', response.data);
+                navigate('/mission/parentView'); // 여기로 이동
+            })
+            .catch((error) => {
+                console.log('서버 오류', error);
+            });
     };
 
     const [selectedIds, setSelectedIds] = useState([]);
@@ -222,6 +227,13 @@ export const MissionCreatePage = () => {
                     <AreaContainer><EditButton onClick={handleCreateMissionClick}>미션 등록</EditButton> </AreaContainer>
                 </ButtonsContainer>
             </AreaFooterContainer>
+            {isLoading && (
+                <LoadingOverlay>
+                    <LoadingMessage>
+                        추천 미션을 가져오는 중입니다
+                    </LoadingMessage>
+                </LoadingOverlay>
+            )}
         </TopContainer>
     );
 }
