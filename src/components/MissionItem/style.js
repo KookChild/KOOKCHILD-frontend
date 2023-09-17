@@ -46,8 +46,6 @@ export const LeftSection = styled.div`
     }
 `;
 
-
-
 export const MiddleSection = styled.div`
     flex: 3;
     display: flex;
@@ -173,4 +171,18 @@ export const ChildUnderSection = styled.div`
     .moneyIcon{
         color: ${PRIMARY};
     }
+`;
+
+export const RewardButton = styled.button`
+  width: 60px;
+  margin-top: 8px;
+  padding: 5px 10px;
+  background-color: #98C37F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 13px;
 `;

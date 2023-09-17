@@ -10,13 +10,6 @@ export const MissionInfoContainer = styled.div`
     max-height: 550px;
     overflow-y: auto;
 `;
-export const Label = styled.label`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 16px;
-`;
 
 export const StyledInput = styled.input`
     font-family: Arial;
@@ -34,7 +27,6 @@ export const StyledInput = styled.input`
         border-bottom: 2px solid ${YELLOW};
     }
 `;
-
 
 export const StyledTextArea = styled.textarea`
     font-family: Arial;
@@ -54,7 +46,6 @@ export const StyledTextArea = styled.textarea`
         border: 2px solid ${YELLOW};
     }
 `;
-
 
 export const MissionDetail = styled.div`
 margin-bottom:30px;

@@ -41,7 +41,7 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
     const formatDateToDisplay = (isoDate) => {
         const date = new Date(isoDate);
         const year = date.getFullYear();
-        const month = date.getMonth() + 1; // 월은 0부터 시작하므로 +1 필요
+        const month = date.getMonth() + 1;
         const day = date.getDate();
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -72,6 +72,7 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
                     <MissionDetail>
                         미션 금액
                         <StyledInput type="text" value={reward} onChange={handleRewardChange} readOnly={readOnly} />
+                        {/* wkatl */}
                     </MissionDetail>
                 </>
             ) : (
