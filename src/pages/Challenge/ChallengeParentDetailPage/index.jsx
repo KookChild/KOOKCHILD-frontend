@@ -35,7 +35,7 @@ export const ChallengeParentDetailPage = () => {
     setParentReward(value)
     setIsInputValid(value > 0)
   }
-
+  console.log(challengeType)
   const confirm = async () => {
     if (!isInputValid) return
     Swal.fire({
@@ -62,7 +62,7 @@ export const ChallengeParentDetailPage = () => {
             .then(navigate('/'))
         } else {
           await parentConfirmAPI(params.id, selectedChildId, parentReward)
-            .then(Swal.fire('참여신청 완료', '미션을 진행해주세요', 'success'))
+            .then(Swal.fire('참여승인 완료', '챌린지가 시작됩니다', 'success'))
             .then(navigate('/'))
         }
       }
@@ -85,11 +85,12 @@ export const ChallengeParentDetailPage = () => {
 
     fetchData()
   }, [params.id])
+  console.log(selectedChildId)
   return (
     challenge && (
       <TopContainer style={{ backgroundColor: 'white' }}>
         <TopNavigationBar title={'챌린지 상세설명'} />
-        <ChallengeTitle>26일 챌린지</ChallengeTitle>
+        <ChallengeTitle>{challenge.title}</ChallengeTitle>
         <DetailContainer>
           <DetailTextWrapper>
             {/* 이미지 크기 줄이기 */}
@@ -103,7 +104,7 @@ export const ChallengeParentDetailPage = () => {
           </DetailTextWrapper>
           <img src="/img/Bear.png" alt="bear" />
         </DetailContainer>
-        {challengeType != 3 && (
+        {challengeType != 3 && challengeType != 2 && (
           <ParentRewardWrapper>
             <ParentRewardTextWrapper>
               부모 리워드 (더금리)

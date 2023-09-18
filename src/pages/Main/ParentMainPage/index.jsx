@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { loadParentNameAPI } from '@apis'
-import {TopContainer} from '@components'
+import { TopContainer } from '@components'
 import {
   iconContainer,
   buttonSection,
@@ -27,32 +27,30 @@ library.add(faBell, faGear, faPlus)
 
 // 더미 초기값.
 export const ParentMainPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [isAccountLinked, setAccountLinked] = useState(false)
   const finalBalance = ''
   const [animatedDigits, setAnimatedDigits] = useState([])
   const [name, setName] = useState('')
 
-  const handleNavigation = (path) => { 
-    navigate(path);
-  };
-
-
+  const handleNavigation = path => {
+    navigate(path)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const parentData = await loadParentNameAPI();
+        const parentData = await loadParentNameAPI()
         if (parentData && parentData.name) {
-          setName(parentData.name);
+          setName(parentData.name)
         }
       } catch (error) {
-        console.error('Error fetching challenge detail:', error);
+        console.error('Error fetching challenge detail:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
   useEffect(() => {
     if (isAccountLinked) {
       let digitsArray = finalBalance.split('')
@@ -96,14 +94,11 @@ export const ParentMainPage = () => {
     </button>
   )
 
-
-
-
   return (
     <TopContainer>
       <div style={iconContainer}>
         <div style={TopTextContainer}>
-          <span style={{ color: "#FFCC00" }}>KB</span>
+          <span style={{ color: '#FFCC00' }}>KB</span>
           <span> 자녀 금융 EDU</span>
         </div>
         <div style={iconGroup}>
@@ -120,8 +115,10 @@ export const ParentMainPage = () => {
         {isAccountLinked ? LinkedAccountButton : UnlinkedAccountButton}
       </div>
       <div style={buttonSection}>
-        <button style={ChildFinanceManagementButton}
-        onClick={() => handleNavigation("/management")}>
+        <button
+          style={ChildFinanceManagementButton}
+          onClick={() => handleNavigation('/management')}
+        >
           <div style={buttonTextContainer}>
             <span style={textLine1}>자녀 금융 관리</span>
             <span style={textLine2}>자녀의 금융 활동 현황을 확인해요</span>
@@ -130,16 +127,20 @@ export const ParentMainPage = () => {
       </div>
 
       <div style={buttonSection}>
-        <button style={ViewFinanceProductButton}
-        onClick={() => handleNavigation("/financeproduct")}>
+        <button
+          style={ViewFinanceProductButton}
+          onClick={() => handleNavigation('/financeproduct')}
+        >
           <div style={buttonTextContainer}>
             <span style={textLine1}>자녀-부모 연계 상품</span>
             <span style={textLine2}>부모님이 자녀에게 이자를</span>
             <span style={textLine2}>지급해보세요!</span>
           </div>
         </button>
-        <button style={RewardManagementButton}
-        onClick={() => handleNavigation("/mission/parentview")}>
+        <button
+          style={RewardManagementButton}
+          onClick={() => handleNavigation('/mission/parentview')}
+        >
           <div style={buttonTextContainer}>
             <span style={textLine1}>미션, 챌린지 관리</span>
             <span style={textLine2}>자녀의 금융 미션 현황,</span>
@@ -155,5 +156,3 @@ export const ParentMainPage = () => {
     </TopContainer>
   )
 }
-
-
