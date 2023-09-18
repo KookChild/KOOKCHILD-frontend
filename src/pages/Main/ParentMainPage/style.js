@@ -1,11 +1,6 @@
-export const headerContainer = {
-  //backgroundColor: '#F6F7FF',
-  //width: '390px',
-  //height: '600px',
-  margin: 'auto',
-  padding: '16px',
-  boxSizing: 'border-box'
-};
+
+import { PRIMARY, GRAY } from '@utility/COLORS'
+
 
 export const iconContainer = {
   display: 'flex',
@@ -16,28 +11,25 @@ export const iconContainer = {
   gap: '16px'  // 아이콘 사이의 간격
 };
 
-export const UserNameContatiner = {
-  display: 'flex',
-  justifyContent: 'space-between',  // 오른쪽 정렬
-  marginTop: '20px',  // 아이콘 위의 간격
-  marginLeft: '16px', // 아이콘 오른쪽 간격
-  marginBottom: '12px',
-  gap: '16px'  // 아이콘 사이의 간격
-};
+export const TopTextContainer = {
+  fontFamily: 'kbFontBold',
+  fontSize: '18px',
+  padding: '15px ',
+}
 
+export const UserNameContatiner = {
+  fontFamily: 'kbFont',
+  fontSize: '20px',
+  padding: '15px ',
+  marginBottom: '0px',
+}
 
 export const textContainer = {
   marginLeft: '16px', // 텍스트 왼쪽에 여백 추가
 };
 
-export const TitleContainer = {
-  fontSize: '16px', // 폰트 크기
-  fontWeight: 'bold', // 폰트 두께
-  marginLeft: '16px', // 텍스트 왼쪽에 여백 추가
-};
-
 export const iconGroup = {
-  marginTop: '10px', // 아이콘 위의 간격
+  marginTop: '20px', // 아이콘 위의 간격
   display: 'flex',
   gap: '16px', // 아이콘 사이의 간격
 };
@@ -56,31 +48,39 @@ export const buttonTextContainer = {
   textAlign: 'left'
 };
 
-export const textLine1 = {
+export const AccounttextLine1 = {
+  fontSize: '18px', 
+  fontWeight: 'bold', 
+  display: 'block',
+  marginBottom: '5px'
+};
+
+export const AccounttextLine2 = {
   fontSize: '14px', 
+  display: 'block',
+  marginBottom: '5px'
+};
+
+
+
+export const textLine1 = {
+  fontSize: '16px', 
   fontWeight: 'bold', 
   display: 'block',
   marginBottom: '5px'
 };
 
 export const textLine2 = {
-  fontSize: '10px', 
+  fontSize: '12px', 
   display: 'block'
 };
 
 
 export const ButtonBaseStyle = {
-  transition: 'all 0.3s ease',
-  ':hover': {
-    backgroundColor: '#f1f1f1', // 원하는 배경색으로 설정
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // 원하는 그림자 효과 설정
-  },
-  ':active': {
-    boxShadow: 'none',
-    backgroundColor: '#f1f1f1'
-  }
+  fontFamily: 'kbFont',
+  boxShadow: '0px 4px 6px #00000029',
+  
 };
-
 
 
 export const LinkAccountButton = {
@@ -89,9 +89,9 @@ export const LinkAccountButton = {
   padding: '48px 20px', // 세로 길이를 조절
   margin: '7.5px',
   marginBottom: '7.5px',
-  borderRadius: '12px', // 모서리 라운딩
+  borderRadius: '8px', // 모서리 라운딩
   border: '1px solid #ccc', // 테두리 없앰
-  boxShadow: '0px 2px 4px #00000029', // 그림자 효과
+  boxShadow: '0px 4px 6px #00000029', // 그림자 효과
   opacity: '1',
   display: 'flex',
   alignItems: 'center',

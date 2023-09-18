@@ -70,7 +70,7 @@ export const SetInterestContainer = {
 // 값 입력
 export const inputStyle1 = {
   width: '25px',
-  height: '15px',
+  height: '16px',
   fontSize: '16px',
   padding: '5px',
   margin: '0 10px',

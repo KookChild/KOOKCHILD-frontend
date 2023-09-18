@@ -3,8 +3,6 @@ import NumberRoulette from './NumberRoulette';
 import { TopContainer, TopNavigationBar } from '@components'
 import {
     buttonSection,
-    FinanceProductButton,
-    buttonTextContainer,
     textLine1,
     textLine2,
     textLine3,

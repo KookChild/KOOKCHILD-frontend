@@ -4,22 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { loadParentNameAPI } from '@apis'
 import {TopContainer} from '@components'
 import {
-  headerContainer,
   iconContainer,
-  UserNameContatiner,
   buttonSection,
+  UserNameContatiner,
   UnlinkedAccountButtonStyle,
   LinkedAccountButtonStyle,
   ChildFinanceManagementButton,
   ViewFinanceProductButton,
   RewardManagementButton,
-  textContainer,
+  TopTextContainer,
   iconGroup,
   BackToKBStarBankingButton,
   buttonTextContainer,
   textLine1,
   textLine2,
-  TitleContainer,
+  AccounttextLine1,
+  AccounttextLine2,
 } from './style'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -83,15 +83,15 @@ export const ParentMainPage = () => {
         <span style={textLine1}>연계 계좌 등록</span>
         <span style={textLine2}>자녀에게 자동이체할 계좌를 등록하세요</span>
       </div>
-      <FontAwesomeIcon icon={['fas', 'plus']} style={{ marginLeft: '30px' }} />
+      <FontAwesomeIcon icon={['fas', 'plus']} style={{ marginLeft: '50px' }} />
     </button>
   )
 
   const LinkedAccountButton = (
     <button style={LinkedAccountButtonStyle}>
       <div style={buttonTextContainer}>
-        <span style={textLine2}>1234-5678</span>
-        <span style={textLine1}>{`잔액: ${animatedDigits.join('')} 원`}</span>
+        <span style={AccounttextLine2}>1234-5678</span>
+        <span style={AccounttextLine1}>{`${animatedDigits.join('')} 원`}</span>
       </div>
     </button>
   )
@@ -101,10 +101,9 @@ export const ParentMainPage = () => {
 
   return (
     <TopContainer>
-    <div style={headerContainer}>
       <div style={iconContainer}>
-        <div style={TitleContainer}>
-          <span style={{ color: "yellow" }}>KB</span> {/* KB 색 변경 */}
+        <div style={TopTextContainer}>
+          <span style={{ color: "#FFCC00" }}>KB</span>
           <span> 자녀 금융 EDU</span>
         </div>
         <div style={iconGroup}>
@@ -114,7 +113,7 @@ export const ParentMainPage = () => {
       </div>
 
       <div style={UserNameContatiner}>
-        <span>{name}</span>
+        <span>{`${name}님`}</span>
       </div>
 
       <div style={buttonSection}>
@@ -125,7 +124,7 @@ export const ParentMainPage = () => {
         onClick={() => handleNavigation("/management")}>
           <div style={buttonTextContainer}>
             <span style={textLine1}>자녀 금융 관리</span>
-            <span style={textLine2}>자녀별 금융 현황을 확인해요</span>
+            <span style={textLine2}>자녀의 금융 활동 현황을 확인해요</span>
           </div>
         </button>
       </div>
@@ -135,23 +134,24 @@ export const ParentMainPage = () => {
         onClick={() => handleNavigation("/financeproduct")}>
           <div style={buttonTextContainer}>
             <span style={textLine1}>자녀-부모 연계 상품</span>
-            <span style={textLine2}>자녀에게 이자를 주는 것은 어떨까요?</span>
+            <span style={textLine2}>부모님이 자녀에게 이자를</span>
+            <span style={textLine2}>지급해보세요!</span>
           </div>
         </button>
         <button style={RewardManagementButton}
         onClick={() => handleNavigation("/mission/parentview")}>
           <div style={buttonTextContainer}>
             <span style={textLine1}>미션, 챌린지 관리</span>
-            <span style={textLine2}>자녀의 금융 미션 현황을 관리해요</span>
+            <span style={textLine2}>자녀의 금융 미션 현황,</span>
+            <span style={textLine2}>보상금을 관리해요</span>
           </div>
         </button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button style={BackToKBStarBankingButton}>
-          <span style={{ fontSize: '8px' }}>KB스타뱅킹으로 돌아가기</span>
+          <span style={{ fontSize: '12px' }}>KB스타뱅킹으로 돌아가기</span>
         </button>
       </div>
-    </div>
     </TopContainer>
   )
 }
