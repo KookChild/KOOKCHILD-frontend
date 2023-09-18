@@ -108,7 +108,12 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
                 })
                 .finally(() => {
                   setDisabled(false);
-                });
+                   // 2초 후에 창을 새로고침
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 2000);
+                  }
+                );
             } else {
               Swal.fire({
                 title: '<span style="font-size: 20px;">송금이 취소되었습니다.</span>',
@@ -120,7 +125,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
               setDisabled(false);
             }
 
-            window.location.reload(); 
+            // window.location.reload(); 
           });
         } else {
           Swal.fire({

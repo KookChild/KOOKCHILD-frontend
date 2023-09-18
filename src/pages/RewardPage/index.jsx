@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { PRIMARY } from '@utility/COLORS'
 import { GoCheckCircle } from "react-icons/go";
+import { ChildUnderSection } from "@components/MissionItem/style";
+import { AiFillDollarCircle } from "react-icons/ai";
 
 const MainContent = styled.div`
     height : 100%
@@ -90,8 +92,8 @@ const Balance = styled.div`
 `;
 
 const CustomButton = styled.button`
-  background: ${(props) => props.backgroundColor || '#84888B'};
-  color: ${(props)=>props.fontColor};
+  background: ${(props) => props.backgroundcolor || '#84888B'};
+  color: ${(props)=>props.fontcolor};
   border-radius: 9px;
   padding: 10px 20px;
   border: none;
@@ -162,7 +164,6 @@ const MissionItem = styled.div`
   display: flex;
   flex-direction:row;
   align-items: center;
-  margin-right: 20px;
   /* 미션 아이템 스타일을 추가하세요 */
 `;
 
@@ -172,9 +173,42 @@ const MissionText = styled.div`
   margin-left: 10px;
   /* 미션 텍스트 스타일을 추가하세요 */
   margin : 14px 0px;
-  width : 236px;
+  width : 261px;
   justify-content:space-between;
 `;
+
+const MissionAmount=styled.div`
+  font-size:12px;
+  font-family:sdMe;
+  text-align: center; /* 글자를 가운데 정렬 */
+  padding:2px 5px;
+  background: transparent; /* 배경 색을 투명으로 설정 */
+  color: ${(props) => props.backgroundcolor || '#D56F88'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #D56F88 사용 */
+  border-radius: 7px;
+  height: 24px; /* 높이를 조정하세요 */
+  line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과를 추가합니다 */
+  // /* 경계선 스타일을 설정합니다 */
+  border: 2px solid ${(props) => props.bordercolor || '#84888B'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #84888B 사용 */
+`
+
+const UnderSection = styled.div`
+display: flex;
+justify-content:right;
+bottom: 0;
+height: 40px;
+right:40px;
+p{
+    margin-top:10px;
+}
+span{
+    color: ${PRIMARY};
+}
+.moneyIcon{
+    color: ${PRIMARY};
+}
+line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
+`
 
 export const RewardPage = () => {
   const [responseData, setResponseData] = useState({
@@ -186,12 +220,12 @@ export const RewardPage = () => {
     missionContents: [],
     notCompleteMissionsAmount: '',
   });
+  console.log(responseData);
+  console.log(missionData);
 
   useEffect(() => {
     fetchRewardData();
     fetchMissionData();
-    console.log(responseData);
-    console.log(missionData);
   }, []);
 
   const fetchRewardData = async () => {
@@ -214,10 +248,24 @@ export const RewardPage = () => {
     }
   };
 
-  const fetchWithdraw = async () => {
+  // 출금 성공 메시지를 관리하는 상태 변수
+  const [withdrawSuccess, setWithdrawSuccess] = useState(false);
+
+  // 출금 요청 함수
+  const handleWithdraw = async () => {
     try {
+      // '/reward/withdraw'로 GET 요청 보내기
       const response = await axios.get('/reward/withdraw');
-      const data = response.data; // 응답으로 받은 JSON 데이터
+
+      // 요청이 성공하면 출금 성공 메시지를 표시
+      if (response.status === 200) {
+        setWithdrawSuccess(true);
+
+        // 출금 성공 메시지를 표시한 후 일정 시간(예: 3초) 후에 숨김
+        setTimeout(() => {
+          setWithdrawSuccess(false);
+        }, 3000); // 3초 후에 메시지를 숨김
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -244,8 +292,14 @@ export const RewardPage = () => {
             </UserInfo>
           </LeftComponent>
           <RightComponent>
-            <CustomButton backgroundColor="#84888B" fontColor="#FFFFFF">보상내역</CustomButton>
-            <CustomButton backgroundColor={PRIMARY} fontColor="#010812">출금하기</CustomButton>
+            <CustomButton 
+            backgroundcolor="#84888B" 
+            fontcolor="#FFFFFF">보상내역</CustomButton>
+            <CustomButton 
+            backgroundcolor={PRIMARY} 
+            fontcolor="#010812"
+            onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
+            >출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>
         <SeparateContainer>
@@ -276,12 +330,15 @@ export const RewardPage = () => {
                   <GoCheckCircle style={grayIconStyle} />
                   <MissionText>
                     <MissionTitle>{mission.title}</MissionTitle>
-                    <MissionTitle style={{color:'#D56F88', fontFamily:'sdEB'}}>D - {mission.dates}</MissionTitle>
+                    <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
                   </MissionText>
                 </MissionItem>
               ))}
             </ParentComponent>
           </MissionContainer>
+          <UnderSection>
+              <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{missionData.notCompleteMissionsAmount}</span></p>
+          </UnderSection>
         </Container2>
       </MainContent>
     </TopContainer>
