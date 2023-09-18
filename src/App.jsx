@@ -21,13 +21,14 @@ import {
   MissionCreatePage,
   MissionDetailPage,
   MissionParentViewPage,
-  RegisterPage,
   FinanceProductPage,
   RewardPage,
   QuizDetailPage,
   QuizExplanationPage,
   QuizHistoryDetailPage,
-  QuizHistoryViewPage
+  QuizHistoryViewPage,
+  ParentRegisterPage,
+  ChildrenRegisterPage
 } from '@pages'
 import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
 function Content() {
@@ -40,7 +41,8 @@ function Content() {
         <Route exact path="/parent" element={<ParentMainPage />} />
         <Route path="/child" element={<ChildMainPage />} />
         <Route exact path="/" element={<LoginPage />} />
-        <Route exact path="/register" element={<RegisterPage />} />
+        <Route exact path="/register" element={<ParentRegisterPage />} />
+        <Route exact path="/register/children" element={<ChildrenRegisterPage />} />
         <Route path="/mission/create" element={<MissionCreatePage />} />
         <Route
           path="/mission/detail/:missionId"
