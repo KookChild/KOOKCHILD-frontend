@@ -5,6 +5,7 @@ import {
   getMissions,
   loadMyChallengesAPI,
   getProceedingMissionByChild,
+  getDailyQuiz,
 } from '@apis'
 
 import { useNavigate } from 'react-router-dom'
@@ -27,6 +28,7 @@ import {
   TopContainer,
   StyledCurrentMissionList,
   ChallengeItem,
+  QuizTab,
 } from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -48,6 +50,11 @@ export const ChildMainPage = () => {
   }
 
   const [animatedDigits, setAnimatedDigits] = useState([])
+  const [dailyQuiz, setDailyQuiz] = useState(null);
+
+  const navigateToHistory = () => {
+    navigate('/quiz/historyview');
+  }
 
   // TODO : mission proceeding api로 변경하기
 
@@ -79,6 +86,10 @@ export const ChildMainPage = () => {
         })
         setMissionList(missionDataResponse.ongoingMissionLists)
         setChallengeList(challengeDateResponse)
+
+        // 일일 퀴즈 데이터 요청
+        const dailyQuizData = await getDailyQuiz();
+        setDailyQuiz(dailyQuizData);
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -169,11 +180,12 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>일일 퀴즈</span>
-        <span style={textContainerSpan}>더보기</span>
+        <span style={textContainerSpan} onClick={navigateToHistory}>히스토리</span>
       </div>
       <div style={buttonSection}>
-        <button style={DailyQuizButton}> -일일 퀴즈 img- </button>
+        {dailyQuiz ? <QuizTab data={dailyQuiz} /> : <button style={DailyQuizButton}> -일일 퀴즈 img- </button>}
       </div>
+
       <div style={textContainer}>
         <span>진행중인 미션</span>
       </div>

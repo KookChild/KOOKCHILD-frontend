@@ -56,9 +56,9 @@ export const ChildItemContainer = styled.div`
   p {
       margin-top: 10px;
   }
-  border-bottom: ${props => props.isSelected ? '2px solid #FFCC00' : 'none'};
+  border-bottom: ${props => props.selected ? '2px solid #FFCC00' : 'none'};
   p {
-      color: ${props => props.isSelected ? '#FFCC00' : '기본 색상'};
+      color: ${props => props.selected ? '#FFCC00' : '기본 색상'};
   }
 `;
 
@@ -72,16 +72,16 @@ export const TabContainer = styled.div`
 export const Tab = styled.button`
   width: 78px;
   height: 30px;
-  background: ${props => props.isSelected ? '#84888B' : '#FFFFFF'};
+  background: ${props => props.selected ? '#84888B' : '#FFFFFF'};
   box-shadow: inset 0px 1px 3px #00000029;
   border: 1px solid #84888B;
   border-radius: 15px;
   opacity: 1;
-  color: ${props => props.isSelected ? 'white' : '#84888B'};
+  color: ${props => props.selected ? 'white' : '#84888B'};
   cursor: pointer;
   outline: none;
-  top: ${props => props.isSelected ? 'auto' : '278px'};
-  left: ${props => props.isSelected ? 'auto' : '112px'};
+  top: ${props => props.selected ? 'auto' : '278px'};
+  left: ${props => props.selected ? 'auto' : '112px'};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
@@ -171,7 +171,7 @@ export const MissionListContainer = styled.div`
 export const MissionItemContainer = styled.div`
   width: 390px;
   height: 80px;
-  background-color: ${props => props.isEven ? '#FFFFFF' : '#F6F7F8'};
+  background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;
 `;
