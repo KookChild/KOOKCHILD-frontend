@@ -54,7 +54,7 @@ export function childConfirmAPI(challengeId) {
 
 export function parentConfirmAPI(challengeId, childId, parentReward) {
   return axios.post(`/challenge/detail/${challengeId}/parentConfirm`, {
-    childId: 49,
+    childId: childId,
     parentReward: parentReward,
   })
 }
