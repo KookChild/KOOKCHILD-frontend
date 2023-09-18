@@ -25,7 +25,7 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
   
   return (
     <BankContentContainer>
-      <ChildName>{childName}님의 계좌</ChildName>
+      {/* <ChildName>{childName}님의 계좌</ChildName> */}
       <PictureSelectContainer>
           <div>
             

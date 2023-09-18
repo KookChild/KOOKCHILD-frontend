@@ -18,7 +18,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
   
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
-      setDisabled(true);
+      // setDisabled(true);
       // API 요청 보내기
       var url = "/management/send";
       var jsonData = {
@@ -143,7 +143,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
 
   return (
     <SendButtonContainer>
-      <Button onClick={getAccountDetailButtonClick}  disabled={disabled}>송금하기</Button>
+      <Button onClick={getAccountDetailButtonClick} >송금하기</Button>
     </SendButtonContainer>
   );
 };
