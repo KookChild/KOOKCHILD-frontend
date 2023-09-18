@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TopContainer } from '@components';
 import {
-  CenteredContainer,
   RegisterWrapper,
   RegisterTitle,
   RegisterForm,
   Input,
-  ErrorMessage,
   PhoneNumberInput,
   ResidentNumberInput,
 } from './style';
-import { loginAPI } from '../../apis/login/index';
+import { loginAPI } from '@apis';
 
 export const RegisterPage = () => {
   const [name, setName] = useState('');

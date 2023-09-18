@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TopContainer } from '@components';
 import {
-  CenteredContainer,
   LoginWrapper,
   LoginTitle,
   LoginForm,
   Input,
   ErrorMessage
 } from './style';
-import { loginAPI } from '../../apis/login/index';
+import { loginAPI } from '@apis';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +49,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <CenteredContainer>
+    <TopContainer>
       <LoginWrapper>
       <LoginTitle>Login</LoginTitle>
         <LoginForm onSubmit={handleSubmit}>
@@ -60,6 +60,6 @@ export const LoginPage = () => {
           <Input type="button" value="회원가입" onClick={handleSignup} />
         </LoginForm>
       </LoginWrapper>
-    </CenteredContainer>
+    </TopContainer>
   );
 }

@@ -1,24 +1,12 @@
 import styled from 'styled-components';
 import { PRIMARY, YELLOW } from '@utility/COLORS'
 
-export const CenteredContainer = styled.div`
-  height: 844px;
-  width: 390px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-export const LoginWrapper = styled.div`
-  width: 100%;
+  height: calc(100vh - 40px);
+  margin: 0 auto;
   padding: 20px 0;
   box-sizing: border-box;
 `;

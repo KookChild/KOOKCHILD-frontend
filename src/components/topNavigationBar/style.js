@@ -23,3 +23,14 @@ export const HeaderTitle = styled.h1`
   font-weight: bold; /* title 텍스트 굵게 설정 */
   margin: 0; /* title의 margin 제거 */
 `
+export const LogoutButton = styled.button`
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 67px;
+    height: 22px;
+    color: white;
+    border: none;
+    background: black;
+    border-radius: 10px;
+`
