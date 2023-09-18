@@ -72,3 +72,12 @@ export function checkChallengeIsProceedingAPI(childId, challengeId) {
       throw error
     })
 }
+
+export function loadChallengesByChildIdAPI(childId, type) {
+  return axios
+    .get(`/challenge/parent?child=${childId}&type=${type}`)
+    .then(response => response.data)
+    .catch(error => {
+      throw error
+    })
+}
