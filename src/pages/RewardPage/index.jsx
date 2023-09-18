@@ -4,6 +4,7 @@ import { TopNavigationBar } from "../../components/TopNavigationBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { PRIMARY } from '@utility/COLORS'
+import { GoCheckCircle } from "react-icons/go";
 
 const MainContent = styled.div`
     height : 100%
@@ -11,7 +12,6 @@ const MainContent = styled.div`
 
 const Container = styled.div`
   flex: 1;
-  margin: 0 10px;
   padding: 10px;
   border-radius: 12px;
   opacity: 1;
@@ -27,7 +27,7 @@ const RewardContainer = styled(Container)`
     margin-bottom: 10px;
   }
   height : 95px;
-  margin: 5px 0px;
+  margin: 9px 0px;
 
   display : flex;
 `;
@@ -132,15 +132,48 @@ const Amount = styled.div`
 const ChildComponent = styled.div`
   padding: 10px;
   margin: 5px;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  font-family:sdMe;
+  font-size:20px;
 `;
 
 // 부모 컴포넌트 스타일
 const ParentComponent = styled.div`
-  height: 300px; /* 높이를 원하는 크기로 설정 (스크롤이 나타날 부분) */
+  // height: 300px; /* 높이를 원하는 크기로 설정 (스크롤이 나타날 부분) */
   overflow-y: auto; /* 스크롤을 표시하기 위한 스타일 */
-  padding: 10px;
+  padding: 6px;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Container2 = styled.div`
+  margin: 6px; /* 원하는 마진 값으로 조정하세요 */
+`;
+
+const MissionTitle = styled.div`
+  font-family:sdBo;
+  font-size:17px;
+`
+
+const MissionItem = styled.div`
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-right: 20px;
+  /* 미션 아이템 스타일을 추가하세요 */
+`;
+
+const MissionText = styled.div`
+  display: flex;
+  flex-direction:row;
+  margin-left: 10px;
+  /* 미션 텍스트 스타일을 추가하세요 */
+  margin : 14px 0px;
+  width : 236px;
+  justify-content:space-between;
 `;
 
 export const RewardPage = () => {
@@ -181,6 +214,22 @@ export const RewardPage = () => {
     }
   };
 
+  const fetchWithdraw = async () => {
+    try {
+      const response = await axios.get('/reward/withdraw');
+      const data = response.data; // 응답으로 받은 JSON 데이터
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const grayIconStyle = {
+    color: 'gray', // 아이콘의 색상을 회색으로 설정
+    fontSize: 27,   // 아이콘의 크기 설정
+    paddingRight:10
+    
+  };
+
 
 
   return (
@@ -217,13 +266,23 @@ export const RewardPage = () => {
               </Amount>
           </InternalComponent>
         </SeparateContainer>
-        <MissionContainer>
-          <ParentComponent>
+        <Container2>
+          <MissionTitle>미완료 미션</MissionTitle>
+          <MissionContainer>
+            <ParentComponent> 
+              
               {missionData.missionContents.map((mission, index) => (
-                <ChildComponent key={index}>{mission}</ChildComponent>
+                <MissionItem key={index}>
+                  <GoCheckCircle style={grayIconStyle} />
+                  <MissionText>
+                    <MissionTitle>{mission.title}</MissionTitle>
+                    <MissionTitle style={{color:'#D56F88', fontFamily:'sdEB'}}>D - {mission.dates}</MissionTitle>
+                  </MissionText>
+                </MissionItem>
               ))}
-          </ParentComponent>
-        </MissionContainer>
+            </ParentComponent>
+          </MissionContainer>
+        </Container2>
       </MainContent>
     </TopContainer>
   );
