@@ -5,10 +5,17 @@ import {
   ChallengeProgress,
   ChallengeInfo,
 } from './style' // style.js에서 스타일을 가져옵니다.
+import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-export const ChallengeItem = ({ challenge }) => {
-  const { id, title, image, progress } = challenge
+import { PRIMARY } from '@utility/COLORS'
+import { useEffect, useState } from 'react'
+import { checkChallengeIsProceedingAPI } from '@apis'
+export const ChallengeItem = ({ challenge, isProceeding }) => {
+  const [challengeType, setChallengeType] = useState()
+  const { id, title, image } = challenge
+  const params = useParams()
   const navigate = useNavigate()
+
   return (
     <div
       style={ChallengeContainer}
@@ -39,19 +46,15 @@ export const ChallengeItem = ({ challenge }) => {
                 // width: `${progress}%`,
                 width: '50%',
                 height: '100%',
-                backgroundColor: 'lightyellow',
+                backgroundColor: PRIMARY,
               }}
             ></div>
           </div>
         </div>
       </ChallengeImageProgressContainer>
       <ChallengeInfo>
-        <div style={{ flex: 1, textAlign: 'left', fontSize: '16px' }}>
-          {title}
-        </div>
-        <div style={{ flex: 1, textAlign: 'right', fontSize: '16px' }}>
-          완료 보상금: 5000원
-        </div>
+        <div style={{ flex: 1, textAlign: 'left' }}>{title}</div>
+        <div style={{ flex: 1, textAlign: 'right' }}>완료 보상금: 5000원</div>
       </ChallengeInfo>
     </div>
   )

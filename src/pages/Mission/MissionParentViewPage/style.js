@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { YELLOW, GRAY } from '@utility/COLORS'
 
 export const Header = styled.div`
   padding: 10px;
@@ -65,6 +66,7 @@ export const TabContainer = styled.div`
   margin-top: 30px;
   display: flex;
   gap: 10px;
+  margin-bottom:10px;
 `;
 
 export const Tab = styled.button`
@@ -83,6 +85,47 @@ export const Tab = styled.button`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
+
+export const RadioButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  border-radius: 5px;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 2px solid #888888;
+    border-radius: 50%;
+    transition: all 0.3s;
+
+    &:checked {
+      border: 2px solid ${YELLOW};
+      background-color: ${YELLOW};
+      &:after {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        margin: 3px;
+      }
+    }
+  }
+`;
+
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -90,7 +133,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const AddMissionButton = styled.button`
-  margin-top: 30px;
+  margin-top:5px;
   width: 378px;
   height: 45px;
   background: #FFCC00;
@@ -112,6 +155,8 @@ export const MissionListContainer = styled.div`
   overflow-y: auto;
   max-height: 444px;
   margin-top: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
 
   // Chrome, Safari
   &::-webkit-scrollbar {

@@ -4,6 +4,7 @@ import CategoryPieChart from './CategoryPieChart' // 카테고리 파이 차트 
 import BarChart from './BarChart' // 막대 그래프 컴포넌트 추가
 import { TopContainer } from '@components'
 import { PRIMARY, YELLOW, DARK_GRAY, BROWN } from '@utility/COLORS'
+import { TopNavigationBar } from '../../../components/TopNavigationBar'
 
 const CenteredContainer = styled.div`
   width: 360px;
@@ -142,11 +143,7 @@ const barChartData = {
 export const GraphDetailPage = () => {
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent>
-          <HeaderTitle>자녀 소비 통계</HeaderTitle>
-        </HeaderContent>
-      </Header>
+      <TopNavigationBar title={'자녀소비통계'} />
 
       <MainContent>
         <DateRangeContainer>

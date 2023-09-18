@@ -3,19 +3,14 @@ import { BASE_URL } from '../../config'
 axios.defaults.baseURL = BASE_URL
 axios.defaults.withCredentials = true
 if (localStorage.getItem('token')) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${localStorage.getItem('token')}`
 }
-// export function testAPI() {
-//   return axios
-//     .get('/test/hello')
-//     .then(response => response.data)
-//     .catch(error => {
-//       throw error
-//     })
-// }
+
 export function loadAllChallengesAPI() {
   return axios
-    .get('/challenge?state=all',)
+    .get('/challenge?state=all')
     .then(response => response.data)
     .catch(error => {
       throw error
@@ -40,22 +35,38 @@ export function loadMyChallengesAPI() {
     })
 }
 
-export function loadChallengeDetailAPI(challenge_id) {
+export function loadChallengeDetailAPI(challengeId) {
   return axios
-    .get(`/challenge/detail/${challenge_id}`)
+    .get(`/challenge/detail/${challengeId}`)
     .then(response => response.data)
     .catch(error => {
       throw error
     })
 }
-export function childConfirmAPI(challenge_id) {
+export function childConfirmAPI(challengeId) {
   return axios
-    .post(`/challenge/detail/${challenge_id}/childConfirm`, {
-      headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
-      },
+    .post(`/challenge/detail/${challengeId}/childConfirm`)
+    .then(response => response.data)
+    .catch(error => {
+      throw error
     })
+}
+
+export function parentConfirmAPI(challengeId, childId, parentReward) {
+  return axios.post(`/challenge/detail/${challengeId}/parentConfirm`, {
+    childId: 49,
+    parentReward: parentReward,
+  })
+}
+export function checkChallengeIsProceedingAPI(childId, challengeId) {
+  let url = `/challenge/check/${challengeId}`
+
+  if (childId !== null && childId !== undefined) {
+    url += `/${childId}`
+  }
+
+  return axios
+    .get(url)
     .then(response => response.data)
     .catch(error => {
       throw error

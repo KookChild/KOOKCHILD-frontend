@@ -1,44 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
 // SendButton.js
 import Swal from 'sweetalert2'; // SweetAlert2 라이브러리 import
-import './css/SendButton.css';
 import axios from 'axios';
+import { 
+  Button, 
+  SendButtonContainer, 
+  commonSwalOptions
+ } from './style';
 
 
 if (localStorage.getItem('token')) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 }
-const SendButtonContainer = styled.div`
-  position: relative;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
-`;
 
-const Button = styled.button`
-  background-color: #f9c515;
-  width: auto; /* 자동으로 너비를 설정하여 버튼 크기를 텍스트에 맞게 만듭니다 */
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  &:hover {
-    background-color: gold;
-    border-color: gold;
-  }
-  padding: 5px 10px; /* 좌우 여백을 조절하여 텍스트와 버튼의 크기를 맞춥니다 */
-  font-size: 14px;
-  cursor: pointer;
-`;
-
-const commonSwalOptions = {
-  customClass: {
-    container: 'custom-swal-container',
-  },
-};
-
-const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, setHasChange}) => {
+const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
   
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
@@ -78,8 +54,11 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, hasChange, set
               // 금액이 유효한지 확인
               if (!value || value <= 0) {
                 return '금액을 올바르게 입력하세요.';
-              }else{
-                
+              }
+
+              // balance 변수보다 큰 금액인지 확인
+              if (parseFloat(value) > parseFloat(balance)) {
+                return '현재 금액을 초과하여 송금할 수 없습니다.';
               }
             },
             icon: 'question',

@@ -14,18 +14,26 @@ import {
   HeaderContent,
   HeaderImage,
   HeaderTitle,
+  RadioButtonGroup,
+  RadioLabel,
 } from './style'
 import imgSrc from './img/Bear.png'
 import imgSrc2 from './img/ALL.jpeg'
 import imgSrc3 from './img/prefer.png'
 import { getParentMissionByChild } from '@apis'
 import { TopContainer } from '@components'
+import { selectedChild } from '../../../recoil'
+import { TopNavigationBar } from '../../../components/TopNavigationBar'
+import { useSetRecoilState } from 'recoil'
 export const MissionParentViewPage = () => {
+  const setSelectedChildId = useSetRecoilState(selectedChild)
   const [missions, setMissions] = useState([])
   const [childs, setChilds] = useState([])
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const navigate = useNavigate()
   const [selectedChildIndex, setSelectedChildIndex] = useState(0)
+  const [missionFilter, setMissionFilter] = useState('ongoing')
+  const parent = localStorage.getItem('parent')
 
   const handleMissionClick = missionId => {
     navigate(`/mission/detail/${missionId}`)
@@ -36,10 +44,12 @@ export const MissionParentViewPage = () => {
   }
 
   useEffect(() => {
-    // 초기 로드 혹은 selectedChildIndex가 변경될 때마다 API 호출
     const fetchData = async () => {
       try {
-        const response = await getParentMissionByChild(selectedChildIndex)
+        const response = await getParentMissionByChild(
+          selectedChildIndex,
+          missionFilter,
+        )
         setMissions(response.missionLists)
         setChilds(response.childLists)
       } catch (error) {
@@ -48,16 +58,11 @@ export const MissionParentViewPage = () => {
     }
 
     fetchData()
-  }, [selectedChildIndex])
+  }, [selectedChildIndex, missionFilter])
 
   return (
     <TopContainer>
-      <Header>
-        <HeaderContent>
-          <HeaderImage src={imgSrc3} />
-          <HeaderTitle>자녀금융관리</HeaderTitle>
-        </HeaderContent>
-      </Header>
+      <TopNavigationBar title={'미션, 챌린지 관리'} />
       <ChildListContainer>
         {/* 전체 보기 아이템 */}
         <ChildItemContainer
@@ -110,6 +115,37 @@ export const MissionParentViewPage = () => {
           퀴즈
         </Tab>
       </TabContainer>
+      <div>
+        <RadioButtonGroup>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="ongoing"
+              checked={missionFilter === 'ongoing'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            진행중
+          </RadioLabel>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="requested"
+              checked={missionFilter === 'requested'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            요청
+          </RadioLabel>
+          <RadioLabel>
+            <input
+              type="radio"
+              value="success"
+              checked={missionFilter === 'success'}
+              onChange={e => setMissionFilter(e.target.value)}
+            />
+            완료
+          </RadioLabel>
+        </RadioButtonGroup>
+      </div>
       <ButtonContainer>
         <AddMissionButton
           onClick={() => {
@@ -124,12 +160,12 @@ export const MissionParentViewPage = () => {
       <MissionListContainer>
         {missions.map((mission, index) => (
           <MissionItemContainer
-            isEven={index % 2 === 0}
+            isEven={index % 2 === 1}
             onClick={() => handleMissionClick(mission.id)}
             key={index}
           >
             <MissionItem
-              isEven={index % 2 === 0}
+              isEven={index % 2 === 1}
               missionTitle={mission.title}
               missionReward={`${mission.reward}원`}
               missionDate={
@@ -139,6 +175,7 @@ export const MissionParentViewPage = () => {
               }
               parentConfirm={mission.parentConfirm}
               childConfirm={mission.childConfirm}
+              parent={parent}
             />
           </MissionItemContainer>
         ))}

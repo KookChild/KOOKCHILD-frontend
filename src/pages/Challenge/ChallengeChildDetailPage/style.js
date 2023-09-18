@@ -4,7 +4,7 @@ export const ChallengeTitle = styled.div`
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  padding: 30px;
+  padding: 30px 10px;
 `
 export const ChallengeContent = styled.div`
   font-size: 19px;

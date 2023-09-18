@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getMissions, loadChildAccountDetailAPI } from '@apis'
+
 import {
-  iconContainer,
+  loadChildAccountDetailAPI,
+  getMissions,
+  loadMyChallengesAPI,
+  getProceedingMissionByChild,
+} from '@apis'
+
+import { useNavigate } from 'react-router-dom'
+import {
   buttonSection,
   MyAccountButton,
   CustomLinkButton,
   DailyQuizButton,
-  StyledCurrentMissionList,
   textContainer,
-  iconGroup,
   BackToKBStarBankingButton,
   textContainerSpan,
+  accountNumberContainer,
+  buttonsContainer,
+  balanceContainer,
+  childNameContainer,
+  TopTextContainer,
 } from './style'
-import { loadMyChallengesAPI } from '@apis'
-import { TopContainer } from '@components'
+
+import {
+  TopContainer,
+  StyledCurrentMissionList,
+  ChallengeItem,
+} from '@components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { ChallengeItem } from '@components'
-import { useNavigate } from 'react-router-dom'
+import { GRAY, PRIMARY } from '@utility/COLORS'
+
 library.add(faBell, faGear, faPlus)
 
 export const ChildMainPage = () => {
@@ -30,12 +42,14 @@ export const ChildMainPage = () => {
   })
   const [missionList, setMissionList] = useState([])
   const [challengeList, setChallengeList] = useState([])
-
+  const navigate = useNavigate()
   const handleCopyClick = () => {
     navigator.clipboard.writeText('553702-01-000000')
   }
 
   const [animatedDigits, setAnimatedDigits] = useState([])
+
+  // TODO : mission proceeding api로 변경하기
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +58,7 @@ export const ChildMainPage = () => {
         let formattedBalance
         const missionDataResponse = await getMissions('newest')
         const challengeDateResponse = await loadMyChallengesAPI()
-
+        console.log(missionDataResponse)
         // childDataResponse.balance의 타입에 따라 적절하게 처리
         if (typeof childDataResponse.balance === 'number') {
           formattedBalance = childDataResponse.balance.toLocaleString()
@@ -63,7 +77,7 @@ export const ChildMainPage = () => {
           accountNum: childDataResponse.accountNum,
           balance: formattedBalance, // 처리된 문자열로 저장
         })
-        setMissionList(missionDataResponse.missionLists)
+        setMissionList(missionDataResponse.ongoingMissionLists)
         setChallengeList(challengeDateResponse)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -117,39 +131,40 @@ export const ChildMainPage = () => {
 
   return (
     <TopContainer>
-      <div style={iconContainer}>
-        <div style={textContainer}>
-          <span>Kook Child</span>
-        </div>
-        <div style={iconGroup}>
-          <FontAwesomeIcon icon={['fas', 'bell']} size="lg" />
-          <FontAwesomeIcon icon={['fas', 'gear']} size="lg" />
-        </div>
+      <div style={TopTextContainer}>
+        <span style={childNameContainer}>{child.accountName}</span>
+        <span>님의 자산</span>
       </div>
 
-      <div style={textContainer}>
-        <span>{child.accountName}님의 자산</span>
-      </div>
-
-      <div style={buttonSection}>
+      <div>
         <div style={MyAccountButton}>
           <div
             onClick={handleCopyClick}
-            style={{ cursor: 'pointer', fontSize: 'small' }}
+            style={{ ...accountNumberContainer, color: PRIMARY }}
           >
             {child.accountNum}
           </div>
+
+          <div style={balanceContainer}>{animatedDigits.join('')}원</div>
           <br />
-          <div style={{ fontSize: '22px', cursor: 'pointer' }}>
-            {animatedDigits.join('')}
+          <div style={buttonsContainer}>
+            <div
+              style={{ ...CustomLinkButton, backgroundColor: GRAY }}
+              onClick={() => navigate('/transaction-history')}
+            >
+              입출금 내역
+            </div>
+            <div
+              style={{
+                ...CustomLinkButton,
+                backgroundColor: PRIMARY,
+                color: 'black',
+              }}
+              onClick={() => navigate('/transfer')}
+            >
+              이체하기
+            </div>
           </div>
-          <br />
-          <Link to="/transaction-history" style={CustomLinkButton}>
-            입출금 내역
-          </Link>
-          <Link to="/transfer" style={CustomLinkButton}>
-            이체하기
-          </Link>
         </div>
       </div>
       <div style={textContainer}>
@@ -161,7 +176,6 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>진행중인 미션</span>
-        <span style={textContainerSpan}>더보기</span>
       </div>
       <div style={buttonSection}>
         <StyledCurrentMissionList missions={missionList} />

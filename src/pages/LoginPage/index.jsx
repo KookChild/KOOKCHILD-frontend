@@ -20,7 +20,7 @@ export const LoginPage = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const userType = localStorage.getItem('parent');
+      const userType = JSON.parse(localStorage.getItem('parent'));
       if (userType) {
         navigate('/parent');
       } else {
@@ -28,6 +28,7 @@ export const LoginPage = () => {
       }
     }
   }, [navigate]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

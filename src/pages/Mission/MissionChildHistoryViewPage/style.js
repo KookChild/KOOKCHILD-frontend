@@ -1,0 +1,58 @@
+import styled from 'styled-components';
+
+export const MenuContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const Dropdown = styled.select`
+    width: 90px;
+    height: 30px;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    padding: 5px 10px;
+`;
+
+export const MissionListContainer = styled.div`
+  overflow-y: auto;
+  margin-top: 10px;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`;
+
+export const MissionHeaderContainer = styled.h3`
+  margin-top: 20px;
+
+`
+export const MissionItemContainer = styled.div`
+  width: 390px;
+  height: 115px;
+  margin-bottom: 10px;
+  background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
+  opacity: 1;
+  display:flex;
+`;
+
+export const MessageContainer = styled.div`
+  width: 340px;
+  height: 76.66px;
+  background: #E5E5E5;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8E8E8E;
+`;

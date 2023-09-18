@@ -8,7 +8,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    font-family: 'kbFont','kbFontLight','kbFontRegular','kbFontBold';
 }
 #root{
   height: 844px;

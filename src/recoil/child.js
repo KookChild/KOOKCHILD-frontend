@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
-export const TestAtom = atom({
-  key: 'TestAtom', //고유값이어야함
-  default: [],
+export const selectedChild = atom({
+  key: 'selectedChild', //고유값이어야함
+  default: 49,
 })
 
 {

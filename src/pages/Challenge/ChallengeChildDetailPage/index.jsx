@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import { useParams } from 'react-router-dom'
 import {
   ChallengeTitle,
   ChallengeContent,
   ChallengeConfirmButton,
-  ChallengeContainer,
   ChallengeImg,
   ChallengeImgWrapper,
   ChallengeContentImgContainer,
 } from './style'
-import { useNavigate } from 'react-router-dom'
-import { loadChallengeDetailAPI, childConfirmAPI } from '@apis'
+import { useNavigate, useParams } from 'react-router-dom'
+import { TopNavigationBar } from '@components'
+import {
+  loadChallengeDetailAPI,
+  childConfirmAPI,
+  checkChallengeIsProceedingAPI,
+} from '@apis'
 import { PRIMARY } from '@utility/COLORS'
 import { TopContainer } from '@components'
 export const ChallengeChildDetailPage = () => {
@@ -23,6 +26,8 @@ export const ChallengeChildDetailPage = () => {
   // const [content, setContent] = useState(AtomContent)
 
   const [challenge, setChallenge] = useState()
+  const [challengeType, setChallengeType] = useState()
+
   const navigate = useNavigate()
   const confirm = async () => {
     Swal.fire({
@@ -38,15 +43,23 @@ export const ChallengeChildDetailPage = () => {
       // 만약 Promise리턴을 받으면,
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
-        await childConfirmAPI(params.id)
-          .then(
-            Swal.fire(
-              '참여신청 완료',
-              '부모님의 승인요청을 기다려주세요',
-              'success',
-            ),
-          )
-          .then(navigate('/challenge'))
+        if (challengeType == 0) {
+          await childConfirmAPI(params.id)
+            .then(
+              Swal.fire(
+                '참여신청 완료',
+                '부모님의 승인요청을 기다려주세요',
+                'success',
+              ),
+            )
+            .then(navigate('/child/challenge'))
+        } else {
+          await childConfirmAPI(params.id)
+            .then(
+              Swal.fire('참여신청 완료', '챌린지를 진행해주세요', 'success'),
+            )
+            .then(navigate('/child/challenge'))
+        }
       }
     })
   }
@@ -56,6 +69,11 @@ export const ChallengeChildDetailPage = () => {
       try {
         const challengeDetailData = await loadChallengeDetailAPI(params.id)
         setChallenge(challengeDetailData)
+        const challengeTypeData = await checkChallengeIsProceedingAPI(
+          null,
+          params.id,
+        )
+        setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
       }
@@ -65,19 +83,26 @@ export const ChallengeChildDetailPage = () => {
   }, [params.id])
   return (
     challenge && (
-      <TopContainer style={{ padding: '0px' }}>
-        {/* <ChallengeContainer> */}
+      <TopContainer style={{ backgroundColor: 'white' }}>
+        <TopNavigationBar title={'detail'} />
         <ChallengeTitle> {challenge.title}</ChallengeTitle>
         <ChallengeContentImgContainer>
           <ChallengeContent>{challenge.childContent}</ChallengeContent>
           <ChallengeImgWrapper>
-            <ChallengeImg src={challenge.image} />
+            <ChallengeImg src="/img/Bear.png" />
           </ChallengeImgWrapper>
         </ChallengeContentImgContainer>
-        <ChallengeConfirmButton onClick={confirm}>
-          참여할래?
-        </ChallengeConfirmButton>
-        {/* </ChallengeContainer> */}
+        {challengeType === 0 && (
+          <ChallengeConfirmButton onClick={confirm}>
+            참여하기
+          </ChallengeConfirmButton>
+        )}
+
+        {challengeType === 2 && (
+          <ChallengeConfirmButton onClick={confirm}>
+            승인하기
+          </ChallengeConfirmButton>
+        )}
       </TopContainer>
     )
   )
