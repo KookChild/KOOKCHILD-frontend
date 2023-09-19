@@ -117,12 +117,13 @@ export const StyledButton = styled.button`
 `;
 
 export const AreaFooterContainer = styled.div`
+    position: absolute;
     width: 350px;
     padding-bottom : 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: fixed;
+    // position: fixed;
     bottom: 0px;
     margin-top: 50px;
     z-index: 1;

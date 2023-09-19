@@ -12,6 +12,7 @@ import {
   loadMyChallengesAPI,
 } from '@apis'
 import { TopContainer } from '@components'
+
 export const ChallengeViewPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [totalCount, setTotalCount] = useState(0)

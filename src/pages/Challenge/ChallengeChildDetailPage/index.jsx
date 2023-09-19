@@ -25,14 +25,8 @@ import {
 
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
-  // const AtomTitle = '26일 챌린지'
-  // const AtomContent =
-  //   ' 26일 동안 매일 천원씩 저금하면, 26일 뒤에 1500원의 이자가 지급돼!'
-  // const [title, setTitle] = useState(AtomTitle)
-  // const [content, setContent] = useState(AtomContent)
-
   const [challenge, setChallenge] = useState()
-  const [challengeType, setChallengeType] = useState()
+  const [challengeType, setChallengeType] = useState(null)
 
   const navigate = useNavigate()
   const confirm = async () => {
@@ -107,6 +101,7 @@ export const ChallengeChildDetailPage = () => {
 
     fetchData()
   }, [params.id])
+  if (challengeType == null) return
   return (
     challenge && (
       <TopContainer style={{ backgroundColor: 'white' }}>
