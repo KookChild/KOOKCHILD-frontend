@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TopContainer } from '@components';
+import { TopContainer, TopNavigationBar } from '@components';
 import {
   RegisterWrapper,
   RegisterTitle,
@@ -91,6 +91,7 @@ export const ParentRegisterPage = () => {
 
   return (
     <TopContainer>
+      <TopNavigationBar title={"회원가입"}/>
       <RegisterWrapper>
         <RegisterTitle>Kook Child 회원 가입</RegisterTitle>
         <RegisterForm>

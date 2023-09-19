@@ -43,6 +43,7 @@ export const textContainerSpan = {
   marginTop: '7px', // 텍스트 위의 간격s
   marginRight: '12px',
   fontSize: '8px',
+  cursor: 'pointer'
 }
 
 // 우측 상단 아이콘

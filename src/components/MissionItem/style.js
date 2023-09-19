@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { YELLOW, PRIMARY } from '@utility/COLORS'
 
 export const ItemContainer = styled.div`
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,6 +82,7 @@ export const RightSection = styled.div`
 `;
 
 export const ChildItemContainer = styled.div`
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     width: 390px;
