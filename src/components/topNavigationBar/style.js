@@ -29,8 +29,8 @@ export const LogoutButton = styled.button`
     right: 20px;
     width: 67px;
     height: 22px;
-    color: white;
+    color: #f0f0f0;
     border: none;
-    background: black;
+    background: #f0f0f0;
     border-radius: 10px;
 `

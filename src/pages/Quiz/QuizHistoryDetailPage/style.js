@@ -1,16 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { BROWN } from '@utility/COLORS';
 
-const slideDown = keyframes`
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
 const slideInFromBottom = keyframes`
   from {
     transform: translateY(100%);
@@ -71,34 +61,34 @@ export const CharacterImage = styled.img`
 
 export const ChatBubble = styled.div`
 font-size: 15px;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    max-width: 70%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  max-width: 70%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 
-    &:after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 0;
-        border: 10px solid transparent;
+  &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
 
-        // 첫번째 캐릭터의 대화창
-        &:first-child {
-            border-left-color: #fff;
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+      // 첫번째 캐릭터의 대화창
+      &:first-child {
+          border-left-color: #fff;
+          left: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+      }
 
-        // 두번째 캐릭터의 대화창
-        &:last-child {
-            border-right-color: #fff;
-            right: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    }
+      // 두번째 캐릭터의 대화창
+      &:last-child {
+          border-right-color: #fff;
+          right: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+      }
+  }
 `;

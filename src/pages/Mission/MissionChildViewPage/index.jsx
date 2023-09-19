@@ -5,6 +5,7 @@ import {
   Dropdown,
   HistoryMissionButton,
   MissionHeaderContainer,
+  MissionListWrapper,
 } from './style'
 import { getMissions, receiveMissionReward } from '@apis'
 import { TopContainer, TopNavigationBar } from '@components'
@@ -67,42 +68,43 @@ export const MissionChildViewPage = () => {
     fetchData();
   }, [sort]);
 
-  // ...
+  return (
+    <TopContainer>
+      <TopNavigationBar title={"미션 목록"} />
+      <MenuContainer>
+        <h2>미션</h2>
+        <HistoryMissionButton onClick={() => navigate('/child/mission/childview/history')}>
+          히스토리
+        </HistoryMissionButton>
+      </MenuContainer>
 
-return (
-  <TopContainer>
-    <TopNavigationBar title={"미션 목록"} />
-    <MenuContainer>
-      <h2>미션</h2>
-      <HistoryMissionButton onClick={() => navigate('/child/mission/childview/history')}>
-        히스토리
-      </HistoryMissionButton>
-    </MenuContainer>
+      <MissionListWrapper>
+        <MissionHeaderContainer>보상금 확인하기</MissionHeaderContainer>
+        <MissionList
+          missions={receiveReward}
+          message="아직 보상금 받을 미션이 없습니다."
+          onRewardButtonClick={handleReceiveReward}
+        />
 
-    <MissionHeaderContainer>보상금 확인하기</MissionHeaderContainer>
-    <MissionList
-      missions={receiveReward}
-      message="아직 보상금 받을 미션이 없습니다."
-      onRewardButtonClick={handleReceiveReward}
-    />
+        <MissionHeaderContainer>입금 대기중인 미션</MissionHeaderContainer>
+        <MissionList
+          missions={requestMissions}
+          message="현재 입금 대기 중인 미션이 없습니다"
+        />
 
-    <MissionHeaderContainer>입금 대기중인 미션</MissionHeaderContainer>
-    <MissionList
-      missions={requestMissions}
-      message="현재 입금 대기 중인 미션이 없습니다"
-    />
+        <MenuContainer>
+          <MissionHeaderContainer>진행중인 미션</MissionHeaderContainer>
+          <Dropdown onChange={handleDropdownChange}>
+            <option value="newest">최신순</option>
+            <option value="oldest">오래된순</option>
+          </Dropdown>
+        </MenuContainer>
+        <MissionList
+          missions={ongoingMissions}
+          message="현재 진행중인 미션이 없습니다"
+        />
+      </MissionListWrapper>
+    </TopContainer>
+  );
 
-    <MenuContainer>
-      <MissionHeaderContainer>진행중인 미션</MissionHeaderContainer>
-      <Dropdown onChange={handleDropdownChange}>
-        <option value="newest">최신순</option>
-        <option value="oldest">오래된순</option>
-      </Dropdown>
-    </MenuContainer>
-    <MissionList
-      missions={ongoingMissions}
-      message="현재 진행중인 미션이 없습니다"
-    />
-  </TopContainer>
-);
 }

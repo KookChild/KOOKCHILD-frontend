@@ -6,16 +6,25 @@ import {
   ChallengeInfo,
   moneyIcon,
 } from './style' // style.js에서 스타일을 가져옵니다.
-import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { PRIMARY } from '@utility/COLORS'
-import { useEffect, useState } from 'react'
 import { AiFillDollarCircle } from 'react-icons/ai'
-import { checkChallengeIsProceedingAPI } from '@apis'
+import { getDaysDifference } from '@utility/COMMON_FUNCTION'
+
 export const ChallengeItem = ({ challenge, isParent }) => {
-  const [challengeType, setChallengeType] = useState()
-  const params = useParams()
   const navigate = useNavigate()
+
+  const endDate = isParent
+    ? new Date(challenge.challenge.endDate)
+    : new Date(challenge.endDate)
+  const startDate = isParent
+    ? new Date(challenge.challenge.startDate)
+    : new Date(challenge.startDate)
+  const currentDate = new Date()
+
+  const daysLeft = getDaysDifference(currentDate, endDate)
+  const totalDaysLeft = getDaysDifference(startDate, endDate)
+
   const handleClick = () => {
     if (isParent) {
       navigate(`/challenge/parent/detail/${challenge.challenge.id}`)
@@ -23,6 +32,7 @@ export const ChallengeItem = ({ challenge, isParent }) => {
       navigate(`/challenge/child/detail/${challenge.id}`)
     }
   }
+
   return (
     <div style={ChallengeContainer} onClick={handleClick}>
       <ChallengeImageProgressContainer>
@@ -33,7 +43,7 @@ export const ChallengeItem = ({ challenge, isParent }) => {
         />
         <div style={ChallengeProgress}>
           {/* <span>{`${progress}%`}</span> */}
-          <span>50%</span>
+          <span>D-{daysLeft}</span>
           <div
             style={{
               width: '100px',
@@ -45,8 +55,8 @@ export const ChallengeItem = ({ challenge, isParent }) => {
           >
             <div
               style={{
-                // width: `${progress}%`,
-                width: '50%',
+                width: `${(daysLeft / totalDaysLeft) * 100}%`,
+
                 height: '100%',
                 backgroundColor: PRIMARY,
               }}

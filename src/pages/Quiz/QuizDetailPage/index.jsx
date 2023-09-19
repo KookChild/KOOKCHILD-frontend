@@ -60,7 +60,7 @@ export const QuizDetailPage = () => {
       if (statusCode === 200) {
         const modalOptions = {
           title: correct ? '정답입니다!' : '오답입니다.',
-          text: correct ? '축하합니다! 정답을 선택했습니다.' : '아쉽습니다. 다시 도전해보세요.',
+          text: correct ? '축하합니다! 정답을 선택했습니다.' : '아쉽습니다. 다음에 다시 도전해보세요.',
           imageUrl: correct ? correctImage : wrongImage,
           imageWidth: 200,
           imageHeight: 200,
@@ -78,6 +78,7 @@ export const QuizDetailPage = () => {
         });
 
       } else {
+        console.log(response);
         Swal.fire({
           icon: 'error',
           title: '오류 발생',
@@ -124,9 +125,8 @@ export const QuizDetailPage = () => {
         </StyledChoiceButton>
       </AreaContainer>
 
-      {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
-
       <AreaFooterContainer>
+      {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
         <StyledSubmitButton
           isDisabled={!selectedChoice && !isUnsure}
           onClick={handleSubmit}

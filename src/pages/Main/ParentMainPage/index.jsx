@@ -88,8 +88,8 @@ export const ParentMainPage = () => {
   const LinkedAccountButton = (
     <button style={LinkedAccountButtonStyle}>
       <div style={buttonTextContainer}>
-        <span style={AccounttextLine2}>1234-5678</span>
-        <span style={AccounttextLine1}>{`${animatedDigits.join('')} 원`}</span>
+        <span style={AccounttextLine2}>553702-01-444555</span>
+        <span style={AccounttextLine1}>{`${animatedDigits.join('')} 3,612,000 원`}</span>
       </div>
     </button>
   )

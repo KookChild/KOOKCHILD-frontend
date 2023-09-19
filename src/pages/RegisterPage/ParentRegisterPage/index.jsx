@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TopContainer } from '@components';
 import {
@@ -9,9 +9,11 @@ import {
   PhoneNumberInput,
   ResidentNumberInput,
 } from './style';
-import { loginAPI } from '@apis';
+import { registrationDataState } from '../../../recoil';
+import { useRecoilState } from 'recoil';
+import Swal from 'sweetalert2';
 
-export const RegisterPage = () => {
+export const ParentRegisterPage = () => {
   const [name, setName] = useState('');
   const [ssn1, setSsn1] = useState('');
   const [ssn2, setSsn2] = useState('');
@@ -24,38 +26,11 @@ export const RegisterPage = () => {
   const [passwordChk, setPasswordChk] = useState('');
   const [accountPwd, setAccountPwd] = useState('');
   const [accountPwdChk, setAccountPwdChk] = useState('');
-  const [hasChild, setHasChild] = useState('');
-  const [chkIdCard, setChkIdCard] = useState('');
+  const [birthDate, setBirthDate] = useState('');
 
-  const [errorMsg, setErrorMsg] = useState('');
+  const [registrationData, setRegistrationData] = useRecoilState(registrationDataState);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userType = localStorage.getItem('parent');
-      if (userType) {
-        navigate('/parent');
-      } else {
-        navigate('/child');
-      }
-    }
-  }, [navigate]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { token, parent } = await loginAPI(email, password);
-      if (parent) {
-        navigate('/parent');
-      } else {
-        navigate('/child');
-      }
-    } catch (error) {
-      setErrorMsg('이메일 혹은 비밀번호 일치하지 않습니다.');
-    }
-  };
 
   const handlePhoneNumberChange = (field, value) => {
     switch (field) {
@@ -72,20 +47,61 @@ export const RegisterPage = () => {
         break;
     }
   };
+  const handleNext = () => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '올바른 이메일 형식을 입력해주세요.'
+      });
+      return;
+    }
+    if (password !== passwordChk) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '비밀번호가 일치하지 않습니다.'
+      });
+      return;
+    }
+    if (accountPwd !== accountPwdChk) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '계좌 비밀번호가 일치하지 않습니다.'
+      });
+      return;
+    }
+    setRegistrationData({
+      ...registrationData,
+      name,
+      ssn1,
+      ssn2,
+      phoneNum1,
+      phoneNum2,
+      phoneNum3,
+      birthDate,
+      email,
+      password,
+      accountPwd
+    });
+    navigate('/register/children');
+  };
 
   return (
     <TopContainer>
       <RegisterWrapper>
         <RegisterTitle>Kook Child 회원 가입</RegisterTitle>
-        <RegisterForm onSubmit={handleSubmit}>
-          이름
+        <RegisterForm>
+          <label>이름</label>
           <Input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-          주민등록번호
+          <label>주민등록번호</label>
           <ResidentNumberInput
             value1={ssn1}
             value2={ssn2}
@@ -93,7 +109,7 @@ export const RegisterPage = () => {
             onChange2={(e) => setSsn2(e.target.value)}
             required
           />
-          휴대폰번호
+          <label>휴대폰번호</label>
           <PhoneNumberInput
             phoneNumber1={phoneNum1}
             phoneNumber2={phoneNum2}
@@ -101,62 +117,53 @@ export const RegisterPage = () => {
             onChange={handlePhoneNumberChange}
             required
           />
-          이메일(ID)
+          <label>생년월일</label>
+          <Input
+            type="date"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            required
+          />
+          <label>이메일(ID)</label>
           <Input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          비밀번호
+          <label>비밀번호</label>
           <Input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          비밀번호 확인
+          <label>비밀번호 확인</label>
           <Input
             type="password"
             value={passwordChk}
             onChange={(e) => setPasswordChk(e.target.value)}
             required
           />
-          계좌비밀번호
+          <label>계좌비밀번호</label>
           <Input
             type="password"
             value={accountPwd}
             onChange={(e) => setAccountPwd(e.target.value)}
             required
           />
-          계좌비밀번호 확인
+          <label>계좌비밀번호 확인</label>
           <Input
             type="password"
             value={accountPwdChk}
             onChange={(e) => setAccountPwdChk(e.target.value)}
             required
           />
-          자녀여부
           <Input
-            type="radio"
-            value={hasChild}
-            onChange={(e) => setHasChild(e.target.value)}
-            required
+            type="button"
+            value="다음"
+            onClick={handleNext}
           />
-          <Input
-            type="radio"
-            value={hasChild}
-            onChange={(e) => setHasChild(e.target.value)}
-            required
-          />
-          신분증확인
-          <Input
-            type="checkbox"
-            value={chkIdCard}
-            onChange={(e) => setChkIdCard(e.target.value)}
-            required
-          />
-          <Input type="submit" value="Register" />
         </RegisterForm>
       </RegisterWrapper>
     </TopContainer>
