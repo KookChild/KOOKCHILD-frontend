@@ -35,7 +35,7 @@ export const ChallengeParentDetailPage = () => {
     setParentReward(value)
     setIsInputValid(value > 0)
   }
-  console.log(challengeType)
+
   const confirm = async () => {
     if (!isInputValid) return
     Swal.fire({
@@ -50,7 +50,7 @@ export const ChallengeParentDetailPage = () => {
       // 만약 Promise리턴을 받으면,
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
-        if (challengeType == 0) {
+        if (challengeType === 0) {
           await parentConfirmAPI(params.id, selectedChildId, parentReward)
             .then(
               Swal.fire(
@@ -77,6 +77,7 @@ export const ChallengeParentDetailPage = () => {
           selectedChildId,
           params.id,
         )
+
         setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -84,8 +85,8 @@ export const ChallengeParentDetailPage = () => {
     }
 
     fetchData()
-  }, [params.id])
-  console.log(selectedChildId)
+  }, [params.id, selectedChildId])
+
   return (
     challenge && (
       <TopContainer style={{ backgroundColor: 'white' }}>
@@ -104,8 +105,8 @@ export const ChallengeParentDetailPage = () => {
           </DetailTextWrapper>
           <img src="/img/Bear.png" alt="bear" />
         </DetailContainer>
-        {challengeType == 0 ||
-          (challengeType == 1 && (
+        {challengeType === 0 ||
+          (challengeType === 1 && (
             <ParentRewardWrapper>
               <ParentRewardTextWrapper>
                 부모 리워드 (더금리)
@@ -134,13 +135,14 @@ export const ChallengeParentDetailPage = () => {
             </ParentRewardWrapper>
           ))}
         <TermsAndConditions />
-        {challengeType === 0 && (
+        {/* 일단 전체보기 일때는 금액설정기능 막아놓음 */}
+        {challengeType === 0 && selectedChildId !== 0 && (
           <ChallengeConfirmButton onClick={confirm}>
             추천하기
           </ChallengeConfirmButton>
         )}
 
-        {challengeType === 1 && (
+        {challengeType === 1 && selectedChildId !== 0 && (
           <ChallengeConfirmButton onClick={confirm}>
             승인하기
           </ChallengeConfirmButton>
