@@ -9,4 +9,5 @@ export const CenteredContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
   padding: 20px; /* 내부 여백 설정 */
   overflow-y: auto;
+  position: relative;
 `

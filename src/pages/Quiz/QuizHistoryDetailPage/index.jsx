@@ -8,6 +8,8 @@ import {
     CharacterContainer,
     CharacterImage,
     ChatBubble,
+    YouTubeButton,
+    AreaFooterContainer
 } from './style';
 import { getQuizHistoryDetail } from '@apis';
 import character1 from './img/Lamu.png';
@@ -32,6 +34,13 @@ export const QuizHistoryDetailPage = () => {
         const lastChar = word[word.length - 1];
         return hasJongseong(lastChar) ? "이" : "가";
     };
+
+    const handleButtonClick = () => {
+        const baseURL = "https://www.youtube.com/results?search_query=";
+        const query = `${quizDetail.answer}관련 어린이 금융`;
+        const encodedQuery = encodeURIComponent(query);
+        window.location.href = baseURL + encodedQuery;
+      };
 
 
     useEffect(() => {
@@ -63,6 +72,9 @@ export const QuizHistoryDetailPage = () => {
                 <ChatBubble className="secondBubble">{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}</ChatBubble>
                 <CharacterImage className="secondImage" src={character2} alt="두번째 캐릭터" />
             </CharacterContainer>
+            <AreaFooterContainer>
+            <YouTubeButton onClick={handleButtonClick}>{`${quizDetail.answer}에 대해서 더 알고 싶다면?`}</YouTubeButton>
+            </AreaFooterContainer>
         </TopContainer>
     );
 }
