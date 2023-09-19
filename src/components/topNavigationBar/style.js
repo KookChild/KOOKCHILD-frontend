@@ -24,9 +24,9 @@ export const HeaderTitle = styled.h1`
   margin: 0; /* title의 margin 제거 */
 `
 export const LogoutButton = styled.button`
-    position: absolute;
-    top: 30px;
-    right: 20px;
+  position: absolute;
+    cursor: pointer;
+    right: 30px;
     width: 67px;
     height: 22px;
     color: #f0f0f0;

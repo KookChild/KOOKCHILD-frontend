@@ -20,7 +20,9 @@ import {
   PictureSelectContainer, 
   StyledAccountNum, 
   StyledChildName, 
-  StyledSpan
+  StyledSpan,
+  ThisMonthMoney,
+  ThisMonthType
 } from './style';
 
 
@@ -43,7 +45,7 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
               style={{
                 objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
                 width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
-                height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
+                height: '177px', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
               }}
             />
             <AccountInfo>
@@ -69,13 +71,20 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
             >
               <MonthlyContent>
                 <MonthlyItem>
-                    우리 아이 <br></br>이번 달 소비<br></br>
-                    {spendingAmount}원
+                    <ThisMonthType>
+                      이번달 소비<br></br>
+                    </ThisMonthType>
+                    <ThisMonthMoney>
+                      -{spendingAmount}원
+                    </ThisMonthMoney>
                 </MonthlyItem>
                 <MonthlyItem>
-                   우리 아이 <br></br>이번 달 저축<br></br>
-                     {savingAmount}원
-                    
+                    <ThisMonthType>
+                      이번달 저축<br></br>
+                    </ThisMonthType>
+                    <ThisMonthMoney>
+                      +{savingAmount}원
+                     </ThisMonthMoney>
                 </MonthlyItem>
               </MonthlyContent>
            

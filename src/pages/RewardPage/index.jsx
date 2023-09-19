@@ -5,9 +5,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { PRIMARY } from '@utility/COLORS'
 import { GoCheckCircle } from "react-icons/go";
-import { ChildUnderSection } from "@components/MissionItem/style";
 import { AiFillDollarCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { 
+  Button, 
+  SendButtonContainer, 
+  commonSwalOptions
+ } from './style';
+import { useNavigate } from "react-router-dom";
 
 const MainContent = styled.div`
     height : 100%
@@ -176,6 +181,10 @@ const MissionText = styled.div`
   /* 미션 텍스트 스타일을 추가하세요 */
   margin : 14px 0px;
   width : 261px;
+  &:hover {
+    cursor: pointer; /* 마우스를 올렸을 때 포인터로 커서 변경 */
+    /* 추가적인 스타일 변경을 여기에 추가하세요 */
+  }
   justify-content:space-between;
 `;
 
@@ -213,6 +222,7 @@ line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
 `
 
 export const RewardPage = () => {
+  const navigate = useNavigate();
   const [responseData, setResponseData] = useState({
     rewardCompleteAmount: '',
     rewardConfirmWaitAmount: '',
@@ -222,9 +232,6 @@ export const RewardPage = () => {
     missionContents: [],
     notCompleteMissionsAmount: '',
   });
-  console.log(responseData);
-  console.log(missionData);
-  console.log(responseData.rewardCompleteAmount == "0");
 
   useEffect(() => {
     fetchRewardData();
@@ -258,22 +265,41 @@ export const RewardPage = () => {
   const handleWithdraw = async () => {
     try {
       // '/reward/withdraw'로 GET 요청 보내기
-      const response = await axios.get('/reward/withdraw');
-
-      // 요청이 성공하면 출금 성공 메시지를 표시
-      if (response.status === 200) {
-        setWithdrawSuccess(true);
-
-        responseData.rewardCompleteAmount
-        // SweetAlert를 사용하여 출금 완료 메시지를 표시
+      
+      if(responseData.rewardCompleteAmount == '0'){
+        console.log('if in');
         Swal.fire({
-          icon: 'success', // 성공 아이콘 표시
-          title: '출금 완료',
-          text: '출금이 성공적으로 완료되었습니다.',
+          icon: 'error', // 성공 아이콘 표시
+          title: '출금 실패',
+          text: '잔액이 없습니다.',
           confirmButtonColor: PRIMARY, // 확인 버튼 색상 설정
+          customClass: {
+            // 성공 알림 모달에 사용할 클래스 추가
+            container: 'custom-swal-container',
+          },
+          ...commonSwalOptions,
         });
+      }else{
+        const response = await axios.get('/reward/withdraw');
+      
+        // 요청이 성공하면 출금 성공 메시지를 표시
+        if (response.status === 200) {
+          setWithdrawSuccess(true);
+          // SweetAlert를 사용하여 출금 완료 메시지를 표시
+          Swal.fire({
+            icon: 'success', // 성공 아이콘 표시
+            title: '출금 완료',
+            text: '출금이 성공적으로 완료되었습니다.',
+            confirmButtonColor: PRIMARY, // 확인 버튼 색상 설정
+            customClass: {
+              // 성공 알림 모달에 사용할 클래스 추가
+              container: 'custom-swal-container',
+            },
+            ...commonSwalOptions,
+          });
 
-        window.location.reload(); 
+          window.location.reload(); 
+        }
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -311,7 +337,6 @@ export const RewardPage = () => {
             backgroundcolor={PRIMARY} 
             fontcolor="#010812"
             onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
-            disabled={responseData.rewardCompleteAmount == "0"} // rewardCompleteAmount가 0일 때 버튼 비활성화
             >출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>
@@ -341,7 +366,7 @@ export const RewardPage = () => {
               {missionData.missionContents.map((mission, index) => (
                 <MissionItem key={index}>
                   <GoCheckCircle style={grayIconStyle} />
-                  <MissionText>
+                  <MissionText onClick={() => navigate('/child/mission/childview')}>
                     <MissionTitle>{mission.title}</MissionTitle>
                     <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
                   </MissionText>

@@ -51,16 +51,29 @@ export const CharacterContainer = styled.div`
     margin: 10px 0;
     animation: ${slideInFromBottom} 1s forwards;
     animation-delay: ${props => props.delay || "0s"};
-    opacity: 0;  // 초기 투명도
+    opacity: 0;
+
+    &.secondContainer {
+      padding: 0px;
+      margin-top: 40px;
+    }
 `;
 
 export const CharacterImage = styled.img`
     width: 120px;
     height: auto;
+    position: relative;
+
+    &.firstImage {
+      right: -30px;
+    }
+    &.secondImage {
+      right: -10px;
+    }
 `;
 
 export const ChatBubble = styled.div`
-font-size: 15px;
+  font-size: 15px;
   background-color: #fff;
   padding: 10px 20px;
   border-radius: 20px;
@@ -69,26 +82,26 @@ font-size: 15px;
   position: relative;
 
   &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
 
-      // 첫번째 캐릭터의 대화창
-      &:first-child {
-          border-left-color: #fff;
-          left: 100%;
-          top: 50%;
-          transform: translateY(-50%);
-      }
+    // 첫번째 캐릭터의 대화창
+    &:first-child {
+      border-left-color: #fff;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-      // 두번째 캐릭터의 대화창
-      &:last-child {
-          border-right-color: #fff;
-          right: 100%;
-          top: 50%;
-          transform: translateY(-50%);
-      }
+    // 두번째 캐릭터의 대화창
+    &:last-child {
+      border-right-color: #fff;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 `;
