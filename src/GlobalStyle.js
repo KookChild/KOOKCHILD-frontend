@@ -11,8 +11,10 @@ html, body {
     font-family: 'kbFont','kbFontLight','kbFontRegular','kbFontBold';
 }
 #root{
+
   height: 844px;
   width: 390px;
+  position: relative;
   
 }
 iframe {

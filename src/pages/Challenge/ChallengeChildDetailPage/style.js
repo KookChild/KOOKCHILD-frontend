@@ -16,7 +16,7 @@ export const ChallengeConfirmButton = styled.div`
   padding: 15px;
   font-size: 30px;
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 8.5vh;
   width: 100%;
   // position: fixed;
   // bottom: 0;
