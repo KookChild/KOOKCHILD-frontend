@@ -8,6 +8,8 @@ import AccountDetailInfoButton from './AccountDetailInfoButton'
 import { 
   AccountButtons, 
   AccountDescription, 
+  AccountInfo, 
+  AccountInfoContainer, 
   BankContentContainer, 
   BankInfoContainer, 
   ChildName, 
@@ -16,6 +18,8 @@ import {
   MonthlyItem, 
   MoveChildGraphButtonContainer, 
   PictureSelectContainer, 
+  StyledAccountNum, 
+  StyledChildName, 
   StyledSpan
 } from './style';
 
@@ -27,8 +31,6 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
     <BankContentContainer>
       {/* <ChildName>{childName}님의 계좌</ChildName> */}
       <PictureSelectContainer>
-          <div>
-            
             <motion.img
               initial={{ opacity: 0 }} // 초기 상태
               animate={{ opacity: 1 }} // 애니메이션 적용
@@ -42,24 +44,21 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 objectFit: 'cover', // 이미지를 컨테이너에 맞게 크기 조정하고 비율 유지
                 width: '100%', // 컨테이너 너비에 맞게 이미지 가로 크기 조정
                 height: '100%', // 컨테이너 높이에 맞게 이미지 세로 크기 조정
-                borderRadius: '10px', 
               }}
             />
-          </div>
+            <AccountInfo>
+                <AccountInfoContainer>
+                  <StyledChildName>{childName}</StyledChildName>
+                  <StyledAccountNum>{accountNum}</StyledAccountNum>
+                </AccountInfoContainer>
+                <AccountButtons>
+                  <AccountDetailInfoButton/>
+                  <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}
+                  balance={balance}/>
+              </AccountButtons>
+            </AccountInfo>
       </PictureSelectContainer>
       <BankInfoContainer>
-          <AccountDescription>
-            <br/>
-            <StyledSpan>{childName}</StyledSpan>
-            님의 계좌 <br />
-            계좌번호: <span id="accountNum">{accountNum}</span>
-              <AccountButtons>
-                <AccountDetailInfoButton/>
-                <AccountSendButton disabled={disabled} setDisabled={setDisabled} childId ={childId}
-                balance={balance}/>
-              </AccountButtons>
-          </AccountDescription>
-
             {/* childName이 있을 때만 MonthlyContent를 보이도록 설정 */}
           <MonthlyContentContainer>
             <motion.div

@@ -21,7 +21,7 @@ if (localStorage.getItem('token')) {
 export const ManagementPage = () => {
   const [selectedPicture, setSelectedPicture] = useState(c1)
   const [childName, setChildName] = useState('자녀8')
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(false)
   const [accountNum, setAccountNum] = useState('')
   const [childDataArray, setChildDataArray] = useState([]);
   const [childId, setChildId] = useState(0);
@@ -47,10 +47,6 @@ export const ManagementPage = () => {
       firstChildData = childDataArray[2];
     }
     setChildName(childDataArray[index].name);
-
-    if (disabled == true) {
-      setDisabled(false)
-    }
     setChildName(firstChildData.name);
     setChildId(firstChildData.id);
     setAccountNum(firstChildData.accountNum);
