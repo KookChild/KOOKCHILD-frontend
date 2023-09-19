@@ -60,8 +60,6 @@ export const AreaTitleContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 120px;
-
     padding: 15px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -69,10 +67,12 @@ export const AreaTitleContainer = styled.div`
     position: relative;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    min-height: 100px;
 `;
 
+
 export const StyledTitle = styled.h1`
-    font-size: 24px;
+    font-size: 21px;
     margin-top: 10px;
     text-align: center;
 `;
