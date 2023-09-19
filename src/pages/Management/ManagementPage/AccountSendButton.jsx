@@ -126,7 +126,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
               setDisabled(false);
             }
 
-            // window.location.reload(); 
+            window.location.reload(); 
           });
         } else {
           Swal.fire({
