@@ -61,14 +61,21 @@ export const MiddleSection = styled.div`
 `;
 
 export const RightSection = styled.div`
-    width: 100px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 13px;
-    .moneyIcon{
-        color: ${PRIMARY};
+    width: 70px;
+    background: #f5f5f5;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        text-align: left;
     }
 `;
+
 
 export const CompletedMessage = styled.div`
   position: absolute;

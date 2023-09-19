@@ -56,3 +56,8 @@ export const MessageContainer = styled.div`
   align-items: center;
   color: #8E8E8E;
 `;
+
+export const MissionListWrapper = styled.div`
+  overflow-y: auto;
+  height: 620px;
+`;
