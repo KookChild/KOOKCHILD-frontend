@@ -7,6 +7,7 @@ import { PRIMARY } from '@utility/COLORS'
 import { GoCheckCircle } from "react-icons/go";
 import { ChildUnderSection } from "@components/MissionItem/style";
 import { AiFillDollarCircle } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const MainContent = styled.div`
     height : 100%
@@ -272,10 +273,7 @@ export const RewardPage = () => {
           confirmButtonColor: PRIMARY, // 확인 버튼 색상 설정
         });
 
-        // 출금 성공 메시지를 표시한 후 일정 시간(예: 3초) 후에 숨김
-        setTimeout(() => {
-          setWithdrawSuccess(false);
-        }, 3000); // 3초 후에 메시지를 숨김
+        window.location.reload(); 
       }
     } catch (error) {
       console.error('Error fetching data:', error);
