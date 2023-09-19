@@ -17,6 +17,7 @@ import {
 } from '@apis'
 import { PRIMARY } from '@utility/COLORS'
 import { TopContainer } from '@components'
+
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
   // const AtomTitle = '26일 챌린지'

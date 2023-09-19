@@ -8,7 +8,8 @@ import {
   MissionItemContainer,
   MissionListContainer,
   MissionHeaderContainer,
-  MessageContainer
+  MessageContainer,
+  MissionListWrapper
 } from './style'
 
 export const MissionChildHistoryViewPage = () => {
@@ -39,6 +40,7 @@ export const MissionChildHistoryViewPage = () => {
       <MenuContainer>
         <h2>미션</h2>
       </MenuContainer>
+      <MissionListWrapper>
       <MenuContainer>
       <MissionHeaderContainer>완료한 미션</MissionHeaderContainer>
       <Dropdown onChange={handleDropdownChange}>
@@ -68,6 +70,7 @@ export const MissionChildHistoryViewPage = () => {
             <MessageContainer>현재 완료된 미션이 없습니다</MessageContainer>
           )}
       </MissionListContainer>
+      </MissionListWrapper>
     </TopContainer>
   )
 }

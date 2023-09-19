@@ -50,7 +50,7 @@ export const ChallengeParentDetailPage = () => {
       // 만약 Promise리턴을 받으면,
       if (result.isConfirmed) {
         // 만약 모달창에서 confirm 버튼을 눌렀다면
-        if (challengeType == 0) {
+        if (challengeType === 0) {
           await parentConfirmAPI(params.id, selectedChildId, parentReward)
             .then(
               Swal.fire(
@@ -62,7 +62,7 @@ export const ChallengeParentDetailPage = () => {
             .then(navigate('/'))
         } else {
           await parentConfirmAPI(params.id, selectedChildId, parentReward)
-            .then(Swal.fire('참여신청 완료', '미션을 진행해주세요', 'success'))
+            .then(Swal.fire('참여승인 완료', '챌린지가 시작됩니다', 'success'))
             .then(navigate('/'))
         }
       }
@@ -77,6 +77,7 @@ export const ChallengeParentDetailPage = () => {
           selectedChildId,
           params.id,
         )
+
         setChallengeType(challengeTypeData)
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -84,12 +85,13 @@ export const ChallengeParentDetailPage = () => {
     }
 
     fetchData()
-  }, [params.id])
+  }, [params.id, selectedChildId])
+
   return (
     challenge && (
       <TopContainer style={{ backgroundColor: 'white' }}>
         <TopNavigationBar title={'챌린지 상세설명'} />
-        <ChallengeTitle>26일 챌린지</ChallengeTitle>
+        <ChallengeTitle>{challenge.title}</ChallengeTitle>
         <DetailContainer>
           <DetailTextWrapper>
             {/* 이미지 크기 줄이기 */}
@@ -103,42 +105,44 @@ export const ChallengeParentDetailPage = () => {
           </DetailTextWrapper>
           <img src="/img/Bear.png" alt="bear" />
         </DetailContainer>
-        {challengeType != 3 && (
-          <ParentRewardWrapper>
-            <ParentRewardTextWrapper>
-              부모 리워드 (더금리)
-            </ParentRewardTextWrapper>
-            <ParentRewardInputWrapper>
-              <input
-                type="number"
-                name="reward"
-                placeholder="금액을 입력해주세요"
-                width={100}
-                style={{
-                  border: 'none',
-                  borderBottom: '1px solid #000',
-                  fontSize: '25px',
-                  textAlign: 'center',
-                }}
-                required
-                onChange={handleChange}
-              />
-              {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
-              <UnitWrapper>원</UnitWrapper>
-            </ParentRewardInputWrapper>
-            <ParentRewardImgWrapper>
-              <img src="/img/Together.png" alt="together" />
-            </ParentRewardImgWrapper>
-          </ParentRewardWrapper>
-        )}
+        {challengeType === 0 ||
+          (challengeType === 1 && (
+            <ParentRewardWrapper>
+              <ParentRewardTextWrapper>
+                부모 리워드 (더금리)
+              </ParentRewardTextWrapper>
+              <ParentRewardInputWrapper>
+                <input
+                  type="number"
+                  name="reward"
+                  placeholder="금액을 입력해주세요"
+                  width={100}
+                  style={{
+                    border: 'none',
+                    borderBottom: '1px solid #000',
+                    fontSize: '25px',
+                    textAlign: 'center',
+                  }}
+                  required
+                  onChange={handleChange}
+                />
+                {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
+                <UnitWrapper>원</UnitWrapper>
+              </ParentRewardInputWrapper>
+              <ParentRewardImgWrapper>
+                <img src="/img/Together.png" alt="together" />
+              </ParentRewardImgWrapper>
+            </ParentRewardWrapper>
+          ))}
         <TermsAndConditions />
-        {challengeType === 0 && (
+        {/* 일단 전체보기 일때는 금액설정기능 막아놓음 */}
+        {challengeType === 0 && selectedChildId !== 0 && (
           <ChallengeConfirmButton onClick={confirm}>
             추천하기
           </ChallengeConfirmButton>
         )}
 
-        {challengeType === 1 && (
+        {challengeType === 1 && selectedChildId !== 0 && (
           <ChallengeConfirmButton onClick={confirm}>
             승인하기
           </ChallengeConfirmButton>

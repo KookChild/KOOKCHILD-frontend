@@ -20,7 +20,7 @@ export const QuizTab = ({ data }) => {
                 <h3 className='title'>{data.title}</h3>
             </MiddleSection>
             <RightSection>
-                <p><AiFillDollarCircle className='moneyIcon' />보상금 {`${data.totalReward}원`}</p>
+                <p>보상금<br/> {`${data.totalReward}원`}</p>
             </RightSection>
         </DailyQuizButton>
     );

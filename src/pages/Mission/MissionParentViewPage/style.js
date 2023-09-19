@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { YELLOW, GRAY } from '@utility/COLORS'
 
 export const Header = styled.div`
@@ -33,11 +33,11 @@ export const ChildListContainer = styled.div`
   white-space: nowrap;
 
   &::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-`;
+`
 
 export const ChildItemContainer = styled.div`
   min-width: 86px;
@@ -45,46 +45,45 @@ export const ChildItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 10px;
+  margin-right: ${props => (props.selected ? '15px' : '10px')};
 
   img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      width: 86px;
-      height: 86px;
+    width: ${props => (props.selected ? '93px' : '86px')};
+    height: ${props => (props.selected ? '93px' : '86px')};
   }
 
   p {
-      margin-top: 10px;
+    margin-top: 10px;
   }
-  border-bottom: ${props => props.selected ? '2px solid #FFCC00' : 'none'};
+  border-bottom: ${props => (props.selected ? '2px solid #FFCC00' : 'none')};
   p {
-      color: ${props => props.selected ? '#FFCC00' : '기본 색상'};
+    color: ${props => (props.selected ? '#FFCC00' : '기본 색상')};
   }
-`;
+`
 
 export const TabContainer = styled.div`
   margin-top: 30px;
   display: flex;
   gap: 10px;
-  margin-bottom:10px;
-`;
+  margin-bottom: 10px;
+`
 
 export const Tab = styled.button`
   width: 78px;
   height: 30px;
-  background: ${props => props.selected ? '#84888B' : '#FFFFFF'};
+  background: ${props => (props.selected ? '#84888B' : '#FFFFFF')};
   box-shadow: inset 0px 1px 3px #00000029;
-  border: 1px solid #84888B;
+  border: 1px solid #84888b;
   border-radius: 15px;
   opacity: 1;
-  color: ${props => props.selected ? 'white' : '#84888B'};
+  color: ${props => (props.selected ? 'white' : '#84888B')};
   cursor: pointer;
   outline: none;
-  top: ${props => props.selected ? 'auto' : '278px'};
-  left: ${props => props.selected ? 'auto' : '112px'};
+  top: ${props => (props.selected ? 'auto' : '278px')};
+  left: ${props => (props.selected ? 'auto' : '112px')};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-`;
-
+`
 
 export const RadioButtonGroup = styled.div`
   display: flex;
@@ -92,7 +91,7 @@ export const RadioButtonGroup = styled.div`
   gap: 20px;
   padding: 10px;
   border-radius: 5px;
-`;
+`
 
 export const RadioLabel = styled.label`
   display: flex;
@@ -100,7 +99,7 @@ export const RadioLabel = styled.label`
   gap: 10px;
   cursor: pointer;
 
-  input[type="radio"] {
+  input[type='radio'] {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -113,7 +112,7 @@ export const RadioLabel = styled.label`
       border: 2px solid ${YELLOW};
       background-color: ${YELLOW};
       &:after {
-        content: "";
+        content: '';
         display: block;
         width: 10px;
         height: 10px;
@@ -123,20 +122,19 @@ export const RadioLabel = styled.label`
       }
     }
   }
-`;
-
+`
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-`;
+`
 
 export const AddMissionButton = styled.button`
-  margin-top:5px;
+  margin-top: 5px;
   width: 378px;
   height: 45px;
-  background: #FFCC00;
+  background: #ffcc00;
   border-radius: 6px;
   border: none;
   color: black;
@@ -146,10 +144,10 @@ export const AddMissionButton = styled.button`
   transition: 0.3s;
 
   &:hover {
-      background: #E5B900;
+    background: #e5b900;
   }
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-`;
+`
 
 export const MissionListContainer = styled.div`
   overflow-y: auto;
@@ -160,18 +158,18 @@ export const MissionListContainer = styled.div`
 
   // Chrome, Safari
   &::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
 
   // Firefox
   -ms-overflow-style: none;
   scrollbar-width: none;
-`;
+`
 
 export const MissionItemContainer = styled.div`
   width: 390px;
   height: 80px;
-  background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
+  background-color: ${props => (props.even ? '#FFFFFF' : '#F6F7F8')};
   opacity: 1;
-  display:flex;
-`;
+  display: flex;
+`

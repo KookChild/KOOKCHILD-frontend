@@ -4,6 +4,9 @@ import { TopNavigationBar } from "../../components/TopNavigationBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { PRIMARY } from '@utility/COLORS'
+import { GoCheckCircle } from "react-icons/go";
+import { ChildUnderSection } from "@components/MissionItem/style";
+import { AiFillDollarCircle } from "react-icons/ai";
 
 const MainContent = styled.div`
     height : 100%
@@ -11,7 +14,6 @@ const MainContent = styled.div`
 
 const Container = styled.div`
   flex: 1;
-  margin: 0 10px;
   padding: 10px;
   border-radius: 12px;
   opacity: 1;
@@ -27,7 +29,7 @@ const RewardContainer = styled(Container)`
     margin-bottom: 10px;
   }
   height : 95px;
-  margin: 5px 0px;
+  margin: 9px 0px;
 
   display : flex;
 `;
@@ -90,8 +92,8 @@ const Balance = styled.div`
 `;
 
 const CustomButton = styled.button`
-  background: ${(props) => props.backgroundColor || '#84888B'};
-  color: ${(props)=>props.fontColor};
+  background: ${(props) => props.backgroundcolor || '#84888B'};
+  color: ${(props)=>props.fontcolor};
   border-radius: 9px;
   padding: 10px 20px;
   border: none;
@@ -132,16 +134,81 @@ const Amount = styled.div`
 const ChildComponent = styled.div`
   padding: 10px;
   margin: 5px;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  font-family:sdMe;
+  font-size:20px;
 `;
 
 // 부모 컴포넌트 스타일
 const ParentComponent = styled.div`
-  height: 300px; /* 높이를 원하는 크기로 설정 (스크롤이 나타날 부분) */
+  // height: 300px; /* 높이를 원하는 크기로 설정 (스크롤이 나타날 부분) */
   overflow-y: auto; /* 스크롤을 표시하기 위한 스타일 */
-  padding: 10px;
+  padding: 6px;
 `;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Container2 = styled.div`
+  margin: 6px; /* 원하는 마진 값으로 조정하세요 */
+`;
+
+const MissionTitle = styled.div`
+  font-family:sdBo;
+  font-size:17px;
+`
+
+const MissionItem = styled.div`
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  /* 미션 아이템 스타일을 추가하세요 */
+`;
+
+const MissionText = styled.div`
+  display: flex;
+  flex-direction:row;
+  margin-left: 10px;
+  /* 미션 텍스트 스타일을 추가하세요 */
+  margin : 14px 0px;
+  width : 261px;
+  justify-content:space-between;
+`;
+
+const MissionAmount=styled.div`
+  font-size:12px;
+  font-family:sdMe;
+  text-align: center; /* 글자를 가운데 정렬 */
+  padding:2px 5px;
+  background: transparent; /* 배경 색을 투명으로 설정 */
+  color: ${(props) => props.backgroundcolor || '#D56F88'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #D56F88 사용 */
+  border-radius: 7px;
+  height: 24px; /* 높이를 조정하세요 */
+  line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과를 추가합니다 */
+  // /* 경계선 스타일을 설정합니다 */
+  border: 2px solid ${(props) => props.bordercolor || '#84888B'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #84888B 사용 */
+`
+
+const UnderSection = styled.div`
+display: flex;
+justify-content:right;
+bottom: 0;
+height: 40px;
+right:40px;
+p{
+    margin-top:10px;
+}
+span{
+    color: ${PRIMARY};
+}
+.moneyIcon{
+    color: ${PRIMARY};
+}
+line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
+`
 
 export const RewardPage = () => {
   const [responseData, setResponseData] = useState({
@@ -153,12 +220,12 @@ export const RewardPage = () => {
     missionContents: [],
     notCompleteMissionsAmount: '',
   });
+  console.log(responseData);
+  console.log(missionData);
 
   useEffect(() => {
     fetchRewardData();
     fetchMissionData();
-    console.log(responseData);
-    console.log(missionData);
   }, []);
 
   const fetchRewardData = async () => {
@@ -181,6 +248,36 @@ export const RewardPage = () => {
     }
   };
 
+  // 출금 성공 메시지를 관리하는 상태 변수
+  const [withdrawSuccess, setWithdrawSuccess] = useState(false);
+
+  // 출금 요청 함수
+  const handleWithdraw = async () => {
+    try {
+      // '/reward/withdraw'로 GET 요청 보내기
+      const response = await axios.get('/reward/withdraw');
+
+      // 요청이 성공하면 출금 성공 메시지를 표시
+      if (response.status === 200) {
+        setWithdrawSuccess(true);
+
+        // 출금 성공 메시지를 표시한 후 일정 시간(예: 3초) 후에 숨김
+        setTimeout(() => {
+          setWithdrawSuccess(false);
+        }, 3000); // 3초 후에 메시지를 숨김
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const grayIconStyle = {
+    color: 'gray', // 아이콘의 색상을 회색으로 설정
+    fontSize: 27,   // 아이콘의 크기 설정
+    paddingRight:10
+    
+  };
+
 
 
   return (
@@ -195,8 +292,14 @@ export const RewardPage = () => {
             </UserInfo>
           </LeftComponent>
           <RightComponent>
-            <CustomButton backgroundColor="#84888B" fontColor="#FFFFFF">보상내역</CustomButton>
-            <CustomButton backgroundColor={PRIMARY} fontColor="#010812">출금하기</CustomButton>
+            <CustomButton 
+            backgroundcolor="#84888B" 
+            fontcolor="#FFFFFF">보상내역</CustomButton>
+            <CustomButton 
+            backgroundcolor={PRIMARY} 
+            fontcolor="#010812"
+            onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
+            >출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>
         <SeparateContainer>
@@ -217,13 +320,26 @@ export const RewardPage = () => {
               </Amount>
           </InternalComponent>
         </SeparateContainer>
-        <MissionContainer>
-          <ParentComponent>
+        <Container2>
+          <MissionTitle>미완료 미션</MissionTitle>
+          <MissionContainer>
+            <ParentComponent> 
+              
               {missionData.missionContents.map((mission, index) => (
-                <ChildComponent key={index}>{mission}</ChildComponent>
+                <MissionItem key={index}>
+                  <GoCheckCircle style={grayIconStyle} />
+                  <MissionText>
+                    <MissionTitle>{mission.title}</MissionTitle>
+                    <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
+                  </MissionText>
+                </MissionItem>
               ))}
-          </ParentComponent>
-        </MissionContainer>
+            </ParentComponent>
+          </MissionContainer>
+          <UnderSection>
+              <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{missionData.notCompleteMissionsAmount}</span></p>
+          </UnderSection>
+        </Container2>
       </MainContent>
     </TopContainer>
   );

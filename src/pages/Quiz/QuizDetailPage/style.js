@@ -12,24 +12,11 @@ const slideFromLeft = keyframes`
   }
 `;
 
-const slideFromRight = keyframes`
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`;
-
 export const AreaTitleContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 150px;
-
     padding: 15px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -37,7 +24,9 @@ export const AreaTitleContainer = styled.div`
     position: relative;
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    min-height: 100px;
 `;
+
 
 export const StyledTitle = styled.h1`
     font-size: 24px;
@@ -94,9 +83,10 @@ export const StyledChoiceButton = styled.button`
 `;
 
 export const StyledLeftImage = styled.img`
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     animation: ${slideFromLeft} 0.5s forwards;
+    margin-right: 200px;
 `;
 
 export const StyledSubmitButton = styled.button`
