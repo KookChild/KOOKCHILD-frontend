@@ -11,6 +11,7 @@ import {
 } from './style';
 import { registrationDataState } from '../../../recoil';
 import { useRecoilState } from 'recoil';
+import Swal from 'sweetalert2';
 
 export const ParentRegisterPage = () => {
   const [name, setName] = useState('');
@@ -49,15 +50,27 @@ export const ParentRegisterPage = () => {
   const handleNext = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailPattern.test(email)) {
-      alert("올바른 이메일 형식을 입력해주세요.");
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '올바른 이메일 형식을 입력해주세요.'
+      });
       return;
     }
     if (password !== passwordChk) {
-      alert("비밀번호가 일치하지 않습니다.");
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '비밀번호가 일치하지 않습니다.'
+      });
       return;
     }
     if (accountPwd !== accountPwdChk) {
-      alert("계좌 비밀번호가 일치하지 않습니다.");
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '계좌 비밀번호가 일치하지 않습니다.'
+      });
       return;
     }
     setRegistrationData({
@@ -73,7 +86,6 @@ export const ParentRegisterPage = () => {
       password,
       accountPwd
     });
-    console.log(ssn1, ssn2, phoneNum1, phoneNum2, phoneNum3);
     navigate('/register/children');
   };
 

@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import { TopContainer, TopNavigationBar } from '@components';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import {
-  RegisterWrapper,
-  RegisterTitle,
-  RegisterForm,
-  RadioGroup,
-  Label,
-  Input,
-  CheckboxGroup,
-  RadioLabelWrapper,
-  AddChildButton,
-  ResidentNumberInput,
-  PhoneNumberInput,
-  RemoveButton,
-  ErrorMessage,
-  DescriptionTitle,
-  DescriptionBox
+  RegisterWrapper, RegisterTitle, RegisterForm, RadioGroup,
+  Label, Input, CheckboxGroup, RadioLabelWrapper, AddChildButton,
+  ResidentNumberInput, PhoneNumberInput, RemoveButton, ErrorMessage,
+  DescriptionTitle, DescriptionBox
 } from './style';
 import { useRecoilValue } from 'recoil';
 import { registrationDataState } from '../../../recoil';
@@ -91,97 +81,119 @@ export const ChildrenRegisterPage = () => {
     setAccountPasswordMatch(value === newData[index].accountPassword);
   };
 
-
   const handleRegister = async (event) => {
     event.preventDefault();
     let hasError = false;
+    let errorMsg = '';
 
     if (!chkIdCard) {
       setChkIdCardError('필수로 체크되어야 하는 항목입니다');
+      errorMsg = '신분증 확인을 체크해주세요.';
       hasError = true;
     } else {
       setChkIdCardError('');
     }
 
-    if (!chkAccount) {
+    if (!chkAccount && !hasError) {
       setChkAccountError('필수로 체크되어야 하는 항목입니다');
+      errorMsg = '계좌 확인을 체크해주세요.';
       hasError = true;
     } else {
       setChkAccountError('');
     }
 
-    if (!chkMyData) {
+    if (!chkMyData && !hasError) {
       setChkMyDataError('필수로 체크되어야 하는 항목입니다');
+      errorMsg = '나의 데이터 확인을 체크해주세요.';
       hasError = true;
     } else {
       setChkMyDataError('');
     }
 
-    if (hasError) {
-      return;
+    if (!passwordMatch && !hasError) {
+      errorMsg = "비밀번호가 일치하지 않습니다.";
+      hasError = true;
     }
-    if (!passwordMatch) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-    if (!accountPasswordMatch) {
-      alert("계좌 비밀번호가 일치하지 않습니다.");
-      return;
-    }
-    const requestData = {
-      email: registrationData.email,
-      password: registrationData.password,
-      name: registrationData.name,
-      phoneNum: `${registrationData.phoneNum1}-${registrationData.phoneNum2}-${registrationData.phoneNum3}`,
-      ssn: `${registrationData.ssn1}-${registrationData.ssn2}`,
-      birthdate: `${registrationData.birthDate}T12:00:00`,
-      accountPassword: registrationData.accountPwd,
-      childList: childrenData.map(child => {
-        const localDateTime = `${child.birthdate}T12:00:00`;
-        let phoneNum = '';
-        if (child.phoneNum1) phoneNum += child.phoneNum1;
-        if (child.phoneNum2) phoneNum += `-${child.phoneNum2}`;
-        if (child.phoneNum3) phoneNum += `-${child.phoneNum3}`;
 
-        let ssn = '';
-        if (child.ssn1 && child.ssn2) {
-          ssn = `${child.ssn1}-${child.ssn2}`;
-        }
-        return {
-          email: child.email,
-          password: child.password,
-          name: child.name,
-          phoneNum: phoneNum,
-          ssn: ssn,
-          birthdate: localDateTime,
-          accountPassword: child.accountPassword,
-          level1Reward: child.level1Reward,
-          level2Reward: child.level2Reward,
-          level3Reward: child.level3Reward
-        };
-      })
-    };
-    try {
-      const responseData = await registerAPI(requestData);
-      console.log(responseData);
-      navigate('/');
-    } catch (error) {
-      console.error("Error during registration:", error);
+    if (!accountPasswordMatch && !hasError) {
+      errorMsg = "계좌 비밀번호가 일치하지 않습니다.";
+      hasError = true;
+    }
+
+    if (hasError) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: errorMsg
+      });
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: '회원가입을 진행하시겠습니까?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: '예',
+      cancelButtonText: '아니오'
+    });
+
+    if (result.isConfirmed) {
+      const requestData = {
+        email: registrationData.email,
+        password: registrationData.password,
+        name: registrationData.name,
+        phoneNum: `${registrationData.phoneNum1}-${registrationData.phoneNum2}-${registrationData.phoneNum3}`,
+        ssn: `${registrationData.ssn1}-${registrationData.ssn2}`,
+        birthdate: `${registrationData.birthDate}T12:00:00`,
+        accountPassword: registrationData.accountPwd,
+        childList: childrenData.map(child => {
+          const localDateTime = `${child.birthdate}T12:00:00`;
+          let phoneNum = '';
+          if (child.phoneNum1) phoneNum += child.phoneNum1;
+          if (child.phoneNum2) phoneNum += `-${child.phoneNum2}`;
+          if (child.phoneNum3) phoneNum += `-${child.phoneNum3}`;
+
+          let ssn = '';
+          if (child.ssn1 && child.ssn2) {
+            ssn = `${child.ssn1}-${child.ssn2}`;
+          }
+          return {
+            email: child.email,
+            password: child.password,
+            name: child.name,
+            phoneNum: phoneNum,
+            ssn: ssn,
+            birthdate: localDateTime,
+            accountPassword: child.accountPassword,
+            level1Reward: child.level1Reward,
+            level2Reward: child.level2Reward,
+            level3Reward: child.level3Reward
+          };
+        })
+      };
+      try {
+        const responseData = await registerAPI(requestData);
+        console.log(responseData);
+        navigate('/');
+      } catch (error) {
+        console.error("Error during registration:", error);
+      }
     }
   };
 
+
   return (
     <TopContainer>
-      <TopNavigationBar title={"자녀 정보 등록"}/>
+      <TopNavigationBar title={"자녀 정보 등록"} />
       <RegisterWrapper>
         <RegisterTitle>Kook Child - 자녀 정보</RegisterTitle>
         <RegisterForm onSubmit={handleRegister}>
           <div><DescriptionTitle>자녀 정보를 등록하시겠습니까?</DescriptionTitle></div>
           <DescriptionBox>
-            <p>등록 시 KB kook child 서비스 이용이 가능합니다.</p><br/>
+            <p>등록 시 KB kook child 서비스 이용이 가능합니다.</p><br />
             <p>• 자녀의 금육 교육에 동기부여를 할 수 있는 일일 금융 퀴즈 및 리워드 시스템 </p>
-            <p>• 자녀에게 저축의 중요성을 알려주세요! </p><br/>
-            <p>부모님이 이자를 얹어 줄 수 있는 부모 금리 지급 통장 개설 가능 </p><br/>
+            <p>• 자녀에게 저축의 중요성을 알려주세요! </p><br />
+            <p>부모님이 이자를 얹어 줄 수 있는 부모 금리 지급 통장 개설 가능 </p><br />
             <p>• 자녀에게 미션과 보상을 통해 금융에 한 발 더 다가갈 수 있는 기회를 주세요!</p>
           </DescriptionBox>
           <RadioGroup>
