@@ -104,34 +104,35 @@ export const ChallengeParentDetailPage = () => {
           </DetailTextWrapper>
           <img src="/img/Bear.png" alt="bear" />
         </DetailContainer>
-        {challengeType != 3 && challengeType != 2 && (
-          <ParentRewardWrapper>
-            <ParentRewardTextWrapper>
-              부모 리워드 (더금리)
-            </ParentRewardTextWrapper>
-            <ParentRewardInputWrapper>
-              <input
-                type="number"
-                name="reward"
-                placeholder="금액을 입력해주세요"
-                width={100}
-                style={{
-                  border: 'none',
-                  borderBottom: '1px solid #000',
-                  fontSize: '25px',
-                  textAlign: 'center',
-                }}
-                required
-                onChange={handleChange}
-              />
-              {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
-              <UnitWrapper>원</UnitWrapper>
-            </ParentRewardInputWrapper>
-            <ParentRewardImgWrapper>
-              <img src="/img/Together.png" alt="together" />
-            </ParentRewardImgWrapper>
-          </ParentRewardWrapper>
-        )}
+        {challengeType == 0 ||
+          (challengeType == 1 && (
+            <ParentRewardWrapper>
+              <ParentRewardTextWrapper>
+                부모 리워드 (더금리)
+              </ParentRewardTextWrapper>
+              <ParentRewardInputWrapper>
+                <input
+                  type="number"
+                  name="reward"
+                  placeholder="금액을 입력해주세요"
+                  width={100}
+                  style={{
+                    border: 'none',
+                    borderBottom: '1px solid #000',
+                    fontSize: '25px',
+                    textAlign: 'center',
+                  }}
+                  required
+                  onChange={handleChange}
+                />
+                {/* input box 숫자크기 키워주고, 보더 아래만 남기게 */}
+                <UnitWrapper>원</UnitWrapper>
+              </ParentRewardInputWrapper>
+              <ParentRewardImgWrapper>
+                <img src="/img/Together.png" alt="together" />
+              </ParentRewardImgWrapper>
+            </ParentRewardWrapper>
+          ))}
         <TermsAndConditions />
         {challengeType === 0 && (
           <ChallengeConfirmButton onClick={confirm}>
