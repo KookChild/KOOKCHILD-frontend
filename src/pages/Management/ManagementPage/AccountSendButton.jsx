@@ -18,7 +18,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
   
   const getAccountDetailButtonClick = () => {
     // TODO : 송금하기 이동 ajax 연결
-      // setDisabled(true);
+      setDisabled(true);
       // API 요청 보내기
       var url = "/management/send";
       var jsonData = {
@@ -41,6 +41,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
           // 모달에 사용할 클래스 추가
           container: 'custom-swal-container',
         },
+        customContainerClass: 'custom-swal-container',
       }).then((result) => {
         if (result.isConfirmed) {
           // 두 번째 SweetAlert2 모달 - 금액 입력 칸을 가진 모달
@@ -107,11 +108,11 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
                   // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
                 })
                 .finally(() => {
-                  setDisabled(false);
-                   // 2초 후에 창을 새로고침
-                    setTimeout(() => {
-                      window.location.reload();
-                    }, 2000);
+                  // setDisabled(false);
+                  //  // 2초 후에 창을 새로고침
+                  //   setTimeout(() => {
+                  //     window.location.reload();
+                  //   }, 2000);
                   }
                 );
             } else {
@@ -143,7 +144,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
 
   return (
     <SendButtonContainer>
-      <Button onClick={getAccountDetailButtonClick} >송금하기</Button>
+      <Button onClick={getAccountDetailButtonClick}  disabled={disabled}>송금하기</Button>
     </SendButtonContainer>
   );
 };

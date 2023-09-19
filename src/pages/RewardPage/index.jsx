@@ -156,8 +156,9 @@ const Container2 = styled.div`
 `;
 
 const MissionTitle = styled.div`
-  font-family:sdBo;
   font-size:17px;
+  display: flex; /* Flexbox를 사용하여 내부 요소를 정렬합니다 */
+  line-height: 29px;
 `
 
 const MissionItem = styled.div`
@@ -222,6 +223,7 @@ export const RewardPage = () => {
   });
   console.log(responseData);
   console.log(missionData);
+  console.log(responseData.rewardCompleteAmount == "0");
 
   useEffect(() => {
     fetchRewardData();
@@ -261,6 +263,15 @@ export const RewardPage = () => {
       if (response.status === 200) {
         setWithdrawSuccess(true);
 
+        responseData.rewardCompleteAmount
+        // SweetAlert를 사용하여 출금 완료 메시지를 표시
+        Swal.fire({
+          icon: 'success', // 성공 아이콘 표시
+          title: '출금 완료',
+          text: '출금이 성공적으로 완료되었습니다.',
+          confirmButtonColor: PRIMARY, // 확인 버튼 색상 설정
+        });
+
         // 출금 성공 메시지를 표시한 후 일정 시간(예: 3초) 후에 숨김
         setTimeout(() => {
           setWithdrawSuccess(false);
@@ -269,6 +280,7 @@ export const RewardPage = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+    
   };
 
   const grayIconStyle = {
@@ -294,11 +306,14 @@ export const RewardPage = () => {
           <RightComponent>
             <CustomButton 
             backgroundcolor="#84888B" 
-            fontcolor="#FFFFFF">보상내역</CustomButton>
+            fontcolor="#FFFFFF"
+            
+            >보상내역</CustomButton>
             <CustomButton 
             backgroundcolor={PRIMARY} 
             fontcolor="#010812"
             onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
+            disabled={responseData.rewardCompleteAmount == "0"} // rewardCompleteAmount가 0일 때 버튼 비활성화
             >출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>

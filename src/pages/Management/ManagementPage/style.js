@@ -11,7 +11,7 @@ export const Footer = styled.div`
 export const BankContentContainer = styled.div`
   width: 100%;
   height : 100%;
-  padding: 21px 0px;
+  padding: 13px 0px;
 `
 
 export const PictureSelectContainer = styled.div`
@@ -21,12 +21,14 @@ export const PictureSelectContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+   flex-direction: column; /* 자식 요소를 세로로 정렬합니다 */
   margin: 10px 0;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 12px;
 `
 
 export const BankInfoContainer = styled.div`
-  padding: 10px 0;
-  height : 320px;
   display : flex;
   flex-direction : column;
 `
@@ -41,7 +43,6 @@ export const MonthlyContent = styled.div`
 
   width: 360px;
   height: 91px;
-  margin: 10px 0px;
   overflow: hidden;
 
   padding: 0;
@@ -78,22 +79,20 @@ export const MoveChildGraphButtonContainer = styled.div`
 `
 export const AccountButtons = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 12px; /* 요소 사이의 간격을 조절합니다. */
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+
 `
 export const AccountDescription = styled.div`
   width: 100%;
-  height: 130px;
   border-radius: 10px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
   font-size: 16px;
-  height : 320px;
-  background-color: #ececec;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: transparent;
   border-radius: 10px;
 `;
 
@@ -196,10 +195,8 @@ export const NameDiv = styled.div`
 
 export const SendButtonContainer = styled.div`
   position: relative;
-  width : 150px;
   bottom: 0;
   right: 0;
-  margin: 20px;
 
 `;
 
@@ -216,7 +213,8 @@ export const Button = styled.button`
   padding: 5px 10px; /* 좌우 여백을 조절하여 텍스트와 버튼의 크기를 맞춥니다 */
   font-size: 14px;
   cursor: pointer;
-  width : 100%;
+  margin: 2px 0px;
+  width : 120px;
    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 스타일 지정 */
 `;
 
@@ -226,6 +224,53 @@ export const commonSwalOptions = {
   },
 };
 
-export const StyledSpan = styled.span`
-font-family: sdSb;
+export const StyledChildName = styled.div`
+font-family: sdLi;
+font-weight: lighter;
+width:100%;
+font-size:13px;
+ text-align: left; /* 폰트를 왼쪽 정렬합니다. */
+`;
+
+export const CustomSwalContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  overflow-y: auto;
+`;
+
+export const AccountInfo = styled.div`
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 16px;
+  width:93%;
+  border-radius: 10px;
+  padding: 4px 20px; /* 좌우 여백 추가 */
+`;
+
+// 이 두 스타일을 하나로 묶는 컨테이너를 생성합니다.
+export const AccountInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column; /* 위아래로 배치 */
+  align-items: center;
+  justify-content:flex-start;
+  text-align: center;
+  font-size: 16px;
+  
+`;
+
+// Span 태그를 생성합니다.
+export const StyledAccountNum = styled.span`
+  /* 추가적인 스타일을 적용할 수 있습니다. */
+   text-align: left; /* 폰트를 왼쪽 정렬합니다. */
 `;

@@ -7,20 +7,22 @@ const SendButtonContainer = styled.div`
   position: relative; /* 버튼을 상대적으로 위치 설정 */
   bottom: 0;
   right: 0;
-  margin: 20px; /* 원하는 여백 추가 */
 `
 
 const Button = styled.button`
-  background-color: #f9c515;
+  background: #84888B 0% 0% no-repeat padding-box;
+  color : white;
   width: 120px;
   height: 40px;
   border-radius: 10px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 스타일 지정 */
   border: 1px solid #ccc;
   &:hover {
-    background-color: gold;
+    background-color: gray;
     border-color: gold;
   }
   padding: 5px;
+  margin: 2px 0px;
   font-size: 14px;
   cursor: pointer;
 `
