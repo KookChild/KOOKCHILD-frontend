@@ -4,8 +4,9 @@ import {
   ChallengeImageProgressContainer,
   ChallengeProgress,
   ChallengeInfo,
-  moneyIcon,
-} from './style' // style.js에서 스타일을 가져옵니다.
+  moneyIconBank,
+  moneyIconParent,
+} from './style'
 import { useNavigate } from 'react-router-dom'
 import { PRIMARY } from '@utility/COLORS'
 import { AiFillDollarCircle } from 'react-icons/ai'
@@ -42,7 +43,6 @@ export const ChallengeItem = ({ challenge, isParent }) => {
           style={{ width: '100%', height: '200px', borderRadius: '8px' }}
         />
         <div style={ChallengeProgress}>
-          {/* <span>{`${progress}%`}</span> */}
           <span>D-{daysLeft}</span>
           <div
             style={{
@@ -73,8 +73,14 @@ export const ChallengeItem = ({ challenge, isParent }) => {
             justifyContent: 'center',
           }}
         >
-          <AiFillDollarCircle style={moneyIcon} />
+          <AiFillDollarCircle style={moneyIconBank} />
           {isParent ? challenge.challenge.bankReward : challenge.bankReward}원
+          {challenge.parentReward > 0 && (
+            <>
+              <AiFillDollarCircle style={moneyIconParent} />
+              {challenge.parentReward}원
+            </>
+          )}
         </div>
       </ChallengeInfo>
     </div>

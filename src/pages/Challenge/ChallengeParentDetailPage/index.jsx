@@ -59,11 +59,11 @@ export const ChallengeParentDetailPage = () => {
                 'success',
               ),
             )
-            .then(navigate('/'))
+            .then(navigate('/mission/parentView'))
         } else {
           await parentConfirmAPI(params.id, selectedChildId, parentReward)
             .then(Swal.fire('참여승인 완료', '챌린지가 시작됩니다', 'success'))
-            .then(navigate('/'))
+            .then(navigate('/mission/parentView'))
         }
       }
     })

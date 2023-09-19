@@ -56,12 +56,12 @@ export const QuizHistoryDetailPage = () => {
                 <StyledTitle>Q. {quizDetail.answer}{getSuffix(quizDetail.answer)}</StyledTitle>
             </AreaTitleContainer>
             <CharacterContainer delay="0s">
-                <CharacterImage src={character1} alt="첫번째 캐릭터" />
+                <CharacterImage className="firstImage" src={character1} alt="첫번째 캐릭터" />
                 <ChatBubble>{`${quizDetail.answer}${getSuffixForQuestion(quizDetail.answer)} 뭔가요?`}</ChatBubble>
             </CharacterContainer>
-            <CharacterContainer delay="1s">  {/* 두번째 컨테이너 애니메이션 지연 */}
-                <ChatBubble>{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}</ChatBubble>
-                <CharacterImage src={character2} alt="두번째 캐릭터" />
+            <CharacterContainer delay="1s" className='secondContainer'>
+                <ChatBubble className="secondBubble">{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}</ChatBubble>
+                <CharacterImage className="secondImage" src={character2} alt="두번째 캐릭터" />
             </CharacterContainer>
         </TopContainer>
     );
