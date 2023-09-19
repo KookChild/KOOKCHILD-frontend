@@ -18,11 +18,7 @@ export const ChallengeConfirmButton = styled.div`
   text-align: center;
   margin-top: 8.5vh;
   width: 100%;
-  // position: fixed;
-  // bottom: 0;
-  // left: 0;
   box-sizing: border-box;
-
   cursor: pointer;
 `
 export const ChallengeContainer = styled.div`
