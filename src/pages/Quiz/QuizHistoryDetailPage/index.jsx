@@ -17,6 +17,23 @@ export const QuizHistoryDetailPage = () => {
     const { quizId } = useParams();
     const [quizDetail, setQuizDetail] = useState(null);
 
+    const hasJongseong = (char) => {
+        const code = char.charCodeAt(0);
+        if (code < 0xAC00 || code > 0xD7A3) return false;
+        return (code - 0xAC00) % 28 !== 0;
+    };
+
+    const getSuffix = (word) => {
+        const lastChar = word[word.length - 1];
+        return hasJongseong(lastChar) ? "이란?" : "란?";
+    };
+
+    const getSuffixForQuestion = (word) => {
+        const lastChar = word[word.length - 1];
+        return hasJongseong(lastChar) ? "이" : "가";
+    };
+
+
     useEffect(() => {
         const fetchQuizDetail = async () => {
             try {
@@ -35,12 +52,12 @@ export const QuizHistoryDetailPage = () => {
         <TopContainer>
             <TopNavigationBar title={'퀴즈 상세 페이지'} />
             <AreaTitleContainer>
-            <StyledLevel>{`LEVEL ${quizDetail.level}`}</StyledLevel>
-          <StyledTitle>Q. {quizDetail.answer}이란 무엇인가요?</StyledTitle>
-        </AreaTitleContainer>
+                <StyledLevel>{`LEVEL ${quizDetail.level}`}</StyledLevel>
+                <StyledTitle>Q. {quizDetail.answer}{getSuffix(quizDetail.answer)}</StyledTitle>
+            </AreaTitleContainer>
             <CharacterContainer delay="0s">
                 <CharacterImage src={character1} alt="첫번째 캐릭터" />
-                <ChatBubble>{`${quizDetail.answer}이 뭔가요?`}</ChatBubble>
+                <ChatBubble>{`${quizDetail.answer}${getSuffixForQuestion(quizDetail.answer)} 뭔가요?`}</ChatBubble>
             </CharacterContainer>
             <CharacterContainer delay="1s">  {/* 두번째 컨테이너 애니메이션 지연 */}
                 <ChatBubble>{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}</ChatBubble>
