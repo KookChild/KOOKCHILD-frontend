@@ -22,7 +22,7 @@ export const PictureSelectContainer = styled.div`
   align-items: center;
   overflow: hidden;
    flex-direction: column; /* 자식 요소를 세로로 정렬합니다 */
-  margin: 10px 0;
+  margin: 0px 0;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 12px;
@@ -31,6 +31,7 @@ export const PictureSelectContainer = styled.div`
 export const BankInfoContainer = styled.div`
   display : flex;
   flex-direction : column;
+  margin-top:4px;
 `
 export const MonthlyContentContainer = styled.div`
   width: 100%;
@@ -41,35 +42,38 @@ export const MonthlyContentContainer = styled.div`
 `
 export const MonthlyContent = styled.div`
 
-  width: 360px;
-  height: 91px;
+  width: 348px;
+  height: 80px;
   overflow: hidden;
 
   padding: 0;
   display: flex; /* MonthlyItem을 가로로 배치하기 위해 추가 */
   // 가로 배치하는데 좌우로 벌어지게
-  justify-content: center;
-  gap: 12px;
+  justify-content: space-around;
+  gap: 9px;
   border-radius: 10px; /* 모든 테두리를 둥글게 만듭니다. */
 `
 
 export const MonthlyItem = styled.div`
 
-width: 160px;
-height: 90px;
+width: 177px;
+height: 78px;
+display:flex;
+flex-direction:column;
+padding:0px 12px;
 /* UI Properties */
 background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 0px 1px 2px #00000029;
 border-radius: 12px;
 opacity: 1;
 border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  flex-direction : column;
-  justify-content:center;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+white-space: nowrap;
+display: flex;
+flex-direction : column;
+justify-content:space-evenly;
 `
 
 export const MoveChildGraphButtonContainer = styled.div`
@@ -180,6 +184,7 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  // height: 163px;
   height: 100%;
   object-fit: cover;
   top: 0;
@@ -273,4 +278,16 @@ export const AccountInfoContainer = styled.div`
 export const StyledAccountNum = styled.span`
   /* 추가적인 스타일을 적용할 수 있습니다. */
    text-align: left; /* 폰트를 왼쪽 정렬합니다. */
+   color :#E9C648;
 `;
+
+export const ThisMonthType=styled.div`
+text-align: left; /* 텍스트를 왼쪽 정렬 */
+font-size:14px;
+`
+export const ThisMonthMoney = styled.div`
+text-align: right; /* 폰트를 왼쪽 정렬합니다. */
+font-family:sdMe;
+color:#4D6DCC;
+font-size:20px;
+`

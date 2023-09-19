@@ -11,7 +11,7 @@ const ChildNaviBar = () => {
       <div style={styles.icon} onClick={() => navigate('/child')}>
         <img src="/img/img_home.png" alt="home" width="35" height="35" />
       </div>
-      <div style={styles.icon} onClick={() => navigate('/child')}>
+      <div style={styles.icon} onClick={() => navigate('/child/reward')}>
         <img src="/img/img_money.png" alt="moneybag" width="40" height="40" />
       </div>
       <div
