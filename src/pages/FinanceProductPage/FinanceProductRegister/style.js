@@ -11,6 +11,7 @@ export const ProductTitle = {
   backgroundColor: '#DFEBE4',
   marginLeft: '-20px',
   marginRight: '0px',
+  cursor: 'pointer'
 };
 
 // 상품 정보 약식 정보

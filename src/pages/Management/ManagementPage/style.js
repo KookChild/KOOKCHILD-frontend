@@ -24,7 +24,8 @@ export const PictureSelectContainer = styled.div`
    flex-direction: column; /* 자식 요소를 세로로 정렬합니다 */
   margin: 0px 0;
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1px 2px #00000029;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   border-radius: 12px;
 `
 
@@ -63,7 +64,8 @@ flex-direction:column;
 padding:0px 12px;
 /* UI Properties */
 background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 1px 2px #00000029;
+border: 1px solid rgb(204, 204, 204);
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 border-radius: 12px;
 opacity: 1;
 border-radius: 10px;
