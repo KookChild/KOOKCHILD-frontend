@@ -6,6 +6,7 @@ import {
   loadMyChallengesAPI,
   getProceedingMissionByChild,
   getDailyQuiz,
+loadParentNameAPI,
 } from '@apis'
 
 import { useNavigate } from 'react-router-dom'
@@ -61,6 +62,7 @@ export const ChildMainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userNameResponse = await loadParentNameAPI();
         const childDataResponse = await loadChildAccountDetailAPI()
         let formattedBalance
         const missionDataResponse = await getMissions('newest')
@@ -80,7 +82,7 @@ export const ChildMainPage = () => {
         }
 
         setChildData({
-          accountName: childDataResponse.accountName,
+          accountName: userNameResponse.name,
           accountNum: childDataResponse.accountNum,
           balance: formattedBalance, // 처리된 문자열로 저장
         })
