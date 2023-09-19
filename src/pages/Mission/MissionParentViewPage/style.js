@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { YELLOW, GRAY } from '@utility/COLORS'
+import { YELLOW } from '@utility/COLORS'
 
 export const Header = styled.div`
   padding: 10px;
@@ -26,6 +26,7 @@ export const HeaderTitle = styled.h1`
 `
 
 export const ChildListContainer = styled.div`
+  padding: 5px;
   margin-top: 30px;
   max-width: 100%;
   display: flex;
@@ -48,9 +49,12 @@ export const ChildItemContainer = styled.div`
   margin-right: ${props => (props.selected ? '15px' : '10px')};
 
   img {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: ${props => (props.selected ? '93px' : '86px')};
     height: ${props => (props.selected ? '93px' : '86px')};
+    border-radius: 30px;
+    border: 1px solid lightgray;
+    background-color: ${props => (props.selected ? '#FEF2D3' : 'white')};
   }
 
   p {

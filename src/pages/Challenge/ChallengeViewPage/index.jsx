@@ -6,7 +6,6 @@ import {
 } from './style'
 import { useEffect, useState } from 'react'
 import { ChallengeItem } from '@components'
-import { ChallengeContainer } from './style'
 import {
   loadAllChallengesAPI,
   loadParentChallengesAPI,

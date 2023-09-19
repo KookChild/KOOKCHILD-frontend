@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
-import { PRIMARY } from '@utility/COLORS'
+import { PINK, PRIMARY } from '@utility/COLORS'
+import { green } from '@mui/material/colors'
 export const ChallengeContainer = {
   display: 'flex',
   flexDirection: 'column', // 컨테이너 방향을 세로로 변경
@@ -37,7 +38,7 @@ export const ChallengeInfo = styled.div`
   font-size: 16px;
 `
 
-export const moneyIcon = {
+export const moneyIconBank = {
   width: '20px',
   height: '20px',
   borderRadius: '50%',
@@ -46,4 +47,14 @@ export const moneyIcon = {
   color: 'white',
   opacity: '1',
   color: PRIMARY,
+}
+export const moneyIconParent = {
+  width: '20px',
+  height: '20px',
+  borderRadius: '50%',
+  boxShadow: 'inset 0px 1px 3px #00000029',
+  borderRadius: '15px',
+  color: 'white',
+  opacity: '1',
+  color: PINK,
 }
