@@ -23,7 +23,7 @@ import {
   TableCell,
 } from './style' // 스타일 컴포넌트 임포트
 
-import { getParentGraphData, getChildGraphData, getStatistics } from '@apis'
+import { getParentGraphData, getStatistics } from '@apis'
 import { formattedDate } from '@utility/COMMON_FUNCTION'
 const colors = ['#A9907E', '#F3DEBA', '#F8C4B4', '#EAE0DA', '#F8EDEB']
 
@@ -112,7 +112,7 @@ export const GraphDetailPage = () => {
   // childId를 출력
   console.log('childId:', childId)
 
-  const [data, setData] = useState()
+  const [myData, setData] = useState()
   const [pieData, setPieData] = useState()
   const [stackData, setStackData] = useState()
 
@@ -144,10 +144,17 @@ export const GraphDetailPage = () => {
     getParentGraphData(childId, formatDateRange(startDate, endDate), type).then(
       data => {
         // console.log(data.PIE)
-        setData(data)
         setPieData(Object.keys(data.PIE).map(key => data.PIE[key]))
         setStackData(data.STACK)
         // console.log(data.STACK)
+      },
+    )
+
+    getStatistics(childId, formatDateRange(startDate, endDate)).then(
+      data => {
+        console.log("MYDATA")
+        console.log(data.MY_DATA)
+        setData(data.MY_DATA)
       },
     )
     setShowGraph(true) // 그래프 표시 여부를 true로 설정
@@ -200,6 +207,8 @@ export const GraphDetailPage = () => {
                 <TableRow>
                   <TableHeader>카테고리</TableHeader>
                   <TableHeader>상세 비율(건수)</TableHeader>
+                  <TableHeader>상위 비율</TableHeader>
+
                 </TableRow>
 
                 {pieData?.map(
@@ -209,6 +218,7 @@ export const GraphDetailPage = () => {
                       <TableRow key={index}>
                         <TableCell>{item.CATEGORY}</TableCell>
                         <TableCell>{`${item.PERCENTAGE}% (${item.COUNT}건)`}</TableCell>
+                        <TableCell>{`${myData[`${item.CATEGORY}`]}`}</TableCell>
                       </TableRow>
                     )
                   ),

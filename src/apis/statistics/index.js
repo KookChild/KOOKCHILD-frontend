@@ -20,7 +20,7 @@ export const getChildGraphData = async (period, type) => {
   return response.data;
 };
 
-export const getStatistics = async (childId) => {
-  const response = await axios.get(`/management/stastics?child_id=${childId}`);
+export const getStatistics = async (childId, period) => {
+  const response = await axios.get(`http://10.10.222.104:8000/management/statistic?child_id=${childId}&period=${period}`);
   return response.data;
 };
