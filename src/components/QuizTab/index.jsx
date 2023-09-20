@@ -1,6 +1,5 @@
 import { DailyQuizButton, LeftSection, MiddleSection, RightSection, CompletedMessage } from './style';
 import { BsCheck } from 'react-icons/bs'
-import { AiFillDollarCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 
 export const QuizTab = ({ data }) => {
@@ -9,6 +8,11 @@ export const QuizTab = ({ data }) => {
         if (!data.correct) {
             navigate(`/quiz/${data.id}`);
         }
+    };
+    const formatReward = (reward) => {
+        const parsedReward = parseInt(reward, 10);
+        if (isNaN(parsedReward)) return reward;
+        return new Intl.NumberFormat('ko-KR').format(parsedReward);
     };
     return (
         <DailyQuizButton isCompleted={data.solved} onClick={handleQuizTapClick}>
@@ -20,7 +24,7 @@ export const QuizTab = ({ data }) => {
                 <h3 className='title'>{data.title}</h3>
             </MiddleSection>
             <RightSection>
-                <p>보상금<br/> {`${data.totalReward}원`}</p>
+                <p>보상금<br/> {`${formatReward(data.totalReward)}원`}</p>
             </RightSection>
         </DailyQuizButton>
     );
