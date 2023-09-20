@@ -63,6 +63,8 @@ export const FinanceProductButton = {
   borderRadius: '12px', 
   border: '1px solid #ccc', 
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  cursor: 'pointer', // 마우스 호버 시 포인터로 변경
+  transition: 'background-color 0.3s, transform 0.2s', // 배경색 및 크기 변경 시 애니메이션
 }
 
 // 버튼에 이미지를 넣을 스타일
@@ -77,4 +79,11 @@ export const buttonImage2 = {
   height: '85px',  
   marginRight: '0px',
   marginBottom: '0px'
+};
+
+
+// 호버 시 스케일을 약간 크게 만드는 스타일
+export const FinanceProductButtonHover = {
+  ...FinanceProductButton, // 기본 스타일을 복사
+  transform: 'scale(1.05)', // 호버 시 크기를 약간 크게
 };

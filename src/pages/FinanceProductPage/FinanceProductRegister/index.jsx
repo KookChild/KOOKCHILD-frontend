@@ -24,6 +24,7 @@ import {
     inputStyle2,
     calculateInterestButton,
     resultTextStyle,
+    TextLine1,
 } from './style'
 
 export const FinanceProductRegister = () => {
@@ -53,12 +54,12 @@ export const FinanceProductRegister = () => {
         <TopContainer>
             <TopNavigationBar title="자녀-부모 연계상품" />
 
-            <div style={ProductTitle}>
-                <span style={textLine1}>자녀 금융 교육<br></br>
+            <ProductTitle>
+                <TextLine1>
+                    자녀 금융 교육<br /><br/>
                     우대금리 입출금 통장
-                </span>
-
-            </div>
+                </TextLine1>
+            </ProductTitle>
 
             <div style={ProductOutline}>
                 <div style={flexContainer}>
