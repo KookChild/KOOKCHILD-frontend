@@ -59,15 +59,17 @@ export const QuizDetailPage = () => {
       const { correct, statusCode } = response;
       if (statusCode === 200) {
         const modalOptions = {
-          title: correct ? '정답입니다!' : '오답입니다.',
-          text: correct ? '축하합니다! 정답을 선택했습니다.' : '아쉽습니다. 다음에 다시 도전해보세요.',
+          title: correct ? '<span style="font-size: 20px;">축하합니다! 정답입니다.</span>' : '<span style="font-size: 20px;">오답입니다<br/>다음에 다시 도전해보세요!</span>',
           imageUrl: correct ? correctImage : wrongImage,
-          imageWidth: 200,
-          imageHeight: 200,
+          imageWidth: 180,
+          imageHeight: 180,
           imageAlt: correct ? 'Correct Image' : 'Wrong Image',
           showCancelButton: true,
           confirmButtonText: '해설확인',
           cancelButtonText: '홈으로',
+          customClass: {
+            container: 'custom-swal-container',
+          },
         };
         Swal.fire(modalOptions).then((result) => {
           if (result.isConfirmed) {
@@ -83,6 +85,9 @@ export const QuizDetailPage = () => {
           icon: 'error',
           title: '오류 발생',
           text: '서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+          customClass: {
+            container: 'custom-swal-container',
+          },
         });
       }
     } catch (error) {
@@ -90,6 +95,9 @@ export const QuizDetailPage = () => {
         icon: 'error',
         title: '오류 발생',
         text: '서버와의 통신 중 오류가 발생했습니다.',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
     }
   };
