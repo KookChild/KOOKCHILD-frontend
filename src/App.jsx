@@ -28,7 +28,7 @@ import {
   QuizHistoryDetailPage,
   QuizHistoryViewPage,
   ParentRegisterPage,
-  ChildrenRegisterPage
+  ChildrenRegisterPage,
 } from '@pages'
 import { FinanceProductRegister } from './pages/FinanceProductPage/FinanceProductRegister'
 function Content() {
@@ -42,7 +42,11 @@ function Content() {
         <Route path="/child" element={<ChildMainPage />} />
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/register" element={<ParentRegisterPage />} />
-        <Route exact path="/register/children" element={<ChildrenRegisterPage />} />
+        <Route
+          exact
+          path="/register/children"
+          element={<ChildrenRegisterPage />}
+        />
         <Route path="/mission/create" element={<MissionCreatePage />} />
         <Route
           path="/mission/detail/:missionId"
@@ -59,7 +63,6 @@ function Content() {
         />
         <Route
           path="/challenge/child/detail/:id"
-          // path="/challenge/child/detail"
           element={<ChallengeChildDetailPage />}
         />
         <Route
@@ -67,10 +70,16 @@ function Content() {
           element={<ChallengeParentDetailPage />}
         />
         <Route path="/child/challenge" element={<ChallengeViewPage />} />
-        <Route path="/quiz/:quizId" element={<QuizDetailPage />}/>
-        <Route path="/quiz/historyview" element={<QuizHistoryViewPage/>}/>
-        <Route path="/quiz/detail/:quizId" element={<QuizHistoryDetailPage/>}/>
-        <Route path="/quiz/:quizId/explanation" element={<QuizExplanationPage/>}/>
+        <Route path="/quiz/:quizId" element={<QuizDetailPage />} />
+        <Route path="/quiz/historyview" element={<QuizHistoryViewPage />} />
+        <Route
+          path="/quiz/detail/:quizId"
+          element={<QuizHistoryDetailPage />}
+        />
+        <Route
+          path="/quiz/:quizId/explanation"
+          element={<QuizExplanationPage />}
+        />
         <Route path="/complete" element={<CompletePage />} />
         <Route path="/management/send" element={<SendDetailPage />} />
         <Route path="/graph/detail/:childId" element={<GraphDetailPage />} />
@@ -87,7 +96,6 @@ function Content() {
   )
 }
 
-// * 9/6 지은 생각: 부모일때랑 자식일때 url을 동일하게 할 수는 없을까
 // TODO: utility 폴더에 path 따로 분리해놓기
 
 function App() {
