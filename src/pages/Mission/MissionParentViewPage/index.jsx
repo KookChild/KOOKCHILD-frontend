@@ -12,6 +12,7 @@ import {
   MissionItemContainer,
   RadioButtonGroup,
   RadioLabel,
+  Img,
 } from './style'
 import imgSrc from './img/Bear.png'
 import imgSrc2 from './img/ALL.jpeg'
@@ -91,13 +92,13 @@ export const MissionParentViewPage = () => {
           <p>전체보기</p>
         </ChildItemContainer>
 
-        {childs.map(child => (
+        {childs.map((child, index) => (
           <ChildItemContainer
             key={child.childId}
             selected={selectedChildIndex === child.childId}
             onClick={() => handleChildClick(child.childId)}
           >
-            <img src={imgSrc} alt={child.childName} />
+            <Img src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
             <p>{child.childName}</p>
           </ChildItemContainer>
         ))}

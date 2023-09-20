@@ -24,6 +24,7 @@ import {
   childNameContainer,
   TopTextContainer,
   ButtonSection,
+  HistoryMissionButton,
 } from './style'
 
 import {
@@ -183,7 +184,9 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>일일 퀴즈</span>
-        <TextContainerSpan onClick={navigateToHistory}>히스토리</TextContainerSpan>
+        <HistoryMissionButton onClick={() => navigate('/quiz/historyview')}>
+            히스토리
+        </HistoryMissionButton>
       </div>
       <ButtonSection>
         {dailyQuiz ? <QuizTab data={dailyQuiz} /> : <button style={DailyQuizButton}> -일일 퀴즈 img- </button>}

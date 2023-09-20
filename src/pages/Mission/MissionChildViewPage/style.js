@@ -15,6 +15,9 @@ export const HistoryMissionButton = styled.button`
     background-color: #8D744A;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color: #A88A5A; /* 호버 시 밝은 배경색으로 변경 */
+    }
 `;
 
 export const Dropdown = styled.select`

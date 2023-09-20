@@ -153,3 +153,14 @@ export const MissionItemContainer = styled.div`
   opacity: 1;
   display: flex;
 `
+
+export const Img = styled.img`
+width: 100%;
+// height: 163px;
+height: 100%;
+object-fit: cover;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+`
