@@ -11,6 +11,7 @@ export const MissionItem = ({
     childConfirm, parent, even, showRewardButton = false,
     onRewardButtonClick,
 }) => {
+    const formattedMissionReward = new Intl.NumberFormat('ko-KR').format(Number(missionReward));
     if (parent) {
         return (
             <ItemContainer even={even} parentConfirm={parentConfirm}>
@@ -22,7 +23,7 @@ export const MissionItem = ({
                     <p className='date'>{missionDate}</p>
                 </MiddleSection>
                 <RightSection>
-                    <p>보상금<br />{missionReward}</p>
+                    <p>보상금<br />{formattedMissionReward}</p>
                 </RightSection>
             </ItemContainer>
         );
@@ -40,7 +41,7 @@ export const MissionItem = ({
             )}
         </ChildRightSection>
         <ChildUnderSection>
-            <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{missionReward}</span></p>
+            <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{formattedMissionReward}</span></p>
         </ChildUnderSection>
     </ChildItemContainer>
         );

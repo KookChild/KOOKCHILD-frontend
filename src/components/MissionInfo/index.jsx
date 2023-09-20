@@ -84,7 +84,7 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
                     <MissionDetail>
                         <MissionHeader>미션 상세</MissionHeader>
                         <MissionBody>{content}</MissionBody>
-                        <img src={yourImagePathHere} alt="미션 이미지" />
+                        {/* <img src={yourImagePathHere} alt="미션 이미지" /> */}
                     </MissionDetail>
                 </>
             )}
