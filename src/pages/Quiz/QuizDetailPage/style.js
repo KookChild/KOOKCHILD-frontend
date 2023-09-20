@@ -109,7 +109,7 @@ export const StyledSubmitButton = styled.button`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: ${props => props.disabled ? 'gray' : YELLOW};
+        background-color: ${props => props.disabled ? 'gray' : 'gold'};
     }
 `;
 
