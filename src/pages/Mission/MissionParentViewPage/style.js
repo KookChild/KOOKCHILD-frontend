@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { YELLOW } from '@utility/COLORS'
+import { PRIMARY, YELLOW } from '@utility/COLORS'
 
 export const ChildListContainer = styled.div`
   padding: 5px;
@@ -25,12 +25,16 @@ export const ChildItemContainer = styled.div`
   margin-right: ${props => (props.selected ? '15px' : '10px')};
 
   img {
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: ${props => (props.selected ? '93px' : '86px')};
     height: ${props => (props.selected ? '93px' : '86px')};
     border-radius: 30px;
     border: 1px solid lightgray;
     background-color: ${props => (props.selected ? '#FEF2D3' : 'white')};
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   p {
@@ -114,7 +118,7 @@ export const AddMissionButton = styled.button`
   margin-top: 5px;
   width: 378px;
   height: 45px;
-  background: #ffcc00;
+  background: ${PRIMARY};
   border-radius: 6px;
   border: none;
   color: black;
@@ -156,7 +160,6 @@ export const MissionItemContainer = styled.div`
 
 export const Img = styled.img`
 width: 100%;
-// height: 163px;
 height: 100%;
 object-fit: cover;
 top: 0;
