@@ -31,10 +31,14 @@ export const ParentMainPage = () => {
   const [isAccountLinked, setAccountLinked] = useState(false)
   const finalBalance = ''
   const [animatedDigits, setAnimatedDigits] = useState([])
+  const [parentData, setParentData] = useState({});
   const [name, setName] = useState('')
 
   const handleNavigation = path => {
     navigate(path)
+  }
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('ko-KR').format(value);
   }
 
   useEffect(() => {
@@ -43,6 +47,7 @@ export const ParentMainPage = () => {
         const parentData = await loadParentNameAPI()
         if (parentData && parentData.name) {
           setName(parentData.name)
+          setParentData(parentData)
         }
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -88,8 +93,8 @@ export const ParentMainPage = () => {
   const LinkedAccountButton = (
     <button style={LinkedAccountButtonStyle}>
       <div style={buttonTextContainer}>
-        <span style={AccounttextLine2}>553702-01-444555</span>
-        <span style={AccounttextLine1}>{`${animatedDigits.join('')} 3,612,000 원`}</span>
+        <span style={AccounttextLine2}>{parentData.accountNum}</span>
+        <span style={AccounttextLine1}>{`${animatedDigits.join('')} ${formatCurrency(parentData.accountBalance)}원`}</span>
       </div>
     </button>
   )

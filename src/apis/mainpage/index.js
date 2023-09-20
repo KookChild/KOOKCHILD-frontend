@@ -11,12 +11,7 @@ if (localStorage.getItem('token')) {
 export function loadParentNameAPI(token) {
   return axios
     .get(
-      '/user', //{
-      // headers: {
-      //   Authorization:
-      //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJlbnQ0QGdtYWlsLmNvbSIsImlhdCI6MTY5NDQ3OTU3NSwiZXhwIjoxNjk3MDcxNTc1fQ.qPflEr9r3G8U0KZDlPdwP1Lo-t1-gth0WEBYWpuuUqY',
-      // },
-      // }
+      '/user',
     )
     .then(response => response.data)
     .catch(error => {
@@ -27,12 +22,7 @@ export function loadParentNameAPI(token) {
 export function loadChildAccountDetailAPI(token) {
   return axios
     .get(
-      '/management/info', //{
-      // headers: {
-      //   Authorization:
-      //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
-      // },
-      // }
+      '/management/info',
     )
     .then(response => response.data)
     .catch(error => {
@@ -43,12 +33,7 @@ export function loadChildAccountDetailAPI(token) {
 export function loadAllMissionAPI(token) {
   return axios
     .get(
-      '/mission', //{
-      // headers: {
-      //   Authorization:
-      //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGlsZDQyMUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ0NzkxMjgsImV4cCI6MTY5NzA3MTEyOH0.BlEalZy8Rvo51YQCh3AkWEQmTNYv9iL3NN5rTL27VWA',
-      // },
-      // }
+      '/mission',
     )
     .then(response => response.data.missionLists)
     .catch(error => {
