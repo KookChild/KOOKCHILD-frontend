@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { YELLOW, PRIMARY, GRAY } from '@utility/COLORS'
+import { PRIMARY, GRAY } from '@utility/COLORS'
 
 export const AreaContainer = styled.div`
     width: 100%;
@@ -94,7 +94,7 @@ export const EditButton = styled.button`
 export const SuccessButton = styled.button`
     width: 350px;
     height: 50px;
-    background: ${YELLOW};
+    background: ${PRIMARY};
     border-radius: 6px;
     border: none;
     color: black;
@@ -105,7 +105,7 @@ export const SuccessButton = styled.button`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: ${PRIMARY};
+        background-color: gold;
     }
     &:disabled {
         cursor: not-allowed;
@@ -129,7 +129,7 @@ export const CompleteButton = styled.button`
     transition: 0.3s;
 
     &:hover {
-        background: ${({ isChild }) => (isChild ? "#FFBC00" : "#3B5BA8")};
+        background: ${({ isChild }) => (isChild ? "#FFBC00" : "#687FDD")};
     }
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
