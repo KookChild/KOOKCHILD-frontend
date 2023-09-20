@@ -43,8 +43,14 @@ export const ChildInfoContainer = styled.div`
 
 export const ChildImage = styled.img`
     width: 70px;
-    height: 78px;
+    height: 70px;
     margin-right: 10px;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30%; /* 이 부분을 추가 */
 `;
 
 export const ChildName = styled.p`

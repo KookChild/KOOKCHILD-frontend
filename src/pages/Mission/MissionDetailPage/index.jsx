@@ -17,7 +17,7 @@ import {
   WaitingReward,
   AreaFooterContainer,
 } from './style'
-import imgSrc from '../../Management/ManagementPage/img/아이1.jpg'
+
 import { TopContainer, TopNavigationBar, MissionInfo } from '@components';
 import {
   fetchMissionDetail,
@@ -37,6 +37,8 @@ export const MissionDetailPage = () => {
   const [missionTitle, setMissionTitle] = useState(null)
 
   const navigate = useNavigate()
+  const { index } = useParams();
+  const indexAsNumber = parseInt(index, 10); // 문자열을 10진수 숫자로 변환
 
   useEffect(() => {
     const fetchMissionData = async () => {
@@ -310,7 +312,7 @@ export const MissionDetailPage = () => {
         <AreaContainer>
           <ChildInfoContainer>
             <div>
-              <ChildImage src={imgSrc} alt={childName} />
+              <ChildImage src={require(`../../../img/아이${indexAsNumber+1}.jpg`)} alt={childName} />
               <ChildName>{childName}</ChildName>
             </div>
             <MissionDescription>님의 현재 미션입니다</MissionDescription>

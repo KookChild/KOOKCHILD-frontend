@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { ChallengeItem, MissionItem } from '@components'
 import {
   MissionListContainer,
@@ -25,6 +24,7 @@ import { Quiz } from './Quiz'
 import { selectedChild } from '@recoil/child'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { ImageContainer } from '@pages/Management/ManagementPage/style'
+import { useNavigate } from 'react-router-dom'
 
 export const MissionParentViewPage = () => {
   const setSelectedChildId = useSetRecoilState(selectedChild)
@@ -34,17 +34,19 @@ export const MissionParentViewPage = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
   const navigate = useNavigate()
   const [selectedChildIndex, setSelectedChildIndex] = useState(0)
+  const [selectIndex, setSelectIndex] = useState(0);
   const [missionFilter, setMissionFilter] = useState('ongoing')
   const [challengeFilter, setChallengeFilter] = useState('ongoing')
   const [quizData, setQuizData] = useState([])
   const parent = localStorage.getItem('parent')
 
-  const handleMissionClick = missionId => {
-    navigate(`/mission/detail/${missionId}`)
+  const handleMissionClick = (missionId, index) => {
+    navigate(`/mission/detail/${missionId}/${index}`)
   }
 
-  const handleChildClick = childId => {
+  const handleChildClick = (childId, index) => {
     setSelectedChildIndex(childId)
+    setSelectIndex(index);
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +98,7 @@ export const MissionParentViewPage = () => {
           <ChildItemContainer
             key={child.childId}
             selected={selectedChildIndex === child.childId}
-            onClick={() => handleChildClick(child.childId)}
+            onClick={() => handleChildClick(child.childId, index)}
           > 
             <ImageContainer>
               <Img src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
@@ -169,7 +171,7 @@ export const MissionParentViewPage = () => {
             {missions.map((mission, index) => (
               <MissionItemContainer
                 even={index % 2 === 1}
-                onClick={() => handleMissionClick(mission.id)}
+                onClick={() => handleMissionClick(mission.id, selectIndex)}
                 key={index}
               >
                 <MissionItem
