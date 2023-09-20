@@ -164,6 +164,7 @@ export const ChildUnderSection = styled.div`
     bottom: 0;
     height: 40px;
     right:40px;
+    margin-right: 10px;
     p{
         margin-top:10px;
     }

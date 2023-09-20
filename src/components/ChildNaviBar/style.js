@@ -10,7 +10,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    boxShadow: '0px -6px 5px rgba(0, 0, 0, 0.1)', // 상단 그림자 추가
+    boxShadow: '0px -6px 5px rgba(0, 0, 0, 0.1)',
   },
   icon: {
     display: 'flex',
@@ -18,7 +18,11 @@ const styles = {
     cursor: 'pointer',
     alignItems: 'center',
     justifyContent: 'center',
+    transition: 'transform 0.1s ease-in-out',
   },
+  iconHovered: { // new style for hover effect
+    transform: 'scale(1.1)'
+  }
 }
 
 export default styles

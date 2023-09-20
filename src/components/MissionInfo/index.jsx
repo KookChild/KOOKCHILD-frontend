@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { MissionInfoContainer, StyledInput, StyledTextArea, MissionDetail, MissionHeader, MissionBody } from './style';
-import yourImagePathHere from '../../pages/Mission/MissionParentViewPage/img/ALL.jpeg'
 
 export const MissionInfo = ({ title: initialTitle, content: initialContent, reward: initialAmount, endDate: initialDueDate, readOnly, onUpdate }) => {
     const [title, setTitle] = useState(initialTitle);
     const [content, setContent] = useState(initialContent);
     const [reward, setAmount] = useState(initialAmount);
     const [endDate, setDueDate] = useState(initialDueDate);
+
+    const formatReward = (reward) => {
+        const parsedReward = parseInt(reward, 10);
+        if (isNaN(parsedReward)) return reward;
+        return new Intl.NumberFormat('ko-KR').format(parsedReward);
+    };
 
     const updateField = (fieldName, value) => {
         if (onUpdate) {
@@ -27,7 +32,7 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
     }
 
     const handleRewardChange = (e) => {
-        const newReward = e.target.value;
+        const newReward = e.target.value.replace(/[^0-9]/g, '');
         setAmount(newReward);
         updateField('reward', newReward);
     }
@@ -71,8 +76,7 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
                     </MissionDetail>
                     <MissionDetail>
                         미션 금액
-                        <StyledInput type="text" value={reward} onChange={handleRewardChange} readOnly={readOnly} />
-                        {/* wkatl */}
+                        <StyledInput type="text" value={formatReward(reward)} onChange={handleRewardChange} readOnly={readOnly} />
                     </MissionDetail>
                 </>
             ) : (
@@ -84,7 +88,6 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
                     <MissionDetail>
                         <MissionHeader>미션 상세</MissionHeader>
                         <MissionBody>{content}</MissionBody>
-                        <img src={yourImagePathHere} alt="미션 이미지" />
                     </MissionDetail>
                 </>
             )}

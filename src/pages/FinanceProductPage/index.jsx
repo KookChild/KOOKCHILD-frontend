@@ -10,22 +10,57 @@ import {
     buttonImage,
     buttonImage2,
     highlightText,
+    FinanceProductButtonHover,
 } from './style'
+import { TextLine1 } from './FinanceProductRegister/style';
+import { useState } from 'react';
 
 
 
 export const FinanceProductPage = () => {
+    const [isHovered1, setIsHovered1] = useState(false);
+    const [isHovered2, setIsHovered2] = useState(false);
+    const [isHovered3, setIsHovered3] = useState(false);
     const navigate = useNavigate();
 
     const handleButtonClick = (path) => {
         navigate(path);
     };
 
+    const handleMouseEnter1 = () => {
+        setIsHovered1(true);
+    };
+    
+    const handleMouseLeave1 = () => {
+        setIsHovered1(false);
+    };
+
+    const handleMouseEnter2 = () => {
+        setIsHovered2(true);
+    };
+    
+    const handleMouseLeave2 = () => {
+        setIsHovered2(false);
+    };
+
+    const handleMouseEnter3 = () => {
+        setIsHovered3(true);
+    };
+    
+    const handleMouseLeave3 = () => {
+        setIsHovered3(false);
+    };
+
     return (
         <TopContainer>
             <TopNavigationBar title="자녀-부모 연계상품" />
             <div style={buttonSection}>
-                <div style={FinanceProductButton} onClick={() => handleButtonClick('/financeproduct/register')}>
+                <div 
+                style={isHovered1  ? FinanceProductButtonHover : FinanceProductButton} 
+                onClick={() => handleButtonClick('/financeproduct/register')}
+                onMouseEnter={handleMouseEnter1}
+                onMouseLeave={handleMouseLeave1}
+                >
                     <div style={buttonTextContainer}>
                         <div>
                             <span style={textLine1}>자녀 금융교육<br />우대금리 "입출금" 통장
@@ -41,7 +76,12 @@ export const FinanceProductPage = () => {
                         <img style={buttonImage} src="./characterImage/rabbit.png" alt="character" />
                     </div>
                 </div>
-                <div style={FinanceProductButton}>
+                <div
+                style={isHovered2 ? FinanceProductButtonHover : FinanceProductButton} 
+                onClick={() => handleButtonClick('/financeproduct/register')}
+                onMouseEnter={handleMouseEnter2}
+                onMouseLeave={handleMouseLeave2}
+                >
                     <div style={buttonTextContainer}>
                         <div>
                             <span style={textLine1}>차곡차곡 자녀 Dream<br />우대금리 "정기 예금" 통장
@@ -57,7 +97,12 @@ export const FinanceProductPage = () => {
                         <img style={buttonImage} src="./characterImage/elegator.png" alt="character" />
                     </div>
                 </div>
-                <div style={FinanceProductButton}>
+                <div
+                style={isHovered3 ? FinanceProductButtonHover : FinanceProductButton} 
+                onClick={() => handleButtonClick('/financeproduct/register')}
+                onMouseEnter={handleMouseEnter3}
+                onMouseLeave={handleMouseLeave3}
+                >
                     <div style={buttonTextContainer}>
                         <div>
                             <span style={textLine1}>차곡차곡 자녀 Dream<br />우대금리 "적금" 통장

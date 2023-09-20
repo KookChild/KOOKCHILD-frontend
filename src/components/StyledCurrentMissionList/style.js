@@ -44,6 +44,7 @@ export const rewardContainer = {
 
 export const rewardText = {
   fontSize: '14px',
+  textAlign: 'center', // 가운데 정렬
 }
 
 export const checkClass = {

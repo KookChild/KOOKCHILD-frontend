@@ -25,7 +25,7 @@ export const MissionList = ({ missions, message, onRewardButtonClick }) => {
               <MissionItem
                 even={0}
                 missionTitle={mission.title}
-                missionReward={`${mission.reward}원`}
+                missionReward={mission.reward}
                 missionDate={mission.deadline}
                 parentConfirm={mission.parentConfirm}
                 childConfirm={mission.childConfirm}
