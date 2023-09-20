@@ -7,6 +7,7 @@ import {
   rewardText,
   missionContainer,
   checkClass,
+  NoMissionsMessage,
 } from './style'
 import { useNavigate } from 'react-router-dom'
 import { BsCheck } from 'react-icons/bs'
@@ -15,7 +16,10 @@ export const StyledCurrentMissionList = ({ missions }) => {
   const navigate = useNavigate()
   return (
     <div style={missionListContainer}>
-      {missions.map((mission, index) => (
+      {missions.length === 0 ? (
+          <NoMissionsMessage>진행중인 미션이 아직 없습니다.</NoMissionsMessage>
+        ) 
+        : missions.map((mission, index) => (
         <div
           key={index}
           style={missionContainer}

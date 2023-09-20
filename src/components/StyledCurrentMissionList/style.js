@@ -1,4 +1,5 @@
 import { GRAY, DARK_GRAY } from '@utility/COLORS'
+import styled from 'styled-components';
 export const missionListContainer = {
   backgroundColor: '#ffffff',
   flex: 1,
@@ -7,7 +8,20 @@ export const missionListContainer = {
   borderRadius: '8px', // 모서리 라운딩
   border: '1px solid #ccc', // 테두리 없앰
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  '&:hover': {
+    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+  },
+  
 }
+
+export const NoMissionsMessage = styled.div`
+  font-size: 16px;
+  text-align: center;
+  margin: 20px;
+  background-color: #f5f5f5; /* 회색 배경색 */
+  opacity: 0.8; /* 글자의 투명도 조절 (0.8은 80% 투명) */
+`;
+
 
 export const missionContainer = {
   display: 'flex',

@@ -58,13 +58,16 @@ export const iconGroup = {
 }
 
 // 버튼 공통
-export const buttonSection = {
+export const ButtonSection = styled.div`
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   gap: '2px',
   marginBottom: '5px',
-}
+  &:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`
 export const TopTextContainer = {
   fontFamily: 'sdEB',
   fontSize: '20px',

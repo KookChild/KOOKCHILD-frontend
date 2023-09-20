@@ -23,6 +23,7 @@ import {
   balanceContainer,
   childNameContainer,
   TopTextContainer,
+  ButtonSection,
 } from './style'
 
 import {
@@ -184,27 +185,27 @@ export const ChildMainPage = () => {
         <span>일일 퀴즈</span>
         <TextContainerSpan onClick={navigateToHistory}>히스토리</TextContainerSpan>
       </div>
-      <div style={buttonSection}>
+      <ButtonSection>
         {dailyQuiz ? <QuizTab data={dailyQuiz} /> : <button style={DailyQuizButton}> -일일 퀴즈 img- </button>}
-      </div>
+      </ButtonSection>
 
       <div style={textContainer}>
         <span>진행중인 미션</span>
       </div>
-      <div style={buttonSection}>
+      <ButtonSection>
         <StyledCurrentMissionList missions={missionList} />
-      </div>
+      </ButtonSection>
 
       <div style={textContainer}>
         <span>진행중인 챌린지</span>
       </div>
 
-      <div style={buttonSection}>
+      <ButtonSection>
         {/* 여기에서 ChallengeItem 컴포넌트를 사용하여 챌린지 목록을 렌더링합니다. */}
         {challengeList.map(challenge => (
           <ChallengeItem key={challenge.id} challenge={challenge} />
         ))}
-      </div>
+      </ButtonSection>
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button style={BackToKBStarBankingButton}>

@@ -122,9 +122,9 @@ export const AddMissionButton = styled.button`
   cursor: pointer;
   outline: none;
   transition: 0.3s;
-
   &:hover {
-    background: #e5b900;
+    background-color: gold;
+    border-color: gold;
   }
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `
