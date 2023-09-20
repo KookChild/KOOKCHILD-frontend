@@ -74,7 +74,6 @@ export const ManagementPage = () => {
           const names = response.data.list.map(child => child.name); // "list" 배열에서 "name" 속성 추출
           setChildNamesArray(prev => names);
           
-          
           const listData = response.data.list;
           setChildDataArray(listData);
           setChildName(response.data.list[0].name);

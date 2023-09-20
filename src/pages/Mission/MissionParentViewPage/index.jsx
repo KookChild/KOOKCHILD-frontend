@@ -14,7 +14,6 @@ import {
   RadioLabel,
   Img,
 } from './style'
-import imgSrc from './img/Bear.png'
 import imgSrc2 from './img/ALL.jpeg'
 import {
   getParentMissionByChild,

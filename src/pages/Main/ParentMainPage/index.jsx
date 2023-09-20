@@ -29,12 +29,15 @@ library.add(faBell, faGear, faPlus)
 export const ParentMainPage = () => {
   const navigate = useNavigate()
   const [isAccountLinked, setAccountLinked] = useState(false)
-  const finalBalance = ''
   const [animatedDigits, setAnimatedDigits] = useState([])
+  const [parentData, setParentData] = useState({});
   const [name, setName] = useState('')
 
   const handleNavigation = path => {
     navigate(path)
+  }
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('ko-KR').format(value);
   }
 
   useEffect(() => {
@@ -43,6 +46,7 @@ export const ParentMainPage = () => {
         const parentData = await loadParentNameAPI()
         if (parentData && parentData.name) {
           setName(parentData.name)
+          setParentData(parentData)
         }
       } catch (error) {
         console.error('Error fetching challenge detail:', error)
@@ -52,25 +56,24 @@ export const ParentMainPage = () => {
     fetchData()
   }, [])
   useEffect(() => {
-    if (isAccountLinked) {
-      let digitsArray = finalBalance.split('')
-      let animatedDigitsTemp = []
-
+    if (isAccountLinked && parentData.accountBalance) {
+      let digitsArray = String(parentData.accountBalance).split('');
+      let animatedDigitsTemp = Array(digitsArray.length).fill('0');
       digitsArray.forEach((digit, index) => {
         let animation = setInterval(() => {
-          const randomDigit = Math.floor(Math.random() * 10)
-          animatedDigitsTemp[index] = randomDigit.toString()
-          setAnimatedDigits([...animatedDigitsTemp])
-        }, 25) // 숫자 변환 속도를 더 빠르게 설정
-
+          const randomDigit = Math.floor(Math.random() * 10);
+          animatedDigitsTemp[index] = randomDigit.toString();
+          setAnimatedDigits(formatCurrency(animatedDigitsTemp.join('')));
+        }, 25);
         setTimeout(() => {
-          clearInterval(animation)
-          animatedDigitsTemp[index] = digit
-          setAnimatedDigits([...animatedDigitsTemp])
-        }, 300 + index * 100) // 각 자리 숫자가 정지하는 시간을 조금 빠르게 설정
-      })
+          clearInterval(animation);
+          animatedDigitsTemp[index] = digit;
+          setAnimatedDigits(formatCurrency(animatedDigitsTemp.join('')));
+        }, 300 + index * 100);
+      });
     }
-  }, [isAccountLinked])
+  }, [isAccountLinked, parentData.accountBalance]);
+
 
   const UnlinkedAccountButton = (
     <button
@@ -88,8 +91,8 @@ export const ParentMainPage = () => {
   const LinkedAccountButton = (
     <button style={LinkedAccountButtonStyle}>
       <div style={buttonTextContainer}>
-        <span style={AccounttextLine2}>553702-01-444555</span>
-        <span style={AccounttextLine1}>{`${animatedDigits.join('')} 3,612,000 원`}</span>
+        <span style={AccounttextLine2}>{parentData.accountNum}</span>
+        <span style={AccounttextLine1}>{`${animatedDigits}원`}</span>
       </div>
     </button>
   )

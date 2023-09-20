@@ -98,7 +98,7 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                 exit={{ opacity: 0, y: 20 }} // 나가기 애니메이션 설정
                 transition={{ duration: 0.5 }} // 애니메이션 지속 시간 설정
               >
-                <MoveChildGraphButton />
+                <MoveChildGraphButton childId = {childId}/>
               </motion.div>
             </MoveChildGraphButtonContainer>
       </BankInfoContainer>
