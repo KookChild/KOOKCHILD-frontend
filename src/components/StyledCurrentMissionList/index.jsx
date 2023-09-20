@@ -13,6 +13,11 @@ import { useNavigate } from 'react-router-dom'
 import { BsCheck } from 'react-icons/bs'
 
 export const StyledCurrentMissionList = ({ missions }) => {
+  const formatReward = (reward) => {
+    const parsedReward = parseInt(reward, 10);
+    if (isNaN(parsedReward)) return reward;
+    return new Intl.NumberFormat('ko-KR').format(parsedReward);
+};
   const navigate = useNavigate()
   return (
     <div style={missionListContainer}>
@@ -33,7 +38,7 @@ export const StyledCurrentMissionList = ({ missions }) => {
           <div style={rewardContainer}>
             <span style={rewardText}>
               보상금<br></br>
-              {`${mission.reward}원`}
+              {`${formatReward(mission.reward)}원`}
             </span>
           </div>
         </div>

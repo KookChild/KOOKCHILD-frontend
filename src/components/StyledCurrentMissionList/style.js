@@ -50,10 +50,10 @@ export const rewardContainer = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '70px',
   height: '40px',
   borderRadius: '8px',
   backgroundColor: '#f5f5f5',
+  padding: '0 7px'
 }
 
 export const rewardText = {

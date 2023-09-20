@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { YELLOW, PRIMARY, GRAY, BROWN } from '@utility/COLORS'
+import { YELLOW, GRAY, BROWN } from '@utility/COLORS'
 
 export const AreaContainer = styled.div`
   width: 100%;
@@ -12,12 +12,6 @@ export const AreaContainer = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
-`
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
 `
 
 export const ChildInfoContainer = styled.div`

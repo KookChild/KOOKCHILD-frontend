@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { YELLOW } from '@utility/COLORS'
 
 export const ChallengeTitle = styled.div`
   text-align: center;
@@ -11,16 +12,25 @@ export const ChallengeContent = styled.div`
   text-align: center;
   padding: 20px 30px;
 `
-export const ChallengeConfirmButton = styled.div`
-  background-color: #fece1b;
-  padding: 15px;
-  font-size: 30px;
-  text-align: center;
-  margin-top: 8.5vh;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-`
+
+export const ChallengeConfirmButton = styled.button`
+    width: 350px;
+    height: 50px;
+    background: ${YELLOW};
+    border-radius: 6px;
+    border: none;
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background-color: gold;
+    }
+`;
+
 export const ChallengeContainer = styled.div`
   display: flex;
   flex-direction: column;
