@@ -1,13 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 가져오기
+import { useNavigate } from 'react-router-dom';
 import { GraphButton } from '../GraphDetailPage/style';
 
-const MoveChildGraphButton = () => {
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 가져오기
+const MoveChildGraphButton = (props) => { // props 객체를 받도록 수정
+  const { childId } = props; // props 객체 내에서 childId를 가져옴
+  const navigate = useNavigate();
 
   const getChildGraphButtonClick = () => {
-    // '/graph/detail' 경로로 이동
-    navigate('/graph/detail');
+    navigate(`/graph/detail/${childId}`);
   };
 
   return (
