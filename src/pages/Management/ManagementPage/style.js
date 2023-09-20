@@ -11,7 +11,7 @@ export const Footer = styled.div`
 export const BankContentContainer = styled.div`
   width: 100%;
   height : 100%;
-  padding: 13px 0px;
+  padding: 20px 0px;
 `
 
 export const PictureSelectContainer = styled.div`
@@ -178,13 +178,21 @@ export const ImageContainer = styled.div`
   overflow: hidden;
   border-radius: 30%;
   width:100%;
- }
+   border: 1px solid #fff; /* 흰색 경계선 추가 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  img {
+    transition: transform 0.2s ease; // 이미지 크기 변화를 부드럽게 0.5초 동안 적용
+  }
+  &:hover{
+    img{
+      transform:scale(1.1)
+    }
+  }
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  // height: 163px;
-  height: 100%;
+  width:90px;
+  height:90px;
   object-fit: cover;
   top: 0;
   left: 0;
