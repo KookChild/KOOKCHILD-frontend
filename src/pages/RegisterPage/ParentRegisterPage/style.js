@@ -86,16 +86,10 @@ export const EmailErrorMessage = styled.p`
 
 
 export const PhoneNumberInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
-
   input, select {
     flex: 1;
     height: 38px;
-    width: 30%;
+    width: 27%;
     padding: 0 10px;
     box-sizing: border-box;
     margin-right: 5px;
@@ -111,16 +105,11 @@ export const PhoneNumberInputWrapper = styled.div`
   }
 `;
 export const ResidentNumberInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
 
   input, select {
     flex: 1;
     height: 38px;
-    width: 30%;
+    width: 44%;
     padding: 0 10px;
     box-sizing: border-box;
     margin-right: 5px;
@@ -144,7 +133,7 @@ export const ResidentNumberInput = ({
 }) => {
   return (
     <ResidentNumberInputWrapper>
-      <input
+      <Input
         type="text"
         placeholder="YYMMDD"
         value={ssn1}
@@ -152,7 +141,7 @@ export const ResidentNumberInput = ({
         required
       />
       <span> - </span>
-      <input
+      <Input
         type="text"
         placeholder=""
         value={ssn2}
@@ -171,7 +160,7 @@ export const PhoneNumberInput = ({
 }) => {
   return (
     <PhoneNumberInputWrapper>
-      <input
+      <Input
         type="text"
         placeholder=""
         value={phoneNumber1}
@@ -179,7 +168,7 @@ export const PhoneNumberInput = ({
         required
       />
       <span> - </span>
-      <input
+      <Input
         type="text"
         placeholder=""
         value={phoneNumber2}
@@ -187,7 +176,7 @@ export const PhoneNumberInput = ({
         required
       />
       <span> - </span>
-      <input
+      <Input
         type="text"
         placeholder=""
         value={phoneNumber3}

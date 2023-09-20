@@ -45,8 +45,10 @@ export const ChildrenRegisterPage = () => {
     } else {
       Swal.fire({
         icon: 'warning',
-        title: '주의!',
-        text: '이메일을 입력해주세요.'
+        title: '<span style="font-size: 20px;">이메일을 입력해주세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
     }
   }
@@ -125,15 +127,19 @@ export const ChildrenRegisterPage = () => {
     if (duplicateEmailExists) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: '이미 사용 중인 이메일이 있습니다. 다른 이메일을 입력하세요.'
+        title: '<span style="font-size: 20px;">이미 사용 중인 이메일이 있습니다.<br/>다른 이메일을 입력하세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     } else if (emailNotCheckedExists) {
       Swal.fire({
         icon: 'warning',
-        title: '주의!',
-        text: '모든 이메일의 중복 확인을 해주세요.'
+        title: '<span style="font-size: 20px;">모든 이메일의 중복 확인을 해주세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }
@@ -176,18 +182,26 @@ export const ChildrenRegisterPage = () => {
     if (hasError) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: errorMsg
+        title: '<span style="font-size: 20px;">'+errorMsg+'</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }
 
     const result = await Swal.fire({
-      title: '회원가입을 진행하시겠습니까?',
+      title: '<span style="font-size: 20px;">회원가입을 진행하시겠습니까?</span>',
       icon: 'question',
       showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
-      cancelButtonText: '아니오'
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+      customClass: {
+          container: 'custom-swal-container',
+        },
     });
 
     if (result.isConfirmed) {
@@ -286,13 +300,13 @@ export const ChildrenRegisterPage = () => {
                     <label>이름</label>
                     <Input
                       type="text"
-                      placeholder="Name"
                       value={child.name || ''}
                       onChange={(e) => {
                         const newData = [...childrenData];
                         newData[index].name = e.target.value;
                         setChildrenData(newData);
                       }}
+                      required
                     />
                     <label>주민등록번호</label>
                     <ResidentNumberInput
@@ -320,26 +334,26 @@ export const ChildrenRegisterPage = () => {
                     <label>생년월일</label>
                     <Input
                       type="date"
-                      placeholder="Birthdate"
                       value={child.birthdate || ''}
                       onChange={(e) => {
                         const newData = [...childrenData];
                         newData[index].birthdate = e.target.value;
                         setChildrenData(newData);
                       }}
+                      required
                     />
                     <label>이메일(ID)</label>
                     <DuplicateButton type="button" onClick={() => handleCheckEmailAvailability(index)}>중복 확인</DuplicateButton>
                     <EmailContainer>
                       <Input
                         type="email"
-                        placeholder="Email"
                         value={child.email || ''}
                         onChange={(e) => {
                           const newData = [...childrenData];
                           newData[index].email = e.target.value;
                           setChildrenData(newData);
                         }}
+                        required
                       />
                       {child.emailAvailable === false && <EmailErrorMessage>이미 사용중인 이메일입니다.</EmailErrorMessage>}
                       {child.emailAvailable === true && <EmailErrorMessage color="#4CAF50">사용 가능한 이메일입니다.</EmailErrorMessage>}
@@ -347,65 +361,65 @@ export const ChildrenRegisterPage = () => {
                     <label>비밀번호</label>
                     <Input
                       type="password"
-                      placeholder="Password"
                       value={child.password || ''}
                       onChange={(e) => handlePasswordChange(index, e.target.value)}
+                      required
                     />
 
                     <label>비밀번호 확인</label>
                     <Input
                       type="password"
-                      placeholder="Confirm Password"
                       value={child.confirmPassword || ''}
                       onChange={(e) => handleConfirmPasswordChange(index, e.target.value)}
+                      required
                     />
                     <label>계좌비밀번호</label>
                     <Input
                       type="password"
-                      placeholder="Account Password"
                       value={child.accountPassword || ''}
                       onChange={(e) => handleAccountPasswordChange(index, e.target.value)}
+                      required
                     />
 
                     <label>계좌비밀번호 확인</label>
                     <Input
                       type="password"
-                      placeholder="Confirm Account Password"
                       value={child.confirmAccountPassword || ''}
                       onChange={(e) => handleConfirmAccountPasswordChange(index, e.target.value)}
+                      required
                     />
                     <label>퀴즈 레벨 1 리워드</label>
                     <Input
                       type="number"
-                      placeholder="Level 1 Reward"
                       value={child.level1Reward || ''}
                       onChange={(e) => {
                         const newData = [...childrenData];
                         newData[index].level1Reward = parseInt(e.target.value);
                         setChildrenData(newData);
                       }}
+                      required
                     />
                     <label>퀴즈 레벨 2 리워드</label>
                     <Input
                       type="number"
-                      placeholder="Level 2 Reward"
                       value={child.level2Reward || ''}
                       onChange={(e) => {
                         const newData = [...childrenData];
                         newData[index].level2Reward = parseInt(e.target.value);
                         setChildrenData(newData);
                       }}
+                      required
                     />
                     <label>퀴즈 레벨 3 리워드</label>
                     <Input
                       type="number"
-                      placeholder="Level 3 Reward"
                       value={child.level3Reward || ''}
                       onChange={(e) => {
                         const newData = [...childrenData];
                         newData[index].level3Reward = parseInt(e.target.value);
                         setChildrenData(newData);
                       }}
+                      required
                     />
                   </div>
                 ))}
