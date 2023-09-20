@@ -61,6 +61,13 @@ export const MissionDetailPage = () => {
     fetchMissionData()
   }, [missionId])
 
+  const formatReward = (reward) => {
+    const parsedReward = parseInt(reward, 10);
+    if (isNaN(parsedReward)) return reward;
+    return new Intl.NumberFormat('ko-KR').format(parsedReward);
+};
+
+
   const handleEditClick = () => {
     setIsEditable(true)
   }
@@ -279,7 +286,7 @@ export const MissionDetailPage = () => {
       <AreaFooterContainer>
         {!isEditable &&
           <MissionReward>
-            <AiFillDollarCircle className='moneyIcon' /> &nbsp; <span className='rewardName'>미션 보상금 &nbsp;</span> <span className='reward'>{reward}원</span>
+            <AiFillDollarCircle className='moneyIcon' /> &nbsp; <span className='rewardName'>미션 보상금 &nbsp;</span> <span className='reward'>{formatReward(reward)}원</span>
           </MissionReward>}
         {!isSuccess && isChild && !parent && <WaitingReward>입금대기중입니다</WaitingReward>}
         {parent ? (

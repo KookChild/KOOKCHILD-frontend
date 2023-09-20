@@ -223,9 +223,7 @@ export const MissionCreatePage = () => {
                 </MissionInfoContainer>
             </AreaContainer>
             <AreaFooterContainer>
-                <ButtonsContainer>
-                    <AreaContainer><EditButton onClick={handleCreateMissionClick}>미션 등록</EditButton> </AreaContainer>
-                </ButtonsContainer>
+                    <EditButton onClick={handleCreateMissionClick}>미션 등록</EditButton>
             </AreaFooterContainer>
             {isLoading && (
                 <LoadingOverlay>

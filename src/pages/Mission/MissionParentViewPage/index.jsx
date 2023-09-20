@@ -171,7 +171,7 @@ export const MissionParentViewPage = () => {
                 <MissionItem
                   even={index % 2 === 1}
                   missionTitle={mission.title}
-                  missionReward={`${mission.reward}원`}
+                  missionReward={mission.reward}
                   missionDate={
                     mission.deadline !== 'null-null'
                       ? mission.deadline

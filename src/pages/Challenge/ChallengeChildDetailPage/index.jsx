@@ -17,6 +17,11 @@ import {
 } from '@apis'
 import { PRIMARY } from '@utility/COLORS'
 import { TopContainer } from '@components'
+import { 
+  Button, 
+  SendButtonContainer, 
+  commonSwalOptions
+ } from './style';
 
 export const ChallengeChildDetailPage = () => {
   const params = useParams()
@@ -33,6 +38,11 @@ export const ChallengeChildDetailPage = () => {
       cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
       confirmButtonText: '승인', // confirm 버튼 텍스트 지정
       cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+      customClass: {
+        // 성공 알림 모달에 사용할 클래스 추가
+        container: 'custom-swal-container',
+      },
+      ...commonSwalOptions,
       // reverseButtons: true, // 버튼 순서 거꾸로
     }).then(async result => {
       // 만약 Promise리턴을 받으면,
@@ -41,17 +51,32 @@ export const ChallengeChildDetailPage = () => {
         if (challengeType == 0) {
           await childConfirmAPI(params.id)
             .then(
-              Swal.fire(
-                '참여신청 완료',
-                '부모님의 승인요청을 기다려주세요',
-                'success',
+              Swal.fire({
+               title: '참여신청 완료',
+               icon: 'success',
+               text: '부모님의 승인요청을 기다려주세요',
+               customClass: {
+                // 성공 알림 모달에 사용할 클래스 추가
+                container: 'custom-swal-container',
+              },
+              ...commonSwalOptions,
+              }
               ),
             )
             .then(navigate('/child/challenge'))
         } else {
           await childConfirmAPI(params.id)
             .then(
-              Swal.fire('참여신청 완료', '챌린지를 진행해주세요', 'success'),
+              Swal.fire({
+                title: '참여신청 완료',
+                text: '챌린지를 진행해주세요',
+                icon: 'success',
+                customClass: {
+                  // 성공 알림 모달에 사용할 클래스 추가
+                  container: 'custom-swal-container',
+                },
+                ...commonSwalOptions,
+              }),
             )
             .then(navigate('/child/challenge'))
         }

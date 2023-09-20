@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { YELLOW, PRIMARY, GRAY } from '@utility/COLORS'
 
 export const DailyQuizButton = styled.div`
-  display: flex; // 여기 추가
-  align-items: center; // 세로 중앙 정렬
+  display: flex;
+  align-items: center;
   background-color: #ffffff;
   flex: 1;
   padding: 30px 20px;
@@ -11,10 +11,17 @@ export const DailyQuizButton = styled.div`
   border-radius: 8px;
   border: 1px solid #ccc;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative; // 메시지를 겹치게 하기 위해 relative로 설정
-  pointer-events: ${props => props.isCompleted ? 'none' : 'auto'}; // 이미 푼 퀴즈에 대해서 클릭 방지
+  position: relative;
+  pointer-events: ${props => props.isCompleted ? 'none' : 'cursor'};
   opacity: ${props => props.isCompleted ? 0.6 : 1};
+
+  &:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
 `;
+
 
 
 export const LeftSection = styled.div`

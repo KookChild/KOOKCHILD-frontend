@@ -39,11 +39,16 @@ export const childNameContainer = {
   marginRight: '10px',
 }
 
-export const textContainerSpan = {
-  marginTop: '7px', // 텍스트 위의 간격s
-  marginRight: '12px',
-  fontSize: '8px',
-}
+export const TextContainerSpan = styled.span`
+  margin-top: 7px;
+  margin-right: 12px;
+  font-size: 8px;
+  cursor: pointer;
+
+  &:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 // 우측 상단 아이콘
 export const iconGroup = {

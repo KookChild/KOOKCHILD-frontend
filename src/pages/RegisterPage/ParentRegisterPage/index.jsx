@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TopContainer } from '@components';
+import { TopContainer, TopNavigationBar } from '@components';
 import {
   RegisterWrapper,
   RegisterTitle,
@@ -8,9 +8,13 @@ import {
   Input,
   PhoneNumberInput,
   ResidentNumberInput,
+  DuplicateButton,
+  EmailContainer,
+  EmailErrorMessage
 } from './style';
 import { registrationDataState } from '../../../recoil';
 import { useRecoilState } from 'recoil';
+import { checkEmailAvailabilityAPI } from '@apis';
 import Swal from 'sweetalert2';
 
 export const ParentRegisterPage = () => {
@@ -28,9 +32,29 @@ export const ParentRegisterPage = () => {
   const [accountPwdChk, setAccountPwdChk] = useState('');
   const [birthDate, setBirthDate] = useState('');
 
+  const [emailAvailable, setEmailAvailable] = useState(null);
   const [registrationData, setRegistrationData] = useRecoilState(registrationDataState);
 
   const navigate = useNavigate();
+
+  const handleCheckEmailAvailability = async () => {
+    if (email) {
+      try {
+        const isAvailable = await checkEmailAvailabilityAPI(email);
+        setEmailAvailable(isAvailable);
+        console.log("Email availability checked:", isAvailable);
+      } catch (error) {
+        console.error("Error checking email availability", error);
+        setEmailAvailable(null);
+      }
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: '주의!',
+        text: '이메일을 입력해주세요.'
+      });
+    }
+  }
 
   const handlePhoneNumberChange = (field, value) => {
     switch (field) {
@@ -54,6 +78,21 @@ export const ParentRegisterPage = () => {
         icon: 'error',
         title: '오류!',
         text: '올바른 이메일 형식을 입력해주세요.'
+      });
+      return;
+    }
+    if (emailAvailable === false) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '이미 사용 중인 이메일입니다. 다른 이메일을 입력하세요.'
+      });
+      return;
+    } else if (emailAvailable === null) {
+      Swal.fire({
+        icon: 'warning',
+        title: '주의!',
+        text: '이메일 중복 확인을 해주세요.'
       });
       return;
     }
@@ -91,6 +130,7 @@ export const ParentRegisterPage = () => {
 
   return (
     <TopContainer>
+      <TopNavigationBar title={"회원가입"} />
       <RegisterWrapper>
         <RegisterTitle>Kook Child 회원 가입</RegisterTitle>
         <RegisterForm>
@@ -125,12 +165,17 @@ export const ParentRegisterPage = () => {
             required
           />
           <label>이메일(ID)</label>
-          <Input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <DuplicateButton type="button" onClick={handleCheckEmailAvailability}>중복 확인</DuplicateButton>
+          <EmailContainer>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {emailAvailable === false && <EmailErrorMessage color="#ff6b6b">이미 사용중인 이메일입니다.</EmailErrorMessage>}
+            {emailAvailable === true && <EmailErrorMessage color="#4CAF50">사용 가능한 이메일입니다.</EmailErrorMessage>}
+          </EmailContainer>
           <label>비밀번호</label>
           <Input
             type="password"

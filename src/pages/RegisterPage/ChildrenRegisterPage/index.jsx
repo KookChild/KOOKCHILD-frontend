@@ -6,11 +6,11 @@ import {
   RegisterWrapper, RegisterTitle, RegisterForm, RadioGroup,
   Label, Input, CheckboxGroup, RadioLabelWrapper, AddChildButton,
   ResidentNumberInput, PhoneNumberInput, RemoveButton, ErrorMessage,
-  DescriptionTitle, DescriptionBox
+  DescriptionTitle, DescriptionBox, DuplicateButton, EmailErrorMessage, EmailContainer
 } from './style';
 import { useRecoilValue } from 'recoil';
 import { registrationDataState } from '../../../recoil';
-import { registerAPI } from '@apis';
+import { registerAPI, checkEmailAvailabilityAPI } from '@apis';
 
 export const ChildrenRegisterPage = () => {
   const registrationData = useRecoilValue(registrationDataState);
@@ -26,6 +26,31 @@ export const ChildrenRegisterPage = () => {
   const [chkAccountError, setChkAccountError] = useState('');
   const [chkMyDataError, setChkMyDataError] = useState('');
   const navigate = useNavigate();
+
+  const handleCheckEmailAvailability = async (childIndex) => {
+    const currentEmail = childrenData[childIndex]?.email;
+    if (currentEmail) {
+      try {
+        const isAvailable = await checkEmailAvailabilityAPI(currentEmail);
+        const newData = [...childrenData];
+        newData[childIndex].emailAvailable = isAvailable;
+        setChildrenData(newData);
+        console.log("Email availability checked:", isAvailable);
+      } catch (error) {
+        console.error("Error checking email availability", error);
+        const newData = [...childrenData];
+        newData[childIndex].emailAvailable = null;
+        setChildrenData(newData);
+      }
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: '주의!',
+        text: '이메일을 입력해주세요.'
+      });
+    }
+  }
+
 
   const handlePhoneNumberChange = (index, type, value) => {
     const newData = [...childrenData];
@@ -85,6 +110,34 @@ export const ChildrenRegisterPage = () => {
     event.preventDefault();
     let hasError = false;
     let errorMsg = '';
+
+    let duplicateEmailExists = false;
+    let emailNotCheckedExists = false;
+
+    childrenData.forEach(child => {
+      if (child.emailAvailable === false) {
+        duplicateEmailExists = true;
+      } else if (child.emailAvailable === null) {
+        emailNotCheckedExists = true;
+      }
+    });
+
+    if (duplicateEmailExists) {
+      Swal.fire({
+        icon: 'error',
+        title: '오류!',
+        text: '이미 사용 중인 이메일이 있습니다. 다른 이메일을 입력하세요.'
+      });
+      return;
+    } else if (emailNotCheckedExists) {
+      Swal.fire({
+        icon: 'warning',
+        title: '주의!',
+        text: '모든 이메일의 중복 확인을 해주세요.'
+      });
+      return;
+    }
+
 
     if (!chkIdCard) {
       setChkIdCardError('필수로 체크되어야 하는 항목입니다');
@@ -276,16 +329,21 @@ export const ChildrenRegisterPage = () => {
                       }}
                     />
                     <label>이메일(ID)</label>
-                    <Input
-                      type="email"
-                      placeholder="Email"
-                      value={child.email || ''}
-                      onChange={(e) => {
-                        const newData = [...childrenData];
-                        newData[index].email = e.target.value;
-                        setChildrenData(newData);
-                      }}
-                    />
+                    <DuplicateButton type="button" onClick={() => handleCheckEmailAvailability(index)}>중복 확인</DuplicateButton>
+                    <EmailContainer>
+                      <Input
+                        type="email"
+                        placeholder="Email"
+                        value={child.email || ''}
+                        onChange={(e) => {
+                          const newData = [...childrenData];
+                          newData[index].email = e.target.value;
+                          setChildrenData(newData);
+                        }}
+                      />
+                      {child.emailAvailable === false && <EmailErrorMessage>이미 사용중인 이메일입니다.</EmailErrorMessage>}
+                      {child.emailAvailable === true && <EmailErrorMessage color="#4CAF50">사용 가능한 이메일입니다.</EmailErrorMessage>}
+                    </EmailContainer>
                     <label>비밀번호</label>
                     <Input
                       type="password"

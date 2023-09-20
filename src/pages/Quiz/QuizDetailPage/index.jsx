@@ -128,7 +128,6 @@ export const QuizDetailPage = () => {
       <AreaFooterContainer>
       {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
         <StyledSubmitButton
-          isDisabled={!selectedChoice && !isUnsure}
           onClick={handleSubmit}
           disabled={!selectedChoice && !isUnsure}
         >

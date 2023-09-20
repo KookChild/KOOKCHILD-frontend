@@ -17,7 +17,7 @@ import {
   DailyQuizButton,
   textContainer,
   BackToKBStarBankingButton,
-  textContainerSpan,
+  TextContainerSpan,
   accountNumberContainer,
   buttonsContainer,
   balanceContainer,
@@ -182,7 +182,7 @@ export const ChildMainPage = () => {
       </div>
       <div style={textContainer}>
         <span>일일 퀴즈</span>
-        <span style={textContainerSpan} onClick={navigateToHistory}>히스토리</span>
+        <TextContainerSpan onClick={navigateToHistory}>히스토리</TextContainerSpan>
       </div>
       <div style={buttonSection}>
         {dailyQuiz ? <QuizTab data={dailyQuiz} /> : <button style={DailyQuizButton}> -일일 퀴즈 img- </button>}

@@ -5,13 +5,13 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(100vh - 40px);
   margin: 0 auto;
   padding: 20px 0;
   box-sizing: border-box;
 `;
 
 export const LoginTitle = styled.h2`
+margin-top: 200px;
 text-shadow: 2px 2px 4px white;
 margin-bottom: 20px;
 font-size: 30px;
