@@ -5,8 +5,6 @@ import React, { useState } from 'react';
 import React from 'react';
 import Swal from 'sweetalert2';
 import { BodyContainer, AreaContainer, DeleteMissionButton, ChildInfoContainer, ChildImage, ChildName, MissionDescription, EditButton, SuccessButton, CompleteButton, ButtonsContainer, StyledTitle } from './style';
-import { MissionInfo } from '@components';
-
 
 
 const CheckboxExample = () => {
@@ -26,13 +24,8 @@ const CheckboxExample = () => {
         />
         체크박스 레이블
       </label>
-
-
-
+      
       <p>체크박스 상태: {isChecked ? '체크됨' : '체크 안 됨'}</p>
-
-
-
 
       <label>
         <input
@@ -78,7 +71,7 @@ const CheckboxGroup = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row'}}>
-      {checkboxes.map((checkbox) => (
+      {checkboxes.map((checkbox, index) => (
         <label key={checkbox.id} style={{ alignItems: 'center', marginLeft: '20px', marginRight: '20px', marginBottom: '10px', fontSize: '20px' }}>
           <input
             type="checkbox"

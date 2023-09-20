@@ -25,6 +25,7 @@ import { TopContainer, TopNavigationBar } from '@components'
 import { Quiz } from './Quiz'
 import { selectedChild } from '@recoil/child'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+import { ImageContainer } from '@pages/Management/ManagementPage/style'
 
 export const MissionParentViewPage = () => {
   const setSelectedChildId = useSetRecoilState(selectedChild)
@@ -97,9 +98,12 @@ export const MissionParentViewPage = () => {
             key={child.childId}
             selected={selectedChildIndex === child.childId}
             onClick={() => handleChildClick(child.childId)}
-          >
-            <Img src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
+          > 
+            <ImageContainer>
+              <Img src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
+            </ImageContainer>
             <p>{child.childName}</p>
+           
           </ChildItemContainer>
         ))}
       </ChildListContainer>

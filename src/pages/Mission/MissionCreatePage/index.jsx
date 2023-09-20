@@ -14,7 +14,8 @@ import {
     ChildContainer,
     RecommendButton,
     LoadingMessage,
-    LoadingOverlay
+    LoadingOverlay,
+    ChildImageContainer
 } from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -170,9 +171,11 @@ export const MissionCreatePage = () => {
             <TopNavigationBar title={'미션 등록'} />
             <AreaContainer>
                 <ChildInfoContainer>
-                    {childs.map((child) => (
+                    {childs.map((child, index) => (
                         <ChildContainer key={child.childId}>
-                            <ChildImage src={imgSrc} alt={child.childName} />
+                            <ChildImageContainer>
+                                <ChildImage src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
+                            </ChildImageContainer>
                             <h4>{child.childName}</h4>
                             <input
                                 type="checkbox"

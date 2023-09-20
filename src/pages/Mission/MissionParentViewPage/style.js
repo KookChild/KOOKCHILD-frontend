@@ -15,7 +15,6 @@ export const ChildListContainer = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 `
-
 export const ChildItemContainer = styled.div`
   min-width: 86px;
   height: 136px;
@@ -25,13 +24,20 @@ export const ChildItemContainer = styled.div`
   margin-right: ${props => (props.selected ? '15px' : '10px')};
 
   img {
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: ${props => (props.selected ? '93px' : '86px')};
-    height: ${props => (props.selected ? '93px' : '86px')};
-    border-radius: 30px;
-    border: 1px solid lightgray;
-    background-color: ${props => (props.selected ? '#FEF2D3' : 'white')};
+    width: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
+    height: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
+    border-radius: ${props => (props.selected ? '30%' : '30%')}; // border-radius 조절
+    border: 2px solid transparent;
+    transition: all 0.3s ease; // 부드러운 애니메이션 효과 추가
   }
+
+  // &:hover {
+  //   img {
+  //     width: 100px; // hover 시 이미지 크기 확대
+  //     height: 100px; // hover 시 이미지 크기 확대
+  //     border-radius: 30%; // hover 시 border-radius 조절
+  //   }
+  // }
 
   p {
     margin-top: 10px;
@@ -40,7 +46,7 @@ export const ChildItemContainer = styled.div`
   p {
     color: ${props => (props.selected ? '#FFCC00' : '기본 색상')};
   }
-`
+`;
 
 export const TabContainer = styled.div`
   margin-top: 30px;
@@ -155,12 +161,20 @@ export const MissionItemContainer = styled.div`
 `
 
 export const Img = styled.img`
-width: 100%;
-// height: 163px;
-height: 100%;
+width: 90px;
+height: 90px;
 object-fit: cover;
 top: 0;
 left: 0;
 right: 0;
 bottom: 0;
+transition: transform 0.3s ease; // 확대/축소 애니메이션 추가
+
+  &:hover {
+    transform: scale(1.1); // 확대 스케일 값을 조절
+  }transition: transform 0.3s ease; // 확대/축소 애니메이션 추가
+
+  &:hover {
+    transform: scale(1.1); // 확대 스케일 값을 조절
+  }
 `
