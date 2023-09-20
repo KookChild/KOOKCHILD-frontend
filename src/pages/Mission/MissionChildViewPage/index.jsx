@@ -35,31 +35,39 @@ export const MissionChildViewPage = () => {
     event.stopPropagation(); // 이벤트 버블링을 막습니다.
 
     Swal.fire({
-      title: '보상금을 받으시겠습니까?',
-      icon: 'warning',
+      title: '<span style="font-size: 20px;">보상금을 받으시겠습니까?</span>',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '네, 받겠습니다',
-      cancelButtonText: '아니오'
+      cancelButtonColor: '#D9D9D9',
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         const response = await receiveMissionReward(missionId);
         if (!response.isError) {
           console.log("Reward received successfully!");
           fetchData();
-          Swal.fire(
-            '성공!',
-            '보상금을 받았습니다!',
-            'success'
-          );
+          Swal.fire({
+            title: '<span style="font-size: 20px;">보상금을 획득했습니다!</span>',
+            icon: 'success',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+        });
         } else {
           console.error("Error receiving reward:", response.data);
-          Swal.fire(
-            '오류',
-            '보상금을 받는 도중 오류가 발생했습니다.',
-            'error'
-          );
+          Swal.fire({
+            title: '<span style="font-size: 20px;">보상금을 받는 도중 오류가 발생했습니다.</span>',
+            icon: 'error',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+        });
         }
       }
     });
