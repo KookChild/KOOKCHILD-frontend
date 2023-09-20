@@ -89,7 +89,6 @@ export const StyledChoiceButton = styled.button`
 
 
 export const StyledLeftImage = styled.img`
-    width: 100px;
     height: 100px;
     animation: ${slideFromLeft} 0.5s forwards;
     margin-right: 200px;
