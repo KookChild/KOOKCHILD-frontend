@@ -39,11 +39,11 @@ export const ChallengeImg = styled.img`
   height: 100%;
 `
 export const ChallengeImgWrapper = styled.div`
-  width: 200px; /* 원하는 너비 설정 */
   height: 200px; /* 원하는 높이 설정 */
   display: flex;
   justify-content: center;
   align-items: center;
+  
  
 `
 export const ChallengeContentImgContainer = styled.div`
