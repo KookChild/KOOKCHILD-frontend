@@ -21,31 +21,28 @@ export const ChildItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: ${props => (props.selected ? '15px' : '10px')};
+  margin-right: 10px; // 선택 상태에 관계없이 마진은 일정하게 유지
 
   img {
     width: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
     height: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
-    border-radius: ${props => (props.selected ? '30%' : '30%')}; // border-radius 조절
+    border-radius: 30%; // border-radius 조절
     border: 2px solid transparent;
-    transition: all 0.3s ease; // 부드러운 애니메이션 효과 추가
+    transition: all 0.1s ease; // 부드러운 애니메이션 효과 추가
   }
-
-  // &:hover {
-  //   img {
-  //     width: 100px; // hover 시 이미지 크기 확대
-  //     height: 100px; // hover 시 이미지 크기 확대
-  //     border-radius: 30%; // hover 시 border-radius 조절
-  //   }
-  // }
 
   p {
     margin-top: 10px;
+    color: ${props => (props.selected ? '#FFCC00' : '기본 색상')}; // 텍스트 색상 조절
   }
+  
+  &:hover {
+    img {
+      transform: scale(1.1); // 마우스 호버 시 이미지 확대
+    }
+  }
+
   border-bottom: ${props => (props.selected ? '2px solid #FFCC00' : 'none')};
-  p {
-    color: ${props => (props.selected ? '#FFCC00' : '기본 색상')};
-  }
 `;
 
 export const TabContainer = styled.div`
