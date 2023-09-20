@@ -53,7 +53,6 @@ export const MissionHeaderContainer = styled.h3`
 `
 
 export const MissionItemContainer = styled.div`
-  width: 390px;
   height: 115px;
   margin-bottom: 10px;
   background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
@@ -62,7 +61,6 @@ export const MissionItemContainer = styled.div`
 `;
 
 export const MessageContainer = styled.div`
-  width: 340px;
   height: 76.66px;
   background: #E5E5E5;
   border-radius: 10px;
