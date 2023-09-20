@@ -5,7 +5,6 @@ import {
     AreaContainer,
     ChildInfoContainer,
     EditButton,
-    ButtonsContainer,
     ButtonContainer,
     ChildImage,
     MissionDetail,
@@ -21,7 +20,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getParentMissionByChild } from '../../../apis/mission/index';
 import { getRecommendedMission } from '@apis';
-import imgSrc from '../MissionParentViewPage/img/Bear.png'
 import { TopContainer, TopNavigationBar } from '@components'
 
 export const MissionCreatePage = () => {
@@ -55,17 +53,14 @@ export const MissionCreatePage = () => {
 
                 try {
                     setChilds(response.childLists);
-                    console.log(response.childLists);
                 } catch (error) {
                     console.log(error);
                 }
-                console.log("after childs :: ", childs);
 
             } catch (error) {
                 console.error("Error fetching the data:", error);
             }
         };
-
         fetchData();
     }, []);
 
@@ -157,13 +152,6 @@ export const MissionCreatePage = () => {
             setSelectedIds([...selectedIds, id]);
         }
     };
-
-    const handleSubmit = async () => {
-        console.log(selectedIds.join(','));
-        console.log(typeof (selectedIds.join(',')));
-        console.log("28 + ", childs);
-
-    }
 
 
     return (
