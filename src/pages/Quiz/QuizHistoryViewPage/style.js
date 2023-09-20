@@ -3,7 +3,7 @@ import { YELLOW, PRIMARY, DARK_GRAY, MEDIUM_GRAY } from '@utility/COLORS'
 import { BsSearch } from 'react-icons/bs'
 
 export const ChildItemContainer = styled.div`
-    width: 390px;
+    width: 100%;
     height: 140px;
     position: relative;
     background: #f0f0f0;
@@ -50,7 +50,7 @@ export const ChildRightSection = styled.div`
     width: 230px;
     position: absolute;
     background: white;
-    right: 40px;
+    right: 0;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 10px;
@@ -90,7 +90,7 @@ export const ChildUnderSection = styled.div`
     display: flex;
     bottom: 0;
     height: 40px;
-    right:40px;
+    right:0;
     p{
         margin-top:10px;
     }

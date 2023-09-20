@@ -6,14 +6,12 @@ export const ItemContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 399px;
     height: 80px;
-    width: 360px;
+    width: 100%;
     padding-left: 13px;
     padding-right: 13px;
     opacity: 1;
     background: ${props => props.even ? '#f0f0f0' : '#FFFFFF'} 0% 0% no-repeat padding-box;
-    cursor: pointer;
 
     &:hover {
         background: #E5E5E5;
@@ -85,7 +83,7 @@ export const ChildItemContainer = styled.div`
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    width: 390px;
+    width: 100%;
     height: 115px;
     position: relative;
     background: #f0f0f0;
@@ -135,7 +133,7 @@ export const ChildRightSection = styled.div`
     background: white;
     justify-content: center;
     top: 0;
-    right: 40px;
+    right: 0;
     padding-left: 20px;
     border-radius: 10px;
     h3, p {
@@ -163,7 +161,7 @@ export const ChildUnderSection = styled.div`
     display: flex;
     bottom: 0;
     height: 40px;
-    right:40px;
+    right:0;
     margin-right: 10px;
     p{
         margin-top:10px;
