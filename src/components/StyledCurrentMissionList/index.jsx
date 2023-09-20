@@ -28,7 +28,7 @@ export const StyledCurrentMissionList = ({ missions }) => {
         <div
           key={index}
           style={missionContainer}
-          onClick={() => navigate(`/mission/detail/${mission.id}`)}
+          onClick={() => navigate(`/mission/detail/${mission.id}/0`)}
         >
           <BsCheck style={checkClass} />
           <div style={missionInfo}>

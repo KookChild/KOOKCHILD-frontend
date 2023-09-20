@@ -9,8 +9,11 @@ import { MissionItem } from '@components'
 export const MissionList = ({ missions, message, onRewardButtonClick }) => {
     const navigate = useNavigate()
 
-    const handleMissionClick = missionId => {
-        navigate(`/mission/detail/${missionId}`)
+    // const handleMissionClick = missionId => {
+    //     navigate(`/mission/detail/${missionId}`)
+    //   }
+      const handleMissionClick = (missionId, index) => {
+        navigate(`/mission/detail/${missionId}/${index}`)
       }
 
     return (
@@ -19,7 +22,7 @@ export const MissionList = ({ missions, message, onRewardButtonClick }) => {
           missions.map((mission, index) => (
             <MissionItemContainer
               even={0}
-              onClick={() => handleMissionClick(mission.id)}
+              onClick={() => handleMissionClick(mission.id, 1)}
               key={index}
             >
               <MissionItem

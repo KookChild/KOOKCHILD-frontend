@@ -12,14 +12,8 @@ export const DailyQuizButton = styled.div`
   border: 1px solid #ccc;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  pointer-events: ${props => props.isCompleted ? 'none' : 'cursor'};
+  cursor: ${props => props.isCompleted ? 'cursor' : 'pointer'};
   opacity: ${props => props.isCompleted ? 0.6 : 1};
-
-  &:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
 `;
 
 

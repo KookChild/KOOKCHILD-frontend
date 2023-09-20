@@ -6,7 +6,6 @@ export const MissionInfoContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 25px;
     max-height: 550px;
     overflow-y: auto;
 `;
