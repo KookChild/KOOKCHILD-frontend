@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // 금융상품 상세
 
-export const ProductTitle = {
+export const ProductTitle = styled.div`
   zIndex: '2',
   boxSizing: 'border-box',
   width: '390px',
@@ -12,7 +12,7 @@ export const ProductTitle = {
   marginLeft: '-20px',
   marginRight: '0px',
   cursor: 'pointer'
-};
+  `
 
 // 상품 정보 약식 정보
 
@@ -112,12 +112,12 @@ export const buttonTextContainer = {
   alignItems: 'center',  // 세로 중앙 정렬
 };
 
-export const textLine1 = {
+export const TextLine1 = styled.span`
   fontSize: '25px',
   fontWeight: 'bold',
   display: 'block',
   marginBottom: '12px'
-};
+`;
 
 export const textLine2 = {
   fontSize: '16px',

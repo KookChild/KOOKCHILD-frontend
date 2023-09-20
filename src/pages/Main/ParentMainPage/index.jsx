@@ -93,6 +93,9 @@ export const ParentMainPage = () => {
       </div>
     </button>
   )
+  const handleExternalLink = () => {
+    window.location.href = 'https://www.kbstar.com/' // 외부 링크로 이동
+  }
 
   return (
     <TopContainer>
@@ -149,7 +152,10 @@ export const ParentMainPage = () => {
         </button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button style={BackToKBStarBankingButton}>
+        <button 
+        style={BackToKBStarBankingButton}
+        onClick={handleExternalLink}
+        >
           <span style={{ fontSize: '12px' }}>KB스타뱅킹으로 돌아가기</span>
         </button>
       </div>

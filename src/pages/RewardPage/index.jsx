@@ -164,7 +164,9 @@ const Container2 = styled.div`
 const MissionTitle = styled.div`
   font-size:17px;
   display: flex; /* Flexbox를 사용하여 내부 요소를 정렬합니다 */
-  line-height: 29px;
+  line-height: 36px;
+  text-align: center; /* 가로 중앙 정렬 */
+  height: 29px; /* 원하는 높이 설정 */
 `
 
 const MissionItem = styled.div`
@@ -188,19 +190,36 @@ const MissionText = styled.div`
   justify-content:space-between;
 `;
 
+
+export const rewardContainer = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '70px',
+  height: '40px',
+  borderRadius: '8px',
+  backgroundColor: '#f5f5f5',
+}
+
+export const rewardText = {
+  fontSize: '14px',
+  textAlign: 'center', // 가운데 정렬
+}
+
+const MissionCon = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 70px;
+height: 40px;
+border-radius: 8px;
+background-color: #f5f5f5;
+`
+
+
 const MissionAmount=styled.div`
-  font-size:12px;
-  font-family:sdMe;
-  text-align: center; /* 글자를 가운데 정렬 */
-  padding:2px 5px;
-  background: transparent; /* 배경 색을 투명으로 설정 */
-  color: ${(props) => props.backgroundcolor || '#D56F88'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #D56F88 사용 */
-  border-radius: 7px;
-  height: 24px; /* 높이를 조정하세요 */
-  line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
-  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과를 추가합니다 */
-  // /* 경계선 스타일을 설정합니다 */
-  border: 2px solid ${(props) => props.bordercolor || '#84888B'}; /* props로 전달된 backgroundColor를 사용하거나 기본값으로 #84888B 사용 */
+font-size: 14px;
+text-align: center;
 `
 
 const UnderSection = styled.div`
@@ -224,6 +243,7 @@ line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
 export const RewardPage = () => {
   const navigate = useNavigate();
   const [responseData, setResponseData] = useState({
+    name: '',
     rewardCompleteAmount: '',
     rewardConfirmWaitAmount: '',
     thisMonthInterestIncome: '',
@@ -267,7 +287,6 @@ export const RewardPage = () => {
       // '/reward/withdraw'로 GET 요청 보내기
       
       if(responseData.rewardCompleteAmount == '0'){
-        console.log('if in');
         Swal.fire({
           icon: 'error', // 성공 아이콘 표시
           title: '출금 실패',
@@ -323,7 +342,7 @@ export const RewardPage = () => {
       <RewardContainer>
           <LeftComponent>
             <UserInfo>
-              이재용님의 보상금 통장
+              {responseData.name}님의 보상금 통장
               <Balance>{responseData.rewardCompleteAmount}원</Balance>
             </UserInfo>
           </LeftComponent>
@@ -367,8 +386,12 @@ export const RewardPage = () => {
                 <MissionItem key={index}>
                   <GoCheckCircle style={grayIconStyle} />
                   <MissionText onClick={() => navigate('/child/mission/childview')}>
-                    <MissionTitle>{mission.title}</MissionTitle>
-                    <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
+                    <MissionTitle>
+                      {mission.title.length > 12 ? mission.title.slice(0, 12) + '...' : mission.title}
+                    </MissionTitle>
+                    <MissionCon>
+                      <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
+                    </MissionCon>
                   </MissionText>
                 </MissionItem>
               ))}

@@ -73,6 +73,7 @@ export const MissionParentViewPage = () => {
         selectedChildIndex,
         challengeFilter,
       )
+
       setChallenges(response)
     }
     fetchData()
@@ -170,7 +171,7 @@ export const MissionParentViewPage = () => {
                 <MissionItem
                   even={index % 2 === 1}
                   missionTitle={mission.title}
-                  missionReward={`${mission.reward}원`}
+                  missionReward={mission.reward}
                   missionDate={
                     mission.deadline !== 'null-null'
                       ? mission.deadline
@@ -189,15 +190,15 @@ export const MissionParentViewPage = () => {
       {selectedTabIndex === 1 && (
         <div>
           <RadioButtonGroup>
-            {/* <RadioLabel>
+            <RadioLabel>
               <input
                 type="radio"
                 value="all"
                 checked={challengeFilter === 'all'}
                 onChange={e => setChallengeFilter(e.target.value)}
               />
-              전체
-            </RadioLabel> */}
+              미진행
+            </RadioLabel>
             <RadioLabel>
               <input
                 type="radio"
@@ -227,9 +228,23 @@ export const MissionParentViewPage = () => {
             </RadioLabel>
           </RadioButtonGroup>
           <div>
-            {challenges.map((challenge, idx) => (
-              <ChallengeItem challenge={challenge} isParent={true} key={idx} />
-            ))}
+            {challenges.length > 0 &&
+              challenges.map((challenge, idx) =>
+                challengeFilter === 'all' ? (
+                  <ChallengeItem
+                    challenge={challenge}
+                    isParent={true}
+                    key={idx}
+                  />
+                ) : (
+                  <ChallengeItem
+                    challenge={challenge.challenge}
+                    isParent={true}
+                    key={idx}
+                    parentReward={challenge.parentReward}
+                  />
+                ),
+              )}
           </div>
         </div>
       )}
