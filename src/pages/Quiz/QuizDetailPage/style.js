@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { PRIMARY, GRAY, BROWN } from '@utility/COLORS'
+import { PRIMARY, GRAY, BROWN, YELLOW } from '@utility/COLORS'
 
 const slideFromLeft = keyframes`
   from {
@@ -80,7 +80,13 @@ export const StyledChoiceButton = styled.button`
     color: ${props => props.selected ? 'black' : 'white'};
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+
+    &:hover {
+        background-color: ${PRIMARY};
+    }
 `;
+
 
 export const StyledLeftImage = styled.img`
     width: 100px;
@@ -92,16 +98,21 @@ export const StyledLeftImage = styled.img`
 export const StyledSubmitButton = styled.button`
     width: 350px;
     height: 50px;
-    background: ${props => props.isDisabled ? 'gray' : PRIMARY};
+    background: ${props => props.disabled ? 'gray' : PRIMARY};
     border-radius: 6px;
     border: none;
     color: black;
     font-size: 18px;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
     outline: none;
     transition: 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background-color: ${props => props.disabled ? 'gray' : YELLOW};
+    }
 `;
+
 
 export const AreaFooterContainer = styled.div`
     position: absolute;
@@ -110,7 +121,6 @@ export const AreaFooterContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // position: fixed;
     bottom: 0px;
     margin-top: 50px;
     z-index: 1;

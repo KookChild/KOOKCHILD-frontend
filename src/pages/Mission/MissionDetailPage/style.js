@@ -163,7 +163,6 @@ export const AreaFooterContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // position: fixed;
     bottom: 0px;
     margin-top: 50px;
     z-index: 1;

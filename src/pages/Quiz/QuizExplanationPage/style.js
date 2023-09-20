@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { PRIMARY, BROWN } from '@utility/COLORS';
+import { PRIMARY, BROWN, YELLOW } from '@utility/COLORS';
 
 const slideUp = keyframes`
   from {
@@ -89,7 +89,7 @@ export const StyledLevel = styled.div`
 export const AreaContainer = styled.div`
 `;
 
-export const StyledChoiceButton = styled.button`
+export const StyledChoiceButton = styled.div`
     display: block;
     width: 80%;
     margin: 15px auto;
@@ -100,12 +100,13 @@ export const StyledChoiceButton = styled.button`
     color: ${props => props.isCorrect ? '#fff' : '#000'};
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 `;
 
 export const StyledButton = styled.button`
     width: 350px;
     height: 50px;
-    background: ${props => props.isDisabled ? 'gray' : PRIMARY};
+    background: ${PRIMARY};
     border-radius: 6px;
     border: none;
     color: black;
@@ -114,6 +115,9 @@ export const StyledButton = styled.button`
     outline: none;
     transition: 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &:hover {
+      background-color: ${YELLOW};
+  }
 `;
 
 export const AreaFooterContainer = styled.div`

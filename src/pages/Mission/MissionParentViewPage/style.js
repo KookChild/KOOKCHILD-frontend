@@ -1,30 +1,6 @@
 import styled from 'styled-components'
 import { YELLOW } from '@utility/COLORS'
 
-export const Header = styled.div`
-  padding: 10px;
-  text-align: center;
-`
-
-export const HeaderContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-`
-
-export const HeaderImage = styled.img`
-  width: 20px; /* 이미지 너비 조정 */
-  height: 20px; /* 이미지 높이 조정 */
-  margin-right: 30px; /* 이미지와 title 간의 간격 설정 */
-`
-
-export const HeaderTitle = styled.h1`
-  font-size: 18px; /* title의 글꼴 크기 조정 */
-  font-weight: bold; /* title 텍스트 굵게 설정 */
-  margin: 0; /* title의 margin 제거 */
-`
-
 export const ChildListContainer = styled.div`
   padding: 5px;
   margin-top: 30px;
@@ -155,7 +131,7 @@ export const AddMissionButton = styled.button`
 
 export const MissionListContainer = styled.div`
   overflow-y: auto;
-  max-height: 444px;
+  max-height: 410px;
   margin-top: 10px;
   margin-left: -20px;
   margin-right: -20px;

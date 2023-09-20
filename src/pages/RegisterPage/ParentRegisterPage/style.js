@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { PRIMARY, YELLOW } from '@utility/COLORS'
+import { PRIMARY, YELLOW, GRAY } from '@utility/COLORS'
 
 export const RegisterWrapper = styled.div`
   width: 100%;
   padding: 20px 0;
   box-sizing: border-box;
-`
+`;
 
 export const RegisterTitle = styled.h2`
   text-shadow: 2px 2px 4px white;
@@ -13,11 +13,11 @@ export const RegisterTitle = styled.h2`
   margin-top: 10px;
   margin-bottom: 20px;
   color: ${PRIMARY};
-`
+`;
 
 export const RegisterForm = styled.form`
   width: 100%;
-`
+`;
 
 export const Input = styled.input`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -48,7 +48,42 @@ export const Input = styled.input`
       background-color: ${YELLOW};
     }
   }
-`
+  &[type='button'] {
+    color: #fff;
+    font-size: 16px;
+    background-color: ${PRIMARY};
+    margin-top: 20px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: ${YELLOW};
+    }
+  }
+  &[type='email'] {
+    margin-bottom: 10px;
+  }
+`;
+
+export const DuplicateButton = styled.button`
+  margin-left: 10px;
+  border-radius: 7px;
+  background: ${GRAY};
+  color: white;
+  border: none;
+  padding: 3px 5px;
+`;
+
+export const EmailContainer = styled.div`
+  position: relative;
+  margin-bottom: 20px;  // 이 값을 조절하여 아래쪽 여백을 조정하세요.
+`;
+export const EmailErrorMessage = styled.p`
+  color: ${props => props.color || "#ff6b6b"};
+  margin-bottom: 10px;
+  font-size: 13px;
+  position: absolute;
+`;
+
 
 export const PhoneNumberInputWrapper = styled.div`
   display: flex;
@@ -74,7 +109,7 @@ export const PhoneNumberInputWrapper = styled.div`
       border: 2px solid ${YELLOW};
     }
   }
-`
+`;
 export const ResidentNumberInputWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -99,7 +134,7 @@ export const ResidentNumberInputWrapper = styled.div`
       border: 2px solid ${YELLOW};
     }
   }
-`
+`;
 
 export const ResidentNumberInput = ({
   value1: ssn1,

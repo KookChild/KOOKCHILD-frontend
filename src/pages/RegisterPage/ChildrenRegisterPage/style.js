@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { PRIMARY, YELLOW } from '@utility/COLORS'
+import { PRIMARY, YELLOW, GRAY } from '@utility/COLORS'
 
 export const RegisterWrapper = styled.div`
   width: 100%;
@@ -47,6 +47,9 @@ export const Input = styled.input`
     &:hover {
       background-color: ${YELLOW};
     }
+  }
+  &[type='email'] {
+    margin-bottom: 10px;
   }
 `
 
@@ -178,6 +181,25 @@ export const RemoveButton = styled.button`
   display: flex;
   position: absolute;
   right: 0;
+`;
+
+export const DuplicateButton = styled.button`
+  margin-left: 10px;
+  border-radius: 7px;
+  background: ${GRAY};
+  color: white;
+  border: none;
+  padding: 3px 5px;
+`;
+export const EmailContainer = styled.div`
+  position: relative;
+  margin-bottom: 20px;  // 이 값을 조절하여 아래쪽 여백을 조정하세요.
+`;
+export const EmailErrorMessage = styled.p`
+  color: ${props => props.color || "#ff6b6b"};
+  margin-bottom: 10px;
+  font-size: 13px;
+  position: absolute;
 `;
 
 export const ErrorMessage = styled.p`
