@@ -72,7 +72,11 @@ export const ChallengeViewPage = () => {
       </FilterContainer>
       <ChallengeListContainer>
         {challenges.map((challenge, key) => (
-          <ChallengeItem key={key} challenge={challenge} />
+          <ChallengeItem
+            key={key}
+            challenge={challenge}
+            parentReward={challenge.parentReward}
+          />
         ))}
       </ChallengeListContainer>
     </TopContainer>
