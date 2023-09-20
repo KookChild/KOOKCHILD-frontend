@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import CategoryPieChart from './CategoryPieChart' // 카테고리 파이 차트 컴포넌트 추가
 import BarChart from './BarChart' // 막대 그래프 컴포넌트 추가
 import { TopContainer } from '@components'
@@ -12,7 +12,7 @@ import {
   DatePicker,
   DateSeparator,
   DateRangeDisplay,
-} from './style'; // 스타일 컴포넌트 임포트
+} from './style' // 스타일 컴포넌트 임포트
 import { getParentGraphData, getChildGraphData, getStatistics } from '@apis'
 
 const CenteredContainer = styled.div`
@@ -163,47 +163,67 @@ const getParentGraphDataRet = {
   },
 }
 const myData = {
-  "MY_DATA": {
-      "문화": 77.03,
-      "카페": 54.37,
-      "기타": 51.26
+  MY_DATA: {
+    문화: 77.03,
+    카페: 54.37,
+    기타: 51.26,
   },
-  "AGE": 11
+  AGE: 11,
 }
 
 export const GraphDetailPage = () => {
-  const data = getParentGraphData(4, '2022-09-23~2023-04-07',2);
-  const [type, setType] = useState(1); // 1은 연월 단위, 2는 연도 단위 (수정)
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const { childId } = useParams();
+const [data,setData] = useState()
+const [pieData, setPieData] = useState()
+const [stackData, setStackData] = useState()
+  useEffect(() => {
+
+   getParentGraphData(4, '2022-09-23~2023-04-07', 2).then(data => {
+    // console.log(data.PIE)
+    setData(data)
+    
+    setPieData(Object.keys(data.PIE).map(key => data.PIE[key]))
+    // console.log(typeof(data.PIE))
+    setStackData(data.STACK)
+    })
+  }, [])
+  const [type, setType] = useState(1) // 1은 연월 단위, 2는 연도 단위 (수정)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const { childId } = useParams()
 
   // childId를 출력
-  console.log('childId:', childId);
+  console.log('childId:', childId)
 
   const formatDateRange = (start, end) => {
-    return `${start}~${end}`;
-  };
+    return `${start}~${end}`
+  }
 
   // "보기" 버튼 클릭 시 그래프와 차트를 표시할지 여부를 결정하는 상태 변수
-  const [showGraph, setShowGraph] = useState(false);
-
+  const [showGraph, setShowGraph] = useState(false)
   // "보기" 버튼 클릭 시 호출되는 함수
   const handleShowButtonClick = () => {
+    // 입력 필드 중 하나라도 비어있으면 알림 표시하고 그래프 표시하지 않음
+    if (!startDate || !endDate) {
+      setShowGraph(false) // 그래프 표시 여부를 false로 설정
+      return // 함수 종료
+    }
+
     // 연도 단위와 연월 단위 선택에 따라 그래프와 차트를 표시
     if ((type === 1 || type === 2) && startDate && endDate) {
-      setShowGraph(true);
+      setShowGraph(true)
     } else {
-      setShowGraph(false);
+      setShowGraph(false)
     }
-  };
+  }
+
   return (
     <TopContainer>
       <TopNavigationBar title={'자녀소비통계'} />
 
       <MainContent>
         <DateRangePickerContainer>
-          <DateSelection>
+          <div className="radio-group">
+            <div className="radio-group-title">출력 기준:</div>
             <label>
               <input
                 type="radio"
@@ -222,15 +242,17 @@ export const GraphDetailPage = () => {
               />
               연/월 단위
             </label>
-          </DateSelection>
+          </div>
 
-          <DateSelection>
+          <div className="date-input-container">
+            <div className="date-group-title">기간:</div>
             {/* 시작 날짜 입력 */}
             <input
               type="date"
               placeholder="시작 날짜"
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={e => setStartDate(e.target.value)}
+              required // 날짜 선택 강제화
             />
             <DateSeparator>~</DateSeparator>
             {/* 종료 날짜 입력 */}
@@ -238,73 +260,69 @@ export const GraphDetailPage = () => {
               type="date"
               placeholder="종료 날짜"
               value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              onChange={e => setEndDate(e.target.value)}
+              required // 날짜 선택 강제화
             />
-          </DateSelection>
-
+            {/* 날짜 입력이 비어있을 때 메시지 표시 */}
+            {!startDate || !endDate ? (
+              <div className="error-message">날짜를 입력하세요</div>
+            ) : null}
+          </div>
           {/* "보기" 버튼 */}
           <button onClick={handleShowButtonClick}>보기</button>
         </DateRangePickerContainer>
 
         {/* 그래프와 차트 표시 여부에 따라 조건부 렌더링 */}
-        {showGraph && (
-          <>
-            {/* 카테고리 파이 차트 */}
-            <CategoryPieChart data={categoryData} />
+        {/* {showGraph && ( */}
+        <>
+          {/* 카테고리 파이 차트 */}
+          <CategoryPieChart data={categoryData} />
 
-            <Table>
-              <tbody>
-                <TableRow>
-                  <TableHeader>카테고리</TableHeader>
-                  <TableHeader>비율(%)</TableHeader>
-                </TableRow>
-                <TableRow>
-                  <TableCell>편의점</TableCell>
-                  <TableCell>25%</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>카페</TableCell>
-                  <TableCell>15%</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>문구점</TableCell>
-                  <TableCell>15%</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>식당</TableCell>
-                  <TableCell>15%</TableCell>
-                </TableRow>
-              </tbody>
-            </Table>
+          <Table>
+            <tbody>
+              <TableRow>
+                <TableHeader>카테고리</TableHeader>
+                <TableHeader>비율(%)</TableHeader>
+              </TableRow>
 
-            <BarChart data={barChartData} />
-
-            <Table>
-              <thead>
-                <TableRow>
-                  <TableHeader>연월</TableHeader>
-                  <TableHeader>소비</TableHeader>
-                  <TableHeader>저금</TableHeader>
+               {pieData?.map((item, index) => (
+                console.log(item),
+                <TableRow key={index}>
+                  <TableCell>{item.CATEGORY}</TableCell>
+                  <TableCell>{`${item.PERCENTAGE} (${item.COUNT})`}</TableCell>
                 </TableRow>
-              </thead>
+              ))}
+            </tbody>
+          </Table>
 
-              <tbody>
-                {barChartData.labels.map((label, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{label}</TableCell>
-                    <TableCell>
-                      {barChartData.expenses[index].toLocaleString()}원
-                    </TableCell>
-                    <TableCell>
-                      {barChartData.savings[index].toLocaleString()}원
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </tbody>
-            </Table>
-          </>
-        )}
+          <BarChart data={barChartData} />
+
+          <Table>
+            <thead>
+              <TableRow>
+                <TableHeader>연월</TableHeader>
+                <TableHeader>소비</TableHeader>
+                <TableHeader>저금</TableHeader>
+              </TableRow>
+            </thead>
+
+            <tbody>
+              {barChartData.labels.map((label, index) => (
+                <TableRow key={index}>
+                  <TableCell>{label}</TableCell>
+                  <TableCell>
+                    {barChartData.expenses[index].toLocaleString()}원
+                  </TableCell>
+                  <TableCell>
+                    {barChartData.savings[index].toLocaleString()}원
+                  </TableCell>
+                </TableRow>
+              ))}
+            </tbody>
+          </Table>
+        </>
+        {/* )} */}
       </MainContent>
     </TopContainer>
-  );
-};
+  )
+}
