@@ -5,7 +5,6 @@ import {
     AreaContainer,
     ChildInfoContainer,
     EditButton,
-    ButtonsContainer,
     ButtonContainer,
     ChildImage,
     MissionDetail,
@@ -14,13 +13,13 @@ import {
     ChildContainer,
     RecommendButton,
     LoadingMessage,
-    LoadingOverlay
+    LoadingOverlay,
+    ChildImageContainer
 } from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getParentMissionByChild } from '../../../apis/mission/index';
 import { getRecommendedMission } from '@apis';
-import imgSrc from '../MissionParentViewPage/img/Bear.png'
 import { TopContainer, TopNavigationBar } from '@components'
 
 export const MissionCreatePage = () => {
@@ -54,17 +53,14 @@ export const MissionCreatePage = () => {
 
                 try {
                     setChilds(response.childLists);
-                    console.log(response.childLists);
                 } catch (error) {
                     console.log(error);
                 }
-                console.log("after childs :: ", childs);
 
             } catch (error) {
                 console.error("Error fetching the data:", error);
             }
         };
-
         fetchData();
     }, []);
 
@@ -95,29 +91,37 @@ export const MissionCreatePage = () => {
     const handleCreateMissionClick = () => {
         if (selectedIds.length === 0) {
             Swal.fire({
-                title: '오류',
-                text: "자녀를 선택해주세요.",
+                title: '<span style="font-size: 20px;">자녀를 선택해주세요!</span>',
                 icon: 'error',
-                confirmButtonText: '확인'
+                confirmButtonText: '확인',
+                customClass: {
+                    // 모달에 사용할 클래스 추가
+                    container: 'custom-swal-container',
+                  },
             });
             return;
         }
         Swal.fire({
-            title: '등록 확인',
-            text: "미션을 등록하시겠습니까?",
-            icon: 'warning',
+            title: '<span style="font-size: 20px;">미션을 등록하시겠습니까?</span>',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            cancelButtonColor: '#D9D9D9',
             confirmButtonText: '등록',
-            cancelButtonText: '취소'
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            customClass: {
+                container: 'custom-swal-container',
+              },
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    '등록 완료!',
-                    '등록되었습니다.',
-                    'success',
-                ).then(function () {
+                Swal.fire({
+                    title: '<span style="font-size: 20px;">등록 완료!</span>',
+                    icon: 'success',
+                    customClass: {
+                        container: 'custom-swal-container',
+                      },
+                }).then(function () {
                     console.log(missionData);
                     onSubmit();
                 })
@@ -149,22 +153,17 @@ export const MissionCreatePage = () => {
         }
     };
 
-    const handleSubmit = async () => {
-        console.log(selectedIds.join(','));
-        console.log(typeof (selectedIds.join(',')));
-        console.log("28 + ", childs);
-
-    }
-
 
     return (
         <TopContainer>
             <TopNavigationBar title={'미션 등록'} />
             <AreaContainer>
                 <ChildInfoContainer>
-                    {childs.map((child) => (
+                    {childs.map((child, index) => (
                         <ChildContainer key={child.childId}>
-                            <ChildImage src={imgSrc} alt={child.childName} />
+                            <ChildImageContainer>
+                                <ChildImage src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
+                            </ChildImageContainer>
                             <h4>{child.childName}</h4>
                             <input
                                 type="checkbox"

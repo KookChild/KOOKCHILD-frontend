@@ -110,7 +110,7 @@ export const ChatBubble = styled.div`
 export const YouTubeButton = styled.button`
     width: 350px;
     height: 50px;
-    background: ${YELLOW};
+    background: ${PRIMARY};
     border-radius: 6px;
     border: none;
     color: white;
@@ -121,7 +121,7 @@ export const YouTubeButton = styled.button`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: ${PRIMARY};
+        background-color: gold;
         color: black;
     }
 `;

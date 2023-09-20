@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { YELLOW, PRIMARY, GRAY, BROWN } from '@utility/COLORS'
+import { YELLOW, GRAY, BROWN } from '@utility/COLORS'
 
 export const AreaContainer = styled.div`
   width: 100%;
@@ -12,12 +12,6 @@ export const AreaContainer = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
-`
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
 `
 
 export const ChildInfoContainer = styled.div`
@@ -41,12 +35,23 @@ export const ChildContainer = styled.label`
   input[type="checkbox"] {
     margin-top: 4px;
   }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 `;
 
 
 export const ChildImage = styled.img`
   width: 70px;
   height: 70px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30%;
 `;
 
 export const MissionDetail = styled.div`
@@ -103,7 +108,7 @@ export const EditButton = styled.button`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        background-color: ${PRIMARY};
+        background-color: gold;
     }
     &:disabled {
         cursor: not-allowed;
@@ -156,3 +161,17 @@ export const LoadingMessage = styled.div`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
 `;
+
+
+export const ChildImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30%;
+  width:100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border: 2px solid transparent;
+
+`

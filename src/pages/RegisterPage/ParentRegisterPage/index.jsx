@@ -50,8 +50,10 @@ export const ParentRegisterPage = () => {
     } else {
       Swal.fire({
         icon: 'warning',
-        title: '주의!',
-        text: '이메일을 입력해주세요.'
+        title: '<span style="font-size: 20px;">이메일을 입력해주세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
     }
   }
@@ -76,39 +78,49 @@ export const ParentRegisterPage = () => {
     if (!emailPattern.test(email)) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: '올바른 이메일 형식을 입력해주세요.'
+        title: '<span style="font-size: 20px;">올바른 이메일 형식을 입력해주세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }
     if (emailAvailable === false) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: '이미 사용 중인 이메일입니다. 다른 이메일을 입력하세요.'
+        title: '<span style="font-size: 20px;">이미 사용 중인 이메일입니다.<br/>다른 이메일을 입력하세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     } else if (emailAvailable === null) {
       Swal.fire({
         icon: 'warning',
-        title: '주의!',
-        text: '이메일 중복 확인을 해주세요.'
+        title: '<span style="font-size: 20px;">이메일 중복 확인을 해주세요.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }
     if (password !== passwordChk) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: '비밀번호가 일치하지 않습니다.'
+        title: '<span style="font-size: 20px;">비밀번호가 일치하지 않습니다.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }
     if (accountPwd !== accountPwdChk) {
       Swal.fire({
         icon: 'error',
-        title: '오류!',
-        text: '계좌 비밀번호가 일치하지 않습니다.'
+        title: '<span style="font-size: 20px;">계좌 비밀번호가 일치하지 않습니다.</span>',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       });
       return;
     }

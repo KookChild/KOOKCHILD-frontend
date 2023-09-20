@@ -240,6 +240,14 @@ span{
 line-height: 24px; /* 텍스트를 세로로 가운데 정렬 */
 `
 
+const NoMissionsMessage = styled.div`
+  font-size: 16px;
+  text-align: center;
+  margin: 20px;
+  background-color: #f5f5f5; /* 회색 배경색 */
+  opacity: 0.8; /* 글자의 투명도 조절 (0.8은 80% 투명) */
+`;
+
 export const RewardPage = () => {
   const navigate = useNavigate();
   const [responseData, setResponseData] = useState({
@@ -381,8 +389,10 @@ export const RewardPage = () => {
           <MissionTitle>미완료 미션</MissionTitle>
           <MissionContainer>
             <ParentComponent> 
-              
-              {missionData.missionContents.map((mission, index) => (
+            {missionData.missionContents.length === 0 ? (
+                <NoMissionsMessage>미완료된 미션이 아직 없습니다.</NoMissionsMessage>
+              ) : 
+              missionData.missionContents.map((mission, index) => (
                 <MissionItem key={index}>
                   <GoCheckCircle style={grayIconStyle} />
                   <MissionText onClick={() => navigate('/child/mission/childview')}>
@@ -394,7 +404,8 @@ export const RewardPage = () => {
                     </MissionCon>
                   </MissionText>
                 </MissionItem>
-              ))}
+              ))
+            }
             </ParentComponent>
           </MissionContainer>
           <UnderSection>

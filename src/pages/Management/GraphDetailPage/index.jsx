@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import CategoryPieChart from './CategoryPieChart' // 카테고리 파이 차트 컴포넌트 추가
-import BarChart from './BarChart' // 막대 그래프 컴포넌트 추가
+import CategoryPieChart from './CategoryPieChart'
+import BarChart from './BarChart'
 import { TopContainer } from '@components'
 import { PRIMARY, YELLOW, DARK_GRAY, BROWN } from '@utility/COLORS'
-import { TopNavigationBar } from '../../../components/TopNavigationBar'
+import { TopNavigationBar } from '@components/TopNavigationBar'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -23,27 +22,22 @@ import {
   TableHeader,
   TableCell,
 } from './style' // 스타일 컴포넌트 임포트
-import dayjs, { Dayjs } from 'dayjs'
+
 import { getParentGraphData, getChildGraphData, getStatistics } from '@apis'
 import { formattedDate } from '@utility/COMMON_FUNCTION'
+const colors = ['#A9907E', '#F3DEBA', '#F8C4B4', '#EAE0DA', '#F8EDEB']
 
-// 막대 그래프 데이터 예시
-const barChartData = {
-  labels: ['2023-01', '2023-02', '2023-03', '2023-04', '2023-05', '2023-06'],
-  expenses: [3000, 4500, 6000, 3500, 4800, 5500], // 연월별 소비 데이터 (임의 값)
-  savings: [1200, 1800, 2400, 1400, 1920, 2200], // 연월별 저금 데이터 (임의 값)
-}
 function transformData(inputData) {
   const transformedPieData = []
-
+  var idx = 0;
   // Loop through the input data and transform it
   for (const key in inputData) {
     if (inputData.hasOwnProperty(key)) {
       const item = inputData[key]
       const title = item.CATEGORY
       const value = parseFloat(item.PERCENTAGE) // Parse percentage as a float
-      const color = getRandomColor() // Generate a random color
-
+      const color = colors[key % colors.length]; // Generate a color based on index
+      
       // Add the transformed item to the array
       transformedPieData.push({
         title,
@@ -57,32 +51,25 @@ function transformData(inputData) {
 }
 
 // Function to generate a random color (you can customize this)
-function getRandomColor() {
-  const letters = '0123456789ABCDEF'
-  let color = '#'
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]
-  }
-  return color
-}
+
 function transformBarChartData(inputData) {
-  const dataMap = {}; // 날짜별 데이터를 저장할 객체
+  const dataMap = {} // 날짜별 데이터를 저장할 객체
 
   // Loop through the input data and transform it
   for (const key in inputData) {
     if (inputData.hasOwnProperty(key)) {
-      const item = inputData[key];
-      const yearMonth = item.YEAR;
-      const isDeposit = item.IS_DEPOSIT === '예금'; // 예금 여부를 확인
-      const percentage = parseFloat(item.PERCENTAGE); // Parse percentage as a float
+      const item = inputData[key]
+      const yearMonth = item.YEAR
+      const isDeposit = item.IS_DEPOSIT === '예금' // 예금 여부를 확인
+      const percentage = parseFloat(item.PERCENTAGE) // Parse percentage as a float
 
       // 이미 해당 날짜에 대한 데이터가 있는지 확인
       if (dataMap.hasOwnProperty(yearMonth)) {
         // 이미 해당 날짜에 대한 데이터가 있으면 예금 또는 소비 값을 더함
         if (isDeposit) {
-          dataMap[yearMonth].savings += percentage;
+          dataMap[yearMonth].savings += percentage
         } else {
-          dataMap[yearMonth].expenses += percentage;
+          dataMap[yearMonth].expenses += percentage
         }
       } else {
         // 해당 날짜에 대한 데이터가 없으면 새로운 객체를 생성하고 예금 또는 소비 값을 설정
@@ -90,30 +77,28 @@ function transformBarChartData(inputData) {
           yearMonth,
           expenses: isDeposit ? 0 : percentage, // 예금이면 0, 소비이면 percentage 값 설정
           savings: isDeposit ? percentage : 0, // 예금이면 percentage 값, 소비이면 0 설정
-        };
-        dataMap[yearMonth] = newData;
+        }
+        dataMap[yearMonth] = newData
       }
     }
   }
 
   // dataMap 객체를 배열로 변환
-  const dataArray = Object.values(dataMap);
+  const dataArray = Object.values(dataMap)
 
   // 데이터 배열을 년월(yearMonth)을 기준으로 정렬 (예: 2022-01, 2022-02, ...)
-  dataArray.sort((a, b) => a.yearMonth.localeCompare(b.yearMonth));
+  dataArray.sort((a, b) => a.yearMonth.localeCompare(b.yearMonth))
 
-  const labels = dataArray.map(item => item.yearMonth);
-  const expenses = dataArray.map(item => item.expenses);
-  const savings = dataArray.map(item => item.savings);
+  const labels = dataArray.map(item => item.yearMonth)
+  const expenses = dataArray.map(item => item.expenses)
+  const savings = dataArray.map(item => item.savings)
 
   return {
     labels,
     expenses,
     savings,
-  };
+  }
 }
-
-
 
 // Call the function with your input data
 
@@ -133,18 +118,18 @@ export const GraphDetailPage = () => {
 
   const formatDateRange = (start, end) => {
     // 'YYYY-MM' 형식으로 변경
-    const formattedStart = start.substring(0, 7);
-    const formattedEnd = end.substring(0, 7);
-    
-    return `${formattedStart}~${formattedEnd}`;
+    const formattedStart = start.substring(0, 7)
+    const formattedEnd = end.substring(0, 7)
+
+    return `${formattedStart}~${formattedEnd}`
   }
-  
+
   const convertedPieData = transformData(pieData)
-  console.log("CONVERTED PIE DATA")
+  console.log('CONVERTED PIE DATA')
   console.log(convertedPieData)
 
   // 사용 예제
-const transformedBarData = transformBarChartData(stackData);
+  const transformedBarData = transformBarChartData(stackData)
 
   // "보기" 버튼 클릭 시 그래프와 차트를 표시할지 여부를 결정하는 상태 변수
   const [showGraph, setShowGraph] = useState(false)

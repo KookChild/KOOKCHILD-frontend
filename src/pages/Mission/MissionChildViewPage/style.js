@@ -15,6 +15,9 @@ export const HistoryMissionButton = styled.button`
     background-color: #8D744A;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color: #A88A5A; /* 호버 시 밝은 배경색으로 변경 */
+    }
 `;
 
 export const Dropdown = styled.select`
@@ -50,7 +53,6 @@ export const MissionHeaderContainer = styled.h3`
 `
 
 export const MissionItemContainer = styled.div`
-  width: 390px;
   height: 115px;
   margin-bottom: 10px;
   background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
@@ -59,7 +61,6 @@ export const MissionItemContainer = styled.div`
 `;
 
 export const MessageContainer = styled.div`
-  width: 340px;
   height: 76.66px;
   background: #E5E5E5;
   border-radius: 10px;

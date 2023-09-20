@@ -30,7 +30,7 @@ export const UserNameContatiner = {
 
 export const textContainer = {
   fontFamily: 'kbFontBold',
-  padding: '15px ',
+  padding: '23px 15px 5px 15px',
   display: 'flex',
   justifyContent: 'space-between', // 오른쪽 정렬을 위한 스타일
 }
@@ -58,13 +58,34 @@ export const iconGroup = {
 }
 
 // 버튼 공통
-export const buttonSection = {
+export const ButtonSection = styled.div`
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   gap: '2px',
   marginBottom: '5px',
-}
+  &:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`
+
+
+export const HistoryMissionButton = styled.button`
+    width: 67px;
+    height: 22px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size:12px;
+    background-color: #8D744A;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color: #A88A5A; /* 호버 시 밝은 배경색으로 변경 */
+    }
+`;
+
+
 export const TopTextContainer = {
   fontFamily: 'sdEB',
   fontSize: '20px',

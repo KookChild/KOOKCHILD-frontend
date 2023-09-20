@@ -23,6 +23,7 @@ export const DateRangePickerContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
   justify-content: center;
+  padding-left: 35px;
 `
 
 export const DateSelection = styled.div`
@@ -49,15 +50,15 @@ export const ShowButtonContainer = styled.div`
   justify-content: center;
 `
 export const ShowButton = styled.div`
-  border: 1px solid ${YELLOW};
   width: 70px;
   height: 70px;
-  background-color: ${PINK};
+  background-color: ${PRIMARY};
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 30px;
   cursor: pointer;
+  font-family: kbFontBold;
 `
 export const DatePicker = styled.input`
   width: 150px;

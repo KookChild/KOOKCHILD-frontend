@@ -54,16 +54,10 @@ export const Input = styled.input`
 `
 
 export const PhoneNumberInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
-
   input, select {
     flex: 1;
     height: 38px;
-    width: 30%;
+    width: 27%;
     padding: 0 10px;
     box-sizing: border-box;
     margin-right: 5px;
@@ -77,18 +71,13 @@ export const PhoneNumberInputWrapper = styled.div`
       border: 2px solid ${YELLOW};
     }
   }
-`
+`;
 export const ResidentNumberInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
 
   input, select {
     flex: 1;
     height: 38px;
-    width: 30%;
+    width: 44%;
     padding: 0 10px;
     box-sizing: border-box;
     margin-right: 5px;
@@ -102,7 +91,7 @@ export const ResidentNumberInputWrapper = styled.div`
       border: 2px solid ${YELLOW};
     }
   }
-`
+`;
 
 export const RadioGroup = styled.div`
   display: flex;
@@ -228,7 +217,7 @@ export const ResidentNumberInput = ({
 }) => {
   return (
     <ResidentNumberInputWrapper>
-      <input
+      <Input
         type="text"
         placeholder="주민등록번호 앞자리"
         value={ssn1}
@@ -236,7 +225,7 @@ export const ResidentNumberInput = ({
         required
       />
       <span> - </span>
-      <input
+      <Input
         type="text"
         placeholder="주민등록번호 뒷자리"
         value={ssn2}
@@ -254,25 +243,28 @@ export const PhoneNumberInput = ({ phoneNum1, phoneNum2, phoneNum3, onChange }) 
 
   return (
     <PhoneNumberInputWrapper>
-      <input
+      <Input
         type="text"
         value={phoneNum1}
         onChange={(e) => handleInputChange(e, 'phoneNum1')}
         maxLength={3}
+        required
       />
       -
-      <input
+      <Input
         type="text"
         value={phoneNum2}
         onChange={(e) => handleInputChange(e, 'phoneNum2')}
         maxLength={4}
+        required
       />
       -
-      <input
+      <Input
         type="text"
         value={phoneNum3}
         onChange={(e) => handleInputChange(e, 'phoneNum3')}
         maxLength={4}
+        required
       />
     </PhoneNumberInputWrapper>
   );

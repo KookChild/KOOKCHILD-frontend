@@ -20,7 +20,7 @@ const styles = {
     justifyContent: 'center',
     transition: 'transform 0.1s ease-in-out',
   },
-  iconHovered: { // new style for hover effect
+  iconHovered: {
     transform: 'scale(1.1)'
   }
 }

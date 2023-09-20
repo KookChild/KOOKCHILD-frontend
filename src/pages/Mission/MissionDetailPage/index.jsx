@@ -17,7 +17,7 @@ import {
   WaitingReward,
   AreaFooterContainer,
 } from './style'
-import imgSrc from '../../Management/ManagementPage/img/아이1.jpg'
+
 import { TopContainer, TopNavigationBar, MissionInfo } from '@components';
 import {
   fetchMissionDetail,
@@ -37,6 +37,8 @@ export const MissionDetailPage = () => {
   const [missionTitle, setMissionTitle] = useState(null)
 
   const navigate = useNavigate()
+  const { index } = useParams();
+  const indexAsNumber = parseInt(index, 10); // 문자열을 10진수 숫자로 변환
 
   useEffect(() => {
     const fetchMissionData = async () => {
@@ -65,7 +67,7 @@ export const MissionDetailPage = () => {
     const parsedReward = parseInt(reward, 10);
     if (isNaN(parsedReward)) return reward;
     return new Intl.NumberFormat('ko-KR').format(parsedReward);
-};
+  };
 
 
   const handleEditClick = () => {
@@ -87,10 +89,12 @@ export const MissionDetailPage = () => {
       setIsChild(true);
 
       Swal.fire({
-        title: '성공!',
-        text: '미션이 성공적으로 수정되었습니다.',
+        title: '<span style="font-size: 20px;">미션 내용이 수정되었습니다!</span>',
         icon: 'success',
         confirmButtonText: '확인',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       }).then(() => {
         setIsEditable(false)
       })
@@ -101,18 +105,26 @@ export const MissionDetailPage = () => {
         text: '미션 수정 중 오류가 발생했습니다.',
         icon: 'error',
         confirmButtonText: '확인',
+        customClass: {
+          container: 'custom-swal-container',
+        },
       })
     }
   }
 
   const handleSuccessClick = () => {
     Swal.fire({
-      title: '확인',
-      text: '미션 승인 및 미션 리워드를 송금하시겠습니까?',
-      icon: 'warning',
+      title: '<span style="font-size: 20px;">미션 승인 및 미션 리워드를<br/>송금하시겠습니까?</span>',
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonText: '네',
-      cancelButtonText: '아니오'
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#D9D9D9',
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         confirmMissionSuccess(missionId)
@@ -125,6 +137,10 @@ export const MissionDetailPage = () => {
                     text: '권한이 없습니다.',
                     icon: 'warning',
                     confirmButtonText: '확인',
+                    customClass: {
+                      // 성공 알림 모달에 사용할 클래스 추가
+                      container: 'custom-swal-container',
+                    },
                   });
                   break;
                 case 400:
@@ -133,6 +149,9 @@ export const MissionDetailPage = () => {
                     text: '이미 승인한 요청입니다.',
                     icon: 'error',
                     confirmButtonText: '확인',
+                    customClass: {
+                      container: 'custom-swal-container',
+                    },
                   });
                   break;
                 case 422:
@@ -141,6 +160,9 @@ export const MissionDetailPage = () => {
                     text: '잔액이 부족합니다.',
                     icon: 'error',
                     confirmButtonText: '확인',
+                    customClass: {
+                      container: 'custom-swal-container',
+                    },
                   });
                   break;
                 default:
@@ -150,15 +172,20 @@ export const MissionDetailPage = () => {
                     text: '미션 승인 중 오류가 발생했습니다.',
                     icon: 'error',
                     confirmButtonText: '확인',
+                    customClass: {
+                      container: 'custom-swal-container',
+                    },
                   });
               }
             } else if (response.data.status == 200) {
               setIsSuccess(true)
               Swal.fire({
-                title: '성공!',
-                text: '미션 리워드가 성공적으로 송금되었습니다.',
+                title: '<span style="font-size: 20px;">미션 리워드가 성공적으로<br/>송금되었습니다.</span>',
                 icon: 'success',
                 confirmButtonText: '확인',
+                customClass: {
+                  container: 'custom-swal-container',
+                },
               });
             }
           })
@@ -169,6 +196,9 @@ export const MissionDetailPage = () => {
               text: '미션 승인 중 예기치 않은 오류가 발생했습니다.',
               icon: 'error',
               confirmButtonText: '확인',
+              customClass: {
+                container: 'custom-swal-container',
+              },
             })
           })
       }
@@ -177,23 +207,39 @@ export const MissionDetailPage = () => {
 
   const handleDeleteClick = () => {
     Swal.fire({
-      title: '삭제하시겠습니까?',
-      text: '이 작업은 되돌릴 수 없습니다!',
+      title: '<span style="font-size: 20px;">미션을 삭제하시겠습니까?</span>',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '네, 삭제하겠습니다!',
-      cancelButtonText: '취소',
+      cancelButtonColor: '#D9D9D9',
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
     }).then(async result => {
       if (result.isConfirmed) {
         try {
           await deleteMission(missionId)
-          Swal.fire('삭제됨!', '미션이 성공적으로 삭제되었습니다.', 'success')
+          Swal.fire({
+            title: '<span style="font-size: 20px;">미션이 성공적으로 삭제되었습니다.</span>',
+            icon: 'success',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+          })
           navigate('/mission/parentview')
         } catch (error) {
           console.error('Error deleting mission:', error)
-          Swal.fire('오류!', '미션 삭제 중 오류가 발생했습니다.', 'error')
+          Swal.fire({
+            title: '오류!',
+            text: '미션 삭제 중 오류가 발생했습니다.',
+            icon: 'error',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+          })
         }
       }
     })
@@ -201,28 +247,39 @@ export const MissionDetailPage = () => {
 
   const handleCompleteMissionClick = () => {
     Swal.fire({
-      title: '승인 요청',
-      text: '승인 요청하시겠습니까?',
-      icon: 'warning',
+      title: '<span style="font-size: 20px;">부모님께 승인 요청하시겠습니까?</span>',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '네, 요청하겠습니다!',
-      cancelButtonText: '취소',
+      cancelButtonColor: '#D9D9D9',
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+      customClass: {
+        container: 'custom-swal-container',
+      },
     }).then(async result => {
       if (result.isConfirmed) {
         try {
           await completeMission(missionId)
 
           setIsChild(true)
-          Swal.fire(
-            '요청됨!',
-            '승인 요청이 성공적으로 전송되었습니다.',
-            'success',
-          )
+          Swal.fire({
+            title: '<span style="font-size: 20px;">승인 요청되었습니다!</span>',
+            icon: 'success',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+          })
         } catch (error) {
           console.error('Error completing mission:', error)
-          Swal.fire('오류!', '미션 완료 요청 중 오류가 발생했습니다.', 'error')
+          Swal.fire({
+            title: '<span style="font-size: 20px;">미션 완료 요청 중 오류가 발생했습니다.</span>',
+            icon: 'error',
+            customClass: {
+              container: 'custom-swal-container',
+            },
+          })
         }
       }
     })
@@ -255,7 +312,7 @@ export const MissionDetailPage = () => {
         <AreaContainer>
           <ChildInfoContainer>
             <div>
-              <ChildImage src={imgSrc} alt={childName} />
+              <ChildImage src={require(`../../../img/아이${indexAsNumber+1}.jpg`)} alt={childName} />
               <ChildName>{childName}</ChildName>
             </div>
             <MissionDescription>님의 현재 미션입니다</MissionDescription>

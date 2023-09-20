@@ -171,17 +171,14 @@ export const PersonContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 80px;
-  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
   border-radius: 30%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 2px solid transparent;
-
+  width:100%;
+ }
 `;
 
 export const Image = styled.img`
@@ -193,6 +190,7 @@ export const Image = styled.img`
   left: 0;
   right: 0;
   bottom: 0;
+   border-radius: 30%; /* 이 부분을 추가 */
 `;
 
 export const NameDiv = styled.div`

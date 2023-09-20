@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { YELLOW } from '@utility/COLORS'
+import { PRIMARY, YELLOW } from '@utility/COLORS'
 
 export const ChildListContainer = styled.div`
   padding: 5px;
@@ -15,32 +15,35 @@ export const ChildListContainer = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 `
-
 export const ChildItemContainer = styled.div`
   min-width: 86px;
   height: 136px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: ${props => (props.selected ? '15px' : '10px')};
+  margin-right: 10px; // 선택 상태에 관계없이 마진은 일정하게 유지
 
   img {
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: ${props => (props.selected ? '93px' : '86px')};
-    height: ${props => (props.selected ? '93px' : '86px')};
-    border-radius: 30px;
-    border: 1px solid lightgray;
-    background-color: ${props => (props.selected ? '#FEF2D3' : 'white')};
+    width: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
+    height: ${props => (props.selected ? '86px' : '86px')}; // 이미지 크기 확대
+    border-radius: 30%; // border-radius 조절
+    border: 2px solid transparent;
+    transition: all 0.1s ease; // 부드러운 애니메이션 효과 추가
   }
 
   p {
     margin-top: 10px;
+    color: ${props => (props.selected ? '#FFCC00' : '기본 색상')}; // 텍스트 색상 조절
   }
+  
+  &:hover {
+    img {
+      transform: scale(1.1); // 마우스 호버 시 이미지 확대
+    }
+  }
+
   border-bottom: ${props => (props.selected ? '2px solid #FFCC00' : 'none')};
-  p {
-    color: ${props => (props.selected ? '#FFCC00' : '기본 색상')};
-  }
-`
+`;
 
 export const TabContainer = styled.div`
   margin-top: 30px;
@@ -114,7 +117,7 @@ export const AddMissionButton = styled.button`
   margin-top: 5px;
   width: 378px;
   height: 45px;
-  background: #ffcc00;
+  background: ${PRIMARY};
   border-radius: 6px;
   border: none;
   color: black;
@@ -122,9 +125,9 @@ export const AddMissionButton = styled.button`
   cursor: pointer;
   outline: none;
   transition: 0.3s;
-
   &:hover {
-    background: #e5b900;
+    background-color: gold;
+    border-color: gold;
   }
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `
@@ -152,4 +155,24 @@ export const MissionItemContainer = styled.div`
   background-color: ${props => (props.even ? '#FFFFFF' : '#F6F7F8')};
   opacity: 1;
   display: flex;
+`
+
+export const Img = styled.img`
+width: 100%;
+// height: 163px;
+height: 100%;
+object-fit: cover;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+transition: transform 0.3s ease; // 확대/축소 애니메이션 추가
+
+  &:hover {
+    transform: scale(1.1); // 확대 스케일 값을 조절
+  }transition: transform 0.3s ease; // 확대/축소 애니메이션 추가
+
+  &:hover {
+    transform: scale(1.1); // 확대 스케일 값을 조절
+  }
 `
