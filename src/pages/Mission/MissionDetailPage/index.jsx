@@ -8,7 +8,7 @@ import {
   ChildInfoContainer,
   ChildImage,
   ChildName,
-  MissionDescription,
+  WhiteContainer,
   EditButton,
   SuccessButton,
   CompleteButton,
@@ -16,6 +16,7 @@ import {
   MissionReward,
   WaitingReward,
   AreaFooterContainer,
+  CenterContainer
 } from './style'
 
 import { TopContainer, TopNavigationBar, MissionInfo } from '@components';
@@ -26,7 +27,6 @@ import {
   deleteMission,
   confirmMissionSuccess,
 } from '@apis';
-
 export const MissionDetailPage = () => {
   const { missionId } = useParams()
   const [missionData, setMissionData] = useState(null)
@@ -38,7 +38,7 @@ export const MissionDetailPage = () => {
 
   const navigate = useNavigate()
   const { index } = useParams();
-  const indexAsNumber = parseInt(index, 10); // 문자열을 10진수 숫자로 변환
+  const indexAsNumber = parseInt(index, 10);
 
   useEffect(() => {
     const fetchMissionData = async () => {
@@ -52,23 +52,30 @@ export const MissionDetailPage = () => {
           endDate: fetchedData.endDate,
         })
         setMissionTitle(fetchedData.title)
-
         setIsSuccess(fetchedData.parentConfirm)
         setIsChild(fetchedData.childConfirm)
       } catch (error) {
         console.error('Error fetching mission details:', error)
       }
     }
-
     fetchMissionData()
   }, [missionId])
+
+  const getButtonText = () => {
+    if (isSuccess && isChild) {
+      return '미션 성공';
+    } else if (!isSuccess && isChild) {
+      return '승인 요청 중...';
+    } else {
+      return '미션 완료';
+    }
+  };
 
   const formatReward = (reward) => {
     const parsedReward = parseInt(reward, 10);
     if (isNaN(parsedReward)) return reward;
     return new Intl.NumberFormat('ko-KR').format(parsedReward);
   };
-
 
   const handleEditClick = () => {
     setIsEditable(true)
@@ -295,11 +302,13 @@ export const MissionDetailPage = () => {
     endDate,
     childName,
     completeDate,
+    image,
   } = missionData
 
   return (
     <TopContainer>
       <TopNavigationBar title={`${title}`} />
+
       {parent && !isEditable && (
         <AreaContainer>
           <ButtonsContainer>
@@ -308,38 +317,44 @@ export const MissionDetailPage = () => {
           </ButtonsContainer>
         </AreaContainer>
       )}
-      {parent ? (
+      {!parent && !isEditable &&(
         <AreaContainer>
-          <ChildInfoContainer>
-            <div>
-              <ChildImage src={require(`../../../img/아이${indexAsNumber+1}.jpg`)} alt={childName} />
-              <ChildName>{childName}</ChildName>
-            </div>
-            <MissionDescription>님의 현재 미션입니다</MissionDescription>
-          </ChildInfoContainer>
-        </AreaContainer>
-      ) : (
-        <AreaContainer>
+        <CenterContainer></CenterContainer>
         </AreaContainer>
       )}
-      <AreaContainer>
-        <MissionInfo
-          title={missionTitle}
-          content={content}
-          reward={reward}
-          endDate={endDate}
-          isSuccess={isSuccess}
-          isParent={parent}
-          completedTime={completeDate}
-          readOnly={!isEditable}
-          onUpdate={updatedValues =>
-            setUpdatedMission(prevState => ({
-              ...prevState,
-              ...updatedValues,
-            }))
-          }
-        />
-      </AreaContainer>
+      <WhiteContainer>
+          {parent ? (
+            <AreaContainer>
+              <ChildInfoContainer>
+                <div>
+                  <ChildImage src={require(`../../../img/아이${indexAsNumber + 1}.jpg`)} alt={childName} />
+                  <ChildName>{childName}</ChildName>
+                </div>
+              </ChildInfoContainer>
+            </AreaContainer>
+          ) : (
+            <AreaContainer>
+            </AreaContainer>
+          )}
+
+          <MissionInfo
+            title={missionTitle}
+            content={content}
+            reward={reward}
+            endDate={endDate}
+            isSuccess={isSuccess}
+            isParent={parent}
+            completedTime={completeDate}
+            image={image}
+            readOnly={!isEditable}
+            onUpdate={updatedValues =>
+              setUpdatedMission(prevState => ({
+                ...prevState,
+                ...updatedValues,
+              }))
+            }
+          />
+      </WhiteContainer>
       <AreaFooterContainer>
         {!isEditable &&
           <MissionReward>
@@ -360,15 +375,14 @@ export const MissionDetailPage = () => {
             </SuccessButton>
           )
         ) : (
-          !isSuccess && (
-            <CompleteButton
-              onClick={handleCompleteMissionClick}
-              disabled={isChild}
-              isChild={isChild}
-            >
-              {isChild ? '승인 요청 중...' : '미션 완료'}
-            </CompleteButton>
-          )
+          <CompleteButton
+            onClick={handleCompleteMissionClick}
+            disabled={isChild}
+            isChild={isChild}
+            success={isSuccess}
+          >
+            {getButtonText()}
+          </CompleteButton>
         )}
       </AreaFooterContainer>
     </TopContainer>

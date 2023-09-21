@@ -25,6 +25,12 @@ export const QuizHistoryViewPage = () => {
     return `${year}년 ${month}월 ${day}일`;
   };
 
+  const formatReward = (reward) => {
+    const parsedReward = parseInt(reward, 10);
+    if (isNaN(parsedReward)) return reward;
+    return new Intl.NumberFormat('ko-KR').format(parsedReward);
+  };
+
   useEffect(() => {
     const fetchHistory = async () => {
       const data = await getQuizHistory(searchKeyword);
@@ -64,7 +70,7 @@ export const QuizHistoryViewPage = () => {
           <ChildUnderSection>
             <p>
               <AiFillDollarCircle className='moneyIcon' /> 퀴즈 보상금{' '}
-              <span>{item.totalReward}원</span>
+              <span>{formatReward(item.totalReward)}원</span>
             </p>
           </ChildUnderSection>
         </ChildItemContainer>

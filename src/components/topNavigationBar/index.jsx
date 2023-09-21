@@ -22,7 +22,7 @@ export const TopNavigationBar = ({ title }) => {
              <IoChevronBackOutline style={{ fontSize: iconSize }}/>
           </HeaderImage>
           <HeaderTitle>{title}</HeaderTitle>
-          <LogoutButton onClick={handleLogoutClick}>로그아웃</LogoutButton>
+          <LogoutButton onClick={handleLogoutClick}>로</LogoutButton>
         </HeaderContent>
     </Header>
     )

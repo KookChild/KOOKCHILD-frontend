@@ -154,13 +154,35 @@ export const LoadingOverlay = styled.div`
   z-index: 1000; // 다른 요소 위에 오게 설정
 `;
 
+// export const LoadingMessage = styled.div`
+//     position: relative;
+//     background-color: white;
+//     padding: 20px 40px;
+//     border-radius: 10px;
+//     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+//     font-size: 1.2em;
+// `;
+
+export const LoadingText = styled.span`
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+`;
+
 export const LoadingMessage = styled.div`
   background-color: white;
   padding: 20px 40px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
+  display: flex;           // Flexbox를 사용하여 내부 아이템들을 배치
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
+
 
 
 export const ChildImageContainer = styled.div`

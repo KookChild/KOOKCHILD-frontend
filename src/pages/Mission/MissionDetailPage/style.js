@@ -6,7 +6,6 @@ export const AreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
     &:last-child {
         margin-bottom: 0;
     }
@@ -22,8 +21,7 @@ export const ButtonsContainer = styled.div`
 
 
 export const DeleteMissionButton = styled.button`
-    width: 67px;
-    height: 22px;
+    padding: 7px 10px;
     color: white;
     border: none;
     cursor: pointer;
@@ -34,35 +32,33 @@ export const DeleteMissionButton = styled.button`
 `;
 
 export const ChildInfoContainer = styled.div`
-    width: 342px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     margin-bottom: 30px;
+    text-align: center;
 `;
 
 export const ChildImage = styled.img`
-    width: 70px;
-    height: 70px;
-    margin-right: 10px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 30%; /* 이 부분을 추가 */
+    border-radius: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
 export const ChildName = styled.p`
-    width: 62px;
     height: 14px;
     color: #000;
-    font-family: Inter;
-    font-size: 15px;
+    font-family: 'kbFontBold';
+    font-size: 16px;
     font-weight: 400;
     margin: 0;
     margin-bottom: 5px;
-    text-align: center;
 `;
 
 export const MissionDescription = styled.p`
@@ -77,9 +73,8 @@ export const MissionDescription = styled.p`
 `;
 
 export const EditButton = styled.button`
+    padding: 7px 10px;
     background-color: #767676;
-    width: 67px;
-    height: 22px;
     color: white;
     border: none;
     cursor: pointer;
@@ -117,22 +112,46 @@ export const CompleteButton = styled.button`
     margin-top:5px;
     width: 350px;
     height: 50px;
-    background: ${({ isChild }) => (isChild ? "#FFBC00" : "#4D6DCC")};
+    background: ${({ isChild, success }) => {
+        if (success && isChild) {
+            return '#98C37F';
+        } else if (isChild) {
+            return '#FFBC00';
+        } else {
+            return '#4D6DCC';
+        }
+    }};
     border-radius: 6px;
     border: none;
     color: black;
     font-size: 18px;
     cursor: ${({ isChild }) => (isChild ? "default" : "pointer")};
-    opacity: ${({ isChild }) => (isChild ? 0.7 : 1)};
+    opacity: ${({ isChild, success }) => {
+        if (success && isChild) {
+            return 1;
+        } else if (isChild) {
+            return 0.7;
+        } else {
+            return 1;
+        }
+    }};
     pointer-events: ${({ isChild }) => (isChild ? "none" : "auto")};
     outline: none;
     transition: 0.3s;
-
     &:hover {
-        background: ${({ isChild }) => (isChild ? "#FFBC00" : "#687FDD")};
+        background: ${({ isChild, success }) => {
+        if (success && isChild) {
+            return '#98C37F';
+        } else if (isChild) {
+            return '#FFBC00';
+        } else {
+            return '#687FDD';
+        }
+    }};
     }
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
+
 
 export const MissionReward = styled.div`
     display: flex;
@@ -163,17 +182,28 @@ color; #84888B;
 `
 
 export const AreaFooterContainer = styled.div`
-    position: absolute;
-    width: 350px;
+position: absolute;
+bottom: 0;
     padding-bottom : 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    bottom: 0px;
-    margin-top: 50px;
-    z-index: 1;
 
     &:last-child {
         margin-bottom: 0;
     }
 `;
+
+export const WhiteContainer = styled.div`
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 46px;
+    max-height: 440px;
+    overflow-y: auto;
+`
+export const CenterContainer = styled.div`
+    height: 30px;
+`

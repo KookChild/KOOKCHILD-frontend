@@ -27,8 +27,8 @@ export const LogoutButton = styled.button`
   position: absolute;
     cursor: pointer;
     right: 30px;
-    width: 67px;
-    height: 22px;
+    width: 2px;
+    height: 2px;
     color: #f0f0f0;
     border: none;
     background: #f0f0f0;

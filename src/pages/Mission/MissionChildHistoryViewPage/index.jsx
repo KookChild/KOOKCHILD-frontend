@@ -25,8 +25,8 @@ export const MissionChildHistoryViewPage = () => {
     fetchData()
   }, [sort])
 
-  const handleMissionClick = missionId => {
-    navigate(`/mission/detail/${missionId}`)
+  const handleMissionClick = (missionId, index) => {
+    navigate(`/mission/detail/${missionId}/${index}`)
   }
 
   const handleDropdownChange = e => {
@@ -53,7 +53,7 @@ export const MissionChildHistoryViewPage = () => {
         successMission.map((mission, index) => (
           <MissionItemContainer
             even={0}
-            onClick={() => handleMissionClick(mission.id)}
+            onClick={() => handleMissionClick(mission.id, 1)}
             key={index}
           >
             <MissionItem

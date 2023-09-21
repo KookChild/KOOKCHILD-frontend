@@ -1,13 +1,9 @@
 import styled from 'styled-components';
-import { YELLOW, PRIMARY } from '@utility/COLORS'
+import { YELLOW, DARK_GRAY } from '@utility/COLORS'
 
 export const MissionInfoContainer = styled.div`
-    width: 342px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    max-height: 550px;
-    overflow-y: auto;
+    padding-right: 16px;
+    padding-left: 16px;
 `;
 
 export const StyledInput = styled.input`
@@ -47,7 +43,6 @@ export const StyledTextArea = styled.textarea`
 `;
 
 export const MissionDetail = styled.div`
-margin-bottom:30px;
 img {
       width: 86px;
       height: 86px;
@@ -58,8 +53,14 @@ export const MissionHeader = styled.h3`
 margin-top:10px;
 margin-bottom:10px;
 font-family: 'sdMe';
+color: ${DARK_GRAY};
 `
 
 export const MissionBody = styled.div`
-margin-bottom: 20px;
+  img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
 `
