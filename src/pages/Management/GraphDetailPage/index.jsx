@@ -110,7 +110,7 @@ export const GraphDetailPage = () => {
   const { childId } = useParams()
 
   // childId를 출력
-  console.log('childId:', childId)
+  // console.log('childId:', childId)
 
   const [myData, setData] = useState()
   const [pieData, setPieData] = useState()
@@ -125,8 +125,8 @@ export const GraphDetailPage = () => {
   }
 
   const convertedPieData = transformData(pieData)
-  console.log('CONVERTED PIE DATA')
-  console.log(convertedPieData)
+  // console.log('CONVERTED PIE DATA')
+  // console.log(convertedPieData)
 
   // 사용 예제
   const transformedBarData = transformBarChartData(stackData)
@@ -213,12 +213,12 @@ export const GraphDetailPage = () => {
 
                 {pieData?.map(
                   (item, index) => (
-                    console.log(item),
+                    // console.log(item),
                     (
                       <TableRow key={index}>
                         <TableCell>{item.CATEGORY}</TableCell>
                         <TableCell>{`${item.PERCENTAGE}% (${item.COUNT}건)`}</TableCell>
-                        <TableCell>{`${myData[`${item.CATEGORY}`]}`}</TableCell>
+                        <TableCell>{myData[item.CATEGORY]}</TableCell>
                       </TableRow>
                     )
                   ),
