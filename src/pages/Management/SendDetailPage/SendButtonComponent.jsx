@@ -48,7 +48,6 @@ const SendButtonComponent = ({disabled, setDisabled}) => {
       cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      reverseButtons: true,
       customClass: {
         // 모달에 사용할 클래스 추가
         container: 'custom-swal-container',

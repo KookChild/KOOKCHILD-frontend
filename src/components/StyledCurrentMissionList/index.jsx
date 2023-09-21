@@ -5,7 +5,7 @@ import {
   missionDetail,
   rewardContainer,
   rewardText,
-  missionContainer,
+  MissionContainer,
   checkClass,
   NoMissionsMessage,
 } from './style'
@@ -23,11 +23,10 @@ export const StyledCurrentMissionList = ({ missions }) => {
     <div style={missionListContainer}>
       {missions.length === 0 ? (
           <NoMissionsMessage>진행중인 미션이 아직 없습니다.</NoMissionsMessage>
-        ) 
+        )
         : missions.map((mission, index) => (
-        <div
+        <MissionContainer
           key={index}
-          style={missionContainer}
           onClick={() => navigate(`/mission/detail/${mission.id}/0`)}
         >
           <BsCheck style={checkClass} />
@@ -41,7 +40,7 @@ export const StyledCurrentMissionList = ({ missions }) => {
               {`${formatReward(mission.reward)}원`}
             </span>
           </div>
-        </div>
+        </MissionContainer>
       ))}
     </div>
   )

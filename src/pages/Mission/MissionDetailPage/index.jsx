@@ -128,7 +128,6 @@ export const MissionDetailPage = () => {
       cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      reverseButtons: true,
       customClass: {
         container: 'custom-swal-container',
       },
@@ -221,7 +220,6 @@ export const MissionDetailPage = () => {
       cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      reverseButtons: true,
       customClass: {
         container: 'custom-swal-container',
       },
@@ -261,7 +259,6 @@ export const MissionDetailPage = () => {
       cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      reverseButtons: true,
       customClass: {
         container: 'custom-swal-container',
       },

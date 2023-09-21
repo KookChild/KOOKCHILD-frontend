@@ -114,7 +114,6 @@ export const MissionCreatePage = () => {
             cancelButtonColor: '#D9D9D9',
             confirmButtonText: '등록',
             cancelButtonText: '취소',
-            reverseButtons: true,
             customClass: {
                 container: 'custom-swal-container',
             },
