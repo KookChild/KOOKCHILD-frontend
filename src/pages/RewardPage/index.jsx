@@ -50,6 +50,9 @@ const RewardContainer = styled(Container)`
   margin: 9px 0px;
 
   display : flex;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const MissionContainer = styled(Container)`
@@ -64,6 +67,9 @@ const MissionContainer = styled(Container)`
     margin-bottom: 5px;
   }
   margin: 6px 0px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const SeparateContainer = styled.div`
@@ -128,7 +134,9 @@ const InternalComponent = styled.div`
   display:flex;
   flex-direction : column;
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const Name = styled.div`
@@ -171,10 +179,11 @@ const FlexContainer = styled.div`
 
 const Container2 = styled.div`
   margin: 6px; /* 원하는 마진 값으로 조정하세요 */
+  margin-top: 21px;
 `;
 
 const MissionTitle = styled.div`
-  font-size:17px;
+  font-size:16px;
   display: flex; /* Flexbox를 사용하여 내부 요소를 정렬합니다 */
   line-height: 36px;
   text-align: center; /* 가로 중앙 정렬 */
@@ -226,6 +235,7 @@ width: 70px;
 height: 40px;
 border-radius: 8px;
 background-color: #f5f5f5;
+box-shadow: 0px 2px 4px rgb(0 0 0 / 23%);
 `
 
 

@@ -4,7 +4,9 @@ import { YELLOW, PRIMARY } from '@utility/COLORS'
 export const ItemContainer = styled.div`
     cursor: pointer;
     display: flex;
+    border-radius:inherit;
     justify-content: space-between;
+    
     align-items: center;
     height: 80px;
     width: 100%;
@@ -87,6 +89,7 @@ export const ChildItemContainer = styled.div`
     height: 115px;
     position: relative;
     background: #f0f0f0;
+    // border-radius:8px;
 `;
 
 export const ChildLeftSection = styled.div`
@@ -130,7 +133,6 @@ export const ChildRightSection = styled.div`
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    background: white;
     justify-content: center;
     top: 0;
     right: 0;

@@ -70,6 +70,10 @@ export const MissionItemContainer = styled.div`
   background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;
+  border-radius:8px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 export const MessageContainer = styled.div`
