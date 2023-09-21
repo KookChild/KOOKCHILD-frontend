@@ -6,9 +6,10 @@ import {
   HistoryMissionButton,
   MissionHeaderContainer,
   MissionListWrapper,
+  HeaderContainer,
 } from './style'
 import { getMissions, receiveMissionReward } from '@apis'
-import { TopContainer, TopNavigationBar } from '@components'
+import { TopContainer } from '@components'
 import { MissionList } from './MissionList'
 import Swal from 'sweetalert2';
 
@@ -42,7 +43,6 @@ export const MissionChildViewPage = () => {
       cancelButtonColor: '#D9D9D9',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      reverseButtons: true,
       customClass: {
         container: 'custom-swal-container',
       },
@@ -78,9 +78,9 @@ export const MissionChildViewPage = () => {
 
   return (
     <TopContainer>
-      <TopNavigationBar title={"미션 목록"} />
+      <HeaderContainer>미션 목록</HeaderContainer>
       <MenuContainer>
-        <h2>미션</h2>
+      <div></div>
         <HistoryMissionButton onClick={() => navigate('/child/mission/childview/history')}>
           히스토리
         </HistoryMissionButton>

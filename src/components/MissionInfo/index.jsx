@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { MissionInfoContainer, StyledInput, StyledTextArea, MissionDetail, MissionHeader, MissionBody } from './style';
+import defaultImage from './img/mission.jpg';
 
-export const MissionInfo = ({ title: initialTitle, content: initialContent, reward: initialAmount, endDate: initialDueDate, readOnly, onUpdate }) => {
+export const MissionInfo = ({ title: initialTitle, content: initialContent, reward: initialAmount, endDate: initialDueDate, image, readOnly, onUpdate }) => {
     const [title, setTitle] = useState(initialTitle);
     const [content, setContent] = useState(initialContent);
     const [reward, setAmount] = useState(initialAmount);
     const [endDate, setDueDate] = useState(initialDueDate);
+
+    const handleImageError = (e) => {
+        e.target.src = defaultImage;
+    };
 
     const formatReward = (reward) => {
         const parsedReward = parseInt(reward, 10);
@@ -89,6 +94,9 @@ export const MissionInfo = ({ title: initialTitle, content: initialContent, rewa
                         <MissionHeader>미션 상세</MissionHeader>
                         <MissionBody>{content}</MissionBody>
                     </MissionDetail>
+                    <MissionBody>
+                        <img src={image || defaultImage} alt="미션 관련 이미지" onError={handleImageError} />
+                    </MissionBody>
                 </>
             )}
         </MissionInfoContainer>

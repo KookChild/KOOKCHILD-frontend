@@ -1,21 +1,41 @@
 import { styled } from 'styled-components'
 import { PINK, PRIMARY } from '@utility/COLORS'
 import { green } from '@mui/material/colors'
-export const ChallengeContainer = {
-  display: 'flex',
-  flexDirection: 'column', // 컨테이너 방향을 세로로 변경
-  marginBottom: '20px', // 각 챌린지 아이템 아래에 마진 추가
-  alignItems: 'center', // 아이템을 세로 중앙에 배치
-  border: '1px solid #ccc',
-  borderRadius: '12px', // 둥근 모서리
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
-  padding: '6px', // 내부 여백
-  //   width: '300px', // 너비
-  margin: '8px',
-  cursor: 'pointer',
-  position: 'relative',
-  width: '310px',
+// export const ChallengeContainer = {
+//   display: 'flex',
+//   flexDirection: 'column', // 컨테이너 방향을 세로로 변경
+//   marginBottom: '20px', // 각 챌린지 아이템 아래에 마진 추가
+//   alignItems: 'center', // 아이템을 세로 중앙에 배치
+//   border: '1px solid #ccc',
+//   borderRadius: '12px', // 둥근 모서리
+//   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
+//   padding: '6px', // 내부 여백
+//   //   width: '300px', // 너비
+//   margin: '8px',
+//   cursor: 'pointer',
+//   position: 'relative',
+//   width: '310px',
+//   backgroundColor: isHovered ? '#FEFFDB' : 'transparent',
+// }
+
+export const ChallengeContainer = styled.div`
+display: flex;
+flex-direction: column;
+margin-bottom: 20px;
+align-items: center;
+border: 1px solid #ccc;
+border-radius: 12px;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+padding: 6px;
+margin: 8px;
+cursor: pointer;
+position: relative;
+width: 310px;
+
+&:hover {
+  background-color: #FFD966;
 }
+`;
 
 export const ChallengeImageProgressContainer = styled.div`
   width: 100%;

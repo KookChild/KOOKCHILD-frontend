@@ -36,7 +36,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
         cancelButtonColor: '#D9D9D9',
         confirmButtonText: '예',
         cancelButtonText: '아니오',
-        reverseButtons: true,
+
         customClass: {
           // 모달에 사용할 클래스 추가
           container: 'custom-swal-container',
@@ -67,7 +67,6 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
             cancelButtonColor: '#D9D9D9',
             confirmButtonText: '확인',
             cancelButtonText: '취소',
-            reverseButtons: true,
             customClass: {
               // 모달에 사용할 클래스 추가
               container: 'custom-swal-container',
@@ -83,14 +82,14 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
                   if (response.data) {
                     // 성공 모달 표시
                     Swal.fire({
-                      title: '<span style="font-size: 20px;">우리아이에게 송금이 완료되었습니다.</span>',
+                      title: '<span style="font-size: 20px;">송금이 완료되었습니다.</span>',
                       text: '찾아주셔서 감사합니다',
                       icon: 'success',
                       customClass: {
                         // 성공 알림 모달에 사용할 클래스 추가
                         container: 'custom-swal-container',
                       },
-                      timer: 2000, // 2초 후에 모달 창을 자동으로 닫도록 설정 (밀리초 단위)
+                   
                     });
                     setDisabled(false);
                   }
@@ -108,11 +107,6 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
                   // 에러 메시지를 사용하여 사용자에게 알림을 표시할 수 있습니다.
                 })
                 .finally(() => {
-                  // setDisabled(false);
-                  //  // 2초 후에 창을 새로고침
-                  //   setTimeout(() => {
-                  //     window.location.reload();
-                  //   }, 2000);
                   }
                 );
             } else {
@@ -126,7 +120,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
               setDisabled(false);
             }
 
-            window.location.reload(); 
+            
           });
         } else {
           Swal.fire({
@@ -138,6 +132,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
           setDisabled(false);
         }
       });
+     
   
     }
 

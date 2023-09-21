@@ -4,17 +4,19 @@ import { YELLOW, PRIMARY } from '@utility/COLORS'
 export const ItemContainer = styled.div`
     cursor: pointer;
     display: flex;
+    border-radius:inherit;
     justify-content: space-between;
+    
     align-items: center;
     height: 80px;
     width: 100%;
     padding-left: 13px;
     padding-right: 13px;
     opacity: 1;
-    background: ${props => props.even ? '#f0f0f0' : '#FFFFFF'} 0% 0% no-repeat padding-box;
+    background: ${props => props.even ? '#FFF2CC' : '#FFFFFF'} 0% 0% no-repeat padding-box;
 
     &:hover {
-        background: #E5E5E5;
+        background: #FFD966;
     }
 `;
 
@@ -86,11 +88,9 @@ export const ChildItemContainer = styled.div`
     width: 100%;
     height: 115px;
     position: relative;
-    background: #f0f0f0;
 `;
 
 export const ChildLeftSection = styled.div`
-background: #f0f0f0;
     display: flex;
     height: 76.66px;
     flex: 1;
@@ -130,7 +130,6 @@ export const ChildRightSection = styled.div`
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    background: white;
     justify-content: center;
     top: 0;
     right: 0;

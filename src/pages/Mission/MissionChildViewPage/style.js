@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 
+export const HeaderContainer = styled.div`
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  magin-left: 0px;
+  text-align: left;
+  line-height: 40px;
+  font-size: 22px;
+
+  font-family: kbFontBold;
+`
+
 export const MenuContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
 `;
-
 export const HistoryMissionButton = styled.button`
+    margin-top: 20px;
     width: 67px;
     height: 22px;
     color: white;
@@ -16,9 +27,10 @@ export const HistoryMissionButton = styled.button`
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     &:hover {
-        background-color: #A88A5A; /* 호버 시 밝은 배경색으로 변경 */
+        background-color: #A88A5A;
     }
 `;
+
 
 export const Dropdown = styled.select`
     width: 90px;
@@ -58,6 +70,10 @@ export const MissionItemContainer = styled.div`
   background-color: ${props => props.even ? '#FFFFFF' : '#F6F7F8'};
   opacity: 1;
   display:flex;
+  border-radius:8px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 export const MessageContainer = styled.div`

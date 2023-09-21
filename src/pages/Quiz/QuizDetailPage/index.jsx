@@ -19,6 +19,7 @@ import correctImage from './img/correct.png';
 import wrongImage from './img/wrong.png';
 import Swal from 'sweetalert2';
 import KnowX from './img/Lamus.png'
+import Answer from './img/Lamu.png'
 
 
 export const QuizDetailPage = () => {
@@ -134,6 +135,7 @@ export const QuizDetailPage = () => {
       </AreaContainer>
 
       <AreaFooterContainer>
+      {!isUnsure && selectedChoice && <StyledLeftImage src={Answer} alt="Answer Image" />}
       {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
         <StyledSubmitButton
           onClick={handleSubmit}

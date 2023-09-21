@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Lottie from 'lottie-react';
+import creatingAnimation from 'src/animations/animation_lmrukuxj.json';
+import loadingAnimation from 'src/animations/animation_lmrwrsbx.json'
 import Swal from 'sweetalert2';
 import {
     AreaFooterContainer,
@@ -14,7 +17,8 @@ import {
     RecommendButton,
     LoadingMessage,
     LoadingOverlay,
-    ChildImageContainer
+    ChildImageContainer,
+    LoadingText
 } from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -27,6 +31,8 @@ export const MissionCreatePage = () => {
     const now = new Date();
     const [childs, setChilds] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isCreatingMission, setIsCreatingMission] = useState(false);
+
 
 
     const fetchRecommendedMission = async () => {
@@ -95,9 +101,8 @@ export const MissionCreatePage = () => {
                 icon: 'error',
                 confirmButtonText: '확인',
                 customClass: {
-                    // 모달에 사용할 클래스 추가
                     container: 'custom-swal-container',
-                  },
+                },
             });
             return;
         }
@@ -109,25 +114,28 @@ export const MissionCreatePage = () => {
             cancelButtonColor: '#D9D9D9',
             confirmButtonText: '등록',
             cancelButtonText: '취소',
-            reverseButtons: true,
             customClass: {
                 container: 'custom-swal-container',
-              },
+            },
         }).then((result) => {
             if (result.isConfirmed) {
+                setIsCreatingMission(true);
                 Swal.fire({
                     title: '<span style="font-size: 20px;">등록 완료!</span>',
                     icon: 'success',
                     customClass: {
                         container: 'custom-swal-container',
-                      },
+                    },
                 }).then(function () {
-                    console.log(missionData);
-                    onSubmit();
-                })
+                    setIsCreatingMission(true);
+                    onSubmit()
+                        .finally(() => {
+                        });
+                });
             }
         });
     };
+
 
     const onSubmit = async (e) => {
         missionData.childIds = selectedIds.join(',');
@@ -222,15 +230,32 @@ export const MissionCreatePage = () => {
                 </MissionInfoContainer>
             </AreaContainer>
             <AreaFooterContainer>
-                    <EditButton onClick={handleCreateMissionClick}>미션 등록</EditButton>
+                <EditButton onClick={handleCreateMissionClick}>미션 등록</EditButton>
             </AreaFooterContainer>
             {isLoading && (
                 <LoadingOverlay>
                     <LoadingMessage>
-                        추천 미션을 가져오는 중입니다
+                        <Lottie
+                            animationData={loadingAnimation}
+                            style={{ width: "100px", height:"100px" }}
+                        />
+                        <span>추천 미션을 가져오는 중입니다</span>
+
                     </LoadingMessage>
                 </LoadingOverlay>
             )}
+            {isCreatingMission && (
+                <LoadingOverlay>
+                    <LoadingMessage>
+                        <Lottie
+                            animationData={creatingAnimation}
+                            style={{ width: "200px", height: "300px" }}
+                        />
+                        <LoadingText>미션 생성 중입니다</LoadingText>
+                    </LoadingMessage>
+                </LoadingOverlay>
+            )}
+
         </TopContainer>
     );
 }

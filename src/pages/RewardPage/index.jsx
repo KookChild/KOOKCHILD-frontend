@@ -7,14 +7,26 @@ import { PRIMARY } from '@utility/COLORS'
 import { GoCheckCircle } from "react-icons/go";
 import { AiFillDollarCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
-import { 
-  Button, 
-  SendButtonContainer, 
+import {
+  Button,
+  SendButtonContainer,
   commonSwalOptions
- } from './style';
+} from './style';
 import { useNavigate } from "react-router-dom";
 
+const HeaderContainer = styled.div`
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  magin-left: 0px;
+  text-align: left;
+  line-height: 40px;
+  font-size: 22px;
+
+  font-family: kbFontBold;
+`
+
 const MainContent = styled.div`
+    margin-top: 30px;
     height : 100%
 `;
 
@@ -38,6 +50,9 @@ const RewardContainer = styled(Container)`
   margin: 9px 0px;
 
   display : flex;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const MissionContainer = styled(Container)`
@@ -52,6 +67,9 @@ const MissionContainer = styled(Container)`
     margin-bottom: 5px;
   }
   margin: 6px 0px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const SeparateContainer = styled.div`
@@ -99,7 +117,7 @@ const Balance = styled.div`
 
 const CustomButton = styled.button`
   background: ${(props) => props.backgroundcolor || '#84888B'};
-  color: ${(props)=>props.fontcolor};
+  color: ${(props) => props.fontcolor};
   border-radius: 9px;
   padding: 10px 20px;
   border: none;
@@ -116,7 +134,9 @@ const InternalComponent = styled.div`
   display:flex;
   flex-direction : column;
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 const Name = styled.div`
@@ -159,10 +179,11 @@ const FlexContainer = styled.div`
 
 const Container2 = styled.div`
   margin: 6px; /* 원하는 마진 값으로 조정하세요 */
+  margin-top: 21px;
 `;
 
 const MissionTitle = styled.div`
-  font-size:17px;
+  font-size:16px;
   display: flex; /* Flexbox를 사용하여 내부 요소를 정렬합니다 */
   line-height: 36px;
   text-align: center; /* 가로 중앙 정렬 */
@@ -214,10 +235,11 @@ width: 70px;
 height: 40px;
 border-radius: 8px;
 background-color: #f5f5f5;
+box-shadow: 0px 2px 4px rgb(0 0 0 / 23%);
 `
 
 
-const MissionAmount=styled.div`
+const MissionAmount = styled.div`
 font-size: 14px;
 text-align: center;
 `
@@ -293,8 +315,8 @@ export const RewardPage = () => {
   const handleWithdraw = async () => {
     try {
       // '/reward/withdraw'로 GET 요청 보내기
-      
-      if(responseData.rewardCompleteAmount == '0'){
+
+      if (responseData.rewardCompleteAmount == '0') {
         Swal.fire({
           icon: 'error', // 성공 아이콘 표시
           title: '출금 실패',
@@ -306,9 +328,9 @@ export const RewardPage = () => {
           },
           ...commonSwalOptions,
         });
-      }else{
+      } else {
         const response = await axios.get('/reward/withdraw');
-      
+
         // 요청이 성공하면 출금 성공 메시지를 표시
         if (response.status === 200) {
           setWithdrawSuccess(true);
@@ -325,29 +347,29 @@ export const RewardPage = () => {
             ...commonSwalOptions,
           });
 
-          window.location.reload(); 
+          window.location.reload();
         }
       }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-    
+
   };
 
   const grayIconStyle = {
     color: 'gray', // 아이콘의 색상을 회색으로 설정
     fontSize: 27,   // 아이콘의 크기 설정
-    paddingRight:10
-    
+    paddingRight: 10
+
   };
 
 
 
   return (
     <TopContainer>
-      <TopNavigationBar title={'보상금 저장소'} />
+      <HeaderContainer>보상금 저장소</HeaderContainer>
       <MainContent>
-      <RewardContainer>
+        <RewardContainer>
           <LeftComponent>
             <UserInfo>
               {responseData.name}님의 보상금 통장
@@ -355,61 +377,61 @@ export const RewardPage = () => {
             </UserInfo>
           </LeftComponent>
           <RightComponent>
-            <CustomButton 
-            backgroundcolor="#84888B" 
-            fontcolor="#FFFFFF"
-            
+            <CustomButton
+              backgroundcolor="#84888B"
+              fontcolor="#FFFFFF"
+
             >보상내역</CustomButton>
-            <CustomButton 
-            backgroundcolor={PRIMARY} 
-            fontcolor="#010812"
-            onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
+            <CustomButton
+              backgroundcolor={PRIMARY}
+              fontcolor="#010812"
+              onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
             >출금하기</CustomButton>
           </RightComponent>
         </RewardContainer>
         <SeparateContainer>
           <InternalComponent>
-              <Name>
-                승인 대기 중인 보상금
-              </Name>
-              <Amount>
-                {responseData.rewardConfirmWaitAmount}원
-              </Amount>
+            <Name>
+              승인 대기 중인 보상금
+            </Name>
+            <Amount>
+              {responseData.rewardConfirmWaitAmount}원
+            </Amount>
           </InternalComponent>
           <InternalComponent>
-             <Name>
-                이번 달 예상 이자수익
-              </Name>
-              <Amount>
-                {responseData.thisMonthInterestIncome}원
-              </Amount>
+            <Name>
+              이번 달 예상 이자수익
+            </Name>
+            <Amount>
+              {responseData.thisMonthInterestIncome}원
+            </Amount>
           </InternalComponent>
         </SeparateContainer>
         <Container2>
           <MissionTitle>미완료 미션</MissionTitle>
           <MissionContainer>
-            <ParentComponent> 
-            {missionData.missionContents.length === 0 ? (
+            <ParentComponent>
+              {missionData.missionContents.length === 0 ? (
                 <NoMissionsMessage>미완료된 미션이 아직 없습니다.</NoMissionsMessage>
-              ) : 
-              missionData.missionContents.map((mission, index) => (
-                <MissionItem key={index}>
-                  <GoCheckCircle style={grayIconStyle} />
-                  <MissionText onClick={() => navigate('/child/mission/childview')}>
-                    <MissionTitle>
-                      {mission.title.length > 12 ? mission.title.slice(0, 12) + '...' : mission.title}
-                    </MissionTitle>
-                    <MissionCon>
-                      <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
-                    </MissionCon>
-                  </MissionText>
-                </MissionItem>
-              ))
-            }
+              ) :
+                missionData.missionContents.map((mission, index) => (
+                  <MissionItem key={index}>
+                    <GoCheckCircle style={grayIconStyle} />
+                    <MissionText onClick={() => navigate('/child/mission/childview')}>
+                      <MissionTitle>
+                        {mission.title.length > 12 ? mission.title.slice(0, 12) + '...' : mission.title}
+                      </MissionTitle>
+                      <MissionCon>
+                        <MissionAmount backgroundcolor={'#84888B'} bordercolor={PRIMARY}>보상금 {mission.amount}</MissionAmount>
+                      </MissionCon>
+                    </MissionText>
+                  </MissionItem>
+                ))
+              }
             </ParentComponent>
           </MissionContainer>
           <UnderSection>
-              <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{missionData.notCompleteMissionsAmount}</span></p>
+            <p> <AiFillDollarCircle className='moneyIcon' /> 미션 보상금 <span>{missionData.notCompleteMissionsAmount}</span></p>
           </UnderSection>
         </Container2>
       </MainContent>
