@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Lottie from 'lottie-react';
 import { useParams } from 'react-router-dom';
 import { TopContainer, TopNavigationBar } from '@components';
 import {
@@ -9,15 +10,37 @@ import {
     CharacterImage,
     ChatBubble,
     YouTubeButton,
-    AreaFooterContainer
+    AreaFooterContainer,
+    UserInput,
+    AskButton, QuestionCharacter,
+    LoadingMessage, LoadingOverlay, LoadingText
 } from './style';
-import { getQuizHistoryDetail } from '@apis';
+import { getQuizHistoryDetail, sendQuestionToAPI } from '@apis';
 import character1 from './img/Lamu.png';
 import character2 from './img/RabbitG.png';
+import loadingAnimation from 'src/animations/zzsDbpkm5P.json'
 
 export const QuizHistoryDetailPage = () => {
     const { quizId } = useParams();
     const [quizDetail, setQuizDetail] = useState(null);
+    const [userQuestion, setUserQuestion] = useState("");
+    const [characterResponse, setCharacterResponse] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    const handleSubmitQuestion = async () => {
+        setIsLoading(true);
+        try {
+            const { answer } = await sendQuestionToAPI(userQuestion);
+            setCharacterResponse(answer);
+        } catch (error) {
+            console.error("Error fetching the character's response", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
 
     const hasJongseong = (char) => {
         const code = char.charCodeAt(0);
@@ -40,7 +63,7 @@ export const QuizHistoryDetailPage = () => {
         const query = `${quizDetail.answer}관련 어린이 금융`;
         const encodedQuery = encodeURIComponent(query);
         window.location.href = baseURL + encodedQuery;
-      };
+    };
 
 
     useEffect(() => {
@@ -64,17 +87,42 @@ export const QuizHistoryDetailPage = () => {
                 <StyledLevel>{`LEVEL ${quizDetail.level}`}</StyledLevel>
                 <StyledTitle>Q. {quizDetail.answer}{getSuffix(quizDetail.answer)}</StyledTitle>
             </AreaTitleContainer>
-            <CharacterContainer delay="0s">
+            <CharacterContainer delay="0s"> {/* First Character */}
                 <CharacterImage className="firstImage" src={character1} alt="첫번째 캐릭터" />
                 <ChatBubble>{`${quizDetail.answer}${getSuffixForQuestion(quizDetail.answer)} 뭔가요?`}</ChatBubble>
             </CharacterContainer>
+
             <CharacterContainer delay="1s" className='secondContainer'>
-                <ChatBubble className="secondBubble">{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}</ChatBubble>
+                <ChatBubble className="secondBubble">{`${quizDetail.answer}에 대해서 설명해드릴게요! ${quizDetail.explanation}`}<br /> 혹시 더 궁금한 점이 있나요?</ChatBubble>
                 <CharacterImage className="secondImage" src={character2} alt="두번째 캐릭터" />
             </CharacterContainer>
+
+            <QuestionCharacter delay="2s">
+                <UserInput value={userQuestion} onChange={e => setUserQuestion(e.target.value)} placeholder="여기에 질문을 작성해주세요." />
+                <AskButton onClick={handleSubmitQuestion}>질문</AskButton>
+            </QuestionCharacter>
+
+            {characterResponse && (
+                <CharacterContainer delay="1s" className='secondContainer'>
+                    <ChatBubble className="secondBubble">{characterResponse}</ChatBubble>
+                    <CharacterImage className="secondImage" src={character2} alt="두번째 캐릭터" />
+                </CharacterContainer>
+            )}
+
             <AreaFooterContainer>
-            <YouTubeButton onClick={handleButtonClick}>{`${quizDetail.answer}에 대해서 더 알고 싶다면?`}</YouTubeButton>
+                <YouTubeButton onClick={handleButtonClick}>{`${quizDetail.answer}에 대해서 더 알고 싶다면?`}</YouTubeButton>
             </AreaFooterContainer>
+            {isLoading && (
+                <LoadingOverlay>
+                    <LoadingMessage>
+                        <Lottie
+                            animationData={loadingAnimation}
+                            style={{ width: "270px", height: "400px" }}
+                        />
+                        <LoadingText>답변을 불러오는 중입니다</LoadingText>
+                    </LoadingMessage>
+                </LoadingOverlay>
+            )}
         </TopContainer>
     );
 }

@@ -47,3 +47,10 @@ export const getChildQuizList = async (childId = 0) => {
   const response = await axios.get(`/quiz/parent?child=${childId}`);
   return response.data;
 };
+
+export const sendQuestionToAPI = async (question) => {
+  const response = await axios.post('/quiz/question', {
+    question
+  });
+  return response.data;
+};
