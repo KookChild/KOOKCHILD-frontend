@@ -1,5 +1,16 @@
 import styled, { keyframes } from 'styled-components';
-import { PRIMARY, BROWN, YELLOW } from '@utility/COLORS';
+import { PRIMARY, BROWN, YELLOW, GRAY } from '@utility/COLORS';
+
+const slideInFromBottom = keyframes`
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
 
 const slideUp = keyframes`
   from {
@@ -50,8 +61,6 @@ export const LoadingText = styled.p`
 
 
 export const ContentContainer = styled.div`
-  max-height: 600px;
-  overflow-y: auto;
   padding-bottom: 15px;
 `;
 
@@ -121,7 +130,6 @@ export const StyledButton = styled.button`
 `;
 
 export const AreaFooterContainer = styled.div`
-    position: absolute;
     width: 350px;
     padding-bottom : 50px;
     display: flex;
@@ -155,4 +163,127 @@ export const Description = styled.div`
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     background: white;
+`;
+
+
+export const CharacterContainer = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    animation: ${slideInFromBottom} 1s forwards;
+    animation-delay: ${props => props.delay || "0s"};
+    opacity: 0;
+
+    &.secondContainer {
+      padding: 0px;
+      margin-top: 40px;
+    }
+`;
+
+export const QuestionCharacter = styled.div`
+    text-align: center;
+    animation: ${slideInFromBottom} 1s forwards;
+    animation-delay: ${props => props.delay || "0s"};
+    opacity: 0;
+`
+
+export const CharacterImage = styled.img`
+    width: 120px;
+    height: auto;
+    position: relative;
+
+    &.firstImage {
+      right: -30px;
+    }
+    &.secondImage {
+      right: -10px;
+    }
+`;
+
+export const ChatBubble = styled.div`
+  font-size: 15px;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  max-width: 70%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+
+    // 두번째 캐릭터의 대화창
+    &:last-child {
+      border-right-color: #fff;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+`;
+
+export const UserInput = styled.input`
+    width: 200px;
+    font-size: 15px;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid ${GRAY};
+    max-width: 70%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+`;
+
+export const AskButton = styled.button`
+    font-size: 15px;
+    background-color: ${PRIMARY};
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        background-color: ${YELLOW};
+    }
+`;
+
+export const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // 다른 요소 위에 오게 설정
+`;
+
+export const LoadingAnswerText = styled.span`
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+`;
+
+export const LoadingMessage = styled.div`
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  display: flex;           // Flexbox를 사용하여 내부 아이템들을 배치
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
