@@ -135,7 +135,7 @@ export const QuizDetailPage = () => {
       </AreaContainer>
 
       <AreaFooterContainer>
-      {!isUnsure && <StyledLeftImage src={Answer} alt="Answer Image" />}
+      {!isUnsure && selectedChoice && <StyledLeftImage src={Answer} alt="Answer Image" />}
       {isUnsure && <StyledLeftImage src={KnowX} alt="KnowX Image" />}
         <StyledSubmitButton
           onClick={handleSubmit}
