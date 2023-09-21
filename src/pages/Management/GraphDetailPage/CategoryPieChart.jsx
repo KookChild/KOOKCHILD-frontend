@@ -6,7 +6,7 @@ const CategoryPieChart = ({ data }) => {
     <PieChart
       data={data}
       animate
-      animationDuration={500}
+      animationDuration={1000}
       animationEasing="ease-out"
       startAngle={-90}
       totalValue={100}
