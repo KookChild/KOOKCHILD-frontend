@@ -48,6 +48,14 @@ export const buttonTextContainer = {
   textAlign: 'left'
 };
 
+export const buttonTextContainer2 = {
+  position: '',
+  left: '10px', // 텍스트를 버튼의 왼쪽 벽에서 약 10px 떨어트림
+  bottom: '10px', // 텍스트를 버튼의 하단 벽에서 약 10px 떨어트림
+  textAlign: 'left',
+  paddingTop : '8px'
+};
+
 export const AccounttextLine1 = {
   fontSize: '18px', 
   fontWeight: 'bold', 
@@ -64,16 +72,22 @@ export const AccounttextLine2 = {
 
 
 export const textLine1 = {
-  fontSize: '16px', 
+  fontSize: '18px', 
   fontWeight: 'bold', 
   display: 'block',
   marginBottom: '5px'
 };
 
 export const textLine2 = {
-  fontSize: '12px', 
+  fontSize: '15px', 
   display: 'block'
 };
+
+export const flexContainer={
+  display: 'flex',
+  flexDirection : 'column',
+  justifyContent: 'center'
+}
 
 
 export const ButtonBaseStyle = {
@@ -81,9 +95,17 @@ export const ButtonBaseStyle = {
   boxShadow: '0px 4px 6px #00000029',
 };
 
+export const managePicture2 = {
+  width: '77px'
+}
+
+
+export const managePicture = {
+  width: '70px'
+}
 
 export const LinkAccountButton = {
-  backgroundColor: '#FFE17A',
+  backgroundColor: '#f6f6f6',
   flex: 1,
   padding: '48px 20px', // 세로 길이를 조절
   margin: '7.5px',
@@ -109,7 +131,7 @@ export const LinkedAccountButtonStyle = {
 };
 
 export const ChildFinanceManagementButton = {
-  backgroundColor: PRIMARY,
+  backgroundColor: '#f6f6f6',
   flex: 1,
   padding: '30px 20px', 
   marginTop: '0px',
@@ -117,31 +139,43 @@ export const ChildFinanceManagementButton = {
   borderRadius: '12px', 
   border: '1px solid #ccc',
   boxShadow: '0px 2px 4px #00000029',
-  ...ButtonBaseStyle
+  ...ButtonBaseStyle,
+  display:'flex',
+  justifyContent: 'inherit',
+  alignItems: 'center'
+
 };
 
 export const ViewFinanceProductButton = {
-  backgroundColor: YELLOW,
+  backgroundColor: '#f6f6f6',
   flex: 0.48,
-  padding: '35px 10px',
+  padding: '23px 10px',
   margin: '7.5px',
   marginRight: '2px',
   borderRadius: '12px',
   border: '1px solid #ccc',
   boxShadow: '0px 2px 4px #00000029',
-  ...ButtonBaseStyle
+  ...ButtonBaseStyle,
+  display:'flex',
+  flexDirection : 'column',
+  justifyContent: 'space-evenly', // 수직 방향에서 요소들을 균등하게 배치
+  alignItems: 'baseline'
 };
 
 export const RewardManagementButton = {
-  backgroundColor: BROWN,
+  backgroundColor: '#f6f6f6',
   flex: 0.48,
-  padding: '35px 10px',
+  padding: '23px 10px',
   margin: '7.5px',
   marginLeft: '2px',
   borderRadius: '12px',
   border: '1px solid #ccc', 
   boxShadow: '0px 2px 4px #00000029',
-  ...ButtonBaseStyle
+  ...ButtonBaseStyle,
+  display:'flex',
+  flexDirection : 'column',
+  alignItems: 'baseline',
+  justifyContent: 'inherit'
 };
 
 export const BackToKBStarBankingButton = {

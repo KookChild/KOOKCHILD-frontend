@@ -209,12 +209,6 @@ export const ChildMainPage = () => {
           <ChallengeItem key={challenge.id} challenge={challenge} />
         ))}
       </ButtonSection>
-
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button style={BackToKBStarBankingButton}>
-          <span style={{ fontSize: '8px' }}>KB스타뱅킹으로 돌아가기</span>
-        </button>
-      </div>
     </TopContainer>
   )
 }
