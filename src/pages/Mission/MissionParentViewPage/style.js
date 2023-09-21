@@ -55,9 +55,9 @@ export const TabContainer = styled.div`
 export const Tab = styled.button`
   width: 78px;
   height: 30px;
-  background: ${props => (props.selected ? '#84888B' : '#FFFFFF')};
+  background: ${props => (props.selected ? '#FFBB5C' : '#FFFFFF')};
   box-shadow: inset 0px 1px 3px #00000029;
-  border: 1px solid #84888b;
+  border: none;
   border-radius: 15px;
   opacity: 1;
   color: ${props => (props.selected ? 'white' : '#84888B')};

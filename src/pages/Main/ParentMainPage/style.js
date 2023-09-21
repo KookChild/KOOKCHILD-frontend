@@ -1,5 +1,5 @@
 
-import { PRIMARY, GRAY } from '@utility/COLORS'
+import { PRIMARY, GRAY, BROWN, YELLOW } from '@utility/COLORS'
 
 
 export const iconContainer = {
@@ -79,12 +79,11 @@ export const textLine2 = {
 export const ButtonBaseStyle = {
   fontFamily: 'kbFont',
   boxShadow: '0px 4px 6px #00000029',
-  
 };
 
 
 export const LinkAccountButton = {
-  backgroundColor: '#ffffff',
+  backgroundColor: '#FFE17A',
   flex: 1,
   padding: '48px 20px', // 세로 길이를 조절
   margin: '7.5px',
@@ -110,7 +109,7 @@ export const LinkedAccountButtonStyle = {
 };
 
 export const ChildFinanceManagementButton = {
-  backgroundColor: '#ffffff',
+  backgroundColor: PRIMARY,
   flex: 1,
   padding: '30px 20px', 
   marginTop: '0px',
@@ -122,7 +121,7 @@ export const ChildFinanceManagementButton = {
 };
 
 export const ViewFinanceProductButton = {
-  backgroundColor: '#ffffff',
+  backgroundColor: YELLOW,
   flex: 0.48,
   padding: '35px 10px',
   margin: '7.5px',
@@ -134,7 +133,7 @@ export const ViewFinanceProductButton = {
 };
 
 export const RewardManagementButton = {
-  backgroundColor: '#ffffff',
+  backgroundColor: BROWN,
   flex: 0.48,
   padding: '35px 10px',
   margin: '7.5px',
@@ -146,7 +145,7 @@ export const RewardManagementButton = {
 };
 
 export const BackToKBStarBankingButton = {
-  backgroundColor: '#ffffff',
+  backgroundColor: 'rgb(204, 204, 204)',
   flex: 0.4,
   padding: '10px 10px', // 세로 길이를 조절
   marginTop: '22px',

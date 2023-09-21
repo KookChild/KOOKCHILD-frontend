@@ -37,7 +37,8 @@ export const ChallengeItem = ({ challenge, isParent, parentReward }) => {
 
   return (
     challenge && (
-      <div style={ChallengeContainer} onClick={handleClick}>
+      <ChallengeContainer
+        onClick={handleClick}>
         <ChallengeImageProgressContainer>
           <img
             src={challenge?.image}
@@ -85,7 +86,7 @@ export const ChallengeItem = ({ challenge, isParent, parentReward }) => {
             )}
           </div>
         </ChallengeInfo>
-      </div>
+      </ChallengeContainer>
     )
   )
 }
