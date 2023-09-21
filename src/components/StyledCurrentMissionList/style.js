@@ -22,16 +22,20 @@ export const NoMissionsMessage = styled.div`
   opacity: 0.8; /* 글자의 투명도 조절 (0.8은 80% 투명) */
 `;
 
+export const MissionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 
-export const missionContainer = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  borderBottom: '1px solid #ccc',
-  paddingBottom: '10px',
-  marginBottom: '10px',
-  cursor: 'pointer',
-}
+  // &:hover {
+  //   background-color: #FFD966;
+  // }
+`;
+
 
 export const missionInfo = {
   flex: 1,

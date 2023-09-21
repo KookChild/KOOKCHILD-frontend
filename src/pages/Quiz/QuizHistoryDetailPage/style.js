@@ -58,6 +58,11 @@ export const CharacterContainer = styled.div`
       padding: 0px;
       margin-top: 40px;
     }
+    &.leftAligned {
+      justify-content: flex-start;
+      padding-left: 20px;
+      margin-top: 10px;
+  }
 `;
 
 export const CharacterImage = styled.img`
@@ -127,7 +132,6 @@ export const YouTubeButton = styled.button`
 `;
 
 export const AreaFooterContainer = styled.div`
-    position: absolute;
     width: 350px;
     padding-bottom : 50px;
     display: flex;
@@ -141,4 +145,65 @@ export const AreaFooterContainer = styled.div`
     &:last-child {
         margin-bottom: 0;
     }
+`;
+
+
+export const UserInput = styled.input`
+    font-size: 15px;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid ${GRAY};
+    max-width: 70%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+`;
+
+export const AskButton = styled.button`
+    font-size: 15px;
+    background-color: ${PRIMARY};
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        background-color: ${YELLOW};
+    }
+`;
+
+export const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // 다른 요소 위에 오게 설정
+`;
+
+export const LoadingText = styled.span`
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+`;
+
+export const LoadingMessage = styled.div`
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  display: flex;           // Flexbox를 사용하여 내부 아이템들을 배치
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

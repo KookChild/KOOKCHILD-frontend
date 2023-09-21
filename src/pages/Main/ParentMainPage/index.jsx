@@ -20,6 +20,10 @@ import {
   textLine2,
   AccounttextLine1,
   AccounttextLine2,
+  flexContainer,
+  managePicture,
+  buttonTextContainer2,
+  managePicture2,
 } from './style'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -125,9 +129,15 @@ export const ParentMainPage = () => {
           style={ChildFinanceManagementButton}
           onClick={() => handleNavigation('/management')}
         >
-          <div style={buttonTextContainer}>
-            <span style={textLine1}>자녀 금융 관리</span>
-            <span style={textLine2}>자녀의 금융 활동 현황을 확인해요</span>
+          <div style={flexContainer}>
+            <div style={buttonTextContainer}>
+              <span style={textLine1}>자녀 금융 관리</span>
+              <span style={textLine2}>자녀의 금융 활동 현황을 확인해요</span>
+            </div>
+          </div>
+            {/* 이미지 컨테이너 */}
+          <div className="image-container">
+            <img src={require('../../../img/자녀금융관리.png')} alt="자녀금융관리" style={managePicture2} />
           </div>
         </button>
       </div>
@@ -137,9 +147,12 @@ export const ParentMainPage = () => {
           style={ViewFinanceProductButton}
           onClick={() => handleNavigation('/financeproduct')}
         >
-          <div style={buttonTextContainer}>
-            <span style={textLine1}>자녀-부모 연계 상품</span>
-            <span style={textLine2}>부모님이 자녀에게 이자를</span>
+          <div className="image-container">
+            <img src={require('../../../img/금융상품.png')} alt="금융상품" style={managePicture} />
+          </div>
+          <div style={buttonTextContainer2}>
+            <span style={textLine1}>자녀-부모<br/>연계 금융 상품</span>
+            <span style={textLine2}>자녀에게 이자를</span>
             <span style={textLine2}>지급해보세요!</span>
           </div>
         </button>
@@ -147,19 +160,14 @@ export const ParentMainPage = () => {
           style={RewardManagementButton}
           onClick={() => handleNavigation('/mission/parentview')}
         >
+           <div className="image-container">
+            <img src={require('../../../img/미션챌린지.png')} alt="미션챌린지" style={managePicture} />
+          </div>
           <div style={buttonTextContainer}>
-            <span style={textLine1}>미션, 챌린지 관리</span>
+            <span style={textLine1}>미션과<br/>챌린지 관리</span>
             <span style={textLine2}>자녀의 금융 미션 현황,</span>
             <span style={textLine2}>보상금을 관리해요</span>
           </div>
-        </button>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button 
-        style={BackToKBStarBankingButton}
-        onClick={handleExternalLink}
-        >
-          <span style={{ fontSize: '12px' }}>KB스타뱅킹으로 돌아가기</span>
         </button>
       </div>
     </TopContainer>

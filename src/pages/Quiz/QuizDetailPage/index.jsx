@@ -60,14 +60,14 @@ export const QuizDetailPage = () => {
       const { correct, statusCode } = response;
       if (statusCode === 200) {
         const modalOptions = {
-          title: correct ? '<span style="font-size: 20px;">축하합니다! 정답입니다.</span>' : '<span style="font-size: 20px;">오답입니다<br/>다음에 다시 도전해보세요!</span>',
+          title: correct ? '<span style="font-size: 20px;">축하합니다! 정답입니다.</span>' : '<span style="font-size: 20px;">오답입니다<br/>다시 도전해보세요!</span><br/><span style="font-size: 15px;">해설을 확인하시면 재도전이 불가능합니다</span>',
           imageUrl: correct ? correctImage : wrongImage,
           imageWidth: 180,
           imageHeight: 180,
           imageAlt: correct ? 'Correct Image' : 'Wrong Image',
-          showCancelButton: true,
+          showCancelButton: !correct,
           confirmButtonText: '해설확인',
-          cancelButtonText: '홈으로',
+          cancelButtonText: correct ? '' : '다시풀기',
           customClass: {
             container: 'custom-swal-container',
           },
@@ -76,7 +76,7 @@ export const QuizDetailPage = () => {
           if (result.isConfirmed) {
             navigate(`/quiz/${quizId}/explanation`);
           } else if (result.dismiss === Swal.DismissReason.cancel) {
-            navigate('/child');
+            navigate(`/quiz/${quizId}/`);
           }
         });
 

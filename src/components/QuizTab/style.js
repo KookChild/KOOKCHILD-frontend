@@ -12,9 +12,14 @@ export const DailyQuizButton = styled.div`
   border: 1px solid #ccc;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  cursor: ${props => props.isCompleted ? 'cursor' : 'pointer'};
+  cursor: ${props => props.isCompleted ? 'default' : 'pointer'};
   opacity: ${props => props.isCompleted ? 0.6 : 1};
+
+  &:hover {
+    background-color: ${props => props.isCompleted ? 'inherit' : '#FFD966'};
+  }
 `;
+
 
 
 
