@@ -6,7 +6,6 @@ export const ChildItemContainer = styled.div`
     width: 100%;
     height: 140px;
     position: relative;
-    background: #f0f0f0;
 `;
 
 export const ChildUpSection = styled.div`
@@ -20,7 +19,6 @@ export const ChildUpSection = styled.div`
 
 export const ChildLeftSection = styled.div`
     top: 30px;
-    background: #f0f0f0;
     display: flex;
     height: 70px;
     align-items: center;

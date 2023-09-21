@@ -149,6 +149,7 @@ export const AreaFooterContainer = styled.div`
 
 
 export const UserInput = styled.input`
+    width: 200px;
     font-size: 15px;
     background-color: #fff;
     padding: 10px 20px;
@@ -190,7 +191,7 @@ export const LoadingOverlay = styled.div`
 
 export const LoadingText = styled.span`
     position: absolute;
-    bottom: 300px;
+    bottom: 280px;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -207,3 +208,11 @@ export const LoadingMessage = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const QuestionCharacter = styled.div`
+    text-align: center;
+    animation: ${slideInFromBottom} 1s forwards;
+    animation-delay: ${props => props.delay || "0s"};
+    opacity: 0;
+    margin-top: 30px;
+`

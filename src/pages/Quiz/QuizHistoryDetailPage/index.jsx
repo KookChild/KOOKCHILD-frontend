@@ -12,7 +12,7 @@ import {
     YouTubeButton,
     AreaFooterContainer,
     UserInput,
-    AskButton,
+    AskButton, QuestionCharacter,
     LoadingMessage, LoadingOverlay, LoadingText
 } from './style';
 import { getQuizHistoryDetail, sendQuestionToAPI } from '@apis';
@@ -79,19 +79,6 @@ export const QuizHistoryDetailPage = () => {
     }, [quizId]);
 
     if (!quizDetail) return <p>Loading...</p>;
-    // if (isLoading) {
-    //     return (
-    //         <LoadingOverlay>
-    //         <LoadingMessage>
-    //             <Lottie
-    //                 animationData={loadingAnimation}
-    //                 style={{ width: "200px", height: "300px" }}
-    //             />
-    //             <LoadingText>미션 생성 중입니다</LoadingText>
-    //         </LoadingMessage>
-    //     </LoadingOverlay>
-    //         )
-    // }
 
     return (
         <TopContainer>
@@ -110,10 +97,10 @@ export const QuizHistoryDetailPage = () => {
                 <CharacterImage className="secondImage" src={character2} alt="두번째 캐릭터" />
             </CharacterContainer>
 
-            <CharacterContainer className="leftAligned" delay="2s">
+            <QuestionCharacter delay="2s">
                 <UserInput value={userQuestion} onChange={e => setUserQuestion(e.target.value)} placeholder="여기에 질문을 작성해주세요." />
                 <AskButton onClick={handleSubmitQuestion}>질문</AskButton>
-            </CharacterContainer>
+            </QuestionCharacter>
 
             {characterResponse && (
                 <CharacterContainer delay="1s" className='secondContainer'>
@@ -130,7 +117,7 @@ export const QuizHistoryDetailPage = () => {
                     <LoadingMessage>
                         <Lottie
                             animationData={loadingAnimation}
-                            style={{ width: "200px", height: "300px" }}
+                            style={{ width: "270px", height: "400px" }}
                         />
                         <LoadingText>답변을 불러오는 중입니다</LoadingText>
                     </LoadingMessage>
