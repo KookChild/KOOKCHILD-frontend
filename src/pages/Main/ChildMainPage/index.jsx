@@ -204,7 +204,6 @@ export const ChildMainPage = () => {
       </div>
 
       <ButtonSection>
-        {/* 여기에서 ChallengeItem 컴포넌트를 사용하여 챌린지 목록을 렌더링합니다. */}
         {challengeList.map(challenge => (
           <ChallengeItem key={challenge.id} challenge={challenge} />
         ))}

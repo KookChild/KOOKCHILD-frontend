@@ -10,4 +10,5 @@ export const CenteredContainer = styled.div`
   padding: 20px; /* 내부 여백 설정 */
   overflow-y: auto;
   position: relative;
+  padding-bottom: 70px;
 `
