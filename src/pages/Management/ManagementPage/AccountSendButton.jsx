@@ -83,7 +83,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
                   if (response.data) {
                     // 성공 모달 표시
                     Swal.fire({
-                      title: '<span style="font-size: 20px;">우리아이에게 송금이 완료되었습니다.</span>',
+                      title: '<span style="font-size: 20px;">송금이 완료되었습니다.</span>',
                       text: '찾아주셔서 감사합니다',
                       icon: 'success',
                       customClass: {
