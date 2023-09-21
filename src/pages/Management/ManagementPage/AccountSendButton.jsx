@@ -36,7 +36,7 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
         cancelButtonColor: '#D9D9D9',
         confirmButtonText: '예',
         cancelButtonText: '아니오',
-        reverseButtons: true,
+
         customClass: {
           // 모달에 사용할 클래스 추가
           container: 'custom-swal-container',
@@ -67,7 +67,6 @@ const AccountDetailInfoButton = ({disabled, setDisabled, childId, balance}) => {
             cancelButtonColor: '#D9D9D9',
             confirmButtonText: '확인',
             cancelButtonText: '취소',
-            reverseButtons: true,
             customClass: {
               // 모달에 사용할 클래스 추가
               container: 'custom-swal-container',
