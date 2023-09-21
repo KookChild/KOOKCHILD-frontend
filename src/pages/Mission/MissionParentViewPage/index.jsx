@@ -99,12 +99,12 @@ export const MissionParentViewPage = () => {
             key={child.childId}
             selected={selectedChildIndex === child.childId}
             onClick={() => handleChildClick(child.childId, index)}
-          > 
+          >
             <ImageContainer>
               <Img src={require(`../../../img/아이${index + 1}.jpg`)} alt={child.childName} />
             </ImageContainer>
             <p>{child.childName}</p>
-           
+
           </ChildItemContainer>
         ))}
       </ChildListContainer>

@@ -18,12 +18,12 @@ export const MissionList = ({ missions, message, onRewardButtonClick }) => {
       {missions.length > 0 ? (
         missions.map((mission, index) => (
           <MissionItemContainer
-            even={0}
+            even={1}
             onClick={() => handleMissionClick(mission.id, 1)}
             key={index}
           >
             <MissionItem
-              even={0}
+              even={1}
               missionTitle={mission.title}
               missionReward={mission.reward}
               missionDate={mission.deadline}
