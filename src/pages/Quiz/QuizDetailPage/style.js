@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { PRIMARY, GRAY, BROWN, YELLOW } from '@utility/COLORS'
+import { PRIMARY, GRAY, BROWN } from '@utility/COLORS'
 
 const slideFromLeft = keyframes`
   from {

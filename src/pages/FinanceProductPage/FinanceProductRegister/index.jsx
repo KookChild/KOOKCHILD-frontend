@@ -56,8 +56,8 @@ export const FinanceProductRegister = () => {
 
             <ProductTitle>
                 <TextLine1>
-                    자녀 금융 교육<br /><br/>
-                    우대금리 입출금 통장
+                    <span className='upTitle'>자녀 금융 교육</span><br /><br/>
+                    <span className='downTitle'>우대금리 입출금 통장</span>
                 </TextLine1>
             </ProductTitle>
 
