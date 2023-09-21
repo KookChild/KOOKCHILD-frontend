@@ -3,16 +3,19 @@ import { YELLOW, PRIMARY, DARK_GRAY, MEDIUM_GRAY } from '@utility/COLORS'
 import { BsSearch } from 'react-icons/bs'
 
 export const ChildItemContainer = styled.div`
-    width: 100%;
-    height: 140px;
+    height: 120px;
     position: relative;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px 10px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 `;
 
 export const ChildUpSection = styled.div`
     color: ${DARK_GRAY};
     font-size: 14px;
     position: absolute;
-    top: 0;
     width: 350px;
     font-family: 'sdBo';
 `;
@@ -40,7 +43,7 @@ export const ChildLeftSection = styled.div`
 `;
 
 export const ChildRightSection = styled.div`
-    top: 30px;
+    top: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -88,10 +91,7 @@ export const ChildUnderSection = styled.div`
     display: flex;
     bottom: 0;
     height: 40px;
-    right:0;
-    p{
-        margin-top:10px;
-    }
+    right:10px;
     span{
         color: ${PRIMARY};
     }
