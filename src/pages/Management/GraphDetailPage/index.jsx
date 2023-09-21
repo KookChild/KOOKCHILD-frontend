@@ -115,9 +115,6 @@ export const GraphDetailPage = () => {
     // dataMap 객체를 배열로 변환
     const dataArray = Object.values(dataMap)
 
-    // 데이터 배열을 년월(yearMonth)을 기준으로 정렬 (예: 2022-01, 2022-02, ...)
-    dataArray.sort((a, b) => a.yearMonth.localeCompare(b.yearMonth))
-
     const labels = dataArray.map(item => item.yearMonth)
     const expenses = dataArray.map(item => item.expenses)
     const savings = dataArray.map(item => item.savings)
