@@ -79,7 +79,7 @@ export const RadioButtonGroup = styled.div`
 export const RadioLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   cursor: pointer;
 
   input[type='radio'] {

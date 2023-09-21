@@ -44,7 +44,12 @@ export const missionInfo = {
 export const missionTitle = {
   fontSize: '16px',
   fontWeight: 'bold',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  maxWidth: '150px',
 }
+
 
 export const missionDetail = {
   fontSize: '14px',

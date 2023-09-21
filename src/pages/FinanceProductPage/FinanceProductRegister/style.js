@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-
+import { GRAY } from '@utility/COLORS'
 // 금융상품 상세
 
 export const ProductTitle = styled.div`
-  zIndex: '2',
-  boxSizing: 'border-box',
-  width: '390px',
-  padding: '40px',
-  marginBottom: '-25px',
-  backgroundColor: '#DFEBE4',
-  marginLeft: '-20px',
-  marginRight: '0px',
-  cursor: 'pointer'
+  z-index: 2;
+  box-sizing: border-box;
+  width: 390px;
+  padding: 40px;
+  margin-bottom: -25px;
+  background-color: #DFEBE4;
+  margin-left: -20px;
+  margin-right: 0px;
+  cursor: pointer;
   `
 
 // 상품 정보 약식 정보
@@ -113,10 +113,15 @@ export const buttonTextContainer = {
 };
 
 export const TextLine1 = styled.span`
-  fontSize: '25px',
-  fontWeight: 'bold',
-  display: 'block',
-  marginBottom: '12px'
+.upTitle{
+  color: ${GRAY};
+}
+.downTitle{
+  font-size: 25px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 12px;
+}
 `;
 
 export const textLine2 = {
@@ -166,12 +171,6 @@ export const explainText = {
   marginLeft: '10px',
 };
 
-
-
-
-
-
-
 export const flexContainer = {
   display: 'flex',
   justifyContent: 'space-between'
@@ -191,9 +190,6 @@ export const textLine1Icon = {
   fontWeight: 'bold',
   marginLeft: '4px' // 아이콘과 텍스트 사이의 간격
 };
-
-
-
 
 // 버튼 컨테이너
 
