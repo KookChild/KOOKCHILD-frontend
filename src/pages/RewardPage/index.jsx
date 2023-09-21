@@ -347,7 +347,6 @@ export const RewardPage = () => {
             ...commonSwalOptions,
           });
 
-          window.location.reload();
         }
       }
     } catch (error) {
