@@ -100,8 +100,8 @@ export const ParentMainPage = () => {
       <div style={buttonTextContainer}>
         <BankName>입출금 통장</BankName>
         <span style={AccounttextLine2}>{parentData.accountNum}</span>
-        <span style={AccounttextLine1}>{`${animatedDigits}원`}</span>
         <SendContainer>
+          <span style={AccounttextLine1}>{`${animatedDigits}원`}</span>
           <Send>이체하기</Send>
         </SendContainer>
       </div>

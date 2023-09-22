@@ -129,7 +129,7 @@ export const UnlinkedAccountButtonStyle = {
 export const LinkedAccountButtonStyle = {
   backgroundColor: '#f6f6f6',
   flex: 1,
-  padding: '36px 20px', // 세로 길이를 조절
+  padding: '25px 20px', // 세로 길이를 조절
   margin: '7.5px',
   marginBottom: '7.5px',
   borderRadius: '8px', // 모서리 라운딩
@@ -212,7 +212,8 @@ export const BankName = styled.div`
 
 export const SendContainer = styled.div`
   display:flex;
-  justify-content:flex-end;
+  justify-content:space-between;
+  align-items:center;
   
 `
 
