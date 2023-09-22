@@ -160,7 +160,7 @@ export const ChildMainPage = () => {
             {child.accountNum}
           </div>
 
-          <div style={balanceContainer}>{animatedDigits.join('')}원</div>
+          <div style={balanceContainer}>{animatedDigits.length > 0? animatedDigits.join('') : 0}원</div>
           <br />
           <div style={buttonsContainer}>
             <div

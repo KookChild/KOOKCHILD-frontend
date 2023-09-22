@@ -147,6 +147,7 @@ export const DailyQuizButton = {
   borderRadius: '8px', // 모서리 라운딩
   border: '1px solid #ccc', // 테두리 없앰
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  width:'95%'
 }
 
 export const ChallengeContainer = {

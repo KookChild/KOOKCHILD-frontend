@@ -105,7 +105,7 @@ export const ChallengeChildDetailPage = () => {
   return (
     challenge && (
       <TopContainer style={{ backgroundColor: 'white' }}>
-        <TopNavigationBar title={'detail'} />
+        <TopNavigationBar title={'챌린지 상세'} />
         <ChallengeTitle> {challenge.title}</ChallengeTitle>
         <ChallengeContentImgContainer>
           <ChallengeContent>{challenge.childContent}</ChallengeContent>
