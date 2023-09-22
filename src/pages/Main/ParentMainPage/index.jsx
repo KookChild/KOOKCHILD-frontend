@@ -24,6 +24,9 @@ import {
   managePicture,
   buttonTextContainer2,
   managePicture2,
+  BankName,
+  SendContainer,
+  Send,
 } from './style'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faGear, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -95,8 +98,12 @@ export const ParentMainPage = () => {
   const LinkedAccountButton = (
     <button style={LinkedAccountButtonStyle}>
       <div style={buttonTextContainer}>
+        <BankName>입출금 통장</BankName>
         <span style={AccounttextLine2}>{parentData.accountNum}</span>
         <span style={AccounttextLine1}>{`${animatedDigits}원`}</span>
+        <SendContainer>
+          <Send>이체하기</Send>
+        </SendContainer>
       </div>
     </button>
   )

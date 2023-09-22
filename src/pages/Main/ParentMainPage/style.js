@@ -1,5 +1,6 @@
 
 import { PRIMARY, GRAY, BROWN, YELLOW } from '@utility/COLORS'
+import styled from 'styled-components';
 
 
 export const iconContainer = {
@@ -126,9 +127,21 @@ export const UnlinkedAccountButtonStyle = {
 };
 
 export const LinkedAccountButtonStyle = {
-  ...LinkAccountButton,  // 기존의 LinkAccountButton 스타일을 상속
-  // 필요하다면 여기에 추가 스타일을 작성
+  backgroundColor: '#f6f6f6',
+  flex: 1,
+  padding: '36px 20px', // 세로 길이를 조절
+  margin: '7.5px',
+  marginBottom: '7.5px',
+  borderRadius: '8px', // 모서리 라운딩
+  border: '1px solid #ccc', // 테두리 없앰
+  boxShadow: '0px 4px 6px #00000029', // 그림자 효과
+  opacity: '1',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  position: 'relative',
+  ...ButtonBaseStyle
 };
+
 
 export const ChildFinanceManagementButton = {
   backgroundColor: '#f6f6f6',
@@ -190,3 +203,26 @@ export const BackToKBStarBankingButton = {
   width: '200px',
   ...ButtonBaseStyle
 };
+
+export const BankName = styled.div`
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom: 5px;
+`
+
+export const SendContainer = styled.div`
+  display:flex;
+  justify-content:flex-end;
+  
+`
+
+export const Send = styled.div`
+  background-color: #f9c515;
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width:69px;
+  text-align: center;
+  font-size: 14px;
+  font-weight:bold;
+`
