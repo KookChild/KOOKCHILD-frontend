@@ -14,6 +14,7 @@ export const DailyQuizButton = styled.div`
   position: relative;
   cursor: ${props => props.isCompleted ? 'default' : 'pointer'};
   opacity: ${props => props.isCompleted ? 0.6 : 1};
+ transition: background-color 0.3s; /* 추가: 배경색 변경 애니메이션 */
 
   &:hover {
     background-color: ${props => props.isCompleted ? 'inherit' : '#FFD966'};
@@ -80,6 +81,8 @@ export const RightSection = styled.div`
     p {
         text-align: left;
     }
+    
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 23%);
 `;
 
 

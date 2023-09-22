@@ -64,9 +64,12 @@ export const ButtonSection = styled.div`
   justifyContent: 'space-between',
   gap: '2px',
   marginBottom: '5px',
+  transition: background-color 0.3s, /* 추가: 배경색 변경 애니메이션 */
+
   &:hover {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2)
   }
+  
 `
 
 

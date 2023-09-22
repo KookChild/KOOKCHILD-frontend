@@ -70,6 +70,11 @@ const MissionContainer = styled(Container)`
   border-radius: 8px;
   border: 1px solid rgb(204, 204, 204);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+   transition: background-color 0.3s; /* 추가: 배경색 변경 애니메이션 */
+
+  &:hover {
+    background-color: #FFD966; /* 호버 시 배경색 변경 */
+  }
 `;
 
 const SeparateContainer = styled.div`
@@ -124,6 +129,25 @@ const CustomButton = styled.button`
   margin: 2px 0px;
   width: 110px;
   font-family:sdMe;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+  &:hover{
+     background-color:#83878acc;
+  }
+`;
+
+const CustomButton2 = styled.button`
+  background: ${(props) => props.backgroundcolor || '#84888B'};
+  color: ${(props) => props.fontcolor};
+  border-radius: 9px;
+  padding: 10px 20px;
+  border: none;
+  margin: 2px 0px;
+  width: 110px;
+  font-family:sdMe;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+  &:hover{
+     background-color:gold;
+  }
 `;
 
 
@@ -381,11 +405,11 @@ export const RewardPage = () => {
               fontcolor="#FFFFFF"
 
             >보상내역</CustomButton>
-            <CustomButton
+            <CustomButton2
               backgroundcolor={PRIMARY}
               fontcolor="#010812"
               onClick={handleWithdraw} // 출금 버튼을 클릭하면 handleWithdraw 함수 실행
-            >출금하기</CustomButton>
+            >출금하기</CustomButton2>
           </RightComponent>
         </RewardContainer>
         <SeparateContainer>

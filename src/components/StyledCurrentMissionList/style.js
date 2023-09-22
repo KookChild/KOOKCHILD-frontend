@@ -62,7 +62,9 @@ export const rewardContainer = {
   height: '40px',
   borderRadius: '8px',
   backgroundColor: '#f5f5f5',
-  padding: '0 7px'
+  padding: '0 7px',
+  
+  boxShadow:'0px 2px 4px rgb(0 0 0 / 23%)'
 }
 
 export const rewardText = {
