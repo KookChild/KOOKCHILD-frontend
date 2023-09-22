@@ -93,7 +93,6 @@ export const MissionCreatePage = () => {
             [e.target.name]: e.target.value,
         }));
     };
-
     const handleCreateMissionClick = () => {
         if (selectedIds.length === 0) {
             Swal.fire({
@@ -106,6 +105,7 @@ export const MissionCreatePage = () => {
             });
             return;
         }
+
         Swal.fire({
             title: '<span style="font-size: 20px;">미션을 등록하시겠습니까?</span>',
             icon: 'question',
@@ -120,28 +120,31 @@ export const MissionCreatePage = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setIsCreatingMission(true);
-                Swal.fire({
-                    title: '<span style="font-size: 20px;">등록 완료!</span>',
-                    icon: 'success',
-                    customClass: {
-                        container: 'custom-swal-container',
-                    },
-                }).then(function () {
-                    setIsCreatingMission(true);
-                    onSubmit()
-                        .finally(() => {
+
+                onSubmit()
+                    .then(() => {
+                        Swal.fire({
+                            title: '<span style="font-size: 20px;">등록 완료!</span>',
+                            icon: 'success',
+                            customClass: {
+                                container: 'custom-swal-container',
+                            },
                         });
-                });
+                    })
+                    .finally(() => {
+                        setIsCreatingMission(false);
+                    });
             }
         });
     };
 
 
-    const onSubmit = async (e) => {
+    const onSubmit = async () => {
         missionData.childIds = selectedIds.join(',');
         missionData.endDate = new Date(missionData.endDate);
         console.log(JSON.stringify(missionData));
-        axios.post('http://localhost:8080/mission', missionData)
+
+        return axios.post('http://localhost:8080/mission', missionData)
             .then((response) => {
                 console.log('서버 응답:', response.data);
                 navigate('/mission/parentView'); // 여기로 이동
@@ -237,7 +240,7 @@ export const MissionCreatePage = () => {
                     <LoadingMessage>
                         <Lottie
                             animationData={loadingAnimation}
-                            style={{ width: "100px", height:"100px" }}
+                            style={{ width: "100px", height: "100px" }}
                         />
                         <span>추천 미션을 가져오는 중입니다</span>
 
