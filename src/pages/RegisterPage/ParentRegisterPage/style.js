@@ -142,7 +142,7 @@ export const ResidentNumberInput = ({
       />
       <span> - </span>
       <Input
-        type="text"
+        type="password"
         placeholder=""
         value={ssn2}
         onChange={e => onChange2(e)}

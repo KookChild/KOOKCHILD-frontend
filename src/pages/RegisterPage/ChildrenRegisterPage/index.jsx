@@ -252,7 +252,7 @@ export const ChildrenRegisterPage = () => {
     <TopContainer>
       <TopNavigationBar title={"자녀 정보 등록"} />
       <RegisterWrapper>
-        <RegisterTitle>Kook Child - 자녀 정보</RegisterTitle>
+        <RegisterTitle>Kids Bank - 자녀 정보</RegisterTitle>
         <RegisterForm onSubmit={handleRegister}>
           <div><DescriptionTitle>자녀 정보를 등록하시겠습니까?</DescriptionTitle></div>
           <DescriptionBox>

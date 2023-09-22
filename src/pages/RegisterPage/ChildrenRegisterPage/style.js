@@ -226,7 +226,7 @@ export const ResidentNumberInput = ({
       />
       <span> - </span>
       <Input
-        type="text"
+        type="password"
         placeholder="주민등록번호 뒷자리"
         value={ssn2}
         onChange={e => onChange2(e)}

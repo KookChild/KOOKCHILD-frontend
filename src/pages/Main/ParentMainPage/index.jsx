@@ -115,8 +115,8 @@ export const ParentMainPage = () => {
     <TopContainer>
       <div style={iconContainer}>
         <div style={TopTextContainer}>
-          <span style={{ color: '#FFCC00' }}>KB</span>
-          <span> 자녀 금융 EDU</span>
+          <span style={{ color: '#FFCC00', fontFamily: 'kbFontBold' }}>KB</span>
+          <span>키즈 뱅크</span>
         </div>
         <div style={iconGroup}>
           <FontAwesomeIcon icon={['fas', 'bell']} size="lg" />

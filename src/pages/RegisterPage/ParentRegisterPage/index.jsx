@@ -144,7 +144,7 @@ export const ParentRegisterPage = () => {
     <TopContainer>
       <TopNavigationBar title={"회원가입"} />
       <RegisterWrapper>
-        <RegisterTitle>Kook Child 회원 가입</RegisterTitle>
+        <RegisterTitle>Kids Bank 회원 가입</RegisterTitle>
         <RegisterForm>
           <label>이름</label>
           <Input
