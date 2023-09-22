@@ -74,7 +74,7 @@ const BankContent = ({ selectedPicture, disabled, setDisabled
                     <ThisMonthType>
                       이번달 소비<br></br>
                     </ThisMonthType>
-                    <ThisMonthMoney>
+                    <ThisMonthMoney style={{color: 'tomato'}}>
                       -{spendingAmount}원
                     </ThisMonthMoney>
                 </MonthlyItem>
