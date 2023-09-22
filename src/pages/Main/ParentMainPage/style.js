@@ -214,7 +214,6 @@ export const SendContainer = styled.div`
   display:flex;
   justify-content:space-between;
   align-items:center;
-  
 `
 
 export const Send = styled.div`
@@ -226,4 +225,7 @@ export const Send = styled.div`
   text-align: center;
   font-size: 14px;
   font-weight:bold;
+  &:hover {
+    background-color: gold;
+  }
 `
