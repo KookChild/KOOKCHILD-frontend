@@ -117,7 +117,7 @@ export const QuizHistoryDetailPage = () => {
                     <LoadingMessage>
                         <Lottie
                             animationData={loadingAnimation}
-                            style={{ width: "270px", height: "400px" }}
+                            style={{ width: "250px", height: "375px" }}
                         />
                         <LoadingText>답변을 불러오는 중입니다</LoadingText>
                     </LoadingMessage>
