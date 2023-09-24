@@ -82,6 +82,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - (자녀) 일일퀴즈, 보상금저장소, 미션목록, 챌린지목록 <br>
 
 ![메인화면](README.assets/Image/부모자녀메인.png)
+![자녀화면](README.assets/Gif/자녀화면.png)
 
 ### 2. 자녀금융관리
 
@@ -96,8 +97,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - 은행과 부모의 리워드 상세설정
 - 퀴즈/미션/챌린지 성공하면, 리워드 지급<br>
 
-![상품조회](README.assets/Image/연계상품1.png)
-![상품상세조회](README.assets/Image/연계상품2.png)
+![상품조회](README.assets/Image/연계상품.png)
 
 ### 4. 미션
 
@@ -105,7 +105,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - 미션이 떠오르지 않을때는 미션 추천하는 AI기능 이용
 - 미션 전체/진행중/요청 별로 필터링가능<br>
   ![미션추천](README.assets/Gif/미션추천.gif)
-  ![미션] (README.assets/Gif/미션.gif)
+  ![미션](README.assets/Gif/미션.gif)
 
 ### 5. 챌린지
 
@@ -120,7 +120,12 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - AI KB곰에게 퀴즈 문제 질문 가능
 - 퀴즈 히스토리에서 그동안 푼 문제 확인가능<br>
 
-![마이페이지](README.assets/Gif/퀴즈.gif)
+![퀴즈](README.assets/Gif/퀴즈.gif)
+
+### 7. 보상금
+
+- 모은 보상금은 바로 현금처럼 출금가능<br>
+  ![보상금](README.assets/Gif/보상금.gif)
 
 # ⚒️ 주요 기술력 소개
 
