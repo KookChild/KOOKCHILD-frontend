@@ -43,10 +43,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 
 # 🤝 협업툴
 
-<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> 
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> 
-<img src="https://img.shields.io/badge/Zoom-0B5CFF?style=for-the-badge&logo=zoom&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"><img src="https://img.shields.io/badge/Zoom-0B5CFF?style=for-the-badge&logo=zoom&logoColor=white">
 
 <br>
 
@@ -54,27 +51,15 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 
 ### **Environment**
 
-<img src="https://img.shields.io/badge/windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"> 
-<img src="https://img.shields.io/badge/macos-000000?style=for-the-badge&logo=macos&logoColor=white"> 
-<img src="https://img.shields.io/badge/intellij-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> 
-<img src="https://img.shields.io/badge/eclipse-2C2255?style=for-the-badge&logo=eclipseide&logoColor=white"> <img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> 
-<img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white">
+<img src="https://img.shields.io/badge/windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"><img src="https://img.shields.io/badge/macos-000000?style=for-the-badge&logo=macos&logoColor=white"><img src="https://img.shields.io/badge/intellij-000000?style=for-the-badge&logo=intellijidea&logoColor=white"><img src="https://img.shields.io/badge/eclipse-2C2255?style=for-the-badge&logo=eclipseide&logoColor=white"><img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"><img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white">
 
 ### **Front-End**
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> 
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
-<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"><img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
 
 ### **Back-End**
 
-<img src="https://img.shields.io/badge/java 11-0058CC?style=for-the-badge&logo=java&logoColor=white"> 
-<img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> 
-<img src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-badge&logoColor=white"> 
-<img src="https://img.shields.io/badge/web socket-232F3E?style=for-the-badge&logoColor=white"> 
-<img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> 
-<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white">
+<img src="https://img.shields.io/badge/java 11-0058CC?style=for-the-badge&logo=java&logoColor=white"><img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><img src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-badge&logoColor=white"><img src="https://img.shields.io/badge/web socket-232F3E?style=for-the-badge&logoColor=white"><img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"><img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white">
 
 ### **API**
 
@@ -104,7 +89,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - 자녀 소비통계 확인 <br>
 
 ![자녀금융관리](README.assets/Gif/송금화면.gif)
-(README.assets/Gif/통계.gif)
+![통계](README.assets/Gif/통계.gif)
 
 ### 3. 상품조회
 
@@ -112,15 +97,15 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - 퀴즈/미션/챌린지 성공하면, 리워드 지급<br>
 
 ![상품조회](README.assets/Image/연계상품1.png)
-(README.assets/Image/연계상품2.png)
+![상품상세조회](README.assets/Image/연계상품2.png)
 
 ### 4. 미션
 
 - 미션 추가, 삭제, 수정 가능
 - 미션이 떠오르지 않을때는 미션 추천하는 AI기능 이용
 - 미션 전체/진행중/요청 별로 필터링가능<br>
-  ![미션](README.assets/Gif/미션추천.gif)
-  (README.assets/Gif/미션.gif)
+  ![미션추천](README.assets/Gif/미션추천.gif)
+  ![미션] (README.assets/Gif/미션.gif)
 
 ### 5. 챌린지
 
