@@ -82,7 +82,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 - (자녀) 일일퀴즈, 보상금저장소, 미션목록, 챌린지목록 <br>
 
 ![메인화면](README.assets/Image/부모자녀메인.png)
-![자녀화면](README.assets/Gif/자녀화면.png)
+![자녀화면](README.assets/Gif/자녀화면.gif)
 
 ### 2. 자녀금융관리
 
