@@ -1,11 +1,20 @@
-const path = require('path')
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const CracoAlias = require('craco-alias')
 
 module.exports = {
-  webpack: {
-    alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@hooks': path.resolve(__dirname, 'src/hooks'),
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-typescript',
+    '@babel/preset-react',
+  ],
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: 'tsconfig',
+        tsConfigPath: 'tsconfig.paths.json',
+      },
     },
-  },
+  ],
 }

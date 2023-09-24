@@ -1,0 +1,13 @@
+/* styles.css */
+.custom-swal-container {
+    width: 389px!important;
+    height:845px !important;
+
+  
+    position: absolute;
+    top: 50%;         /* 세로 중앙 정렬 */
+    left: 50%;        /* 가로 중앙 정렬 */
+    transform: translate(-50%, -50%); /* 가로, 세로 중앙 정렬을 위한 변환 */
+    padding: 30px; /* 내부 여백 설정 */
+  }
+  

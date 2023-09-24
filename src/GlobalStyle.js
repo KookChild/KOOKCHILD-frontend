@@ -1,23 +1,34 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  max-width: 1280px;
-  margin: auto;
-}
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'kbFont','kbFontLight','kbFontRegular','kbFontBold';
+}
+#root{
+
+  height: 844px;
+  width: 390px;
+  position: relative;
+  
+}
 iframe {
   display: none;
 }
 
 body {
   overflow-x: hidden;
-  font-family: "sdMe", "Apple SD Gothic Neo", "Malgun Gothic", "arial sans-serif";
+
   &.open-modal {
     overflow-y: hidden;
   }
+
+
 }
 
 
@@ -73,6 +84,6 @@ border-bottom-left-radius: 30px;
 .border-radius-all{
   border-radius : 30px
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
