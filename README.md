@@ -90,7 +90,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	</td>
 	<td align="center">
 	    <a href="https://avatars.githubusercontent.com/u/96781855?v=4">
-	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/96781855?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>최송희</b>
