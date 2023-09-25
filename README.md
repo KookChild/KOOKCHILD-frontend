@@ -38,7 +38,82 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 
 ### 프로젝트 멤버
 
--개발자: 강태섭 , 김한주 , 김지은 , 윤다인 , 최송희 , 최유정 <br> -디자이너: 진서동
+<table>
+    <tr>
+        <td align="center">
+	    <a href="https://github.com/KSEOP">
+	    	<img src="https://avatars.githubusercontent.com/u/56250226?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>강태섭</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+        <td align="center">
+	    <a href="https://github.com/mellykim123">
+	    	<img src="https://avatars.githubusercontent.com/u/81132057?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>김지은</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+        <td align="center">
+	    <a href="https://github.com/rlagkswn00">
+	    	<img src="https://avatars.githubusercontent.com/u/49315208?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>김한주</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+	<td align="center">
+	    <a href="https://github.com/yoondain">
+	    	<img src="https://avatars.githubusercontent.com/u/78676660?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>윤다인</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+	<td align="center">
+	    <a href="https://github.com/songhee1">
+	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>최송희</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+  	<td align="center">
+	    <a href="https://github.com/ChoiYoo">
+	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
+	    	<br/>
+	    	<sub>
+	    	<b>최유정</b>
+	    	<br/>
+	    	<img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/100"/>
+	        </sub>
+	    </a>
+	    <br />
+	</td>
+    </tr>
+</table>
 <br>
 
 # 🤝 협업툴
