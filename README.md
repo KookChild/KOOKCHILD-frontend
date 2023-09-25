@@ -42,7 +42,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
     <tr>
         <td align="center">
 	    <a href="https://github.com/KSEOP">
-	    	<img src="https://avatars.githubusercontent.com/u/56250226?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>강태섭</b>
@@ -54,7 +54,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	</td>
         <td align="center">
 	    <a href="https://github.com/mellykim123">
-	    	<img src="https://avatars.githubusercontent.com/u/81132057?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/78676660?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>김지은</b>
@@ -66,7 +66,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	</td>
         <td align="center">
 	    <a href="https://github.com/rlagkswn00">
-	    	<img src="https://avatars.githubusercontent.com/u/49315208?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/56250226?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>김한주</b>
@@ -78,7 +78,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	</td>
 	<td align="center">
 	    <a href="https://github.com/yoondain">
-	    	<img src="https://avatars.githubusercontent.com/u/78676660?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/76734572?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>윤다인</b>
@@ -89,7 +89,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	    <br />
 	</td>
 	<td align="center">
-	    <a href="https://github.com/songhee1">
+	    <a href="https://avatars.githubusercontent.com/u/96781855?v=4">
 	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
@@ -102,7 +102,7 @@ IT's your life 4기, 부모와 은행이 아이의 금융학습을 위한 미션
 	</td>
   	<td align="center">
 	    <a href="https://github.com/ChoiYoo">
-	    	<img src="https://avatars.githubusercontent.com/u/42964809?v=4" width="100px;" alt=""/>
+	    	<img src="https://avatars.githubusercontent.com/u/95369406?v=4" width="100px;" alt=""/>
 	    	<br/>
 	    	<sub>
 	    	<b>최유정</b>
