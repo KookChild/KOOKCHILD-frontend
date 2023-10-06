@@ -119,14 +119,14 @@ export const MyAccountButton = {
   position: 'relative',
   backgroundColor: '#ffffff',
   flex: 1,
-  padding: '30px 20px', // 세로 길이를 조절
+  padding: '30px 20px', 
   margin: '8px',
-  borderRadius: '8px', // 모서리 라운딩
-  border: '1px solid #ccc', // 테두리 없앰
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  borderRadius: '8px', 
+  border: '1px solid #ccc', 
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
 }
 
-// MyAccountButton 내부 버튼
+
 export const CustomLinkButton = {
   backgroundColor: '#FFCC00 ',
   padding: '10px 20px',
@@ -142,25 +142,25 @@ export const CustomLinkButton = {
 export const DailyQuizButton = {
   backgroundColor: '#ffffff',
   flex: 1,
-  padding: '30px 20px', // 세로 길이를 조절
+  padding: '30px 20px',
   margin: '8px',
-  borderRadius: '8px', // 모서리 라운딩
-  border: '1px solid #ccc', // 테두리 없앰
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  borderRadius: '8px', 
+  border: '1px solid #ccc',
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
   width:'95%'
 }
 
 export const ChallengeContainer = {
   display: 'flex',
   margin: '10px',
-  flexDirection: 'column', // 컨테이너 방향을 세로로 변경
-  marginBottom: '20px', // 각 챌린지 아이템 아래에 마진 추가
-  alignItems: 'center', // 아이템을 세로 중앙에 배치
+  flexDirection: 'column', 
+  marginBottom: '20px', 
+  alignItems: 'center', 
   border: '1px solid #ccc',
-  borderRadius: '12px', // 둥근 모서리
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자
-  padding: '6px', // 내부 여백
-  width: '300px', // 너비
+  borderRadius: '12px',
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+  padding: '6px',
+  width: '300px',
 }
 
 export const ChallengeImage = {
@@ -189,11 +189,11 @@ export const ChallengeInfo = {
 export const BackToKBStarBankingButton = {
   backgroundColor: '#ffffff',
   flex: 0.4,
-  padding: '10px 10px', // 세로 길이를 조절
+  padding: '10px 10px', 
   marginTop: '22px',
-  borderRadius: '8px', // 모서리 라운딩
+  borderRadius: '8px',
   border: '1px solid #ccc',
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
   whiteSpace: 'normal',
   width: '200px',
 }
